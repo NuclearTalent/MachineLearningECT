@@ -1,5 +1,5 @@
 TITLE: Nuclear Talent course  on Machine Learning in Nuclear Experiment and Theory
-AUTHOR: "https://www.nscl.msu.edu/directory/bazin.html" at Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University, East Lansing, Michigan, USA
+AUTHOR: "Daniel Bazin":"https://www.nscl.msu.edu/directory/bazin.html" at Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University, East Lansing, Michigan, USA
 AUTHOR: "Morten Hjorth-Jensen":"http://mhjgit.github.io/info/doc/web/" at Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University, East Lansing, Michigan, USA
 AUTHOR: "Michelle Kuchera":"https://www.davidson.edu/academics/physics/faculty-and-staff/michelle-kuchera" at Physics Department, Davidson College, Davidson, North Carolina, USA
 AUTHOR: "Sean Liddick":"https://www.nscl.msu.edu/directory/liddick.html" at Department of Chemistry  and National Superconducting Cyclotron Laboratory, Michigan State University, East Lansing, Michigan, USA
