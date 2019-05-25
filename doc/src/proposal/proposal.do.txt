@@ -1,0 +1,337 @@
+TITLE: Proposal for a Nuclear Talent course at the ECT* in 2017: Theory for Exploring Nuclear Structure Experiments
+AUTHOR: "Alex Brown":"https://people.nscl.msu.edu/~brown/" at National Superconducting Cyclotron Laboratory and Department of Physics and Astronomy, Michigan State University, East Lansing, MI 48824, USA
+AUTHOR: "Alexandra Gade":"https://people.nscl.msu.edu/~gade/" at National Superconducting Cyclotron Laboratory and Department of Physics and Astronomy, Michigan State University, East Lansing, MI 48824, USA
+AUTHOR: "Robert Grzywacz":"http://web.utk.edu/~rgrzywac/" at Department of Physics and Astronomy, University of Tennessee, Knoxville, TN 37996-1200, USA &  Oak Ridge National Laboratory, Oak Ridge, TN 37831, USA
+AUTHOR: "Morten Hjorth-Jensen":"http://mhjgit.github.io/info/doc/web/"  at National Superconducting Cyclotron Laboratory and Department of Physics and Astronomy, Michigan State University, East Lansing, MI 48824, USA & Department of Physics, University of Oslo, N-0316 Oslo, Norway
+AUTHOR: "Gustav Jansen":"https://www.ornl.gov/staff-profile/gustav-r-jansen"  at Oak Ridge National Laboratory, Oak Ridge, TN 37831, USA
+DATE: May 26 2016
+
+!split
+===== Proposal for a Nuclear Talent course at the ECT* in 2017 =====
+!bblock
+We would like to propose a three-week Nuclear Talent course on Theory
+for exploring nuclear structure experiments at the ECT* for the summer
+of 2017.  A similar course, but with a strong focus on collective models and symmetries,
+was run and organized at Ganil by Rick Casten and Piet van Isacker in
+2014. The course was oversubscribed with more than 60 student
+applications, clearly demonstrating the need in the community for the
+selected topics. We believe such a course has a strong potential to
+attract many students, theorists and experimentalists alike. Since the Nuclear Talent 
+initiative aims at proposing the various courses in cycles of three to four years, it 
+is timely to propose the above course again, but this time focusing on the nuclear shell model. This course provides a hands-on 
+approach to experimental data and their interpretrations. 
+
+Below we give a short motivation for the proposed course and the
+rationale behind the Nuclear Talent initiative. Thereafter we detail
+our course plans with learning outcomes, objectives and teaching
+philosophy, as well as various organizational and practical matters.
+
+The teaching teams consists of both theorists and experimentalists. We believe such a mix
+is important as it gives the students a better understanding on how data are obtained, and what are the limitations and possibilities in understanding and interpreting the experimental information. 
+
+!eblock
+
+!split
+===== Motivation =====
+!bblock
+To understand why matter is stable, and thereby shed light on the
+limits of nuclear stability, is one of the overarching aims and
+intellectual challenges of basic research in nuclear physics. To
+relate the stability of matter to the underlying fundamental forces
+and particles of nature as manifested in nuclear matter, is central to
+present and planned rare isotope facilities.  
+
+Important properties of nuclear systems which can reveal information about these topics are
+for example masses, and thereby binding energies, and density
+distributions of nuclei.  These are quantities which convey important
+information on the shell structure of nuclei, with their pertinent
+magic numbers and shell closures or the eventual disappearence of the
+latter away from the valley of stability.  
+
+During the last decade,  the study of nuclear
+structure and the models used to describe atomic nuclei are
+experiencing a renaissance. This is driven by three technological
+revolutions: accelerators capable of producing and accelerating exotic
+nuclei far from stability; instrumentation capable of detecting the
+resulting reaction products and gamma radiation, often on an
+event-by-event basis, in situations where data rates may be many
+orders of magnitude less than has been traditional; and computing
+power adequate to analyze the resulting data, often on-line, and to
+carry out sophisticated theoretical calculations to understand these
+nuclei at the limits of stability and to unravel what they tell us
+about nuclei and their structural evolution. 
+
+The nuclear shell model plays  a central role in guiding our analysis of this wealth of 
+experimental data.
+It provides an excellent link to the underlying nuclear forces and the pertinent laws of motion,
+allowing nuclear physicists to interpret complicated experiments in terms of various 
+components of the nuclear Hamiltonian and to understand a swath of nuclei by following chains of isotopes and isotoones over wide ranges of nucleon numbers. The nuclear shell model allows us to see how the structure of nuclei changes and how the occupation of specific nucleonic orbits affects the interplay of residual interactions and configuration mixing.  The computed expectation values and transition probabilities 
+can be directly linked to experiment, with the potential to single out new phenomena and guide future experiments. 
+Large-scale shell-model calculations represent also 
+challenging computational and theoretical topics, spanning from efficient usage of high-performance computing facilities  to consistent theories for deriving effective Hamiltonians and operators. 
+Alltogether, these various facets of nuclear theory represent important elements in our endeavors to understand nuclei and their limits of stability.  
+It is the goal and motivation of this course to introduce and
+develop the nuclear structure tools  needed to carry out forefront research using the shell model as the central tool. The various projects will focus on the development of a shell-model code for simpler systems like $sd$-shell nuclei, giving the participants the essential ideas of configuration interaction methods. During the first two weeks the aim is to develop such a shell-model code. With these insights, the students can divert into several directions
+the last week, from the usage of the NushellX suite of nuclear structure programs to further developing 
+their own shell-model program. After completion, it is our hope that the participants have understood the overarching ideas 
+behind central theoretical tools used to analyse nuclear structure experiments. 
+  
+!eblock
+
+!split 
+===== Introduction to the Talent Courses =====
+!bblock
+A recently established initiative, "Training in Advanced Low Energy Nuclear Theory":"http://www.nucleartalent.org",  
+aims at providing an advanced and comprehensive training to graduate students
+and young researchers in low-energy nuclear theory. The initiative
+is a multinational network between several European and Northern
+American institutions and aims at developing a broad curriculum that
+will provide the platform for a cutting-edge theory for understanding
+nuclei and nuclear reactions. These objectives will be met by
+offering series of lectures, commissioned from experienced teachers
+in nuclear theory. The educational material generated under this
+program will be collected in the form of WEB-based courses,
+textbooks, and a variety of modern educational resources. No such
+all-encompassing material is available at present; its development
+will allow dispersed university groups to profit from the best
+expertise available.
+
+The Nuclear Talent initiative has (as of May 2016) organized and run
+successfully nine advanced courses since the summer of 2012. Three of
+these courses have been run and organized (in a very successful way)
+at the premises of the ECT*. We hope thus, if this course gets
+approved by the board of directors of the ECT*, that we can continue
+this successful and very fruitful collaboration.  The course organized
+by Giuseppina Orlandini *et al* at the ECT* last summer had more than
+fifty applicants. On average, the Nuclear Talent courses we have
+organized till now have had close to 40 applicants per course. We have
+normally accepted between 20 and 25 students, of which approximately
+five or slightly more have been either local students and/or fully
+self-supported.  In 2016 the Nuclear Talent initiatives will run two
+courses, one in the US and one in Europe.
+!eblock
+
+
+!split
+===== Aims and Learning Outcomes =====
+!bblock
+This three-week TALENT course on nuclear theory will focus on the
+interpretation of data on the structure of nuclei using the Nuclear shell model as main tool. 
+
+
+=== Format: === 
+
+We propose approximately forty-five hours of lectures over three weeks and a
+comparable amount of practical computer and exercise sessions, including the
+setting of individual problems and the organization of various individual projects.
+
+The mornings will consist of lectures and the
+afternoons will be devoted to exercises meant to shed light on the exposed theory, 
+the computational projects  and individual student projects. These
+components will be coordinated to foster student engagement,
+maximize learning and create lasting value for the students. For the
+benefit of the TALENT series and of the community, material (courses,
+slides, problems and solutions, reports on students' projects) will be
+made publicly available using version control software like *git* and posted electronically on 
+"github":"https://github.com". 
+
+As with previous TALENT courses, we envision
+the following features for the afternoon sessions: 
+* We will use both individual and group work to carry out tasks that are very specific in technical instructions, but leave freedom for creativity.  
+* Groups will be carefully put together to maximize diversity of backgrounds.  
+* Results will be presented in a conference-like setting to create accountability.  
+* We will organize events where individuals and groups exchange their experiences, difficulties and successes to foster interaction.  
+* During the school, on-line and lecture-based training tailored to technical issues will be provided. Students will learn to use and interpret the results of computer-based and hand calculations of nuclear models. The lectures will be aligned with the practical computational projects and exercises and the lecturers will be available to help students and work with them during the exercise sessions.  
+* These interactions will raise topics not originally envisioned for the course but which are recognized to be valuable for the students. There will be flexibility to organize mini-lectures and discussion sessions on an ad-hoc basis in such cases.  
+* Each group of students will maintain an online logbook of their activities and results.  
+* Training modules, codes, lectures, practical exercise instructions, online logbooks, instructions and information created by participants will be merged into a comprehensive website that will be available to the community and the public for self-guided training or for use in various educational settings (for example, a graduate course at a university could assign some of the projects as homework or an extra credit project, etc).
+
+
+=== Objectives and learning outcomes: ===
+At the end of the course the students should have a basic understanding of
+* Configuration interaction methods (nuclear shell-model here) as a central tool to interpret nuclear structure experiment
+* Have an understanding of single-particle basis functions and the construction of many-body basis states built thereupon. Examples are basis states from a Woods-Saxon potential, harmonic oscillator states and mean-field based states from a Hartree-Fock calculation. The single-particle basis states are orthonormal and are used to construct  a corresponding orthonormal basis set of Slater determinants.
+* Develop an understanding of what defines an observable. 
+* Understand how theory  can be used to interpret experimental quantities (separation energies and shell gaps for example).
+* Understand how experiment is used to extract transition probabilities and information about ground and exited states. 
+* Understand how second-quantization is used to represent states and compute expectation values and transition probabilities  of operators
+* Understand how the Hamiltonian matrix is constructed from this orthonormal basis set of many-body states (linear expansion of Slater determinants)
+* For nuclear systems like the $sd$-shell, essentially all nuclei can be studied using direct diagonalization methods. In the construction of the shell-model code during the first two weeks, the students will learn to compute  the ground state and the excited states of selected $sd$-shell nuclei. This project applies to all students. During the last week, students can pursue more individually defined projects
+* The students will also learn to understand the basic elements of effective shell-model Hamiltonians and how to interpret the calculated properties in terms of various components of the nuclear forces (spin-orbit force, tensor force, central force etc). We will provide the students with the necessary tools to perform such analyses. 
+* Understand how to use shell-model calculations to calculate decay rates and transition probabilities and relate these to various electromagnetic transition operators and operators for beta-decays and double-beta decays.  
+* Develop a critical understanding the limits of shell-model studies and how these can be related to interpretations of data such as results from in-beam and decay experiments.
+* Understand how to use second-quantization to construct one-body and two-body transfer operators, overlap functions, spectroscopic factors and experiments related to spectroscopic factors. 
+* For the students which wish to follow a more computational path during the last week, iterative eigenvalue solvers will discussed. Similarly, efficient representations of many-body states and computations of Hamiltonian matrices will also be discussed.
+* We will also discuss modern shell-model codes like NushellX. This suite of programs can be used by students to pursue their own projects. Applications of NushellX to the calculations of various observables will discussed and students who wish to use NushellX, can define individual projects during the last week.
+
+!eblock
+
+
+!split
+===== Course Content and detailed plan  =====
+!bblock
+
+
+
+=== Week 1 ===
+|--------------------------------------------------------------------------|
+|    |  Lecture Topics |   Projects and exercises                                    |
+|--------------------------------------------------------------------------|
+| Monday |  Introduction and discussion of data|  Discussion of separation energies, shells gaps and selected excited states|
+|       |  Hamiltonians and mean field |   Discussion of harmonic oscillator and Woods-Saxon potentials |
+|--------------------------------------------------------------------------|
+| Tuesday| Mean field models and Hartree-Fock theory| Discussion of harmonic oscillator and Woods-Saxon potentials |
+|--------------------------------------------------------------------------|
+| Wednesday | Second quantization and shell-model basics |  Discussion of Hartree-Fock calculations  | 
+|           | Experiments and data that justify a mean-field interpretation |                                |  
+|--------------------------------------------------------------------------|
+| Thursday  | Shell-model code for a simple pairing problem |  Properties of the pairing problem  |
+|           | Basic shell-model algorithm                   | How  to structure a shell-model program |
+|--------------------------------------------------------------------------|
+| Friday    | Writing a shell-model program for the simple pairing problem | Work on shell-model code |
+|--------------------------------------------------------------------------|
+
+
+=== Week 2 ===
+
+|--------------------------------------------------------------------------|
+|    |  Lecture Topics |   Projects and exercises                                    |
+|--------------------------------------------------------------------------|
+| Monday |   Shell-model Hamiltonians and the $sd$-shell as case | Extend shell-model to realistic nuclear structure cases| 
+|       |  Efficient computations of Hamiltonian matrices|                |
+|--------------------------------------------------------------------------|
+| Tuesday|  Effective Hamiltonians and angular momentum algebra | Bit representations of state functions and setup of Hamiltonian matrices |
+|--------------------------------------------------------------------------|
+| Wednesday | Effective Hamiltonians from data    | Continue work on shell-model code|
+|--------------------------------------------------------------------------|
+| Thursday  | One- and two-particle transfer operators |  Computing angular momentum expectation values|
+|           | Spectroscopic factors (SFs), overlap functions and experiments related to SFs  |       |
+|           |   |       |
+|--------------------------------------------------------------------------|
+| Friday    | Electromagnetic decays, theory and experiment |  Finalize shell-model code for spectra|
+|           | Introducing NushellX                          | Demonstrations of NushellX  and comparison with own code|
+|--------------------------------------------------------------------------|
+
+
+
+=== Week 3 ===
+
+|--------------------------------------------------------------------------|
+|    |  Lecture Topics |   Projects and exercises                                    |
+|--------------------------------------------------------------------------|
+| Monday | Electromagnetic decays and NushellX calculations |   Individual projects| 
+|       |  More on onebody operators and transition densities |            |
+|--------------------------------------------------------------------------|
+| Tuesday| Beta-decays and Gamow-Teller transitions, theory and experiments | Individual projects |
+|--------------------------------------------------------------------------|
+| Wednesday | Beta-decays and Gamow-Teller transitions, theory and experiments | Individual projects |
+|           | Using NushellX for studies of beta-decays |    | 
+|--------------------------------------------------------------------------|
+| Thursday  | Two-body transition operators and double-beta decay| Individual projects         |
+|--------------------------------------------------------------------------|
+| Friday    | Double-beta decay and wrap-up of course | Work on final projects|
+|--------------------------------------------------------------------------|
+
+!eblock
+
+
+!split
+===== Teaching =====
+!bblock
+
+The course will be taught as an intensive  course of duration of three weeks, with a
+total time of 45 h of lectures, 45 h of exercises and  a final assignment of 2 weeks of work.
+The total load will be approximately 160-170 hours, corresponding to  _7 ECTS_ in Europe.
+The final assignment will be graded
+with marks A, B, C, D, E and failed for Master students and passed/not passed for PhD students.
+A course certificate will be issued for students requiring it from the University of Trento. 
+
+The organization of a typical course day is as follows:
+
+|------------------------------------------------------------------------|
+|  Time  |  Activity                                                     |
+|------------------------------------------------------------------------|
+| 9am-12pm| Lectures, project relevant information and directed exercises|
+| 12pm-2pm| Lunch                                       |
+| 2pm-6pm |  Computational projects, exercises  and hands-on sessions    |
+| 6pm-7pm |  Wrap-up of the day and eventual student presentations       |
+|------------------------------------------------------------------------| 
+
+If approved by the ECT* board of directors, our preferred time slot would be from the second half of June till the second half of July. 
+!eblock
+
+!split
+===== Teachers and organizers =====
+!bblock
+The organizers are 
+
+o "Alex Brown":"https://people.nscl.msu.edu/~brown/", "National Superconducting Cyclotron Laboratory":"http://www.nscl.msu.edu/" and "Department of Physics and Astronomy":"https://www.pa.msu.edu/", "Michigan State University":"http://www.msu.edu/", East Lansing, MI 48824, USA
+o "Morten Hjorth-Jensen":"http://mhjgit.github.io/info/doc/web/", "National Superconducting Cyclotron Laboratory":"http://www.nscl.msu.edu/" and "Department of Physics and Astronomy":"https://www.pa.msu.edu/", "Michigan State University":"http://www.msu.edu/", East Lansing, MI 48824, USA and Department of Physics, University of Oslo, N-0316 Oslo, Norway 
+
+Morten Hjorth-Jensen will also function as student advisor and coordinator.
+
+The teachers are 
+
+o "Alex Brown":"https://people.nscl.msu.edu/~brown/", "National Superconducting Cyclotron Laboratory":"http://www.nscl.msu.edu/" and "Department of Physics and Astronomy":"https://www.pa.msu.edu/", "Michigan State University":"http://www.msu.edu/", East Lansing, MI 48824, USA
+o "Alexandra Gade":"https://people.nscl.msu.edu/~gade/"  "National Superconducting Cyclotron Laboratory":"http://www.nscl.msu.edu/" and "Department of Physics and Astronomy":"https://www.pa.msu.edu/", "Michigan State University":"http://www.msu.edu/", East Lansing, MI 48824, USA
+o "Robert Grzywacz":"http://web.utk.edu/~rgrzywac/"  at "Oak Ridge National Laboratory":"http://www.ornl.gov/", Oak Ridge, TN 37831  and "Department of Physics and Astronomy":"https://www.phys.utk.edu/", "University of Tennessee":"http://www.utk.edu/", Knoxville, TN 37996-1200, USA
+o "Morten Hjorth-Jensen":"http://mhjgit.github.io/info/doc/web/"  at "National Superconducting Cyclotron Laboratory":"http://www.nscl.msu.edu/" and "Department of Physics and Astronomy":"https://www.pa.msu.edu/", "Michigan State University":"http://www.msu.edu/", East Lansing, MI 48824, USA and  Department of Physics, University of Oslo, N-0316 Oslo, Norway
+o "Gustav Jansen":"https://www.ornl.gov/staff-profile/gustav-r-jansen"  at "Oak Ridge National Laboratory":"http://www.ornl.gov/", Oak Ridge, TN 37831, USA
+o An eventual Post-doctoral fellow and an advanced graduate student as teaching assistants. 
+!eblock
+
+!split
+===== Audience and Prerequisites =====
+!bblock
+Students and post-doctoral fellows interested in models for nuclear
+structure, phenomenological techniques for interpreting and predicting
+the structure of stable as well as exotic nuclei. The material will be
+of interest, and accessible, to both theorists and experimentalists,
+and will include learning the practical use of shell-model approaches
+in order to interpret and study nuclear structure experiments.
+
+The students are expected to have operating programming skills in in
+compiled programming languages like Fortran or C++ or alternatively an
+interpreted language like Python and knowledge of quantum mechanics at
+an intermediate level.  Preparatory modules on second quantization,
+Wick's theorem, representation of Hamiltonians and calculations of
+Hamiltonian matrix elements, independent particle models and
+Hartree-Fock theory are provided at the website of the course.
+Students who have not studied the above topics are expected to gain
+this knowledge prior to attendance.  Additional modules for
+self-teaching on Fortran and/or C++ or Python are also provided.
+!eblock
+!split
+===== Admission =====
+!bblock
+The target group is Master of Science students, PhD students and early
+post-doctoral fellows.  Also senior staff can attend but they have to be
+self-supported.  The maximum number of students is 20-25, of which only
+at most 15 can receive full local support. 
+
+The process of selections of the students will be managed in
+agreement with the ECT*.
+!eblock
+
+!split
+===== Preliminary budget =====
+!bblock
+We expect to accept between 20-25 students. Local students from the University of Trento are fully self-supported. 
+If approved, we would very much appreciate if the ECT* can sponsor 15 of the selected students with local expenses, that is lodging and meals during weekdays. Any additional funds for sponsoring further students is highly appreciated. 
+All travel expenses will be covered by the respective home institute. 
+Teachers are self-supported. We plan to raise additional funds to cover local support for additional students and the expenses of the teachers. 
+
+There is no participation fee. Administrative support from the ECT* in organizing the course and setting up the application procedure is essential for a smooth (as always) outcome. The administrative experience of the staff at the ECT* has been unique and essential in running successully our previous Talent courses (2012, 2014 and 2015). We would thus highly appreciate it if these services are provided if the proposal is approved.  
+
+!eblock
+
+
+
+
+
+
+
+
+
+
+

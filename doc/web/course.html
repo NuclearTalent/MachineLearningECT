@@ -1,0 +1,622 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Nuclear Talent course  on Machine Learning in Nuclear Experiment and Theory">
+
+<title>Nuclear Talent course  on Machine Learning in Nuclear Experiment and Theory</title>
+
+
+<style type="text/css">
+/* blueish style */
+
+/* Color definitions:  http://www.december.com/html/spec/color0.html
+   CSS examples:       http://www.w3schools.com/css/css_examples.asp */
+
+body {
+  margin-top: 1.0em;
+  background-color: #ffffff;
+  font-family: Helvetica, Arial, FreeSans, san-serif;
+  color: #000000;
+}
+h1 { font-size: 1.8em; color: #1e36ce; }
+h2 { font-size: 1.6em; color: #1e36ce; }
+h3 { font-size: 1.4em; color: #1e36ce; }
+a { color: #1e36ce; text-decoration:none; }
+tt { font-family: "Courier New", Courier; }
+/* pre style removed because it will interfer with pygments */
+p { text-indent: 0px; }
+hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+p.caption { width: 80%; font-style: normal; text-align: left; }
+hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+.alert-text-small   { font-size: 80%;  }
+.alert-text-large   { font-size: 130%; }
+.alert-text-normal  { font-size: 90%;  }
+.alert {
+  padding:8px 35px 8px 14px; margin-bottom:18px;
+  text-shadow:0 1px 0 rgba(255,255,255,0.5);
+  border:1px solid #bababa;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  color: #555;
+  background-color: #f8f8f8;
+  background-position: 10px 5px;
+  background-repeat: no-repeat;
+  background-size: 38px;
+  padding-left: 55px;
+  width: 75%;
+ }
+.alert-block {padding-top:14px; padding-bottom:14px}
+.alert-block > p, .alert-block > ul {margin-bottom:1em}
+.alert li {margin-top: 1em}
+.alert-block p+p {margin-top:5px}
+.alert-notice { background-image: url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_gray_notice.png); }
+.alert-summary  { background-image:url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_gray_summary.png); }
+.alert-warning { background-image: url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_gray_warning.png); }
+.alert-question {background-image:url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_gray_question.png); }
+
+div { text-align: justify; text-justify: inter-word; }
+</style>
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [('Introduction to Data Analysis and Machine Learning',
+               2,
+               None,
+               '___sec0'),
+              ('Regression Methods', 2, None, '___sec1'),
+              ('Logistic Regression', 2, None, '___sec2'),
+              ('Gradient Methods and Optimization', 2, None, '___sec3'),
+              ('Decision trees, from simple to random ones',
+               2,
+               None,
+               '___sec4'),
+              ('Support Vector Machines', 2, None, '___sec5'),
+              ('Neural Networks', 2, None, '___sec6'),
+              ('Convolutional Neural Networks', 2, None, '___sec7'),
+              ('Unsupervised Learning, Boltzmann Machines', 2, None, '___sec8'),
+              ('Recurrent Neural Networks', 2, None, '___sec9'),
+              ('Autoencoders', 2, None, '___sec10'),
+              ('Reinforcement Learning', 2, None, '___sec11'),
+              ('Python and Scikit Learn, a short guide', 2, None, '___sec12'),
+              ('Practicalities', 2, None, '___sec13'),
+              ('Recommended textbook', 3, None, '___sec14'),
+              ('Schedule', 3, None, '___sec15')]}
+end of tocinfo -->
+
+<body>
+
+    
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<center><h1>Nuclear Talent course  on Machine Learning in Nuclear Experiment and Theory</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): "https://www.nscl.msu.edu/directory/bazin.html", <a href="http://mhjgit.github.io/info/doc/web/" target="_self">Morten Hjorth-Jensen</a>, <a href="https://www.davidson.edu/academics/physics/faculty-and-staff/michelle-kuchera" target="_self">Michelle Kuchera</a>, <a href="https://www.nscl.msu.edu/directory/liddick.html" target="_self">Sean Liddick</a>, and <a href="https://www.davidson.edu/academics/mathematics-and-computer-science/faculty-and-staff/raghuram-ramanujan" target="_self">Raghuram Ramanujan</a> -->
+
+<center>
+<b>"https://www.nscl.msu.edu/directory/bazin.html"</b> [1]
+</center>
+
+<center>
+<b><a href="http://mhjgit.github.io/info/doc/web/" target="_self">Morten Hjorth-Jensen</a></b> [1]
+</center>
+
+<center>
+<b><a href="https://www.davidson.edu/academics/physics/faculty-and-staff/michelle-kuchera" target="_self">Michelle Kuchera</a></b> [2]
+</center>
+
+<center>
+<b><a href="https://www.nscl.msu.edu/directory/liddick.html" target="_self">Sean Liddick</a></b> [3]
+</center>
+
+<center>
+<b><a href="https://www.davidson.edu/academics/mathematics-and-computer-science/faculty-and-staff/raghuram-ramanujan" target="_self">Raghuram Ramanujan</a></b> [4]
+</center>
+
+<p>
+<!-- institution(s) -->
+
+<center>[1] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University, East Lansing, Michigan, USA</b></center>
+<center>[2] <b>Physics Department, Davidson College, Davidson, North Carolina, USA</b></center>
+<center>[3] <b>Department of Chemistry  and National Superconducting Cyclotron Laboratory, Michigan State University, East Lansing, Michigan, USA</b></center>
+<center>[4] <b>Department of Mathematics and Computer Science, Davidson College, Davidson, North Carolina, USA</b></center>
+<br>
+
+<h2 id="___sec0">Introduction to Data Analysis and Machine Learning </h2>
+
+<ul>
+ <li> LaTeX PDF:</li>
+
+<ul>
+   <li> For printing:</li>
+
+<ul>
+     <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/Introduction/pdf/Introduction-minted.pdf" target="_self">Standard one-page format</a></li>
+</ul>
+
+</ul>
+
+ <li> HTML:</li>
+
+<ul>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/Introduction/html/Introduction.html" target="_self">Plain html</a></li>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/Introduction/html/Introduction-bs.html" target="_self">Bootstrap  slide style, easy for reading on mobile devices</a></li>
+</ul>
+
+ <li> Jupyter notebook:</li>
+
+<ul>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/Introduction/ipynb/Introduction.ipynb" target="_self">ipynb file</a></li>
+</ul>
+
+</ul>
+
+<h2 id="___sec1">Regression Methods </h2>
+
+<ul>
+ <li> LaTeX PDF:</li>
+
+<ul>
+   <li> For printing:</li>
+
+<ul>
+     <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/Regression/pdf/Regression-minted.pdf" target="_self">Standard one-page format</a></li>
+</ul>
+
+</ul>
+
+ <li> HTML:</li>
+
+<ul>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/Regression/html/Regression.html" target="_self">Plain html</a></li>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/Regression/html/Regression-bs.html" target="_self">Bootstrap  slide style, easy for reading on mobile devices</a></li>
+</ul>
+
+ <li> Jupyter notebook:</li>
+
+<ul>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/Regression/ipynb/Regression.ipynb" target="_self">ipynb file</a></li>
+</ul>
+
+</ul>
+
+<h2 id="___sec2">Logistic Regression </h2>
+
+<ul>
+ <li> LaTeX PDF:</li>
+
+<ul>
+   <li> For printing:</li>
+
+<ul>
+     <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/LogReg/pdf/LogReg-minted.pdf" target="_self">Standard one-page format</a></li>
+</ul>
+
+</ul>
+
+ <li> HTML:</li>
+
+<ul>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/LogReg/html/LogReg.html" target="_self">Plain html</a></li>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/LogReg/html/LogReg-bs.html" target="_self">Bootstrap  slide style, easy for reading on mobile devices</a></li>
+</ul>
+
+ <li> Jupyter notebook:</li>
+
+<ul>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/LogReg/ipynb/LogReg.ipynb" target="_self">ipynb file</a></li>
+</ul>
+
+</ul>
+
+<h2 id="___sec3">Gradient Methods and Optimization </h2>
+
+<ul>
+ <li> LaTeX PDF:</li>
+
+<ul>
+   <li> For printing:</li>
+
+<ul>
+     <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/GradientOptim/pdf/GradientOptim-minted.pdf" target="_self">Standard one-page format</a></li>
+</ul>
+
+</ul>
+
+ <li> HTML:</li>
+
+<ul>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/GradientOptim/html/GradientOptim.html" target="_self">Plain html</a></li>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/GradientOptim/html/GradientOptim-bs.html" target="_self">Bootstrap  slide style, easy for reading on mobile devices</a></li>
+</ul>
+
+ <li> Jupyter notebook:</li>
+
+<ul>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/GradientOptim/ipynb/GradientOptim.ipynb" target="_self">ipynb file</a></li>
+</ul>
+
+</ul>
+
+<h2 id="___sec4">Decision trees, from simple to random ones </h2>
+
+<ul>
+ <li> LaTeX PDF:</li>
+
+<ul>
+   <li> For printing:</li>
+
+<ul>
+     <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/DecisionTrees/pdf/DecisionTrees-minted.pdf" target="_self">Standard one-page format</a></li>
+</ul>
+
+</ul>
+
+ <li> HTML:</li>
+
+<ul>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/DecisionTrees/html/DecisionTrees.html" target="_self">Plain html</a></li>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/DecisionTrees/html/DecisionTrees-bs.html" target="_self">Bootstrap  slide style, easy for reading on mobile devices</a></li>
+</ul>
+
+ <li> Jupyter notebook:</li>
+
+<ul>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/DecisionTrees/ipynb/DecisionTrees.ipynb" target="_self">ipynb file</a></li>
+</ul>
+
+</ul>
+
+<h2 id="___sec5">Support Vector Machines </h2>
+
+<ul>
+ <li> LaTeX PDF:</li>
+
+<ul>
+   <li> For printing:</li>
+
+<ul>
+     <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/svm/pdf/svm-minted.pdf" target="_self">Standard one-page format</a></li>
+</ul>
+
+</ul>
+
+ <li> HTML:</li>
+
+<ul>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/svm/html/svm.html" target="_self">Plain html</a></li>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/svm/html/svm-bs.html" target="_self">Bootstrap  slide style, easy for reading on mobile devices</a></li>
+</ul>
+
+ <li> Jupyter notebook:</li>
+
+<ul>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/svm/ipynb/svm.ipynb" target="_self">ipynb file</a></li>
+</ul>
+
+</ul>
+
+<h2 id="___sec6">Neural Networks </h2>
+
+<ul>
+ <li> LaTeX PDF:</li>
+
+<ul>
+   <li> For printing:</li>
+
+<ul>
+     <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/NeuralNet/pdf/NeuralNet-minted.pdf" target="_self">Standard one-page format</a></li>
+</ul>
+
+</ul>
+
+ <li> HTML:</li>
+
+<ul>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/NeuralNet/html/NeuralNet.html" target="_self">Plain html</a></li>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/NeuralNet/html/NeuralNet-bs.html" target="_self">Bootstrap  slide style, easy for reading on mobile devices</a></li>
+</ul>
+
+ <li> Jupyter notebook:</li>
+
+<ul>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/NeuralNet/ipynb/NeuralNet.ipynb" target="_self">ipynb file</a></li>
+</ul>
+
+</ul>
+
+<h2 id="___sec7">Convolutional Neural Networks </h2>
+
+<ul>
+ <li> LaTeX PDF:</li>
+
+<ul>
+   <li> For printing:</li>
+
+<ul>
+     <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/CNN/pdf/CNN-minted.pdf" target="_self">Standard one-page format</a></li>
+</ul>
+
+</ul>
+
+ <li> HTML:</li>
+
+<ul>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/CNN/html/CNN.html" target="_self">Plain html</a></li>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/CNN/html/CNN-bs.html" target="_self">Bootstrap  slide style, easy for reading on mobile devices</a></li>
+</ul>
+
+ <li> Jupyter notebook:</li>
+
+<ul>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/CNN/ipynb/CNN.ipynb" target="_self">ipynb file</a></li>
+</ul>
+
+</ul>
+
+<h2 id="___sec8">Unsupervised Learning, Boltzmann Machines </h2>
+
+<ul>
+ <li> LaTeX PDF:</li>
+
+<ul>
+   <li> For printing:</li>
+
+<ul>
+     <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/RBM/pdf/RBM-minted.pdf" target="_self">Standard one-page format</a></li>
+</ul>
+
+</ul>
+
+ <li> HTML:</li>
+
+<ul>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/RBM/html/RBM.html" target="_self">Plain html</a></li>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/RBM/html/RBM-bs.html" target="_self">Bootstrap  slide style, easy for reading on mobile devices</a></li>
+</ul>
+
+ <li> Jupyter notebook:</li>
+
+<ul>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/RBM/ipynb/RBM.ipynb" target="_self">ipynb file</a></li>
+</ul>
+
+</ul>
+
+<h2 id="___sec9">Recurrent Neural Networks </h2>
+
+<ul>
+ <li> LaTeX PDF:</li>
+
+<ul>
+   <li> For printing:</li>
+
+<ul>
+     <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/Recurrent/pdf/Recurrent-minted.pdf" target="_self">Standard one-page format</a></li>
+</ul>
+
+</ul>
+
+ <li> HTML:</li>
+
+<ul>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/Recurrent/html/Recurrent.html" target="_self">Plain html</a></li>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/Recurrent/html/Recurrent-bs.html" target="_self">Bootstrap  slide style, easy for reading on mobile devices</a></li>
+</ul>
+
+ <li> Jupyter notebook:</li>
+
+<ul>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/Recurrent/ipynb/Recurrent.ipynb" target="_self">ipynb file</a></li>
+</ul>
+
+</ul>
+
+<h2 id="___sec10">Autoencoders </h2>
+
+<ul>
+ <li> LaTeX PDF:</li>
+
+<ul>
+   <li> For printing:</li>
+
+<ul>
+     <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/Autoencoders/pdf/Autoencoders-minted.pdf" target="_self">Standard one-page format</a></li>
+</ul>
+
+</ul>
+
+ <li> HTML:</li>
+
+<ul>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/Autoencoders/html/Autoencoders.html" target="_self">Plain html</a></li>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/Autoencoders/html/Autoencoders-bs.html" target="_self">Bootstrap  slide style, easy for reading on mobile devices</a></li>
+</ul>
+
+ <li> Jupyter notebook:</li>
+
+<ul>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/Autoencoders/ipynb/Autoencoders.ipynb" target="_self">ipynb file</a></li>
+</ul>
+
+</ul>
+
+<h2 id="___sec11">Reinforcement Learning </h2>
+
+<ul>
+ <li> LaTeX PDF:</li>
+
+<ul>
+   <li> For printing:</li>
+
+<ul>
+     <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/Reinforce/pdf/Reinforce-minted.pdf" target="_self">Standard one-page format</a></li>
+</ul>
+
+</ul>
+
+ <li> HTML:</li>
+
+<ul>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/Reinforce/html/Reinforce.html" target="_self">Plain html</a></li>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/Reinforce/html/Reinforce-bs.html" target="_self">Bootstrap  slide style, easy for reading on mobile devices</a></li>
+</ul>
+
+ <li> Jupyter notebook:</li>
+
+<ul>
+   <li> <a href="https://nucleartalent.github.io/MachineLearningECT/doc/pub/Reinforce/ipynb/Reinforce.ipynb" target="_self">ipynb file</a></li>
+</ul>
+
+</ul>
+
+<h2 id="___sec12">Python and Scikit Learn, a short guide  </h2>
+
+<ul>
+ <li> HTML format only:</li>
+
+<ul>
+   <li> <a href="http://compphysics.github.io/ComputationalPhysics/doc/pub/learningpython/html/learningpython-bs.html" target="_self">Bootstrap  slide style, easy for reading on mobile devices</a></li>
+</ul>
+
+</ul>
+
+<h2 id="___sec13">Practicalities </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<ol>
+<li> Five lectures per day Monday through Wednesday, starting at 830am, see schedule below</li>
+<li> Hands-on sessions in the afternoons till 6pm</li>
+<li> The last day, Thursday, is dedicated to solving explicit problems with hands-on guidance and relevant examples.</li>
+</ol>
+</div>
+
+
+<h3 id="___sec14">Recommended textbook </h3>
+
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<ul>
+<li> <a href="https://github.com/CompPhysics/MachineLearning/blob/master/doc/Textbooks/TensorflowML.pdf" target="_self">Aurelien Geron, Hands&#8209;On Machine Learning with Scikit&#8209;Learn and TensorFlow, O'Reilly</a></li>
+</ul>
+</div>
+
+
+<p>
+<div class="alert alert-block alert-block alert-text-normal">
+<b>General learning book on statistical analysis:</b>
+<p>
+
+<ul>
+<li> Christian Robert and George Casella, Monte Carlo Statistical Methods, Springer</li>
+<li> Peter Hoff, A first course in Bayesian statistical models, Springer</li>
+<li> Trevor Hastie, Robert Tibshirani, Jerome H. Friedman, The Elements of Statistical Learning, Springer</li>
+</ul>
+</div>
+
+
+<p>
+<div class="alert alert-block alert-block alert-text-normal">
+<b>General Machine Learning Books:</b>
+<p>
+
+<ul>
+<li> Kevin Murphy, Machine Learning: A Probabilistic Perspective, MIT Press</li>
+<li> Christopher M. Bishop, Pattern Recognition and Machine Learning, Springer</li>
+<li> David J.C. MacKay, Information Theory, Inference, and Learning Algorithms, Cambridge University Press</li>
+<li> David Barber, Bayesian Reasoning and Machine Learning, Cambridge University Press</li> 
+</ul>
+</div>
+
+
+<h3 id="___sec15">Schedule </h3>
+
+<p>
+Lectures are 50 min and there is a small break of 10 min between each lecture. Longer breaks at 1030am-11am and 3pm-330pm.
+Acronyms for teachers
+
+<ul>
+<li> MH = Matthew Hirn</li>
+<li> MHJ = Morten Hjorth-Jensen</li>
+<li> MK = Michelle Kuchera</li>
+<li> RR = Raghuram Ramanujan</li>
+</ul>
+
+<b>Monday May 20, 2019</b>:  (breaks of 10 min for every lecture)
+
+<ul>
+<li> 8am-830am: Welcome and registration</li>
+<li> 830am-930am: Introduction to Machine Learning and various Python packages (MHJ)</li>
+<li> 930am-1030am: Linear Regression (MHJ)</li>
+<li> 1030am-11am: Break, coffee, tea etc</li>
+<li> 11am-12pm: Logistic Regression  (MHJ)</li>
+<li> 12pm-1pm: Lunch</li>
+<li> 1pm-2pm: Optimization of functions, gradient descent and stochastic gradient descent (MHJ)</li>
+<li> 2pm-3pm: Decision Trees and Random Forests  (MHJ)</li>
+<li> 3pm-330pm: Break, coffee, tea etc</li>
+<li> 330pm-6pm: Hands-on sessions with selected Physics examples</li>
+</ul>
+
+<b>Tuesday May 21, 2019</b>:
+
+<ul>
+<li> 830am-930am: Neural networks   (MK and RR)</li>
+<li> 930am-1030am: Neural networks and deep learning (MK and RR)</li>
+<li> 1030am-11am: Break, coffee, tea etc</li>
+<li> 11am-12pm: Convolutional Neural Networks (CNNs) and examples from nuclear physics experiments (MK and RR)</li>
+<li> 12pm-1pm: Lunch</li>
+<li> 1pm-2pm: CNNs (MK and RR)</li>
+<li> 2pm-3pm: Autoenconders and recurrent neural networks and examples from nuclear physics experiments (MK and RR)</li>
+<li> 3pm-330pm: Break, coffee, tea etc</li>
+<li> 330pm-6pm: Hands-on sessions with examples from nuclear physics experiments</li>
+</ul>
+
+<b>Wednesday May 22, 2019</b>:
+
+<ul>
+<li> 830am-930am: Reinforcement learning (MK)</li>
+<li> 930am-1030am: Introduction to exploratory data analysis and unsupervised learning: PCA (MH)</li>
+<li> 1030am-11am: Break, coffee, tea etc</li>
+<li> 11am-12pm: Clustering and introduction to nonlinear dimension reduction: k-means and t-SNE (MH)</li>
+<li> 12pm-1pm: Lunch</li>
+<li> 1pm-2pm: Nonlinear dimension reduction: Spectral graph theory and manifold learning (MH)</li>
+<li> 2pm-3pm: Boltzmann machines and many-body problems (MHJ)</li>
+<li> 3pm-330pm: Break, coffee, tea etc</li>
+<li> 3pm-6pm: Hands-on sessions with examples from quantum mechanical many-body problems</li>
+</ul>
+
+<b>Thursday May 23, 2019</b>:
+
+<ul>
+<li> 9am-10am: Current state of Machine Learning research (MK)</li>
+<li> 10am-12pm: Hands-on sessions with examples from nuclear physics, experiment and theory</li>
+<li> Coffee, tea etc at 1030am</li>
+<li> 12pm-1pm: Lunch</li>
+<li> 1pm-5pm: Hands-on sessions with examples from nuclear physics, experiment and theory.</li> 
+<li> Coffee, tea, etc at 3pm</li>
+</ul>
+
+
+<!-- ------------------- end of main content --------------- -->
+
+
+</body>
+</html>
+    
+
