@@ -32,7 +32,7 @@ This three-week TALENT course on nuclear theory will focus on Machine Learning a
 
 We propose approximately forty-five hours of lectures over three weeks and a comparable amount of practical computer and exercise sessions, including the setting of individual problems and the organization of various individual projects.
 
-The mornings will consist of lectures and the afternoons will be devoted to exercises meant to shed light on the exposed theory, the computational projects and individual student projects. These components will be coordinated to foster student engagement, maximize learning and create lasting value for the students. For the benefit of the TALENT series and of the community, material (courses, slides, problems and solutions, reports on students' projects) will be made publicly available using version control software like git and posted electronically on github":"https://github.com.
+The mornings will consist of lectures and the afternoons will be devoted to exercises meant to shed light on the exposed theory, the computational projects and individual student projects. These components will be coordinated to foster student engagement, maximize learning and create lasting value for the students. For the benefit of the TALENT series and of the community, material (courses, slides, problems and solutions, reports on students' projects) will be made publicly available using version control software like git and posted electronically on github (this site).
 
 As with previous TALENT courses, we envision the following features for the afternoon sessions:
 
