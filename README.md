@@ -6,7 +6,7 @@ Hands-on examples will be provided and the aim is to give the participants
 an overview on how machine learning can be used 
 to analyze and study nuclear physics problems.
 
-All learning material and teaching schedule pertinent to the course is avaliable at this GitHub address. A simple _git clone_ of the material gives you access to all lecture notes and program examples. Similarly, running a _git pull_ gives you immediately the latest updates. For an easy visualization of the learning material (html, jupyter-notebooks or plain pdf files), see https://nucleartalent.github.io/MachineLearningECT/doc/web/course.html
+All learning material and teaching schedule pertinent to the course are avaliable at this GitHub address. A simple _git clone_ of the material gives you access to all lecture notes and program examples. Similarly, running a _git pull_ gives you immediately the latest updates. For an easy visualization of the learning material (html, jupyter-notebooks or plain pdf files), see https://nucleartalent.github.io/MachineLearningECT/doc/web/course.html
 
 ## Course content
 
@@ -25,8 +25,12 @@ Hands-on examples will be provided and the aim is to give the participants an ov
 - Optimization of functions
 - Linear Regression and Logistic Regression;
 - Boltzmann machines;
-- Neural networks;
-- Decisions trees and nearest neighbor algorithms
+- Neural networks and deep learning;
+- Convolutional Neural Networks
+- Recurrent Neureal Networks and Autoencoders
+- Decisions trees and random forests
+- Support vector machines and kernel transformations
+- Dimensionality reduction techniques, from supervised to unsupervised learning
 
 All the above topics will be supported by examples, hands-on exercises and project work.
 
