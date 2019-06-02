@@ -1,28 +1,4 @@
-<<<<<<< HEAD
-# MachineLearningECT
-Probability theory and statistical methods play a central role in science. Nowadays we are surrounded by huge amounts of data. For example, there are about one trillion web pages; more than one hour of video is uploaded to YouTube every second, amounting to 10 years of content every day; the genomes of 1000s of people, each of which has a length of more than a billion base pairs, have been sequenced by various labs and so on. This deluge of data calls for automated methods of data analysis, which is exactly what machine learning provides. The purpose of this summer school is to provide an introduction to the core concepts and tools of machine learning in a manner easily understood and intuitive to physicists and nuclear physicists in particular. We will start with some of the basic methods from supervised learning, such as various regression methods before we move into deep learning methods for 
-both supervised and unsupervised learning, 
-with an emphasis on the analysis of nuclear physics experiments and theoretical nuclear physics. 
-Hands-on examples will be provided and the aim is to give the participants 
-an overview on how machine learning can be used 
-to analyze and study nuclear physics problems.
 
-All learning material and teaching schedule pertinent to the course are avaliable at this GitHub address. A simple _git clone_ of the material gives you access to all lecture notes and program examples. Similarly, running a _git pull_ gives you immediately the latest updates. For an easy visualization of the learning material (html, jupyter-notebooks or plain pdf files), see https://nucleartalent.github.io/MachineLearningECT/doc/web/course.html
-
-## Course content
-
-Probability theory and statistical methods play a central role in science. Nowadays we are
-surrounded by huge amounts of data. For example, there are about one trillion web pages; more than one
-hour of video is uploaded to YouTube every second, amounting to 10 years of content every
-day; the genomes of 1000s of people, each of which has a length of more than a billion  base pairs, have
-been sequenced by various labs and so on.
-This deluge of data calls for automated methods of data analysis, which is exactly what machine learning provides. 
-The purpose of this summer school is to provide an introduction to the core concepts and tools of machine learning in a manner easily understood and intuitive to physicists and nuclear physicists in particular. We will start with some of the basic methods from supervised learning, such as various regression methods before we move into deep learning methods for both supervised and unsupervised learning, with an emphasis on the analysis of nuclear physics experiments and theoretical nuclear physics. 
-Hands-on examples will be provided and the aim is to give the participants an overview on how machine learning can be used to analyze and study nuclear physics problems. 
-
-###  The following topics will be covered
-- Basic concepts, expectation values, variance, covariance, correlation functions and errors;
-=======
 # Machine Learning and Data Analysis for Nuclear Physics, a Nuclear TALENT Course
 
 ## Why a course on Machine Learning for Nuclear Physics?
@@ -31,25 +7,18 @@ Probability theory and statistical methods play a central role in science. Nowad
 The goals of the Nuclear Talent course on Machine Learning and Data Analysis are to give the participants a deeper understanding and critical view of several widely popular Machine Learning algorithms, covering both supervised and unsupervised learning. The learning outcomes involve an understanding of the following central methods:
 
 - Basic concepts of machine learning and data analysis and statistical concepts like expectation values, variance, covariance, correlation functions and errors;
->>>>>>> 0d1e2ff799a33e4ea86cbaad6d8b3d36567f230a
 - Estimation of errors using cross-validation, blocking, bootstrapping and jackknife methods;
 - Optimization of functions
 - Linear Regression and Logistic Regression;
 - Dimensionality reductions, from PCA to clustering
 - Boltzmann machines;
-<<<<<<< HEAD
 - Neural networks and deep learning;
 - Convolutional Neural Networks
 - Recurrent Neureal Networks and Autoencoders
 - Decisions trees and random forests
 - Support vector machines and kernel transformations
-- Dimensionality reduction techniques, from supervised to unsupervised learning
-=======
---  Neural networks;
-- Decisions trees and Random Forests
-- Support Vector Machines
-- Convolutional Neural Networks and deep learning
-- Recurrent Neural Networks and Autoenconders and their applications to nuclear physics problems. 
+
+
 
 We are targeting an audience of graduate students (both Master of Science and PhD) as well as post-doctoral researchers in nuclear experiment and theory.
 
@@ -85,7 +54,6 @@ At the end of the course the students should have a basic understanding of
 
 ## Course Content and detailed plan
 The lecture plan is as follows
->>>>>>> 0d1e2ff799a33e4ea86cbaad6d8b3d36567f230a
 
 ### Week 1
 
