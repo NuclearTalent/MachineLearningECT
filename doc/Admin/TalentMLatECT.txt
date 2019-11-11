@@ -1,0 +1,49 @@
+2020 Nuclear TALENT Course on Machine Learning in Nuclear Experiment and Theory
+
+Applications are open for the 2020 TALENT course on Machine
+Learning in Nuclear Experiment and Theory.  The Nuclear TALENT
+(Training in Advanced Low Energy Nuclear Theory) initiative, see also
+http://www.nucleartalent.org, a multi-national network of several
+Asian, European and North American institutions, aims to develop a broad
+curriculum that will serve as a platform for cutting-edge theory of
+nuclei and their reactions.
+
+
+The Nuclear TALENT initiative organizes a course on 
+"Machine Learning in Nuclear Experiment and Theory" to be held at
+at The European Center for Theoretical Nuclear Physics and Related Areas
+(ECT*), Trento, Italy from June 22 to July 10 2020.
+
+The lecturers are: 
+Daniel Bazin (Michigan State University), 
+Morten Hjorth-Jensen (Michigan State University and University of Oslo),
+Michelle Kuchera (Davidson College),
+Sean Liddick Daniel Bazin (Michigan State University), 
+Raghuram Ramanujan (Davidson College).
+
+The deadline for applications is April 13, 2020.  For more information
+on how to apply see http://www.ectstar.eu/talent (application link
+available from December 2019), See also
+https://github.com/NuclearTalent/MachineLearningECT for more details
+about the course, with learning outcomes and more. For a display of
+learning material see
+https://nucleartalent.github.io/MachineLearningECT/doc/web/course.html
+
+
+The target groups are Master of Science and PhD students and
+early post-doctoral researchers, both experimentalists and
+theorists. More experienced researchers may apply, but will be
+considered only on a fully-self-supported basis if numbers and space
+permit. Local support is available for at most 15-20 participants.
+
+
+Contact person: Morten Hjorth-Jensen hjensen@msu.edu 
+
+
+For additional information on each of the courses, please see
+http://www.nucleartalent.org. Prior to the TALENT course, the ECT*
+organizes a Doctoral Training program on Quantum Computing and Quantum
+Information theories. The Doctoral training program starts right after
+the Talent course, July 13 and ends on August 7, see
+http://www.ectstar.eu/node/799 for more information. The doctoral
+training program can be combined with the TALENT course.
