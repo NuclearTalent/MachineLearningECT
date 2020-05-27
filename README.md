@@ -1,5 +1,5 @@
 
-# Machine Learning and Data Analysis for Nuclear Physics, a Nuclear TALENT Course at the ECT*, Trento, Italy, June 22 to July 10 2020.
+# Machine Learning and Data Analysis for Nuclear Physics, a Nuclear TALENT Course at the ECT*, Trento, Italy, June 22 to July 3 2020.
 
 ## Why a course on Machine Learning for Nuclear Physics?
 Probability theory and statistical methods play a central role in science. Nowadays we are surrounded by huge amounts of data. For example, there are about one trillion web pages; more than one hour of video is uploaded to YouTube every second, amounting to 10 years of content every day; the genomes of 1000s of people, each of which has a length of more than a billion base pairs, have been sequenced by various labs and so on. This deluge of data calls for automated methods of data analysis, which is exactly what machine learning provides. The purpose of this Nuclear Talent course is to provide an introduction to the core concepts and tools of machine learning in a manner easily understood and intuitive to physicists and nuclear physicists in particular. We will start with some of the basic methods from supervised learning and statistical data analysis, such as various regression methods before we move into deep learning methods for both supervised and unsupervised learning, with an emphasis on the analysis of nuclear physics experiments and theoretical nuclear physics. The students will work on hands-on daily examples as well as projects than can result in final credits. Exercises and projects will be provided and the aim is to give the participants an overview on how machine learning can be used to analyze and study nuclear physics problems (experiment and theory). The major scope is to give the participants a deeper understanding on what Machine learning and Data Analysis are and how they can be used to analyze data from nuclear physics experiments and perform theoretical calculations of nuclear many-body systems.
@@ -59,36 +59,30 @@ The lecture plan is as follows
 
 - _Monday_	Linear Regression and intro to statistical data analysis	
 - _Tuesday_	Logistic Regression and classification problems, intro to gradient methods	
-- _Wednesday_	More on gradient methods and decision trees	
-- _Thursday_	Decision Trees, Random Forests and Support vector machines	
+- _Wednesday_	Decision Trees, Random Forests and Support vector machines	
+- _Thursday_	Basics of Neural Networks
 - _Friday_	Discussion of nuclear experiments and how to analyze data, presentation of simulated data from Active-Target Time-Projection Chamber (AT-TPC)	
 
 ### Week 2
 
-- _Monday_	Nuclear experiments from AT-TPC and begin Neural Networks	
+- _Monday_	Neural Networks and Deeep Learning
 - _Tuesday_	From Neural Networks to Convolutional Neural Networks and how to analyze experiment (classification of events and real data)	
 - _Wednesday_	Analyzing data and recurrent neural networks	
 - _Thursday_	Autoencoders and reinforcement learning	
-- _Friday_	Beta-decay experiments, how to analyze various events	
+- _Friday_	Beta-decay experiments, how to analyze various events. Future directions in machine learning and summary of course.
 
-### Week 3
 
-- _Monday_	Beta-decay experiments and deep learning, simulated and real data	
-- _Tuesday_	Solving many-body problems with Neural Networks	
-- _Wednesday_	Boltzmann Machines and many-body problems	
-- _Thursday_	Introduction to exploratory data analysis and unsupervised learning, clustering and dimension reduction	
-- _Friday_	Future directions in machine learning and summary of course	
 
 ## Teaching
-The course will be taught as an intensive course of duration of three weeks, with a total time of 45 h of lectures, 45 h of exercises and a final assignment of 2 weeks of work. The total load will be approximately 160-170 hours, corresponding to 7 ECTS in Europe. The final assignment will be graded with marks A, B, C, D, E and failed for Master students and passed/not passed for PhD students. A course certificate will be issued for students requiring it from the University of Trento.
+The course will be taught as an online intensive course of duration of two weeks, with a total time of 20 h of lectures and 10 h of exercises, questions and answers. Videos and digital learning material will be made available one week before the course begins. It is possible to work on a final assignment of 2 weeks of work. The total load will be approximately 80 hours, corresponding to 5 ECTS in Europe. The final assignment will be graded with marks A, B, C, D, E and failed for Master students and passed/not passed for PhD students. A course certificate will be issued for students requiring it from the University of Trento.
+
+The registration link is at https://www.ectstar.eu/node/4472
 
 The organization of a typical course day is as follows:
 
 _Time	and Activity_
-- 9am-12pm	Lectures, project relevant information and directed exercises
-- 12pm-2pm	Lunch
-- 2pm-6pm	Computational projects, exercises and hands-on sessions
-- 6pm-7pm	Wrap-up of the day and eventual student presentations
+- 2pm-4pm	(Central European time=CET) Lectures, project relevant information and directed exercises
+- 5pm-6pm	(CET) Questions and answers, Computational projects, exercises and hands-on sessions
 
 ## Teachers and organizers
 The teachers and organizers are
