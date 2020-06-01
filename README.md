@@ -65,7 +65,7 @@ The lecture plan is as follows
 
 ### Week 2
 
-- _Monday_	Neural Networks and Deeep Learning
+- _Monday_	Neural Networks and Deep Learning
 - _Tuesday_	From Neural Networks to Convolutional Neural Networks and how to analyze experiment (classification of events and real data)	
 - _Wednesday_	Analyzing data and recurrent neural networks	
 - _Thursday_	Autoencoders and reinforcement learning	
