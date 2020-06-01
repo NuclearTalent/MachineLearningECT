@@ -1,0 +1,694 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Data Analysis and Machine Learning: Neural networks, from the simple perceptron to deep learning">
+
+<title>Data Analysis and Machine Learning: Neural networks, from the simple perceptron to deep learning</title>
+
+<!-- Bootstrap style: bootstrap -->
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+<style type="text/css">
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
+</style>
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [('Neural networks', 2, None, '___sec0'),
+              ('Artificial neurons', 2, None, '___sec1'),
+              ('Neural network types', 2, None, '___sec2'),
+              ('Feed-forward neural networks', 2, None, '___sec3'),
+              ('Convolutional Neural Network', 2, None, '___sec4'),
+              ('Recurrent neural networks', 2, None, '___sec5'),
+              ('Other types of networks', 2, None, '___sec6'),
+              ('Multilayer perceptrons', 2, None, '___sec7'),
+              ('Why multilayer perceptrons?', 2, None, '___sec8'),
+              ('Mathematical model', 2, None, '___sec9'),
+              ('Mathematical model', 2, None, '___sec10'),
+              ('Mathematical model', 2, None, '___sec11'),
+              ('Mathematical model', 2, None, '___sec12'),
+              ('Mathematical model', 2, None, '___sec13'),
+              ('Matrix-vector notation', 3, None, '___sec14'),
+              ('Matrix-vector notation  and activation', 3, None, '___sec15'),
+              ('Activation functions', 3, None, '___sec16'),
+              ('Activation functions, Logistic and Hyperbolic ones',
+               3,
+               None,
+               '___sec17'),
+              ('Relevance', 3, None, '___sec18'),
+              ('The multilayer  perceptron (MLP)', 2, None, '___sec19'),
+              ('From one to many layers, the universal approximation theorem',
+               2,
+               None,
+               '___sec20'),
+              ('Deriving the back propagation code for a multilayer perceptron '
+               'model',
+               2,
+               None,
+               '___sec21'),
+              ('Definitions', 2, None, '___sec22'),
+              ('Derivatives and the chain rule', 2, None, '___sec23'),
+              ('Derivative of the cost function', 2, None, '___sec24'),
+              ('Bringing it together, first back propagation equation',
+               2,
+               None,
+               '___sec25'),
+              ('Derivatives in terms of $z_j^L$', 2, None, '___sec26'),
+              ('Bringing it together', 2, None, '___sec27'),
+              ('Final back propagating equation', 2, None, '___sec28'),
+              ('Setting up the Back propagation algorithm',
+               2,
+               None,
+               '___sec29'),
+              ('Setting up a Multi-layer perceptron model for classification',
+               2,
+               None,
+               '___sec30'),
+              ('Defining the cost function', 2, None, '___sec31'),
+              ('Example: binary classification problem', 2, None, '___sec32'),
+              ('The Softmax function', 2, None, '___sec33'),
+              ('Developing a code for doing neural networks with back '
+               'propagation',
+               2,
+               None,
+               '___sec34'),
+              ('Collect and pre-process data', 2, None, '___sec35'),
+              ('Train and test datasets', 2, None, '___sec36'),
+              ('Define model and architecture', 2, None, '___sec37'),
+              ('Layers', 2, None, '___sec38'),
+              ('Weights and biases', 2, None, '___sec39'),
+              ('Feed-forward pass', 2, None, '___sec40'),
+              ('Matrix multiplications', 2, None, '___sec41'),
+              ('Choose cost function and optimizer', 2, None, '___sec42'),
+              ('Optimizing the cost function', 2, None, '___sec43'),
+              ('Regularization', 2, None, '___sec44'),
+              ('Matrix  multiplication', 2, None, '___sec45'),
+              ('Improving performance', 2, None, '___sec46'),
+              ('Full object-oriented implementation', 2, None, '___sec47'),
+              ('Evaluate model performance on test data', 2, None, '___sec48'),
+              ('Adjust hyperparameters', 2, None, '___sec49'),
+              ('Visualization', 2, None, '___sec50'),
+              ('scikit-learn implementation', 2, None, '___sec51'),
+              ('Visualization', 2, None, '___sec52'),
+              ('Building neural networks in Tensorflow and Keras',
+               2,
+               None,
+               '___sec53'),
+              ('Tensorflow', 2, None, '___sec54'),
+              ('Collect and pre-process data', 2, None, '___sec55'),
+              ('Using TensorFlow backend', 2, None, '___sec56'),
+              ('Optimizing and using gradient descent', 2, None, '___sec57'),
+              ('Using Keras', 2, None, '___sec58'),
+              ('The Breast Cancer Data, now with Keras', 2, None, '___sec59'),
+              ('Which activation function should I use?', 2, None, '___sec60'),
+              ('Is the Logistic activation function (Sigmoid)  our choice?',
+               2,
+               None,
+               '___sec61'),
+              ('The derivative of the Logistic funtion', 2, None, '___sec62'),
+              ('The RELU function family', 2, None, '___sec63'),
+              ('Which activation function should we use?', 2, None, '___sec64'),
+              ('A top-down perspective on Neural networks',
+               2,
+               None,
+               '___sec65'),
+              ('Limitations of supervised learning with deep networks',
+               2,
+               None,
+               '___sec66'),
+              ('Examples: Pulsar identification', 2, None, '___sec67'),
+              ('Preprocessing and Statistical Analysis of the Data',
+               3,
+               None,
+               '___sec68')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="NeuralNet-bs.html">Data Analysis and Machine Learning: Neural networks, from the simple perceptron to deep learning</a>
+  </div>
+
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs001.html#___sec0" style="font-size: 80%;"><b>Neural networks</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs002.html#___sec1" style="font-size: 80%;"><b>Artificial neurons</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs003.html#___sec2" style="font-size: 80%;"><b>Neural network types</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs004.html#___sec3" style="font-size: 80%;"><b>Feed-forward neural networks</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs005.html#___sec4" style="font-size: 80%;"><b>Convolutional Neural Network</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs006.html#___sec5" style="font-size: 80%;"><b>Recurrent neural networks</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs007.html#___sec6" style="font-size: 80%;"><b>Other types of networks</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs008.html#___sec7" style="font-size: 80%;"><b>Multilayer perceptrons</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs009.html#___sec8" style="font-size: 80%;"><b>Why multilayer perceptrons?</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs010.html#___sec9" style="font-size: 80%;"><b>Mathematical model</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs011.html#___sec10" style="font-size: 80%;"><b>Mathematical model</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs012.html#___sec11" style="font-size: 80%;"><b>Mathematical model</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs013.html#___sec12" style="font-size: 80%;"><b>Mathematical model</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs014.html#___sec13" style="font-size: 80%;"><b>Mathematical model</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs015.html#___sec14" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Matrix-vector notation</a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs016.html#___sec15" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Matrix-vector notation  and activation</a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs017.html#___sec16" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Activation functions</a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs018.html#___sec17" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Activation functions, Logistic and Hyperbolic ones</a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs019.html#___sec18" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Relevance</a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs020.html#___sec19" style="font-size: 80%;"><b>The multilayer  perceptron (MLP)</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs021.html#___sec20" style="font-size: 80%;"><b>From one to many layers, the universal approximation theorem</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs022.html#___sec21" style="font-size: 80%;"><b>Deriving the back propagation code for a multilayer perceptron model</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs023.html#___sec22" style="font-size: 80%;"><b>Definitions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs024.html#___sec23" style="font-size: 80%;"><b>Derivatives and the chain rule</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs025.html#___sec24" style="font-size: 80%;"><b>Derivative of the cost function</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs026.html#___sec25" style="font-size: 80%;"><b>Bringing it together, first back propagation equation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs027.html#___sec26" style="font-size: 80%;"><b>Derivatives in terms of \( z_j^L \)</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs028.html#___sec27" style="font-size: 80%;"><b>Bringing it together</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs029.html#___sec28" style="font-size: 80%;"><b>Final back propagating equation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs030.html#___sec29" style="font-size: 80%;"><b>Setting up the Back propagation algorithm</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs031.html#___sec30" style="font-size: 80%;"><b>Setting up a Multi-layer perceptron model for classification</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs032.html#___sec31" style="font-size: 80%;"><b>Defining the cost function</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs033.html#___sec32" style="font-size: 80%;"><b>Example: binary classification problem</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs034.html#___sec33" style="font-size: 80%;"><b>The Softmax function</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs035.html#___sec34" style="font-size: 80%;"><b>Developing a code for doing neural networks with back propagation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs036.html#___sec35" style="font-size: 80%;"><b>Collect and pre-process data</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs037.html#___sec36" style="font-size: 80%;"><b>Train and test datasets</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs038.html#___sec37" style="font-size: 80%;"><b>Define model and architecture</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs039.html#___sec38" style="font-size: 80%;"><b>Layers</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs040.html#___sec39" style="font-size: 80%;"><b>Weights and biases</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs041.html#___sec40" style="font-size: 80%;"><b>Feed-forward pass</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs042.html#___sec41" style="font-size: 80%;"><b>Matrix multiplications</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs043.html#___sec42" style="font-size: 80%;"><b>Choose cost function and optimizer</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs044.html#___sec43" style="font-size: 80%;"><b>Optimizing the cost function</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs045.html#___sec44" style="font-size: 80%;"><b>Regularization</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs046.html#___sec45" style="font-size: 80%;"><b>Matrix  multiplication</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs047.html#___sec46" style="font-size: 80%;"><b>Improving performance</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs048.html#___sec47" style="font-size: 80%;"><b>Full object-oriented implementation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs049.html#___sec48" style="font-size: 80%;"><b>Evaluate model performance on test data</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs050.html#___sec49" style="font-size: 80%;"><b>Adjust hyperparameters</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs051.html#___sec50" style="font-size: 80%;"><b>Visualization</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs052.html#___sec51" style="font-size: 80%;"><b>scikit-learn implementation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs053.html#___sec52" style="font-size: 80%;"><b>Visualization</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs054.html#___sec53" style="font-size: 80%;"><b>Building neural networks in Tensorflow and Keras</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs055.html#___sec54" style="font-size: 80%;"><b>Tensorflow</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs056.html#___sec55" style="font-size: 80%;"><b>Collect and pre-process data</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs057.html#___sec56" style="font-size: 80%;"><b>Using TensorFlow backend</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs058.html#___sec57" style="font-size: 80%;"><b>Optimizing and using gradient descent</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs059.html#___sec58" style="font-size: 80%;"><b>Using Keras</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs060.html#___sec59" style="font-size: 80%;"><b>The Breast Cancer Data, now with Keras</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs061.html#___sec60" style="font-size: 80%;"><b>Which activation function should I use?</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs062.html#___sec61" style="font-size: 80%;"><b>Is the Logistic activation function (Sigmoid)  our choice?</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs063.html#___sec62" style="font-size: 80%;"><b>The derivative of the Logistic funtion</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs064.html#___sec63" style="font-size: 80%;"><b>The RELU function family</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs065.html#___sec64" style="font-size: 80%;"><b>Which activation function should we use?</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs066.html#___sec65" style="font-size: 80%;"><b>A top-down perspective on Neural networks</b></a></li>
+     <!-- navigation toc: --> <li><a href="._NeuralNet-bs067.html#___sec66" style="font-size: 80%;"><b>Limitations of supervised learning with deep networks</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec67" style="font-size: 80%;"><b>Examples: Pulsar identification</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec68" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Preprocessing and Statistical Analysis of the Data</a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<a name="part0068"></a>
+<!-- !split -->
+
+<h2 id="___sec67" class="anchor">Examples: Pulsar identification </h2>
+
+<p>
+Pulsar classification can be one of the best training grounds for
+performing machine learning in astrophysics. These pulsars are said to
+be "pulsating radio sources", which have now been identified to be
+caused by rapidly rotating highly magnetized neutron stars and are
+detectable here on Earth . One of the characteristic properties of
+these pulsars is that they exhibit periodic bursts of emission
+produced by their radio emitting jets. The direction of their emission
+also rotates with them and sweep the sky like a lighthouse. This gives
+astronomers information about the phenomenon as they observe a pulse
+of radio emission each time one of the jets points towards the Earth.
+
+<p>
+The study and detection of pulsars provide a wealth of information
+about the physics of neutron stars. They are also used as probes
+of stellar evolution. In addition, they are being used to test or
+verify some concepts in general relativity due to their extremely high
+densities. These allowed them to be good observables in detecting and
+mapping gravitational wave signatures. One problem, however, is that
+they are very difficult to identify in the large stream of data from
+radio telescopes. Moreover, a lot of man-made sources of radio
+frequency interference are also present, which can produce the same
+signals as pulsars. Hence, the classification of pulsars from possible
+candidate data is of great importance.
+
+<p>
+In reality, pulsars are very weak radio sources. They are classified
+from a given data sample by first extracting information from the pool
+of data and then identifying which features or characteristics are
+relevant. Since the individual pulses are very much different,
+astronomers particularly stack them up and generate an integrated
+pulse profile for pulsar classification. This profile is the coherent
+addition of thousands of pulses together in a process known as folding
+[1]. Moreover, pulses will arrive at various times across different
+radio frequencies. The delay of these pulses from frequency to
+frequency is called dispersion and is said to be caused by the ionized
+inter-stellar medium. The method usually employed by astronomers
+is that they fit for the shape of the delay as to reduce its negative
+effect. However, as with all kinds of fitting procedures, there would
+always be an uncertainty associated with it. This is expressed in the
+so-called DM-SNR ("dispersion-measure-signal-to-noise-ratio")
+curve. Both the integrated profile curve and DM-SNR curve are used in
+identifying possible pulsar candidates. These curves provide eight
+numerical characteristic features as depicted and listed below. </div>
+
+<p>
+For this dataset, there is already an initial classification of the
+potential pulsar candidates as pulsars and non-pulsars by the
+astronomy community. We aim here to perform machine learning and try
+to build a model that can detect patterns within the data. This will
+eventually lead to the correct classification of new potential pulsars
+that will soon be observed.
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic"># reading and handling the data</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">pandas</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">pd</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">warnings</span>
+warnings<span style="color: #666666">.</span>filterwarnings(<span style="color: #BA2121">&quot;ignore&quot;</span>)
+data <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>read_csv(<span style="color: #BA2121">&quot;pulsar_stars.csv&quot;</span>)
+<span style="color: #408080; font-style: italic"># print a part of the dataset</span>
+data<span style="color: #666666">.</span>head()
+<span style="color: #008000; font-weight: bold">print</span> (<span style="color: #BA2121">&quot;Number of rows    :&quot;</span>,data<span style="color: #666666">.</span>shape[<span style="color: #666666">0</span>])
+<span style="color: #008000; font-weight: bold">print</span> (<span style="color: #BA2121">&quot;Number of columns :&quot;</span>,data<span style="color: #666666">.</span>shape[<span style="color: #666666">1</span>])
+<span style="color: #008000; font-weight: bold">print</span> (<span style="color: #BA2121">&quot;data info  :&quot;</span>,data<span style="color: #666666">.</span>info())
+<span style="color: #008000; font-weight: bold">print</span> (data<span style="color: #666666">.</span>isnull()<span style="color: #666666">.</span>sum())
+
+<span style="color: #408080; font-style: italic"># import packages for plotting</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">matplotlib.pyplot</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">plt</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">seaborn</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">sns</span>
+
+plt<span style="color: #666666">.</span>figure(figsize<span style="color: #666666">=</span>(<span style="color: #666666">12</span>,<span style="color: #666666">6</span>))
+plt<span style="color: #666666">.</span>subplot(<span style="color: #666666">121</span>)
+ax <span style="color: #666666">=</span> sns<span style="color: #666666">.</span>countplot(y <span style="color: #666666">=</span> data[<span style="color: #BA2121">&quot;target_class&quot;</span>],
+                   palette<span style="color: #666666">=</span>[<span style="color: #BA2121">&quot;r&quot;</span>,<span style="color: #BA2121">&quot;g&quot;</span>],
+                   linewidth<span style="color: #666666">=1</span>,
+                   edgecolor<span style="color: #666666">=</span><span style="color: #BA2121">&quot;k&quot;</span><span style="color: #666666">*2</span>)
+<span style="color: #008000; font-weight: bold">for</span> i,j <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">enumerate</span>(data[<span style="color: #BA2121">&quot;target_class&quot;</span>]<span style="color: #666666">.</span>value_counts()<span style="color: #666666">.</span>values):
+    ax<span style="color: #666666">.</span>text(<span style="color: #666666">.7</span>,i,j,weight <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;bold&quot;</span>,fontsize <span style="color: #666666">=</span> <span style="color: #666666">27</span>)
+plt<span style="color: #666666">.</span>title(<span style="color: #BA2121">&quot;Count for target variable in dataset&quot;</span>)
+
+
+plt<span style="color: #666666">.</span>subplot(<span style="color: #666666">122</span>)
+plt<span style="color: #666666">.</span>pie(data[<span style="color: #BA2121">&quot;target_class&quot;</span>]<span style="color: #666666">.</span>value_counts()<span style="color: #666666">.</span>values,
+        labels<span style="color: #666666">=</span>[<span style="color: #BA2121">&quot;not pulsar stars&quot;</span>,<span style="color: #BA2121">&quot;pulsar stars&quot;</span>],
+        autopct<span style="color: #666666">=</span><span style="color: #BA2121">&quot;</span><span style="color: #BB6688; font-weight: bold">%1.0f%%</span><span style="color: #BA2121">&quot;</span>,wedgeprops<span style="color: #666666">=</span>{<span style="color: #BA2121">&quot;linewidth&quot;</span>:<span style="color: #666666">2</span>,<span style="color: #BA2121">&quot;edgecolor&quot;</span>:<span style="color: #BA2121">&quot;white&quot;</span>})
+my_circ <span style="color: #666666">=</span> plt<span style="color: #666666">.</span>Circle((<span style="color: #666666">0</span>,<span style="color: #666666">0</span>),<span style="color: #666666">.7</span>,color <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;white&quot;</span>)
+plt<span style="color: #666666">.</span>gca()<span style="color: #666666">.</span>add_artist(my_circ)
+plt<span style="color: #666666">.</span>subplots_adjust(wspace <span style="color: #666666">=</span> <span style="color: #666666">.2</span>)
+plt<span style="color: #666666">.</span>title(<span style="color: #BA2121">&quot;Proportion of target variable in dataset&quot;</span>)
+plt<span style="color: #666666">.</span>show()
+</pre></div>
+<p>
+The dataset contains 17898 candidates for which only 1639 (~9%) are
+classified as real pulsars. In addition, the dataset consists of
+features rather than raw data from observations. The eight features
+considered in the study are given above as column headers. The first
+four are the usual statistics obtained from the integrated pulse
+profile. A class label ("target_class") is also included which
+determines if the candidate is considered to be a pulsar (1) or not
+(0). This serves as our target column for the analysis.
+
+<h3 id="___sec68" class="anchor">Preprocessing and Statistical Analysis of the Data </h3>
+
+<p>
+When dealing with all sorts of data, an important first step is to
+often get a sense on how the variables are distributed. As seen above,
+the dataset can be considered clean and complete as there are no
+missing data and the number of features is relatively small. This
+reduces extra steps towards feature engineering as there is not much
+to do for artificial design features. Thus, we can see readily that
+the preprocessing stage only involves two main issues. First is the
+possible problem of overfitting since the difference between the
+numbers of candidates identified as pulsars and non-pulsars is large,
+with a ratio of about 1:10. The other issue is the huge distribution
+for the range differences of the eight features. This is evident in
+Figure 4 which depicts the distribution of variables in the dataset
+with associated mean and standard deviation. The plots were done using
+the distplot() function in the package seaborn. This draws a histogram
+and fit a kernel density estimate (KDE).
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic"># import package</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">itertools</span>
+<span style="color: #408080; font-style: italic"># rename column headers for convenience</span>
+data <span style="color: #666666">=</span> data<span style="color: #666666">.</span>rename(columns<span style="color: #666666">=</span>{<span style="color: #BA2121">&quot; Mean of the integrated profile&quot;</span>: <span style="color: #BA2121">&quot;Mean profile&quot;</span>, <span style="color: #BA2121">&quot; Standard deviation of the integrated profile&quot;</span>: <span style="color: #BA2121">&quot;StD profile&quot;</span>, 
+                    <span style="color: #BA2121">&quot; Excess kurtosis of the integrated profile&quot;</span>: <span style="color: #BA2121">&quot;Kurtosis profile&quot;</span>, <span style="color: #BA2121">&quot; Skewness of the integrated profile&quot;</span>: <span style="color: #BA2121">&quot;Skewness profile&quot;</span>,
+                    <span style="color: #BA2121">&quot; Mean of the DM-SNR curve&quot;</span>: <span style="color: #BA2121">&quot;Mean DM-SNR&quot;</span>, <span style="color: #BA2121">&quot; Standard deviation of the DM-SNR curve&quot;</span>: <span style="color: #BA2121">&quot;StD DM-SNR&quot;</span>, 
+                    <span style="color: #BA2121">&quot; Excess kurtosis of the DM-SNR curve&quot;</span>: <span style="color: #BA2121">&quot;Kurtosis DM-SNR&quot;</span>, <span style="color: #BA2121">&quot; Skewness of the DM-SNR curve&quot;</span>: <span style="color: #BA2121">&quot;Skewness DM-SNR&quot;</span>,
+                    <span style="color: #BA2121">&quot;target_class&quot;</span>: <span style="color: #BA2121">&quot;Target class&quot;</span>})
+
+<span style="color: #408080; font-style: italic"># distribution of variable in the dataset</span>
+columns <span style="color: #666666">=</span> [<span style="color: #BA2121">&#39;Mean profile&#39;</span>, <span style="color: #BA2121">&#39;StD profile&#39;</span>, <span style="color: #BA2121">&#39;Kurtosis profile&#39;</span>, <span style="color: #BA2121">&#39;Skewness profile&#39;</span>,
+           <span style="color: #BA2121">&#39;Mean DM-SNR&#39;</span>, <span style="color: #BA2121">&#39;StD DM-SNR&#39;</span>, <span style="color: #BA2121">&#39;Kurtosis DM-SNR&#39;</span>,
+           <span style="color: #BA2121">&#39;Skewness DM-SNR&#39;</span>]
+length  <span style="color: #666666">=</span> <span style="color: #008000">len</span>(columns)
+colors  <span style="color: #666666">=</span> [<span style="color: #BA2121">&quot;r&quot;</span>,<span style="color: #BA2121">&quot;g&quot;</span>,<span style="color: #BA2121">&quot;b&quot;</span>,<span style="color: #BA2121">&quot;m&quot;</span>,<span style="color: #BA2121">&quot;y&quot;</span>,<span style="color: #BA2121">&quot;c&quot;</span>,<span style="color: #BA2121">&quot;k&quot;</span>,<span style="color: #BA2121">&quot;orange&quot;</span>] 
+
+plt<span style="color: #666666">.</span>figure(figsize<span style="color: #666666">=</span>(<span style="color: #666666">13</span>,<span style="color: #666666">20</span>))
+<span style="color: #008000; font-weight: bold">for</span> i,j,k <span style="color: #AA22FF; font-weight: bold">in</span> itertools<span style="color: #666666">.</span>zip_longest(columns,<span style="color: #008000">range</span>(length),colors):
+    plt<span style="color: #666666">.</span>subplot(length<span style="color: #666666">/2</span>,length<span style="color: #666666">/4</span>,j<span style="color: #666666">+1</span>)
+    sns<span style="color: #666666">.</span>distplot(data[i],color<span style="color: #666666">=</span>k)
+    plt<span style="color: #666666">.</span>title(i)
+    plt<span style="color: #666666">.</span>subplots_adjust(hspace <span style="color: #666666">=</span> <span style="color: #666666">.3</span>)
+    plt<span style="color: #666666">.</span>axvline(data[i]<span style="color: #666666">.</span>mean(),color <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;k&quot;</span>,linestyle<span style="color: #666666">=</span><span style="color: #BA2121">&quot;dashed&quot;</span>,label<span style="color: #666666">=</span><span style="color: #BA2121">&quot;MEAN&quot;</span>)
+    plt<span style="color: #666666">.</span>axvline(data[i]<span style="color: #666666">.</span>std(),color <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;b&quot;</span>,linestyle<span style="color: #666666">=</span><span style="color: #BA2121">&quot;dotted&quot;</span>,label<span style="color: #666666">=</span><span style="color: #BA2121">&quot;STANDARD DEVIATION&quot;</span>)
+    plt<span style="color: #666666">.</span>legend(loc<span style="color: #666666">=</span><span style="color: #BA2121">&quot;upper right&quot;</span>)
+</pre></div>
+<p>
+Before delving into any analysis, we would like to decrease the amount
+of data to look at. This can be achieved by performing a correlation
+plot. As seen in Figure 5, the features that correlate the most with
+the class (pulsar or non-pulsar) are the mean, the excess kurtosis,
+and the skewness of the integrated profile. We could choose to only
+analyze these, but this would mean that pulsars can be identified with
+only one of the two plots that astrophysicists use to classify the
+data. In this case, colinearity may become a problem since these
+features are strongly correlated with each other.
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic"># correlation matrix</span>
+corr_matrix <span style="color: #666666">=</span> data<span style="color: #666666">.</span>corr()
+</pre></div>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic"># Pair plots</span>
+sns<span style="color: #666666">.</span>pairplot(data,hue <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;Target class&quot;</span>)
+plt<span style="color: #666666">.</span>title(<span style="color: #BA2121">&quot;Pair plot for variables&quot;</span>)
+<span style="color: #408080; font-style: italic"># plt.savefig(&#39;pairplot.png&#39;,bbox_inches=&#39;tight&#39;)</span>
+plt<span style="color: #666666">.</span>show()
+
+<span style="color: #408080; font-style: italic"># Violin Plot</span>
+columns <span style="color: #666666">=</span> [x <span style="color: #008000; font-weight: bold">for</span> x <span style="color: #AA22FF; font-weight: bold">in</span> data<span style="color: #666666">.</span>columns <span style="color: #008000; font-weight: bold">if</span> x <span style="color: #AA22FF; font-weight: bold">not</span> <span style="color: #AA22FF; font-weight: bold">in</span> [<span style="color: #BA2121">&quot;Target class&quot;</span>]]
+length  <span style="color: #666666">=</span> <span style="color: #008000">len</span>(columns)
+plt<span style="color: #666666">.</span>figure(figsize<span style="color: #666666">=</span>(<span style="color: #666666">13</span>,<span style="color: #666666">25</span>))
+<span style="color: #008000; font-weight: bold">for</span> i,j <span style="color: #AA22FF; font-weight: bold">in</span> itertools<span style="color: #666666">.</span>zip_longest(columns,<span style="color: #008000">range</span>(length)):
+    plt<span style="color: #666666">.</span>subplot(length<span style="color: #666666">/2</span>,length<span style="color: #666666">/4</span>,j<span style="color: #666666">+1</span>)
+    sns<span style="color: #666666">.</span>violinplot(x<span style="color: #666666">=</span>data[<span style="color: #BA2121">&quot;Target class&quot;</span>],y<span style="color: #666666">=</span>data[i],
+                   palette<span style="color: #666666">=</span>[<span style="color: #BA2121">&quot;Orangered&quot;</span>,<span style="color: #BA2121">&quot;lime&quot;</span>],alpha<span style="color: #666666">=.5</span>)
+    plt<span style="color: #666666">.</span>title(i)
+<span style="color: #408080; font-style: italic">#plt.savefig(&#39;violinplot.png&#39;,bbox_inches=&#39;tight&#39;)</span>
+plt<span style="color: #666666">.</span>show()
+</pre></div>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic"># Logistc regression</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">matplotlib.pyplot</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">plt</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">seaborn</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">sns</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.linear_model</span> <span style="color: #008000; font-weight: bold">import</span> LogisticRegression
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.preprocessing</span> <span style="color: #008000; font-weight: bold">import</span> StandardScaler
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.model_selection</span> <span style="color: #008000; font-weight: bold">import</span> train_test_split
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.model_selection</span> <span style="color: #008000; font-weight: bold">import</span> KFold
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.metrics</span> <span style="color: #008000; font-weight: bold">import</span> confusion_matrix
+
+<span style="color: #408080; font-style: italic"># We define the hyperparameters to be used</span>
+nlambdas <span style="color: #666666">=</span> <span style="color: #666666">500</span> <span style="color: #408080; font-style: italic"># why not? the code runs relatively fast</span>
+lmbdas <span style="color: #666666">=</span> np<span style="color: #666666">.</span>logspace(<span style="color: #666666">-5</span>, <span style="color: #666666">5</span>, nlambdas)
+kfold <span style="color: #666666">=</span> KFold(n_splits <span style="color: #666666">=</span> <span style="color: #666666">5</span>) <span style="color: #408080; font-style: italic">#cross validation spliting</span>
+
+
+<span style="color: #408080; font-style: italic"># We preallocate data </span>
+<span style="color: #408080; font-style: italic"># true values that will be found later</span>
+train_accuracy<span style="color: #666666">=</span>np<span style="color: #666666">.</span>zeros(lmbdas<span style="color: #666666">.</span>shape,np<span style="color: #666666">.</span>float64)
+test_accuracy<span style="color: #666666">=</span>np<span style="color: #666666">.</span>zeros(lmbdas<span style="color: #666666">.</span>shape,np<span style="color: #666666">.</span>float64)
+train_red_accuracy<span style="color: #666666">=</span>np<span style="color: #666666">.</span>zeros(lmbdas<span style="color: #666666">.</span>shape,np<span style="color: #666666">.</span>float64)
+test_red_accuracy<span style="color: #666666">=</span>np<span style="color: #666666">.</span>zeros(lmbdas<span style="color: #666666">.</span>shape,np<span style="color: #666666">.</span>float64)
+<span style="color: #408080; font-style: italic"># dummy arrays to be averaged later on</span>
+train_accuracy_d<span style="color: #666666">=</span>np<span style="color: #666666">.</span>zeros(<span style="color: #666666">5</span>,np<span style="color: #666666">.</span>float64)
+test_accuracy_d<span style="color: #666666">=</span>np<span style="color: #666666">.</span>zeros(<span style="color: #666666">5</span>,np<span style="color: #666666">.</span>float64)
+train_red_accuracy_d<span style="color: #666666">=</span>np<span style="color: #666666">.</span>zeros(<span style="color: #666666">5</span>,np<span style="color: #666666">.</span>float64)
+test_red_accuracy_d<span style="color: #666666">=</span>np<span style="color: #666666">.</span>zeros(<span style="color: #666666">5</span>,np<span style="color: #666666">.</span>float64)
+
+<span style="color: #408080; font-style: italic"># We create the design matrix X and separate the labels into Y</span>
+x_fea <span style="color: #666666">=</span> [x <span style="color: #008000; font-weight: bold">for</span> x <span style="color: #AA22FF; font-weight: bold">in</span> data<span style="color: #666666">.</span>columns <span style="color: #008000; font-weight: bold">if</span> x <span style="color: #AA22FF; font-weight: bold">not</span> <span style="color: #AA22FF; font-weight: bold">in</span> [<span style="color: #BA2121">&#39;Target class&#39;</span>]]
+<span style="color: #408080; font-style: italic">#print(x_fea)</span>
+X <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros((data<span style="color: #666666">.</span>shape[<span style="color: #666666">0</span>],data<span style="color: #666666">.</span>shape[<span style="color: #666666">1</span>]<span style="color: #666666">-1</span>))
+X_red <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros((data<span style="color: #666666">.</span>shape[<span style="color: #666666">0</span>],<span style="color: #666666">3</span>))
+Y <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros(data<span style="color: #666666">.</span>shape[<span style="color: #666666">0</span>])
+<span style="color: #008000; font-weight: bold">for</span> i,feature <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">enumerate</span>(x_fea): <span style="color: #408080; font-style: italic"># Here we just take the variables of interest</span>
+    X[:,i] <span style="color: #666666">=</span> data[feature]
+    <span style="color: #008000; font-weight: bold">if</span> <span style="color: #BA2121">&#39;Mean profile&#39;</span> <span style="color: #666666">==</span> feature:
+        X_red[:,<span style="color: #666666">0</span>]
+    <span style="color: #008000; font-weight: bold">if</span> <span style="color: #BA2121">&#39;Kurtosis profile&#39;</span> <span style="color: #666666">==</span> feature:
+        X_red[:,<span style="color: #666666">1</span>]
+    <span style="color: #008000; font-weight: bold">if</span> <span style="color: #BA2121">&#39;Skewness profile&#39;</span><span style="color: #666666">==</span> feature: 
+        X_red[:,<span style="color: #666666">2</span>]
+Y[:] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;Target class&#39;</span>]
+<span style="color: #408080; font-style: italic"># We perform a logistic regression for each value of lambda</span>
+<span style="color: #008000; font-weight: bold">for</span> i,lmbda <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">enumerate</span>(lmbdas):
+    <span style="color: #408080; font-style: italic">#define model</span>
+    logreg <span style="color: #666666">=</span> LogisticRegression(C<span style="color: #666666">=1.0/</span>lmbda,solver<span style="color: #666666">=</span><span style="color: #BA2121">&#39;liblinear&#39;</span>)
+
+    <span style="color: #408080; font-style: italic"># Perform the cross-validation</span>
+    j <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+    <span style="color: #008000; font-weight: bold">for</span> train_inds, test_inds <span style="color: #AA22FF; font-weight: bold">in</span> kfold<span style="color: #666666">.</span>split(X):
+        <span style="color: #408080; font-style: italic"># Do the split</span>
+        X_train <span style="color: #666666">=</span> X[train_inds]
+        X_red_train <span style="color: #666666">=</span> X_red[train_inds]
+        Y_train <span style="color: #666666">=</span> Y[train_inds]
+
+        X_test <span style="color: #666666">=</span> X[test_inds]
+        X_red_test <span style="color: #666666">=</span> X_red[test_inds]
+        Y_test <span style="color: #666666">=</span> Y[test_inds]
+
+        <span style="color: #408080; font-style: italic"># We will scale the data</span>
+        scaler <span style="color: #666666">=</span> StandardScaler()
+        scaler<span style="color: #666666">.</span>fit(X_train)
+        <span style="color: #408080; font-style: italic"># first on full data</span>
+        X_train <span style="color: #666666">=</span> scaler<span style="color: #666666">.</span>transform(X_train)
+        X_test <span style="color: #666666">=</span> scaler<span style="color: #666666">.</span>transform(X_test)
+        <span style="color: #408080; font-style: italic"># then rescale and do on reduced data</span>
+        scaler<span style="color: #666666">.</span>fit(X_red_train)
+        X_red_train <span style="color: #666666">=</span> scaler<span style="color: #666666">.</span>transform(X_red_train)
+        X_red_test <span style="color: #666666">=</span> scaler<span style="color: #666666">.</span>transform(X_red_test)
+        <span style="color: #008000; font-weight: bold">del</span> scaler
+
+        <span style="color: #408080; font-style: italic"># calculate accuracies for the k fold</span>
+        logreg<span style="color: #666666">.</span>fit(X_train, Y_train)
+        train_accuracy_d[j]<span style="color: #666666">=</span>logreg<span style="color: #666666">.</span>score(X_train,Y_train)
+        test_accuracy_d[j]<span style="color: #666666">=</span>logreg<span style="color: #666666">.</span>score(X_test,Y_test)
+
+        logreg<span style="color: #666666">.</span>fit(X_red_train, Y_train)
+        train_red_accuracy_d[j]<span style="color: #666666">=</span>logreg<span style="color: #666666">.</span>score(X_red_train,Y_train)
+        test_red_accuracy_d[j]<span style="color: #666666">=</span>logreg<span style="color: #666666">.</span>score(X_red_test,Y_test)
+        j <span style="color: #666666">+=</span> <span style="color: #666666">1</span>
+        <span style="color: #008000; font-weight: bold">del</span> X_red_train,X_red_test,X_train,Y_train,X_test,Y_test <span style="color: #408080; font-style: italic"># delete useless data</span>
+    <span style="color: #408080; font-style: italic">#Average to get accuracy values</span>
+    train_accuracy[i]<span style="color: #666666">=</span>np<span style="color: #666666">.</span>mean(train_accuracy_d)
+    test_accuracy[i]<span style="color: #666666">=</span>np<span style="color: #666666">.</span>mean(test_accuracy_d)
+    train_red_accuracy[i]<span style="color: #666666">=</span>np<span style="color: #666666">.</span>mean(train_red_accuracy_d)
+    test_red_accuracy[i]<span style="color: #666666">=</span>np<span style="color: #666666">.</span>mean(test_red_accuracy_d)
+
+plt<span style="color: #666666">.</span>figure(figsize<span style="color: #666666">=</span>(<span style="color: #666666">15</span>,<span style="color: #666666">7</span>))
+plt<span style="color: #666666">.</span>semilogx(lmbdas,train_accuracy,label<span style="color: #666666">=</span><span style="color: #BA2121">&#39;train&#39;</span>)
+plt<span style="color: #666666">.</span>semilogx(lmbdas,test_accuracy,label<span style="color: #666666">=</span><span style="color: #BA2121">&#39;test&#39;</span>)
+plt<span style="color: #666666">.</span>semilogx(lmbdas,train_red_accuracy,label<span style="color: #666666">=</span><span style="color: #BA2121">&#39;train reduced&#39;</span>) 
+plt<span style="color: #666666">.</span>semilogx(lmbdas,test_red_accuracy,<span style="color: #BA2121">&#39;--&#39;</span>,label<span style="color: #666666">=</span><span style="color: #BA2121">&#39;test reduced&#39;</span>)
+plt<span style="color: #666666">.</span>xlabel(<span style="color: #BA2121">&#39;$</span><span style="color: #BB6622; font-weight: bold">\\</span><span style="color: #BA2121">lambda$&#39;</span>)
+plt<span style="color: #666666">.</span>ylabel(<span style="color: #BA2121">&#39;$</span><span style="color: #BB6622; font-weight: bold">\\</span><span style="color: #BA2121">mathrm{accuracy}$&#39;</span>)
+plt<span style="color: #666666">.</span>grid()
+plt<span style="color: #666666">.</span>legend()
+plt<span style="color: #666666">.</span>show()
+</pre></div>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">#           Neural Network</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">matplotlib.pyplot</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">plt</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">seaborn</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">sns</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">warnings</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">itertools</span>
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">PIL</span> <span style="color: #008000; font-weight: bold">import</span> Image
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.model_selection</span> <span style="color: #008000; font-weight: bold">import</span> train_test_split
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.metrics</span> <span style="color: #008000; font-weight: bold">import</span> confusion_matrix,accuracy_score
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.neural_network</span> <span style="color: #008000; font-weight: bold">import</span> MLPClassifier
+warnings<span style="color: #666666">.</span>filterwarnings(<span style="color: #BA2121">&quot;ignore&quot;</span>)
+
+<span style="color: #408080; font-style: italic">#Split data with 20% of test data:</span>
+np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>seed(<span style="color: #666666">2018</span>)
+X_train, X_test, y_train, y_test <span style="color: #666666">=</span> train_test_split(X, Y, test_size <span style="color: #666666">=</span> <span style="color: #666666">0.2</span>, random_state <span style="color: #666666">=</span> <span style="color: #666666">66</span>)
+
+<span style="color: #408080; font-style: italic"># Define the learning rate, hyperparameter using NUMPY </span>
+eta_vals <span style="color: #666666">=</span> np<span style="color: #666666">.</span>logspace(<span style="color: #666666">-5</span>, <span style="color: #666666">1</span>, <span style="color: #666666">7</span>)
+lmbd_vals <span style="color: #666666">=</span> np<span style="color: #666666">.</span>logspace(<span style="color: #666666">-5</span>, <span style="color: #666666">1</span>, <span style="color: #666666">7</span>)
+n_hidden_neurons <span style="color: #666666">=</span> <span style="color: #666666">50</span>
+epochs <span style="color: #666666">=</span> <span style="color: #666666">100</span>
+<span style="color: #408080; font-style: italic"># Use scikit learn for neural network </span>
+DNN_scikit <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros((<span style="color: #008000">len</span>(eta_vals), <span style="color: #008000">len</span>(lmbd_vals)), dtype<span style="color: #666666">=</span><span style="color: #008000">object</span>)
+<span style="color: #008000; font-weight: bold">for</span> i, eta <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">enumerate</span>(eta_vals):
+    <span style="color: #008000; font-weight: bold">for</span> j, lmbd <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">enumerate</span>(lmbd_vals):
+        dnn <span style="color: #666666">=</span> MLPClassifier(hidden_layer_sizes<span style="color: #666666">=</span>(n_hidden_neurons), activation<span style="color: #666666">=</span><span style="color: #BA2121">&#39;logistic&#39;</span>,
+                            alpha<span style="color: #666666">=</span>lmbd, learning_rate_init<span style="color: #666666">=</span>eta, max_iter<span style="color: #666666">=</span>epochs, solver<span style="color: #666666">=</span><span style="color: #BA2121">&#39;adam&#39;</span>)
+        dnn<span style="color: #666666">.</span>fit(X_train, y_train)
+        DNN_scikit[i][j] <span style="color: #666666">=</span> dnn
+        <span style="color: #408080; font-style: italic"># just uncomment below to print the accuracy scores</span>
+        <span style="color: #408080; font-style: italic">#print(&quot;Learning rate  = &quot;, eta)</span>
+        <span style="color: #408080; font-style: italic">#print(&quot;Lambda = &quot;, lmbd)</span>
+        <span style="color: #408080; font-style: italic">#print(&quot;Accuracy score on test set: &quot;, dnn.score(X_test, y_test))</span>
+        <span style="color: #408080; font-style: italic">#print()</span>
+
+        
+<span style="color: #408080; font-style: italic">#Plot the accuracy as function of learning rate and hyperparameter</span>
+<span style="color: #408080; font-style: italic"># just uncomment the lines below to generate the plots (ctrl + /)</span>
+
+sns<span style="color: #666666">.</span>set() 
+train_accuracy <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros((<span style="color: #008000">len</span>(eta_vals), <span style="color: #008000">len</span>(lmbd_vals)))
+test_accuracy <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros((<span style="color: #008000">len</span>(eta_vals), <span style="color: #008000">len</span>(lmbd_vals)))
+
+<span style="color: #008000; font-weight: bold">for</span> i <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(<span style="color: #008000">len</span>(eta_vals)):
+     <span style="color: #008000; font-weight: bold">for</span> j <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(<span style="color: #008000">len</span>(lmbd_vals)):
+         dnn <span style="color: #666666">=</span> DNN_scikit[i][j]
+         train_pred <span style="color: #666666">=</span> dnn<span style="color: #666666">.</span>predict(X_train) 
+         test_pred <span style="color: #666666">=</span> dnn<span style="color: #666666">.</span>predict(X_test)
+         train_accuracy[i][j] <span style="color: #666666">=</span> accuracy_score(y_train, train_pred)
+         test_accuracy[i][j] <span style="color: #666666">=</span> accuracy_score(y_test, test_pred)
+        
+fig, ax <span style="color: #666666">=</span> plt<span style="color: #666666">.</span>subplots(figsize <span style="color: #666666">=</span> (<span style="color: #666666">10</span>, <span style="color: #666666">10</span>))        
+sns<span style="color: #666666">.</span>heatmap(train_accuracy, annot<span style="color: #666666">=</span><span style="color: #008000">True</span>,annot_kws<span style="color: #666666">=</span>{<span style="color: #BA2121">&quot;size&quot;</span>: <span style="color: #666666">18</span>}, ax<span style="color: #666666">=</span>ax, cmap<span style="color: #666666">=</span><span style="color: #BA2121">&quot;viridis&quot;</span>)
+ax<span style="color: #666666">.</span>set_title(<span style="color: #BA2121">&quot;Training Accuracy&quot;</span>,fontsize<span style="color: #666666">=18</span>)
+ax<span style="color: #666666">.</span>set_ylabel(<span style="color: #BA2121">&quot;$\eta$&quot;</span>,fontsize<span style="color: #666666">=18</span>)
+ax<span style="color: #666666">.</span>set_yticklabels(eta_vals)
+ax<span style="color: #666666">.</span>set_xlabel(<span style="color: #BA2121">&quot;$\lambda$&quot;</span>,fontsize<span style="color: #666666">=18</span>)
+ax<span style="color: #666666">.</span>set_xticklabels(lmbd_vals)
+plt<span style="color: #666666">.</span>tick_params(labelsize<span style="color: #666666">=18</span>)
+ 
+fig, ax <span style="color: #666666">=</span> plt<span style="color: #666666">.</span>subplots(figsize <span style="color: #666666">=</span> (<span style="color: #666666">10</span>, <span style="color: #666666">10</span>))
+sns<span style="color: #666666">.</span>heatmap(test_accuracy, annot<span style="color: #666666">=</span><span style="color: #008000">True</span>,annot_kws<span style="color: #666666">=</span>{<span style="color: #BA2121">&quot;size&quot;</span>: <span style="color: #666666">18</span>}, ax<span style="color: #666666">=</span>ax, cmap<span style="color: #666666">=</span><span style="color: #BA2121">&quot;viridis&quot;</span>)
+ax<span style="color: #666666">.</span>set_title(<span style="color: #BA2121">&quot;Test Accuracy&quot;</span>,fontsize<span style="color: #666666">=18</span>)
+ax<span style="color: #666666">.</span>set_ylabel(<span style="color: #BA2121">&quot;$\eta$&quot;</span>,fontsize<span style="color: #666666">=18</span>)
+ax<span style="color: #666666">.</span>set_yticklabels(eta_vals)
+ax<span style="color: #666666">.</span>set_xlabel(<span style="color: #BA2121">&quot;$\lambda$&quot;</span>,fontsize<span style="color: #666666">=18</span>)
+ax<span style="color: #666666">.</span>set_xticklabels(lmbd_vals)
+plt<span style="color: #666666">.</span>tick_params(labelsize<span style="color: #666666">=18</span>)
+plt<span style="color: #666666">.</span>show()        
+
+<span style="color: #408080; font-style: italic">#Plot confusion matrix at optimal values of learning rate and hyperameter</span>
+<span style="color: #408080; font-style: italic"># just uncomment the lines below to generate the plots (ctrl + /)</span>
+
+dnn <span style="color: #666666">=</span> MLPClassifier(hidden_layer_sizes<span style="color: #666666">=</span>(n_hidden_neurons), activation<span style="color: #666666">=</span><span style="color: #BA2121">&#39;logistic&#39;</span>,alpha<span style="color: #666666">=0.001</span>, learning_rate_init<span style="color: #666666">=0.001</span>, max_iter<span style="color: #666666">=</span>epochs, solver<span style="color: #666666">=</span><span style="color: #BA2121">&#39;adam&#39;</span>)
+dnn<span style="color: #666666">.</span>fit(X_train,y_train)
+y_pred<span style="color: #666666">=</span>dnn<span style="color: #666666">.</span>predict(X_test)
+fig1, ax <span style="color: #666666">=</span> plt<span style="color: #666666">.</span>subplots(figsize <span style="color: #666666">=</span> (<span style="color: #666666">13</span>,<span style="color: #666666">10</span>))
+sns<span style="color: #666666">.</span>heatmap(confusion_matrix(y_test,y_pred),annot<span style="color: #666666">=</span><span style="color: #008000">True</span>,fmt <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;d&quot;</span>,linecolor<span style="color: #666666">=</span><span style="color: #BA2121">&quot;k&quot;</span>,linewidths<span style="color: #666666">=3</span>)
+ax<span style="color: #666666">.</span>set_xlabel(<span style="color: #BA2121">&#39;True label&#39;</span>,fontsize<span style="color: #666666">=18</span>)
+ax<span style="color: #666666">.</span>set_ylabel(<span style="color: #BA2121">&#39;Predicted label&#39;</span>,fontsize<span style="color: #666666">=18</span>)
+ax<span style="color: #666666">.</span>set_title(<span style="color: #BA2121">&quot;CONFUSION MATRIX&quot;</span>,fontsize<span style="color: #666666">=20</span>)
+plt<span style="color: #666666">.</span>tick_params(labelsize<span style="color: #666666">=18</span>)
+plt<span style="color: #666666">.</span>show()
+<span style="color: #408080; font-style: italic"># Feature importance --&gt;weights</span>
+coef<span style="color: #666666">=</span>dnn<span style="color: #666666">.</span>coefs_[<span style="color: #666666">0</span>]
+<span style="color: #008000; font-weight: bold">print</span> (coef)
+</pre></div>
+<p>
+
+<p>
+<!-- navigation buttons at the bottom of the page -->
+<ul class="pagination">
+<li><a href="._NeuralNet-bs067.html">&laquo;</a></li>
+  <li><a href="._NeuralNet-bs000.html">1</a></li>
+  <li><a href="">...</a></li>
+  <li><a href="._NeuralNet-bs060.html">61</a></li>
+  <li><a href="._NeuralNet-bs061.html">62</a></li>
+  <li><a href="._NeuralNet-bs062.html">63</a></li>
+  <li><a href="._NeuralNet-bs063.html">64</a></li>
+  <li><a href="._NeuralNet-bs064.html">65</a></li>
+  <li><a href="._NeuralNet-bs065.html">66</a></li>
+  <li><a href="._NeuralNet-bs066.html">67</a></li>
+  <li><a href="._NeuralNet-bs067.html">68</a></li>
+  <li class="active"><a href="._NeuralNet-bs068.html">69</a></li>
+</ul>
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+<center style="font-size:80%">
+<!-- copyright only on the titlepage -->
+</center>
+
+
+</body>
+</html>
+    
+

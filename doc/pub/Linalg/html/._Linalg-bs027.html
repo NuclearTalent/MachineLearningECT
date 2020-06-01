@@ -1,0 +1,273 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Data analysis and Machine Learning  Lectures: Linear Algebra, Handling of Arrays and more Python Features">
+
+<title>Data analysis and Machine Learning  Lectures: Linear Algebra, Handling of Arrays and more Python Features</title>
+
+<!-- Bootstrap style: bootstrap -->
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+<style type="text/css">
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
+</style>
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [('Introduction', 2, None, '___sec0'),
+              ('Important Matrix and vector handling packages',
+               2,
+               None,
+               '___sec1'),
+              ('Basic Matrix Features', 2, None, '___sec2'),
+              ('Basic Matrix Features', 2, None, '___sec3'),
+              ('Basic Matrix Features', 2, None, '___sec4'),
+              ('Some famous Matrices', 2, None, '___sec5'),
+              ('Basic Matrix Features', 2, None, '___sec6'),
+              ('Numpy and arrays', 2, None, '___sec7'),
+              ('Matrices in Python', 2, None, '___sec8'),
+              ('Matrix Handling in C/C++, Static and Dynamical allocation',
+               2,
+               None,
+               '___sec9'),
+              ('Matrix Handling in C/C++', 2, None, '___sec10'),
+              ('Matrix Handling in C/C++', 2, None, '___sec11'),
+              ('Dynamic memory allocation in C/C++', 2, None, '___sec12'),
+              ('Matrix Handling in C/C++, Dynamic Allocation',
+               2,
+               None,
+               '___sec13'),
+              ('Armadillo, recommended!!', 2, None, '___sec14'),
+              ('Armadillo, simple examples', 2, None, '___sec15'),
+              ('Armadillo, how to compile and install', 2, None, '___sec16'),
+              ('Armadillo, simple examples', 2, None, '___sec17'),
+              ('Armadillo, simple examples', 2, None, '___sec18'),
+              ('Armadillo, simple examples', 2, None, '___sec19'),
+              ('Armadillo, simple examples', 2, None, '___sec20'),
+              ('Armadillo, simple examples', 2, None, '___sec21'),
+              ('Armadillo, simple examples', 2, None, '___sec22'),
+              ('Armadillo, simple examples', 2, None, '___sec23'),
+              ('Gaussian Elimination', 2, None, '___sec24'),
+              ('Gaussian Elimination', 2, None, '___sec25'),
+              ('Gaussian Elimination', 2, None, '___sec26'),
+              ('Gaussian Elimination', 2, None, '___sec27'),
+              ('Gaussian Elimination', 2, None, '___sec28'),
+              ('Gaussian Elimination', 2, None, '___sec29'),
+              ('Gaussian Elimination', 2, None, '___sec30'),
+              ('Linear Algebra Methods', 2, None, '___sec31'),
+              ('LU Decomposition', 2, None, '___sec32'),
+              ('LU Decomposition', 2, None, '___sec33'),
+              ('LU Decomposition, why?', 2, None, '___sec34'),
+              ('LU Decomposition, linear equations', 2, None, '___sec35'),
+              ('LU Decomposition, linear equations', 2, None, '___sec36'),
+              ('LU Decomposition, why?', 2, None, '___sec37'),
+              ('LU Decomposition, linear equations', 2, None, '___sec38'),
+              ('LU Decomposition, the inverse of a matrix',
+               2,
+               None,
+               '___sec39'),
+              ('LU Decomposition, the inverse of a matrix',
+               2,
+               None,
+               '___sec40'),
+              ('LU Decomposition, the inverse', 2, None, '___sec41'),
+              ('"Using Armadillo to perform an LU '
+               'decomposition":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/CppQtCodesLectures/MatrixTest/main.cpp"',
+               2,
+               None,
+               '___sec42')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="Linalg-bs.html">Data analysis and Machine Learning  Lectures: Linear Algebra, Handling of Arrays and more Python Features</a>
+  </div>
+
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="._Linalg-bs001.html#___sec0" style="font-size: 80%;">Introduction</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs002.html#___sec1" style="font-size: 80%;">Important Matrix and vector handling packages</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs003.html#___sec2" style="font-size: 80%;">Basic Matrix Features</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs004.html#___sec3" style="font-size: 80%;">Basic Matrix Features</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs005.html#___sec4" style="font-size: 80%;">Basic Matrix Features</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs006.html#___sec5" style="font-size: 80%;">Some famous Matrices</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs007.html#___sec6" style="font-size: 80%;">Basic Matrix Features</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs008.html#___sec7" style="font-size: 80%;">Numpy and arrays</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs009.html#___sec8" style="font-size: 80%;">Matrices in Python</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs010.html#___sec9" style="font-size: 80%;">Matrix Handling in C/C++, Static and Dynamical allocation</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs011.html#___sec10" style="font-size: 80%;">Matrix Handling in C/C++</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs012.html#___sec11" style="font-size: 80%;">Matrix Handling in C/C++</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs013.html#___sec12" style="font-size: 80%;">Dynamic memory allocation in C/C++</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs014.html#___sec13" style="font-size: 80%;">Matrix Handling in C/C++, Dynamic Allocation</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs015.html#___sec14" style="font-size: 80%;">Armadillo, recommended!!</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs016.html#___sec15" style="font-size: 80%;">Armadillo, simple examples</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs017.html#___sec16" style="font-size: 80%;">Armadillo, how to compile and install</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs018.html#___sec17" style="font-size: 80%;">Armadillo, simple examples</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs019.html#___sec18" style="font-size: 80%;">Armadillo, simple examples</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs020.html#___sec19" style="font-size: 80%;">Armadillo, simple examples</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs021.html#___sec20" style="font-size: 80%;">Armadillo, simple examples</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs022.html#___sec21" style="font-size: 80%;">Armadillo, simple examples</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs023.html#___sec22" style="font-size: 80%;">Armadillo, simple examples</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs024.html#___sec23" style="font-size: 80%;">Armadillo, simple examples</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs025.html#___sec24" style="font-size: 80%;">Gaussian Elimination</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs026.html#___sec25" style="font-size: 80%;">Gaussian Elimination</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec26" style="font-size: 80%;">Gaussian Elimination</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs028.html#___sec27" style="font-size: 80%;">Gaussian Elimination</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs029.html#___sec28" style="font-size: 80%;">Gaussian Elimination</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs030.html#___sec29" style="font-size: 80%;">Gaussian Elimination</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs031.html#___sec30" style="font-size: 80%;">Gaussian Elimination</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs032.html#___sec31" style="font-size: 80%;">Linear Algebra Methods</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs033.html#___sec32" style="font-size: 80%;">LU Decomposition</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs034.html#___sec33" style="font-size: 80%;">LU Decomposition</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs035.html#___sec34" style="font-size: 80%;">LU Decomposition, why?</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs036.html#___sec35" style="font-size: 80%;">LU Decomposition, linear equations</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs037.html#___sec36" style="font-size: 80%;">LU Decomposition, linear equations</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs038.html#___sec37" style="font-size: 80%;">LU Decomposition, why?</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs039.html#___sec38" style="font-size: 80%;">LU Decomposition, linear equations</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs040.html#___sec39" style="font-size: 80%;">LU Decomposition, the inverse of a matrix</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs041.html#___sec40" style="font-size: 80%;">LU Decomposition, the inverse of a matrix</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs042.html#___sec41" style="font-size: 80%;">LU Decomposition, the inverse</a></li>
+     <!-- navigation toc: --> <li><a href="._Linalg-bs043.html#___sec42" style="font-size: 80%;">"Using Armadillo to perform an LU decomposition":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/CppQtCodesLectures/MatrixTest/main.cpp"</a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<a name="part0027"></a>
+<!-- !split -->
+
+<h2 id="___sec26" class="anchor">Gaussian Elimination </h2>
+
+<p>
+The basic idea of Gaussian elimination is to use the first equation to eliminate the first unknown \( x_1 \)
+from the remaining \( n-1 \) equations. Then we use the new second equation to eliminate the second unknown
+\( x_2 \) from the remaining \( n-2 \) equations. With \( n-1 \) such eliminations
+we obtain a so-called upper triangular set of equations of the form
+
+$$
+\begin{align}
+ b_{11}x_1 +b_{12}x_2 +b_{13}x_3 + b_{14}x_4=&y_1 \nonumber \\
+ b_{22}x_2 + b_{23}x_3 + b_{24}x_4=&y_2 \nonumber \\
+b_{33}x_3 + b_{34}x_4=&y_3 \nonumber \\
+b_{44}x_4=&y_4. \nonumber
+\tag{1}
+\end{align}
+$$
+
+We can solve this system of equations recursively starting from \( x_n \) (in our case \( x_4 \)) and proceed with
+what is called a backward substitution.
+
+<p>
+<p>
+<!-- navigation buttons at the bottom of the page -->
+<ul class="pagination">
+<li><a href="._Linalg-bs026.html">&laquo;</a></li>
+  <li><a href="._Linalg-bs000.html">1</a></li>
+  <li><a href="">...</a></li>
+  <li><a href="._Linalg-bs019.html">20</a></li>
+  <li><a href="._Linalg-bs020.html">21</a></li>
+  <li><a href="._Linalg-bs021.html">22</a></li>
+  <li><a href="._Linalg-bs022.html">23</a></li>
+  <li><a href="._Linalg-bs023.html">24</a></li>
+  <li><a href="._Linalg-bs024.html">25</a></li>
+  <li><a href="._Linalg-bs025.html">26</a></li>
+  <li><a href="._Linalg-bs026.html">27</a></li>
+  <li class="active"><a href="._Linalg-bs027.html">28</a></li>
+  <li><a href="._Linalg-bs028.html">29</a></li>
+  <li><a href="._Linalg-bs029.html">30</a></li>
+  <li><a href="._Linalg-bs030.html">31</a></li>
+  <li><a href="._Linalg-bs031.html">32</a></li>
+  <li><a href="._Linalg-bs032.html">33</a></li>
+  <li><a href="._Linalg-bs033.html">34</a></li>
+  <li><a href="._Linalg-bs034.html">35</a></li>
+  <li><a href="._Linalg-bs035.html">36</a></li>
+  <li><a href="._Linalg-bs036.html">37</a></li>
+  <li><a href="">...</a></li>
+  <li><a href="._Linalg-bs043.html">44</a></li>
+  <li><a href="._Linalg-bs028.html">&raquo;</a></li>
+</ul>
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+<center style="font-size:80%">
+<!-- copyright only on the titlepage -->
+</center>
+
+
+</body>
+</html>
+    
+
