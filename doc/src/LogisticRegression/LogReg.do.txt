@@ -11,11 +11,12 @@ coefficients of a functional fit (say a polynomial) in order to be
 able to predict the response of a continuous variable on some unseen
 data. The fit to the continuous variable $y_i$ is based on some
 independent variables $\hat{x}_i$. Linear regression resulted in
-analytical expressions (in terms of matrices to invert) for several
-quantities, ranging from the variance and thereby the confidence
-intervals of the parameters $\hat{\beta}$ to the mean squared
-error. If we can invert the product of the design matrices, linear
-regression gives then a simple recipe for fitting our data.
+analytical expressions for standard ordinary Least Squares or Ridge
+regression (in terms of matrices to invert) for several quantities,
+ranging from the variance and thereby the confidence intervals of the
+parameters $\hat{\beta}$ to the mean squared error. If we can invert
+the product of the design matrices, linear regression gives then a
+simple recipe for fitting our data.
 
 
 Classification problems, however, are concerned with outcomes taking
@@ -37,12 +38,17 @@ failure etc.
 !split
 ===== Optimization and Deep learning =====
 
-Logistic regression will also serve as our stepping stone towards neural
-network algorithms and supervised deep learning. For logistic
+Logistic regression will also serve as our stepping stone towards
+neural network algorithms and supervised deep learning. For logistic
 learning, the minimization of the cost function leads to a non-linear
-equation in the parameters $\hat{\beta}$. The optmization of the problem calls therefore for minimization algorithms. This forms the bottle neck of all machine learning algorithms, namely how to find reliable minima of a multi-variable function. This leads us to the family of gradient descent methods. The latter are the working horses of basically all modern machine learning algorithms. 
+equation in the parameters $\hat{\beta}$. The optimization of the
+problem calls therefore for minimization algorithms. This forms the
+bottle neck of all machine learning algorithms, namely how to find
+reliable minima of a multi-variable function. This leads us to the
+family of gradient descent methods. The latter are the working horses
+of basically all modern machine learning algorithms.
 
-We note also that many of the topics discussed here 
+We note also that many of the topics discussed here on logistic 
 regression are also commonly used in modern supervised Deep Learning
 models, as we will see later.
 
@@ -60,7 +66,12 @@ made of $n$ samples, each of which carries $p$ features or predictors. The
 primary goal is to identify the classes to which new unseen samples
 belong.
  
-Let us specialize to the case of two classes only, with outputs $y_i=0$ and $y_i=1$. Our outcomes could represent the status of a credit card user who could default or not on her/his credit card debt. That is
+Let us specialize to the case of two classes only, with outputs
+$y_i=0$ and $y_i=1$. Our outcomes could represent the status of a
+credit card user that could default or not on her/his credit card
+debt. That is
+
+
 !bt
 \[
 y_i = \begin{bmatrix} 0 & \mathrm{no}\\  1 & \mathrm{yes} \end{bmatrix}.
@@ -72,7 +83,10 @@ y_i = \begin{bmatrix} 0 & \mathrm{no}\\  1 & \mathrm{yes} \end{bmatrix}.
 !split
 ===== Linear classifier =====
 
-Before moving to the logistic model, let us try to use our linear regression model to classify these two outcomes. We could for example fit a linear model to the default case if $y_i > 0.5$ and the no default case $y_i \leq 0.5$. 
+Before moving to the logistic model, let us try to use our linear
+regression model to classify these two outcomes. We could for example
+fit a linear model to the default case if $y_i > 0.5$ and the no
+default case $y_i \leq 0.5$.
 
 We would then have our 
 weighted linear combination, namely 
@@ -87,10 +101,12 @@ $n\times p$ design matrix and $\hat{\beta}$ represents our estimators/predictors
 !split
 ===== Some selected properties =====
 
-The main problem with our  function is that it 
-takes values on the entire real axis. In the case of
-logistic regression, however, the labels $y_i$ are discrete
-variables. 
+The main problem with our function is that it takes values on the
+entire real axis. In the case of logistic regression, however, the
+labels $y_i$ are discrete variables. A typical example is the credit
+card data discussed earlier, where we can set the state of
+defaulting the debt to $y_i=1$ and not to $y_i=0$ for one the persons
+in the data set (see the full example below).
 
 One simple way to get a discrete output is to have sign
 functions that map the output of a linear regressor to values $\{0,1\}$,
@@ -99,11 +115,6 @@ We will encounter this model in our first demonstration of neural networks. Hist
 literature. This model is extremely simple. However, in many cases it is more
 favorable to use a ``soft" classifier that outputs
 the probability of a given category. This leads us to the logistic function.
-
-The code for plotting the perceptron can be seen here. This si nothing but the standard "Heaviside step function":"https://en.wikipedia.org/wiki/Heaviside_step_function".
-!bc pycod 
-
-!ec
 
 
 !split
@@ -125,10 +136,74 @@ p(t) = \frac{1}{1+\mathrm \exp{-t}}=\frac{\exp{t}}{1+\mathrm \exp{t}}.
 \]
 !et
 Note that $1-p(t)= p(-t)$.
-The following code plots the logistic function.
-!bc pycod
 
+!split
+===== Examples of likelihood functions used in logistic regression and nueral networks =====
+
+
+The following code plots the logistic function, the step function and other functions we will encounter from here and on.
+
+
+!bc pycod
+"""The sigmoid function (or the logistic curve) is a
+function that takes any real number, z, and outputs a number (0,1).
+It is useful in neural networks for assigning weights on a relative scale.
+The value z is the weighted sum of parameters involved in the learning algorithm."""
+
+import numpy
+import matplotlib.pyplot as plt
+import math as mt
+
+z = numpy.arange(-5, 5, .1)
+sigma_fn = numpy.vectorize(lambda z: 1/(1+numpy.exp(-z)))
+sigma = sigma_fn(z)
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.plot(z, sigma)
+ax.set_ylim([-0.1, 1.1])
+ax.set_xlim([-5,5])
+ax.grid(True)
+ax.set_xlabel('z')
+ax.set_title('sigmoid function')
+
+plt.show()
+
+"""Step Function"""
+z = numpy.arange(-5, 5, .02)
+step_fn = numpy.vectorize(lambda z: 1.0 if z >= 0.0 else 0.0)
+step = step_fn(z)
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.plot(z, step)
+ax.set_ylim([-0.5, 1.5])
+ax.set_xlim([-5,5])
+ax.grid(True)
+ax.set_xlabel('z')
+ax.set_title('step function')
+
+plt.show()
+
+"""tanh Function"""
+z = numpy.arange(-2*mt.pi, 2*mt.pi, 0.1)
+t = numpy.tanh(z)
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.plot(z, t)
+ax.set_ylim([-1.0, 1.0])
+ax.set_xlim([-2*mt.pi,2*mt.pi])
+ax.grid(True)
+ax.set_xlabel('z')
+ax.set_title('tanh function')
+
+plt.show()
 !ec
+
+
+
+
 
 
 
@@ -256,8 +331,11 @@ p(\hat{\beta}\hat{x})=\frac{ \exp{(\beta_0+\beta_1x_1+\beta_2x_2+\dots+\beta_px_
 !split
 ===== Including more classes =====
 
-Till now we have mainly focused on two classes, the so-called binary system. Suppose we wish to extend to $K$ classes.
-Let us for the sake of simplicity assume we have only two predictors. We have then following model
+Till now we have mainly focused on two classes, the so-called binary
+system. Suppose we wish to extend to $K$ classes.  Let us for the sake
+of simplicity assume we have only two predictors. We have then
+following model
+
 !bt
 \[
 \log{\frac{p(C=1\vert x)}{p(K\vert x)}} = \beta_{10}+\beta_{11}x_1,
@@ -274,22 +352,26 @@ and so on till the class $C=K-1$ class
 \log{\frac{p(C=K-1\vert x)}{p(K\vert x)}} = \beta_{(K-1)0}+\beta_{(K-1)1}x_1,
 \]
 !et
-and the model is specified in term of $K-1$ so-called log-odds or _logit_ transformations.
+
+and the model is specified in term of $K-1$ so-called log-odds or
+_logit_ transformations.
 
 
 !split
-===== The Softmax function =====
+===== More classes =====
 
-In our discussion of neural networks we will encounter the above again in terms of the so-called _Softmax_ function.
+In our discussion of neural networks we will encounter the above again
+in terms of a slightly modified function, the so-called _Softmax_ function.
 
 The softmax function is used in various multiclass classification
 methods, such as multinomial logistic regression (also known as
-softmax regression), multiclass linear discriminant
-analysis, naive Bayes classifiers, and artificial neural networks.
-Specifically, in multinomial logistic regression and linear
-discriminant analysis, the input to the function is the result of $K$
-distinct linear functions, and the predicted probability for the $k$-th
-class given a sample vector $\hat{x}$ and a weighting vector $\hat{\beta}$ is (with two predictors):
+softmax regression), multiclass linear discriminant analysis, naive
+Bayes classifiers, and artificial neural networks.  Specifically, in
+multinomial logistic regression and linear discriminant analysis, the
+input to the function is the result of $K$ distinct linear functions,
+and the predicted probability for the $k$-th class given a sample
+vector $\hat{x}$ and a weighting vector $\hat{\beta}$ is (with two
+predictors):
 
 !bt
 \[
@@ -302,37 +384,17 @@ It is easy to extend to more predictors. The final class is
 p(C=K\vert \mathbf {x} )=\frac{1}{1+\sum_{l=1}^{K-1}\exp{(\beta_{l0}+\beta_{l1}x_1)}},
 \]
 !et
-and they sum to one. Our earlier discussions were all specialized to the case with two classes only. It is easy to see from the above that what we derived earlier is compatible with these equations. 
 
-To find the optimal parameters we would typically use a gradient descent method.
-Newton's method and gradient descent methods are discussed in the material on "optimization methods":"https://compphysics.github.io/MachineLearning/doc/pub/Splines/html/Splines-bs.html". 
+and they sum to one. Our earlier discussions were all specialized to
+the case with two classes only. It is easy to see from the above that
+what we derived earlier is compatible with these equations.
+
+To find the optimal parameters we would typically use a gradient
+descent method.  Newton's method and gradient descent methods are
+discussed in the material on "optimization
+methods":"https://compphysics.github.io/MachineLearning/doc/pub/Splines/html/Splines-bs.html".
 
 
-
-!split
-===== A _scikit-learn_ example =====
-
-!bc pycod
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn import datasets
-iris = datasets.load_iris()
-list(iris.keys())
-['data', 'target_names', 'feature_names', 'target', 'DESCR']
-X = iris["data"][:, 3:] # petal width
-y = (iris["target"] == 2).astype(np.int) # 1 if Iris-Virginica, else 0
-
-from sklearn.linear_model import LogisticRegression
-log_reg = LogisticRegression()
-log_reg.fit(X, y)
-
-X_new = np.linspace(0, 3, 1000).reshape(-1, 1)
-y_proba = log_reg.predict_proba(X_new)
-plt.plot(X_new, y_proba[:, 1], "g-", label="Iris-Virginica")
-plt.plot(X_new, y_proba[:, 0], "b--", label="Not Iris-Virginica")
-plt.show()
-
-!ec
 
 
 !split
@@ -350,11 +412,7 @@ def generate_data():
 
 
 def visualize(X, y, clf):
-    # plt.scatter(X[:, 0], X[:, 1], s=40, c=y, cmap=plt.cm.Spectral)
-    # plt.show()
     plot_decision_boundary(lambda x: clf.predict(x), X, y)
-    plt.title("Logistic Regression")
-
 
 def plot_decision_boundary(pred_func, X, y):
     # Set min and max values and give it some padding
@@ -384,292 +442,165 @@ def main():
     clf = classify(X, y)
     visualize(X, y, clf)
 
-
 if __name__ == "__main__":
     main()
 !ec
 
-!split 
-===== The two-dimensional Ising model, Predicting phase transition of the two-dimensional Ising model =====
-
-The Hamiltonian of the two-dimensional Ising model without an external field for a constant coupling constant $J$ is given by
-!bt
-\begin{align}
-    H = -J \sum_{\langle ij\rangle} S_i S_j,
-\end{align}
-!et
-where $S_i \in \{-1, 1\}$ and $\langle ij \rangle$ signifies that we only iterate over the nearest neighbors in the lattice. We will be looking at a system of $L = 40$ spins in each dimension, i.e., $L^2 = 1600$ spins in total. Opposed to the one-dimensional Ising model we will get a phase transition from an _ordered_ phase to a _disordered_ phase at the critical temperature
-
-!bt
-\begin{align}
-    \frac{T_c}{J} = \frac{2}{\log\left(1 + \sqrt{2}\right)} \approx 2.26,
-\end{align}
-!et
-as shown by Lars Onsager.
 
 
-Here we use _logistic regression_ to predict when a phase transition
-occurs. The data we will look at is a set of spin configurations,
-i.e., individual lattices with spins, labeled _ordered_ `1` or
-_disordered_ `0`. Our job is to build a model which will take in a
-spin configuration and predict whether or not the spin configuration
-constitutes an ordered or a disordered phase. To achieve this we will
-represent the lattices as flattened arrays with $1600$ elements
-instead of a matrix of $40 \times 40$ elements. As an extra test of
-the performance of the algorithms we will divide the dataset into
-three pieces. We will do a conventional train-test-split on a
-combination of totally ordered and totally disordered phases. The
-remaining "critical-like" states will be used as test data which we
-hope the model will be able to make good extrapolated predictions on.
 
+
+!split
+===== Preprocessing our data  =====
+!bblock
+
+We discuss here how to preprocess our
+data. Till now and in connection with our previous examples we have
+not met so many cases where we are too sensitive to the scaling of our
+data. Normally the data may need a rescaling and/or may be sensitive
+to extreme values. Scaling the data renders our inputs much more
+suitable for the algorithms we want to employ.
+
+_Scikit-Learn_ has several functions which allow us to rescale the
+data, normally resulting in much better results in terms of various
+accuracy scores.  The _StandardScaler_ function in _Scikit-Learn_
+ensures that for each feature/predictor we study the mean value is
+zero and the variance is one (every column in the design/feature
+matrix).  This scaling has the drawback that it does not ensure that
+we have a particular maximum or minimum in our data set. Another
+function included in _Scikit-Learn_ is the _MinMaxScaler_ which
+ensures that all features are exactly between $0$ and $1$. The
+
+!split
+===== More preprocessing =====
+
+
+The _Normalizer_ scales each data
+point such that the feature vector has a euclidean length of one. In other words, it
+projects a data point on the circle (or sphere in the case of higher dimensions) with a
+radius of 1. This means every data point is scaled by a different number (by the
+inverse of it’s length).
+This normalization is often used when only the direction (or angle) of the data matters,
+not the length of the feature vector.
+
+The _RobustScaler_ works similarly to the StandardScaler in that it
+ensures statistical properties for each feature that guarantee that
+they are on the same scale. However, the RobustScaler uses the median
+and quartiles, instead of mean and variance. This makes the
+RobustScaler ignore data points that are very different from the rest
+(like measurement errors). These odd data points are also called
+outliers, and might often lead to trouble for other scaling
+techniques.
+
+!eblock
+
+
+!split
+===== Simple preprocessing examples, breast cancer data and classification =====
+
+We show here how we can use a simple regression case on the breast
+cancer data using logistic regression  as algorithm for
+classification.
 
 !bc pycod
-import pickle
-import os
-import glob
-import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
-import sklearn.model_selection as skms
-import sklearn.linear_model as skl
-import sklearn.metrics as skm
-import tqdm
-import copy
-import time
-from IPython.display import display
+import numpy as np
+from sklearn.model_selection import  train_test_split 
+from sklearn.datasets import load_breast_cancer
+from sklearn.linear_model import LogisticRegression
+cancer = load_breast_cancer()
 
-%matplotlib inline
+# Set up training data
+X_train, X_test, y_train, y_test = train_test_split(cancer.data,cancer.target,random_state=0)
+logreg = LogisticRegression()
+logreg.fit(X_train, y_train)
+print("Test set accuracy: {:.2f}".format(logreg.score(X_test,y_test)))
 
-sns.set(color_codes=True)
+# Scale data
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+scaler.fit(X_train)
+X_train_scaled = scaler.transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+logreg.fit(X_train_scaled, y_train)
+print("Test set accuracy scaled data: {:.2f}".format(logreg.score(X_test_scaled,y_test)))
+
 !ec
 
-!split
-===== Reading in the data =====
-
-Using the data from "Mehta et al.":"https://physics.bu.edu/~pankajm/ML-Review-Datasets/isingMC/" (specifically the two datasets named `Ising2DFM_reSample_L40_T=All.pkl` and `Ising2DFM_reSample_L40_T=All_labels.pkl`) we have to unpack the data into numpy arrays.
-
-
-!bc pycod
-filenames = glob.glob(os.path.join("..", "dat", "*"))
-label_filename = list(filter(lambda x: "label" in x, filenames))[0]
-dat_filename = list(filter(lambda x: "label" not in x, filenames))[0]
-
-# Read in the labels
-with open(label_filename, "rb") as f:
-    labels = pickle.load(f)
-
-# Read in the corresponding configurations
-with open(dat_filename, "rb") as f:
-    data = np.unpackbits(pickle.load(f)).reshape(-1, 1600).astype("int")
-
-# Set spin-down to -1
-data[data == 0] = -1
-!ec
-
-This dataset consists of $10000$ samples, i.e., $10000$ spin
-configurations with $40 \times 40$ spins each, for $16$ temperatures
-between $0.25$ to $4.0$. Next we create a train/test-split and keep
-the data in the critical phase as a separate dataset for
-extrapolation-testing.
-
-
-!bc pycod
-# Set up slices of the dataset
-ordered = slice(0, 70000)
-critical = slice(70000, 100000)
-disordered = slice(100000, 160000)
-
-X_train, X_test, y_train, y_test = skms.train_test_split(
-    np.concatenate((data[ordered], data[disordered])),
-    np.concatenate((labels[ordered], labels[disordered])),
-    test_size=0.95
-)
-!ec
 
 
 
 !split
-===== Logistic regression =====
+===== Covariance and Correlation =====
 
-Logistic regression is a linear model for classification. Recalling
-the cost function for ordinary least squares with both L2 (ridge) and
-L1 (LASSO) penalties we will see that the logistic cost function is
-very similar. In OLS we wish to predict a continuous variable
-$\hat{y}$ using
-!bt
-\begin{align}
-    \hat{y} = X\omega,
-\end{align}
-!et
-
-where $X \in \mathbb{R}^{n \times p}$ is the input data and $\omega^{p
-\times d}$ are the weights of the regression. In a classification
-setting (binary classification in our situation) we are interested in
-a positive or negative answer. We can thus define either answer to be
-above or below some threshold. But, in order to limit the size of the
-answer and also to get a probability interpretation on how sure we are
-for either answer we can compute the sigmoid function of OLS. That is,
-
-!bt
-\begin{align}
-    f(X\omega) = \frac{1}{1 + \exp(-X\omega)}.
-\end{align}
-!et
-We are thus interested in minizming the following cost function
-!bt
-\begin{align}
-    C(X, \omega) = \sum_{i = 1}^n \left\{
-        - y_i\log\left( f(x_i^T\omega) \right)
-        - (1 - y_i)\log\left[1 - f(x_i^T\omega)\right]
-    \right\},
-\end{align}
-!et
-
-where we will restrict ourselves to a value for $f(z)$ as the sigmoid
-described above. We can also tack on a L2 (Ridge) or L1 (LASSO)
-penalization to this cost function in the same manner we did for
-linear regression.
-
-!split
-===== Exploring the logistic regression =====
-
-The penalization factor $\lambda$ is inverted in the case of the
-logistic regression model we use. We will explore several values of
-$\lambda$ using both L1 and L2 penalization. We do this using a grid
-search over different parameters and run a 3-fold cross validation for
-each configuration. In other words, we fit a model 3 times for each
-configuration of the hyper parameters.
-
-
+In addition to the plot of the features, we study now also the covariance (and the correlation matrix).
+We use also _Pandas_ to compute the correlation matrix.
 !bc pycod
-lambdas = np.logspace(-7, -1, 7)
+import matplotlib.pyplot as plt
+import numpy as np
+from sklearn.model_selection import  train_test_split 
+from sklearn.datasets import load_breast_cancer
+from sklearn.linear_model import LogisticRegression
+cancer = load_breast_cancer()
+import pandas as pd
+# Making a data frame
+cancerpd = pd.DataFrame(cancer.data, columns=cancer.feature_names)
 
-param_grid = {
-    "C": list(1.0/lambdas),
-    "penalty": ["l1", "l2"]
-}
-clf = skms.GridSearchCV(
-    skl.LogisticRegression(),
-    param_grid=param_grid,
-    n_jobs=-1,
-    return_train_score=True
-)
-t0 = time.time()
-clf.fit(X_train, y_train)
-t1 = time.time()
+fig, axes = plt.subplots(15,2,figsize=(10,20))
+malignant = cancer.data[cancer.target == 0]
+benign = cancer.data[cancer.target == 1]
+ax = axes.ravel()
 
-print (
-    "Time spent fitting GridSearchCV(LogisticRegression): {0:.3f} sec".format(
-        t1 - t0
-    )
-)
-!ec
-
-We can see that logistic regression is quite slow and using the grid
-search and cross validation results in quite a heavy
-computation. Below we show the results of the different
-configurations.
-
-
-!bc pycod
-logreg_df = pd.DataFrame(clf.cv_results_)
-
-display(logreg_df)
-!ec
-
-!split
-===== Accuracy of a classification model =====
-
-To determine how well a classification model is performing we count
-the number of correctly labeled classes and divide by the number of
-classes in total. The accuracy is thus given by
-
-!bt
-\begin{align}
-    a(y, \hat{y}) = \frac{1}{n}\sum_{i = 1}^{n} I(y_i = \hat{y}_i),
-\end{align}
-!et
-
-where $I(y_i = \hat{y}_i)$ is the indicator function given by
-
-!bt
-\begin{align}
-    I(x = y) = \begin{array}{cc}
-    1 & x = y, \\
-    0 & x \neq y.
-    \end{array}
-\end{align}
-!et
-
-This is the accuracy provided by Scikit-learn when using _sklearn.metrics.accuracyscore_.
-
-Below we compute the accuracy of the best fit model on the training data (which should give a good accuracy), the test data (which has not been shown to the model) and the critical data (completely new data that needs to be extrapolated).
-
-
-!bc pycod
-train_accuracy = skm.accuracy_score(y_train, clf.predict(X_train))
-test_accuracy = skm.accuracy_score(y_test, clf.predict(X_test))
-critical_accuracy = skm.accuracy_score(labels[critical], clf.predict(data[critical]))
-
-print ("Accuracy on train data: {0}".format(train_accuracy))
-print ("Accuracy on test data: {0}".format(test_accuracy))
-print ("Accuracy on critical data: {0}".format(critical_accuracy))
-!ec
-
-We can see that we get quite good accuracy on the training data, but gradually worsening accuracy on the test and critical data.
-
-!split
-===== Analyzing the results =====
-
-Below we show a different metric for determining the quality of our
-model, namely the _reciever operating characteristic_ (ROC). The ROC
-curve tells us how well the model correctly classifies the different
-labels. We plot the _true positive rate_ (the rate of predicted
-positive classes that are positive) versus the _false positive rate_
-(the rate of predicted positive classes that are negative). The ROC
-curve is built by computing the true positive rate and the false
-positive rate for varying _thresholds_, i.e, which probability we
-should acredit a certain class.
-
-By computing the _area under the curve_ (AUC) of the ROC curve we get an estimate of how well our model is performing. Pure guessing will get an AUC of $0.5$. A perfect score will get an AUC of $1.0$.
-
-
-!bc pycod
-fig = plt.figure(figsize=(20, 14))
-
-for (_X, _y), label in zip(
-    [
-        (X_train, y_train),
-        (X_test, y_test),
-        (data[critical], labels[critical])
-    ],
-    ["Train", "Test", "Critical"]
-):
-    proba = clf.predict_proba(_X)
-    fpr, tpr, _ = skm.roc_curve(_y, proba[:, 1])
-    roc_auc = skm.auc(fpr, tpr)
-
-    print ("LogisticRegression AUC ({0}): {1}".format(label, roc_auc))
-
-    plt.plot(fpr, tpr, label="{0} (AUC = {1})".format(label, roc_auc), linewidth=4.0)
-
-plt.plot([0, 1], [0, 1], "--", label="Guessing (AUC = 0.5)", linewidth=4.0)
-
-plt.title(r"The ROC curve for LogisticRegression", fontsize=18)
-plt.xlabel(r"False positive rate", fontsize=18)
-plt.ylabel(r"True positive rate", fontsize=18)
-plt.axis([-0.01, 1.01, -0.01, 1.01])
-plt.xticks(fontsize=18)
-plt.yticks(fontsize=18)
-plt.legend(loc="best", fontsize=18)
+for i in range(30):
+    _, bins = np.histogram(cancer.data[:,i], bins =50)
+    ax[i].hist(malignant[:,i], bins = bins, alpha = 0.5)
+    ax[i].hist(benign[:,i], bins = bins, alpha = 0.5)
+    ax[i].set_title(cancer.feature_names[i])
+    ax[i].set_yticks(())
+ax[0].set_xlabel("Feature magnitude")
+ax[0].set_ylabel("Frequency")
+ax[0].legend(["Malignant", "Benign"], loc ="best")
+fig.tight_layout()
 plt.show()
+
+import seaborn as sns
+sns.set(rc={'figure.figsize':(15.0,15.0)},font_scale=1)
+correlation_matrix = cancerpd.corr().round(1)
+# use the heatmap function from seaborn to plot the correlation matrix
+# annot = True to print the values inside the square
+sns.heatmap(data=correlation_matrix, annot=True)
+plt.show()
+
+#print eigvalues of correlation matrix
+EigValues, EigVectors = np.linalg.eig(correlation_matrix)
+print(EigValues)
 !ec
 
-We can see that this plot of the ROC looks very strange. This tells us
-that logistic regression is quite inept at predicting the Ising model
-transition and is therefore highly non-linear. The ROC curve for the
-training data looks quite good, but as the testing data is so far off
-we see that we are dealing with an overfit model.
+In the above example we note two things. In the first plot we display
+the overlap of benign and malignant tumors as functions of the various
+features in the Wisconsing breast cancer data set. We see that for
+some of the features we can distinguish clearly the benign and
+malignant cases while for other features we cannot. This can point to
+us which features may be of greater interest when we wish to classify
+a benign or not benign tumour.
+
+In the second figure we have computed the so-called correlation
+matrix, which in our case with thirty features becomes a $30\times 30$
+matrix.
+
+We constructed this matrix using _pandas_ via the statements
+!bc pycod
+cancerpd = pd.DataFrame(cancer.data, columns=cancer.feature_names)
+!ec
+and then
+!bc pycod
+correlation_matrix = cancerpd.corr().round(1)
+!ec
+
+Diagonalizing this matrix we can in turn say something about which
+features are of relevance and which are not. This leads us to
+the classical Principal Component Analysis (PCA) theorem with
+applications.  This topic is covered in the PCA slides. 
+
 
 
