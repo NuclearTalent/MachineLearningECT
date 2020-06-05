@@ -36,6 +36,7 @@ chapters = {
      * "Standard one-page format": "${pub_url}/${name}/pdf/${name}-minted.pdf"
  * HTML:
    * "Plain html": "${pub_url}/${name}/html/${name}.html"
+   * "reveal.js slide style": "${pub_url}/${name}/html/${name}-reveal.html"
    * "Bootstrap  slide style, easy for reading on mobile devices": "${pub_url}/${name}/html/${name}-bs.html"
  * Jupyter notebook:
    * "ipynb file": "${pub_url}/${name}/ipynb/${name}.ipynb"
@@ -198,6 +199,8 @@ At the end of the course the students should have a basic understanding of
 * A solid understanding of central machine learning algorithms for supervised and unsupervised learning, involving linear and logistic regression, support vector machines, decision trees and random forests, neural networks and deep learning (convolutional neural networks, recursive neural networks etc)
 * Be able to write codes for linear regression, logistic regression and use modern libraries like Tensorflow, Pytorch, Scikit-Learn in order to analyze data from nuclear physics experiments and perform theoretical calculations
 * A deeper understanding of the statistical properties of the various methods, from the bias-variance tradeoff to resampling techniques.
+
+
 
 
 
