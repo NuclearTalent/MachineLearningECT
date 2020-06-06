@@ -22,7 +22,7 @@ The goals of the Nuclear Talent course on Machine Learning and Data Analysis are
 
 We are targeting an audience of graduate students (both Master of Science and PhD) as well as post-doctoral researchers in nuclear experiment and theory.
 
-The teaching teams consists of both theorists and experimentalists. We believe such a mix is important as it gives the students a better understanding on how data are obtained, and what are the limitations and possibilities in understanding and interpreting the experimental information.
+The teaching teams consists of both theorists and experimentalists. We believe such a mix is important as it gives the participants a better understanding on how data are obtained, and what are the limitations and possibilities in understanding and interpreting the experimental information.
 
 ## Introduction to the Talent Courses
 A recently established initiative, Training in Advanced Low Energy Nuclear Theory, aims at providing an advanced and comprehensive training to graduate students and young researchers in low-energy nuclear theory. The initiative is a multinational network between several European and Northern American institutions and aims at developing a broad curriculum that will provide the platform for a cutting-edge theory for understanding nuclei and nuclear reactions. These objectives will be met by offering series of lectures, commissioned from experienced teachers in nuclear theory. The educational material generated under this program will be collected in the form of WEB-based courses, textbooks, and a variety of modern educational resources. No such all-encompassing material is available at present; its development will allow dispersed university groups to profit from the best expertise available.
@@ -57,19 +57,19 @@ The lecture plan is as follows
 
 ### Week 1
 
-- _Monday_	Linear Regression and intro to statistical data analysis	
-- _Tuesday_	Logistic Regression and classification problems, intro to gradient methods	
-- _Wednesday_	Decision Trees, Random Forests and Support vector machines	
-- _Thursday_	Basics of Neural Networks
-- _Friday_	Discussion of nuclear experiments and how to analyze data, presentation of simulated data from Active-Target Time-Projection Chamber (AT-TPC)	
+- _Monday_	Linear Regression and intro to statistical data analysis	(Morten Hjorth-Jensen MHJ)
+- _Tuesday_	Logistic Regression and classification problems, intro to gradient methods	(MHJ)
+- _Wednesday_	Decision Trees, Random Forests and Boosting methods (MHJ)
+- _Thursday_	Basics of Neural Networks (MHJ)
+- _Friday_	Discussion of nuclear experiments and how to analyze data, presentation of simulated data from Active-Target Time-Projection Chamber (AT-TPC)	(Daniel Bazin)
 
 ### Week 2
 
-- _Monday_	Neural Networks and Deep Learning
-- _Tuesday_	From Neural Networks to Convolutional Neural Networks and how to analyze experiment (classification of events and real data)	
-- _Wednesday_	Analyzing data and recurrent neural networks	
-- _Thursday_	Autoencoders and reinforcement learning	
-- _Friday_	Beta-decay experiments, how to analyze various events. Future directions in machine learning and summary of course.
+- _Monday_	Neural Networks and Deep Learning (Michelle Kuchera and Raghu Ramanujan, MK and RR)
+- _Tuesday_	From Neural Networks to Convolutional Neural Networks and how to analyze experiment (classification of events and real data)	(MK and RR)
+- _Wednesday_	Analyzing data and recurrent neural networks	(MK and RR)
+- _Thursday_	Autoencoders and reinforcement learning	(MK and RR)
+- _Friday_	Beta-decay experiments, how to analyze various events. Future directions in machine learning and summary of course. (sean Liddick)
 
 
 
@@ -87,11 +87,11 @@ _Time	and Activity_
 ## Teachers and organizers
 The teachers and organizers are
 
-- Daniel Bazin at Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University, East Lansing, Michigan, USA
-- Morten Hjorth-Jensen at Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University, East Lansing, Michigan, USA
-- Michelle Kuchera at Physics Department, Davidson College, Davidson, North Carolina, USA
-- Sean Liddick at Department of Chemistry and National Superconducting Cyclotron Laboratory, Michigan State University, East Lansing, Michigan, USA
-- Raghuram Ramanujan at Department of Mathematics and Computer Science, Davidson College, Davidson, North Carolina, USA
+- Daniel Bazin at Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University, East Lansing, Michigan, USA (DB)
+- Morten Hjorth-Jensen at Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University, East Lansing, Michigan, USA (MHJ)
+- Michelle Kuchera at Physics Department, Davidson College, Davidson, North Carolina, USA (MK)
+- Sean Liddick at Department of Chemistry and National Superconducting Cyclotron Laboratory, Michigan State University, East Lansing, Michigan, USA (SL)
+- Raghuram Ramanujan at Department of Mathematics and Computer Science, Davidson College, Davidson, North Carolina, USA (RR)
 
 Morten Hjorth-Jensen will also function as student advisor and coordinator.
 
