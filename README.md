@@ -28,22 +28,13 @@ The teaching teams consists of both theorists and experimentalists. We believe s
 A recently established initiative, Training in Advanced Low Energy Nuclear Theory, aims at providing an advanced and comprehensive training to graduate students and young researchers in low-energy nuclear theory. The initiative is a multinational network between several European and Northern American institutions and aims at developing a broad curriculum that will provide the platform for a cutting-edge theory for understanding nuclei and nuclear reactions. These objectives will be met by offering series of lectures, commissioned from experienced teachers in nuclear theory. The educational material generated under this program will be collected in the form of WEB-based courses, textbooks, and a variety of modern educational resources. No such all-encompassing material is available at present; its development will allow dispersed university groups to profit from the best expertise available.
 
 ## Aims and Learning Outcomes
-This three-week TALENT course on nuclear theory will focus on Machine Learning and Data Analysis algorithms for nuclear physics and to use such methods in the interpretation of data on the structure of nuclear systems.
+This two-week online TALENT course on nuclear theory will focus on Machine Learning and Data Analysis algorithms for nuclear physics and to use such methods in the interpretation of data on the structure of nuclear systems.
 
-We propose approximately forty-five hours of lectures over three weeks and a comparable amount of practical computer and exercise sessions, including the setting of individual problems and the organization of various individual projects.
+We propose approximately twenty hours of lectures over two weeks and a comparable amount of practical computer and exercise sessions, including the setting of individual problems and the organization of various individual projects.
 
 The mornings will consist of lectures and the afternoons will be devoted to exercises meant to shed light on the exposed theory, the computational projects and individual student projects. These components will be coordinated to foster student engagement, maximize learning and create lasting value for the students. For the benefit of the TALENT series and of the community, material (courses, slides, problems and solutions, reports on students' projects) will be made publicly available using version control software like git and posted electronically on github (this site).
 
-As with previous TALENT courses, we envision the following features for the afternoon sessions:
 
-- We will use both individual and group work to carry out tasks that are very specific in technical instructions, but leave freedom for creativity.
-- Groups will be carefully put together to maximize diversity of backgrounds.
-- Results will be presented in a conference-like setting to create accountability.
-- We will organize events where individuals and groups exchange their experiences, difficulties and successes to foster interaction.
-- During the school, on-line and lecture-based training tailored to technical issues will be provided. Students will learn to use and interpret the results of computer-based and hand calculations of nuclear models. The lectures will be aligned with the practical computational projects and exercises and the lecturers will be available to help students and work with them during the exercise sessions.
-- These interactions will raise topics not originally envisioned for the course but which are recognized to be valuable for the students. There will be flexibility to organize mini-lectures and discussion sessions on an ad-hoc basis in such cases.
-- Each group of students will maintain an online logbook of their activities and results.
-- Training modules, codes, lectures, practical exercise instructions, online logbooks, instructions and information created by participants will be merged into a comprehensive website that will be available to the community and the public for self-guided training or for use in various educational settings (for example, a graduate course at a university could assign some of the projects as homework or an extra credit project, etc).
 ### Learning Outcomes
 At the end of the course the students should have a basic understanding of
 
@@ -52,7 +43,7 @@ At the end of the course the students should have a basic understanding of
 - Be able to write codes for linear regression, logistic regression and use modern libraries like Tensorflow, Pytorch, Scikit-Learn in order to analyze data from nuclear physics experiments and perform theoretical calculations
 - A deeper understanding of the statistical properties of the various methods, from the bias-variance tradeoff to resampling techniques.
 
-## Course Content and detailed plan
+## Course Content and detailed plan of online Talent course
 The lecture plan is as follows
 
 ### Week 1
