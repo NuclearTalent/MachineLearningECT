@@ -18,6 +18,9 @@ parameters $\hat{\beta}$ to the mean squared error. If we can invert
 the product of the design matrices, linear regression gives then a
 simple recipe for fitting our data.
 
+!split 
+===== Logistic Regression and Classification Problems =====
+
 
 Classification problems, however, are concerned with outcomes taking
 the form of discrete variables (i.e. categories). We may for example,

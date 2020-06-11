@@ -42,33 +42,37 @@ Automatically generated HTML file from DocOnce source
 <!-- tocinfo
 {'highest level': 2,
  'sections': [('Logistic Regression', 2, None, '___sec0'),
-              ('Optimization and Deep learning', 2, None, '___sec1'),
-              ('Basics', 2, None, '___sec2'),
-              ('Linear classifier', 2, None, '___sec3'),
-              ('Some selected properties', 2, None, '___sec4'),
-              ('The logistic function', 2, None, '___sec5'),
+              ('Logistic Regression and Classification Problems',
+               2,
+               None,
+               '___sec1'),
+              ('Optimization and Deep learning', 2, None, '___sec2'),
+              ('Basics', 2, None, '___sec3'),
+              ('Linear classifier', 2, None, '___sec4'),
+              ('Some selected properties', 2, None, '___sec5'),
+              ('The logistic function', 2, None, '___sec6'),
               ('Examples of likelihood functions used in logistic regression '
                'and nueral networks',
                2,
                None,
-               '___sec6'),
-              ('Two parameters', 2, None, '___sec7'),
-              ('Maximum likelihood', 2, None, '___sec8'),
-              ('The cost function rewritten', 2, None, '___sec9'),
-              ('Minimizing the cross entropy', 2, None, '___sec10'),
-              ('A more compact expression', 2, None, '___sec11'),
-              ('Extending to more predictors', 2, None, '___sec12'),
-              ('Including more classes', 2, None, '___sec13'),
-              ('More classes', 2, None, '___sec14'),
-              ('A simple classification problem', 2, None, '___sec15'),
-              ('Preprocessing our data', 2, None, '___sec16'),
-              ('More preprocessing', 2, None, '___sec17'),
+               '___sec7'),
+              ('Two parameters', 2, None, '___sec8'),
+              ('Maximum likelihood', 2, None, '___sec9'),
+              ('The cost function rewritten', 2, None, '___sec10'),
+              ('Minimizing the cross entropy', 2, None, '___sec11'),
+              ('A more compact expression', 2, None, '___sec12'),
+              ('Extending to more predictors', 2, None, '___sec13'),
+              ('Including more classes', 2, None, '___sec14'),
+              ('More classes', 2, None, '___sec15'),
+              ('A simple classification problem', 2, None, '___sec16'),
+              ('Preprocessing our data', 2, None, '___sec17'),
+              ('More preprocessing', 2, None, '___sec18'),
               ('Simple preprocessing examples, breast cancer data and '
                'classification',
                2,
                None,
-               '___sec18'),
-              ('Covariance and Correlation', 2, None, '___sec19')]}
+               '___sec19'),
+              ('Covariance and Correlation', 2, None, '___sec20')]}
 end of tocinfo -->
 
 <body>
@@ -107,25 +111,26 @@ MathJax.Hub.Config({
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
         <ul class="dropdown-menu">
      <!-- navigation toc: --> <li><a href="#___sec0" style="font-size: 80%;">Logistic Regression</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec1" style="font-size: 80%;">Optimization and Deep learning</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec2" style="font-size: 80%;">Basics</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec3" style="font-size: 80%;">Linear classifier</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec4" style="font-size: 80%;">Some selected properties</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;">The logistic function</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;">Examples of likelihood functions used in logistic regression and nueral networks</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;">Two parameters</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec8" style="font-size: 80%;">Maximum likelihood</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec9" style="font-size: 80%;">The cost function rewritten</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec10" style="font-size: 80%;">Minimizing the cross entropy</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec11" style="font-size: 80%;">A more compact expression</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec12" style="font-size: 80%;">Extending to more predictors</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec13" style="font-size: 80%;">Including more classes</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec14" style="font-size: 80%;">More classes</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec15" style="font-size: 80%;">A simple classification problem</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec16" style="font-size: 80%;">Preprocessing our data</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec17" style="font-size: 80%;">More preprocessing</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec18" style="font-size: 80%;">Simple preprocessing examples, breast cancer data and classification</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec19" style="font-size: 80%;">Covariance and Correlation</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec1" style="font-size: 80%;">Logistic Regression and Classification Problems</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec2" style="font-size: 80%;">Optimization and Deep learning</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec3" style="font-size: 80%;">Basics</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec4" style="font-size: 80%;">Linear classifier</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;">Some selected properties</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;">The logistic function</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;">Examples of likelihood functions used in logistic regression and nueral networks</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec8" style="font-size: 80%;">Two parameters</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec9" style="font-size: 80%;">Maximum likelihood</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec10" style="font-size: 80%;">The cost function rewritten</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec11" style="font-size: 80%;">Minimizing the cross entropy</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec12" style="font-size: 80%;">A more compact expression</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec13" style="font-size: 80%;">Extending to more predictors</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec14" style="font-size: 80%;">Including more classes</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec15" style="font-size: 80%;">More classes</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec16" style="font-size: 80%;">A simple classification problem</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec17" style="font-size: 80%;">Preprocessing our data</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec18" style="font-size: 80%;">More preprocessing</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec19" style="font-size: 80%;">Simple preprocessing examples, breast cancer data and classification</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec20" style="font-size: 80%;">Covariance and Correlation</a></li>
 
         </ul>
       </li>
@@ -159,7 +164,7 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>
-<center><h4>Jun 10, 2020</h4></center> <!-- date -->
+<center><h4>Jun 11, 2020</h4></center> <!-- date -->
 <br>
 <p>
 <!-- !split  -->
@@ -183,6 +188,11 @@ the product of the design matrices, linear regression gives then a
 simple recipe for fitting our data.
 
 <p>
+<!-- !split  -->
+
+<h2 id="___sec1" class="anchor">Logistic Regression and Classification Problems </h2>
+
+<p>
 Classification problems, however, are concerned with outcomes taking
 the form of discrete variables (i.e. categories). We may for example,
 on the basis of DNA sequencing for a number of patients, like to find
@@ -203,7 +213,7 @@ failure etc.
 <p>
 <!-- !split -->
 
-<h2 id="___sec1" class="anchor">Optimization and Deep learning </h2>
+<h2 id="___sec2" class="anchor">Optimization and Deep learning </h2>
 
 <p>
 Logistic regression will also serve as our stepping stone towards
@@ -224,7 +234,7 @@ models, as we will see later.
 <p>
 <!-- !split  -->
 
-<h2 id="___sec2" class="anchor">Basics </h2>
+<h2 id="___sec3" class="anchor">Basics </h2>
 
 <p>
 We consider the case where the dependent variables, also called the
@@ -251,7 +261,7 @@ $$
 <p>
 <!-- !split -->
 
-<h2 id="___sec3" class="anchor">Linear classifier </h2>
+<h2 id="___sec4" class="anchor">Linear classifier </h2>
 
 <p>
 Before moving to the logistic model, let us try to use our linear
@@ -275,7 +285,7 @@ where \( \hat{y} \) is a vector representing the possible outcomes, \( \hat{X} \
 <p>
 <!-- !split -->
 
-<h2 id="___sec4" class="anchor">Some selected properties </h2>
+<h2 id="___sec5" class="anchor">Some selected properties </h2>
 
 <p>
 The main problem with our function is that it takes values on the
@@ -297,7 +307,7 @@ the probability of a given category. This leads us to the logistic function.
 <p>
 <!-- !split -->
 
-<h2 id="___sec5" class="anchor">The logistic function </h2>
+<h2 id="___sec6" class="anchor">The logistic function </h2>
 
 <p>
 The perceptron is an example of a ``hard classification&quot; model. We
@@ -319,7 +329,7 @@ Note that \( 1-p(t)= p(-t) \).
 <p>
 <!-- !split -->
 
-<h2 id="___sec6" class="anchor">Examples of likelihood functions used in logistic regression and nueral networks </h2>
+<h2 id="___sec7" class="anchor">Examples of likelihood functions used in logistic regression and nueral networks </h2>
 
 <p>
 The following code plots the logistic function, the step function and other functions we will encounter from here and on.
@@ -385,7 +395,7 @@ plt<span style="color: #666666">.</span>show()
 <p>
 <!-- !split -->
 
-<h2 id="___sec7" class="anchor">Two parameters </h2>
+<h2 id="___sec8" class="anchor">Two parameters </h2>
 
 <p>
 We assume now that we have two classes with \( y_i \) either \( 0 \) or \( 1 \). Furthermore we assume also that we have only two parameters \( \beta \) in our fitting of the Sigmoid function, that is we define probabilities 
@@ -407,7 +417,7 @@ $$
 <p>
 <!-- !split  -->
 
-<h2 id="___sec8" class="anchor">Maximum likelihood </h2>
+<h2 id="___sec9" class="anchor">Maximum likelihood </h2>
 
 <p>
 In order to define the total likelihood for all possible outcomes from a  
@@ -430,7 +440,7 @@ $$
 <p>
 <!-- !split -->
 
-<h2 id="___sec9" class="anchor">The cost function rewritten </h2>
+<h2 id="___sec10" class="anchor">The cost function rewritten </h2>
 
 <p>
 Reordering the logarithms, we can rewrite the <b>cost/loss</b> function as
@@ -451,7 +461,7 @@ in practice we often supplement the cross-entropy with additional regularization
 <p>
 <!-- !split -->
 
-<h2 id="___sec10" class="anchor">Minimizing the cross entropy </h2>
+<h2 id="___sec11" class="anchor">Minimizing the cross entropy </h2>
 
 <p>
 The cross entropy is a convex function of the weights \( \hat{\beta} \) and,
@@ -473,7 +483,7 @@ $$
 <p>
 <!-- !split -->
 
-<h2 id="___sec11" class="anchor">A more compact expression </h2>
+<h2 id="___sec12" class="anchor">A more compact expression </h2>
 
 <p>
 Let us now define a vector \( \hat{y} \) with \( n \) elements \( y_i \), an
@@ -496,7 +506,7 @@ $$
 <p>
 <!-- !split -->
 
-<h2 id="___sec12" class="anchor">Extending to more predictors </h2>
+<h2 id="___sec13" class="anchor">Extending to more predictors </h2>
 
 <p>
 Within a binary classification problem, we can easily expand our model to include multiple predictors. Our ratio between likelihoods is then with \( p \) predictors
@@ -512,7 +522,7 @@ $$
 <p>
 <!-- !split -->
 
-<h2 id="___sec13" class="anchor">Including more classes </h2>
+<h2 id="___sec14" class="anchor">Including more classes </h2>
 
 <p>
 Till now we have mainly focused on two classes, the so-called binary
@@ -540,7 +550,7 @@ and the model is specified in term of \( K-1 \) so-called log-odds or
 <p>
 <!-- !split -->
 
-<h2 id="___sec14" class="anchor">More classes </h2>
+<h2 id="___sec15" class="anchor">More classes </h2>
 
 <p>
 In our discussion of neural networks we will encounter the above again
@@ -580,7 +590,7 @@ methods</a>.
 <p>
 <!-- !split -->
 
-<h2 id="___sec15" class="anchor">A simple classification problem </h2>
+<h2 id="___sec16" class="anchor">A simple classification problem </h2>
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
@@ -632,7 +642,7 @@ methods</a>.
 <p>
 <!-- !split -->
 
-<h2 id="___sec16" class="anchor">Preprocessing our data  </h2>
+<h2 id="___sec17" class="anchor">Preprocessing our data  </h2>
 <div class="panel panel-default">
 <div class="panel-body">
 <p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
@@ -659,7 +669,7 @@ ensures that all features are exactly between \( 0 \) and \( 1 \). The
 <p>
 <!-- !split -->
 
-<h2 id="___sec17" class="anchor">More preprocessing </h2>
+<h2 id="___sec18" class="anchor">More preprocessing </h2>
 
 <p>
 The <b>Normalizer</b> scales each data
@@ -688,7 +698,7 @@ techniques.
 <p>
 <!-- !split -->
 
-<h2 id="___sec18" class="anchor">Simple preprocessing examples, breast cancer data and classification </h2>
+<h2 id="___sec19" class="anchor">Simple preprocessing examples, breast cancer data and classification </h2>
 
 <p>
 We show here how we can use a simple regression case on the breast
@@ -723,7 +733,7 @@ logreg<span style="color: #666666">.</span>fit(X_train_scaled, y_train)
 <p>
 <!-- !split -->
 
-<h2 id="___sec19" class="anchor">Covariance and Correlation </h2>
+<h2 id="___sec20" class="anchor">Covariance and Correlation </h2>
 
 <p>
 In addition to the plot of the features, we study now also the covariance (and the correlation matrix).
