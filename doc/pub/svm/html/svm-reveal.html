@@ -148,7 +148,7 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>&nbsp;<br>
-<center><h4>May 17, 2020</h4></center> <!-- date -->
+<center><h4>Jun 11, 2020</h4></center> <!-- date -->
 <br>
 <p>
 
@@ -174,6 +174,11 @@ medium-sized datasets.
 The case with two well-separated classes only can be understood in an
 intuitive way in terms of lines in a two-dimensional space separating
 the two classes (see figure below).
+</section>
+
+
+<section>
+<h2 id="___sec1">Support Vector Machines, Basic Math  </h2>
 
 <p>
 The basic mathematics behind the SVM is however less familiar to most of us. 
@@ -192,7 +197,7 @@ unlikely that we can separate classes easily by say straight lines.
 
 
 <section>
-<h2 id="___sec1">Hyperplanes and all that </h2>
+<h2 id="___sec2">Hyperplanes and all that </h2>
 
 <p>
 The theory behind support vector machines (SVM hereafter) is based on
@@ -280,7 +285,7 @@ plt.show()
 
 
 <section>
-<h2 id="___sec2">What is a hyperplane? </h2>
+<h2 id="___sec3">What is a hyperplane? </h2>
 
 <p>
 The aim of the SVM algorithm is to find a hyperplane in a
@@ -315,7 +320,7 @@ $$
 
 
 <section>
-<h2 id="___sec3">A \( p \)-dimensional space of features </h2>
+<h2 id="___sec4">A \( p \)-dimensional space of features </h2>
 
 <p>
 We limit ourselves to two classes of outputs \( y_i \) and assign these classes the values \( y_i = \pm 1 \). 
@@ -367,7 +372,7 @@ When we try to separate hyperplanes, if it exists, we can use it to construct a 
 
 
 <section>
-<h2 id="___sec4">The two-dimensional case </h2>
+<h2 id="___sec5">The two-dimensional case </h2>
 
 <p>
 Let us try to develop our intuition about SVMs by limiting ourselves to a two-dimensional
@@ -394,7 +399,7 @@ for our data sample.
 
 
 <section>
-<h2 id="___sec5">Getting into the details </h2>
+<h2 id="___sec6">Getting into the details </h2>
 
 <p>
 Let us define the function
@@ -420,7 +425,7 @@ $$
 
 
 <section>
-<h2 id="___sec6">First attempt at a minimization approach </h2>
+<h2 id="___sec7">First attempt at a minimization approach </h2>
 
 <p>
 How do we find the parameter \( b \) and the vector \( \boldsymbol{w} \)? What we could
@@ -451,7 +456,7 @@ $$
 
 
 <section>
-<h2 id="___sec7">Solving the equations </h2>
+<h2 id="___sec8">Solving the equations </h2>
 
 <p>
 We can now use the Newton-Raphson method or different variants of the gradient descent family (from plain gradient descent to various stochastic gradient descent approaches) to solve the equations
@@ -473,7 +478,7 @@ where \( \eta \) is our by now well-known learning rate.
 
 
 <section>
-<h2 id="___sec8">Code Example </h2>
+<h2 id="___sec9">Code Example </h2>
 
 <p>
 The equations we discussed above can be coded rather easily (the
@@ -488,7 +493,7 @@ regression). We are going to set up a simple case with two classes only and we w
 
 
 <section>
-<h2 id="___sec9">Problems with the Simpler Approach </h2>
+<h2 id="___sec10">Problems with the Simpler Approach </h2>
 
 <p>
 There are however problems with this approach, although it looks
@@ -504,7 +509,7 @@ at all.
 
 
 <section>
-<h2 id="___sec10">A better approach </h2>
+<h2 id="___sec11">A better approach </h2>
 
 <p>
 A better approach is rather to try to define a large margin between
@@ -554,7 +559,7 @@ about Lagrangian multipliers.
 
 
 <section>
-<h2 id="___sec11">A quick Reminder on Lagrangian Multipliers </h2>
+<h2 id="___sec12">A quick Reminder on Lagrangian Multipliers </h2>
 
 <p>
 Consider a function of three independent variables \( f(x,y,z) \) . For the function \( f \) to be an
@@ -616,7 +621,7 @@ Then \( dz \) is no longer arbitrary.
 
 
 <section>
-<h2 id="___sec12">Adding the Multiplier </h2>
+<h2 id="___sec13">Adding the Multiplier </h2>
 
 <p>
 However, we can add to
@@ -671,7 +676,7 @@ $$
 
 
 <section>
-<h2 id="___sec13">Setting up the Problem </h2>
+<h2 id="___sec14">Setting up the Problem </h2>
 In order to solve the above problem, we define the following Lagrangian function to be minimized 
 <p>&nbsp;<br>
 $$
@@ -723,7 +728,7 @@ When \( \lambda_i > 0 \), the vectors \( \boldsymbol{x}_i \) are called support 
 
 
 <section>
-<h2 id="___sec14">The problem to solve </h2>
+<h2 id="___sec15">The problem to solve </h2>
 
 <p>
 We can rewrite 
@@ -751,7 +756,7 @@ subject to \( \boldsymbol{y}^T\boldsymbol{\lambda}=0 \). Here we defined the vec
 
 
 <section>
-<h2 id="___sec15">The last steps </h2>
+<h2 id="___sec16">The last steps </h2>
 
 <p>
 Solving the above problem, yields the values of \( \lambda_i \).
@@ -795,7 +800,7 @@ Below we discuss how to find the optimal values of \( \lambda_i \). Before we pr
 
 
 <section>
-<h2 id="___sec16">A soft classifier </h2>
+<h2 id="___sec17">A soft classifier </h2>
 
 <p>
 Till now, the margin is strictly defined by the support vectors. This defines what is called a hard classifier, that is the margins are well defined.
@@ -834,7 +839,7 @@ misclassifications.
 
 
 <section>
-<h2 id="___sec17">Soft optmization problem </h2>
+<h2 id="___sec18">Soft optmization problem </h2>
 
 <p>
 This has in turn the consequences that we change our optmization problem to finding the minimum of 
@@ -906,7 +911,7 @@ $$
 
 
 <section>
-<h2 id="___sec18">Kernels and non-linearity </h2>
+<h2 id="___sec19">Kernels and non-linearity </h2>
 
 <p>
 The cases we have studied till now, were all characterized by two classes
@@ -980,7 +985,7 @@ plt.show()
 
 
 <section>
-<h2 id="___sec19">The equations </h2>
+<h2 id="___sec20">The equations </h2>
 
 <p>
 Suppose we define a polynomial transformation of degree two only (we continue to live in a plane with \( x_i \) and \( y_i \) as variables)
@@ -1035,7 +1040,7 @@ the trouble of performing the transformation
 
 
 <section>
-<h2 id="___sec20">The problem to solve </h2>
+<h2 id="___sec21">The problem to solve </h2>
 Using our definition of the kernel We can rewrite again the Lagrangian
 <p>&nbsp;<br>
 $$
@@ -1077,7 +1082,7 @@ Given a kernel \( K \) and the targets \( y_i \) this matrix is easy to set up. 
 
 
 <section>
-<h2 id="___sec21">Different kernels and Mercer's theorem </h2>
+<h2 id="___sec22">Different kernels and Mercer's theorem </h2>
 
 <p>
 There are several popular kernels being used. These are
@@ -1118,7 +1123,7 @@ in practice.
 
 
 <section>
-<h2 id="___sec22">The moons example </h2>
+<h2 id="___sec23">The moons example </h2>
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
@@ -1315,7 +1320,7 @@ plt.show()
 
 
 <section>
-<h2 id="___sec23">Mathematical optimization of convex functions </h2>
+<h2 id="___sec24">Mathematical optimization of convex functions </h2>
 
 <p>
 A mathematical (quadratic) optimization problem, or just optimization problem, has the form
@@ -1342,7 +1347,7 @@ Convex optimization problems play a central role in applied mathematics and we r
 
 
 <section>
-<h2 id="___sec24">How do we solve these problems? </h2>
+<h2 id="___sec25">How do we solve these problems? </h2>
 
 <p>
 If we use Python as programming language and wish to venture beyond
@@ -1368,7 +1373,7 @@ This will make our life much easier. You don't need t write your own optimizer.
 
 
 <section>
-<h2 id="___sec25">A simple example </h2>
+<h2 id="___sec26">A simple example </h2>
 
 <p>
 We remind ourselves about the general problem we want to solve
@@ -1449,7 +1454,7 @@ sol[<span style="color: #a61717; background-color: #e3d2d2">’</span>primal obj
 
 
 <section>
-<h2 id="___sec26">Back to the more realistic cases </h2>
+<h2 id="___sec27">Back to the more realistic cases </h2>
 
 <p>
 We are now ready to return to our setup of the optmization problem for a more realistic case. Introducing the <b>slack</b> parameter \( C \) we have
