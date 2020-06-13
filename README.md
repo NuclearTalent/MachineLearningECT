@@ -52,7 +52,7 @@ The lecture plan is as follows
 - _Tuesday_	Logistic Regression and classification problems, intro to gradient methods	(MHJ)
 - _Wednesday_	Decision Trees, Random Forests and Boosting methods (MHJ)
 - _Thursday_	Basics of Neural Networks (MHJ)
-- _Friday_	Discussion of nuclear experiments and how to analyze data, presentation of simulated data from Active-Target Time-Projection Chamber (AT-TPC)	(Daniel Bazin)
+- _Friday_	Beta-decay experiments, how to analyze various events, with hands-on examples . (sean Liddick)
 
 ### Week 2
 
@@ -60,7 +60,9 @@ The lecture plan is as follows
 - _Tuesday_	From Neural Networks to Convolutional Neural Networks and how to analyze experiment (classification of events and real data)	(MK and RR)
 - _Wednesday_	Analyzing data and recurrent neural networks	(MK and RR)
 - _Thursday_	Autoencoders and reinforcement learning	(MK and RR)
-- _Friday_	Beta-decay experiments, how to analyze various events. Future directions in machine learning and summary of course. (sean Liddick)
+- _Friday_	Discussion of nuclear experiments and how to analyze data, presentation of simulated data from Active-Target Time-Projection Chamber (AT-TPC)	(Daniel Bazin)
+- _Friday_ Future directions in machine learning and summary of course. 
+
 
 
 
