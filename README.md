@@ -48,8 +48,8 @@ The lecture plan is as follows
 
 ### Week 1
 
-- _Monday_	Linear Regression and intro to statistical data analysis	(Morten Hjorth-Jensen MHJ)
-- _Tuesday_	Logistic Regression and classification problems, intro to gradient methods	(MHJ)
+- _Monday_ Linear Regression and intro to statistical data analysis	(Morten Hjorth-Jensen MHJ), slides at https://nucleartalent.github.io/MachineLearningECT/doc/pub/How2ReadData/html/How2ReadData-reveal.html and https://nucleartalent.github.io/MachineLearningECT/doc/pub/Regression/html/Regression-reveal.html. Video at
+- _Tuesday_	Logistic Regression and classification problems, intro to gradient methods	(MHJ), slides at https://nucleartalent.github.io/MachineLearningECT/doc/pub/LogReg/html/LogReg-reveal.html and https://nucleartalent.github.io/MachineLearningECT/doc/pub/GradientOptim/html/GradientOptim-reveal.html. Video at
 - _Wednesday_	Decision Trees, Random Forests and Boosting methods (MHJ)
 - _Thursday_	Basics of Neural Networks (MHJ)
 - _Friday_	Beta-decay experiments, how to analyze various events, with hands-on examples . (sean Liddick)
