@@ -7,9 +7,10 @@ AUTHOR: "Raghuram Ramanujan":"https://www.davidson.edu/academics/mathematics-and
 
 <%
 pub_url = 'https://nucleartalent.github.io/MachineLearningECT/doc/pub'
-published = ['Day1', 'Day2', 'Day3', 'Day4', 'Day5', 'Day6', 'Day7', 'Day8',  'Day9', 'Day10',]
+published = ['Introduction', 'Day1', 'Day2', 'Day3', 'Day4', 'Day5', 'Day6', 'Day7', 'Day8',  'Day9', 'Day10',]
 chapters = {
- 'Day1': 'Monday June 22: Introduction to Data Analysis and Machine Learning, Linear Regression',
+ 'Introduction': 'Monday June 22: Introduction', 
+ 'Day1': 'Monday June 22: Linear Regression',
  'Day2': 'Tuesday June 23: Logistic Regression and Gradient Methods',
  'Day3': 'Wednesday June 24: Decision Trees, Random Forests, Bagging and Boosting',
  'Day4': 'Thursday June 25: Introduction to Neural Networks and Deep Learning',
