@@ -7,15 +7,15 @@ AUTHOR: "Raghuram Ramanujan":"https://www.davidson.edu/academics/mathematics-and
 
 <%
 pub_url = 'https://nucleartalent.github.io/MachineLearningECT/doc/pub'
-published = ['Introduction', 'How2ReadData', 'Regression', 'LogReg', 'GradientOptim', 'DecisionTrees', 'svm', 'NeuralNet',  'CNN', 'RBM', 'Recurrent', 'Autoencoders', 'Reinforce',]
+published = ['Day1', 'Day2', 'Day3', 'Day4', 'Day5', 'Day6', 'Day7', 'Day8',  'Day9', 'Day10',]
 chapters = {
- 'Introduction': 'Introduction to Data Analysis and Machine Learning',
- 'How2ReadData': 'Getting Started',
- 'Regression': 'Regression Methods',
- 'LogReg': 'Logistic Regression',
- 'GradientOptim': 'Gradient Methods and Optimization',
- 'DecisionTrees': 'Decision trees, from simple to random ones',
- 'svm': 'Support Vector Machines',
+ 'Day1': 'Monday June 22: Introduction to Data Analysis and Machine Learning, Linear Regression',
+ 'Day2': 'Tuesday June 23: Logistic Regression and Gradient Methods',
+ 'Day3': 'Wednesday June 24: Decision Trees, Random Forests, Bagging and Boosting',
+ 'Day4': 'Thursday June 25: Introduction to Neural Networks and Deep Learning',
+ 'Day5': 'Friday June 26: Analyzing Nuclear Physics Experiments, beta-decay and Classification Problems',
+ 'Day6': 'Deep Learning and Convolutional Neural networks',
+ 'Day7': 'Support Vector Machines',
  'NeuralNet': 'Neural Networks',
  'CNN': 'Convolutional Neural Networks',
  'RBM': 'Unsupervised Learning, Boltzmann Machines',
