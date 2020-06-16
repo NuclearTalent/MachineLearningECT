@@ -1,0 +1,2168 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Data Analysis and Machine Learning: From Decision Trees to Forests and all that">
+
+<title>Data Analysis and Machine Learning: From Decision Trees to Forests and all that</title>
+
+
+<link href="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_styles/style_solarized_box/css/solarized_light_code.css" rel="stylesheet" type="text/css" title="light"/>
+<script src="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_styles/style_solarized_box/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<link href="https://thomasf.github.io/solarized-css/solarized-light.min.css" rel="stylesheet">
+<style type="text/css">
+h1 {color: #b58900;}  /* yellow */
+/* h1 {color: #cb4b16;}  orange */
+/* h1 {color: #d33682;}  magenta, the original choice of thomasf */
+code { padding: 0px; background-color: inherit; }
+pre {
+  border: 0pt solid #93a1a1;
+  box-shadow: none;
+}
+.alert-text-small   { font-size: 80%;  }
+.alert-text-large   { font-size: 130%; }
+.alert-text-normal  { font-size: 90%;  }
+.alert {
+  padding:8px 35px 8px 14px; margin-bottom:18px;
+  text-shadow:0 1px 0 rgba(255,255,255,0.5);
+  border:1px solid #93a1a1;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  color: #555;
+  background-color: #eee8d5;
+  background-position: 10px 5px;
+  background-repeat: no-repeat;
+  background-size: 38px;
+  padding-left: 55px;
+  width: 75%;
+ }
+.alert-block {padding-top:14px; padding-bottom:14px}
+.alert-block > p, .alert-block > ul {margin-bottom:1em}
+.alert li {margin-top: 1em}
+.alert-block p+p {margin-top:5px}
+.alert-notice { background-image: url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_yellow_notice.png); }
+.alert-summary  { background-image:url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_yellow_summary.png); }
+.alert-warning { background-image: url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_yellow_warning.png); }
+.alert-question {background-image:url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_yellow_question.png); }
+
+div { text-align: justify; text-justify: inter-word; }
+</style>
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [('Decision trees, overarching aims', 2, None, '___sec0'),
+              ('Decision trees, Naming Conventions', 2, None, '___sec1'),
+              ('A typical Decision Tree with its pertinent Jargon, '
+               'Classification Problem',
+               2,
+               None,
+               '___sec2'),
+              ('General Features', 2, None, '___sec3'),
+              ('How do we set it up?', 2, None, '___sec4'),
+              ('Decision trees and Regression', 2, None, '___sec5'),
+              ('Building a tree, regression', 2, None, '___sec6'),
+              ('A top-down approach, recursive binary splitting',
+               2,
+               None,
+               '___sec7'),
+              ('Making a tree', 2, None, '___sec8'),
+              ('Pruning the tree', 2, None, '___sec9'),
+              ('Cost complexity pruning', 2, None, '___sec10'),
+              ('Schematic Regression Procedure', 2, None, '___sec11'),
+              ('A Classification Tree', 2, None, '___sec12'),
+              ('Growing a classification tree', 2, None, '___sec13'),
+              ('Classification tree, how to split nodes', 2, None, '___sec14'),
+              ('Visualizing the Tree, Classification', 2, None, '___sec15'),
+              ('Visualizing the Tree, The Moons', 2, None, '___sec16'),
+              ('Algorithms for Setting up Decision Trees', 2, None, '___sec17'),
+              ('The CART algorithm for Classification', 2, None, '___sec18'),
+              ('The CART algorithm for Regression', 2, None, '___sec19'),
+              ('Computing the Gini index', 2, None, '___sec20'),
+              ('Simple Python Code to read in Data and perform Classification',
+               2,
+               None,
+               '___sec21'),
+              ('Computing the Gini Factor', 2, None, '___sec22'),
+              ('Entropy and the ID3 algorithm', 2, None, '___sec23'),
+              ('Cancer Data again now with Decision Trees and other Methods',
+               2,
+               None,
+               '___sec24'),
+              ('Pros and cons of trees, pros', 2, None, '___sec25'),
+              ('Disadvantages', 2, None, '___sec26'),
+              ('Ensemble Methods: From a Single Tree to Many Trees and Extreme '
+               'Boosting, Meet the Jungle of Methods',
+               2,
+               None,
+               '___sec27'),
+              ('An Overview of Ensemble Methods', 2, None, '___sec28'),
+              ('Bagging', 2, None, '___sec29'),
+              ('More bagging', 2, None, '___sec30'),
+              ('Making your own Bootstrap: Changing the Level of the Decision '
+               'Tree',
+               2,
+               None,
+               '___sec31'),
+              ('Random forests', 2, None, '___sec32'),
+              ('Random Forest Algorithm', 2, None, '___sec33'),
+              ('Random Forests Compared with other Methods on the Cancer Data',
+               2,
+               None,
+               '___sec34'),
+              ('Compare  Bagging on Trees with Random Forests',
+               2,
+               None,
+               '___sec35'),
+              ("Boosting, a Bird's Eye View", 2, None, '___sec36'),
+              ('What is boosting? Additive Modelling/Iterative Fitting',
+               2,
+               None,
+               '___sec37'),
+              ('Iterative Fitting, Regression and Squared-error Cost Function',
+               2,
+               None,
+               '___sec38'),
+              ('Squared-Error Example and Iterative Fitting',
+               2,
+               None,
+               '___sec39'),
+              ('Iterative Fitting, Classification and AdaBoost',
+               2,
+               None,
+               '___sec40'),
+              ('Adaptive Boosting, AdaBoost', 2, None, '___sec41'),
+              ('Building up AdaBoost', 2, None, '___sec42'),
+              ('Adaptive boosting: AdaBoost, Basic Algorithm',
+               2,
+               None,
+               '___sec43'),
+              ('Basic Steps of AdaBoost', 2, None, '___sec44'),
+              ('AdaBoost Examples', 2, None, '___sec45'),
+              ('AdaBoost for Regression', 2, None, '___sec46'),
+              ('Gradient boosting: Basics with Steepest Descent',
+               2,
+               None,
+               '___sec47'),
+              ('The Squared-Error again! Steepest Descent',
+               2,
+               None,
+               '___sec48'),
+              ('Steepest Descent Example', 2, None, '___sec49'),
+              ('Gradient Boosting, algorithm', 2, None, '___sec50'),
+              ('Gradient Boosting, Examples of Regression',
+               2,
+               None,
+               '___sec51'),
+              ('Gradient Boosting, Classification Example',
+               2,
+               None,
+               '___sec52'),
+              ('XGBoost: Extreme Gradient Boosting', 2, None, '___sec53'),
+              ('Regression Case', 2, None, '___sec54'),
+              ('Xgboost on the Cancer Data', 2, None, '___sec55')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<center><h1>Data Analysis and Machine Learning: From Decision Trees to Forests and all that</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Morten Hjorth-Jensen -->
+
+<center>
+<b>Morten Hjorth-Jensen</b> [1, 2]
+</center>
+
+<p>
+<!-- institution(s) -->
+
+<center>[1] <b>Department of Physics and Center for Computing in Science Education, University of Oslo, Norway</b></center>
+<center>[2] <b>Department of Physics and Astronomy and Facility for Rare Ion Beams and National Superconducting Cyclotron Laboratory, Michigan State University, USA</b></center>
+<br>
+<p>
+<center><h4>Jun 16, 2020</h4></center> <!-- date -->
+<br>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec0">Decision trees, overarching aims  </h2>
+
+<p>
+We start here with the most basic algorithm, the so-called decision
+tree. With this basic algorithm we can in turn build more complex
+networks, spanning from homogeneous and heterogenous forests (bagging,
+random forests and more) to one of the most popular supervised
+algorithms nowadays, the extreme gradient boosting, or just
+XGBoost. But let us start with the simplest possible ingredient.
+
+<p>
+Decision trees are supervised learning algorithms used for both,
+classification and regression tasks.
+
+<p>
+The main idea of decision trees
+is to find those descriptive features which contain the most
+<b>information</b> regarding the target feature and then split the dataset
+along the values of these features such that the target feature values
+for the resulting underlying datasets are as pure as possible.
+
+<p>
+The descriptive features which reproduce best the target/output features are normally  said
+to be the most informative ones. The process of finding the <b>most
+informative</b> feature is done until we accomplish a stopping criteria
+where we then finally end up in so called <b>leaf nodes</b>.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec1">Decision trees, Naming Conventions  </h2>
+
+<p>
+A decision tree is typically divided into a <b>root node</b>, the <b>interior nodes</b>,
+and the final <b>leaf nodes</b> or just <b>leaves</b>. These entities are then connected by so-called <b>branches</b>.
+
+<p>
+The leaf nodes
+contain the predictions we will make for new query instances presented
+to our trained model. This is possible since the model has 
+learned the underlying structure of the training data and hence can,
+given some assumptions, make predictions about the target feature value
+(class) of unseen query instances.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec2">A typical Decision Tree with its pertinent Jargon, Classification Problem </h2>
+
+<p>
+<br /><br /><center><p><img src="DataFiles/cancer.png" align="bottom" width=600></p></center><br /><br />
+
+<p>
+This tree was produced using the Wisconsin cancer data (discussed here as well, see code examples below) using <b>Scikit-Learn</b>'s decision tree classifier. Here we have used the so-called <b>gini</b> index (see below) to split the various branches.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec3">General Features </h2>
+
+<p>
+The overarching approach to decision trees is a top-down approach.
+
+<ul>
+<li> A leaf provides the classification of a given instance.</li>
+<li> A node specifies a test of some attribute of the instance.</li>
+<li> A branch corresponds to a possible values of an attribute.</li>
+<li> An instance is classified by starting at the root node of the tree, testing the attribute specified by this node, then moving down the tree branch corresponding to the value of the attribute in the given example.</li>
+</ul>
+
+This process is then repeated for the subtree rooted at the new
+node.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec4">How do we set it up? </h2>
+
+<p>
+In simplified terms, the process of training a decision tree and
+predicting the target features of query instances is as follows:
+
+<ol>
+<li> Present a dataset containing of a number of training instances characterized by a number of descriptive features and a target feature</li>
+<li> Train the decision tree model by continuously splitting the target feature along the values of the descriptive features using a measure of information gain during the training process</li>
+<li> Grow the tree until we accomplish a stopping criteria create leaf nodes which represent the <em>predictions</em> we want to make for new query instances</li>
+<li> Show query instances to the tree and run down the tree until we arrive at leaf nodes</li>
+</ol>
+
+Then we are essentially done!
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec5">Decision trees and Regression  </h2>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">numpy</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">np</span>
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">matplotlib.pyplot</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">plt</span>
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.preprocessing</span> <span style="color: #8B008B; font-weight: bold">import</span> PolynomialFeatures
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.linear_model</span> <span style="color: #8B008B; font-weight: bold">import</span> LinearRegression
+
+steps=<span style="color: #B452CD">250</span>
+
+distance=<span style="color: #B452CD">0</span>
+x=<span style="color: #B452CD">0</span>
+distance_list=[]
+steps_list=[]
+<span style="color: #8B008B; font-weight: bold">while</span> x&lt;steps:
+    distance+=np.random.randint(-<span style="color: #B452CD">1</span>,<span style="color: #B452CD">2</span>)
+    distance_list.append(distance)
+    x+=<span style="color: #B452CD">1</span>
+    steps_list.append(x)
+plt.plot(steps_list,distance_list, color=<span style="color: #CD5555">&#39;green&#39;</span>, label=<span style="color: #CD5555">&quot;Random Walk Data&quot;</span>)
+
+steps_list=np.asarray(steps_list)
+distance_list=np.asarray(distance_list)
+
+X=steps_list[:,np.newaxis]
+
+<span style="color: #228B22">#Polynomial fits</span>
+
+<span style="color: #228B22">#Degree 2</span>
+poly_features=PolynomialFeatures(degree=<span style="color: #B452CD">2</span>, include_bias=<span style="color: #658b00">False</span>)
+X_poly=poly_features.fit_transform(X)
+
+lin_reg=LinearRegression()
+poly_fit=lin_reg.fit(X_poly,distance_list)
+b=lin_reg.coef_
+c=lin_reg.intercept_
+<span style="color: #8B008B; font-weight: bold">print</span> (<span style="color: #CD5555">&quot;2nd degree coefficients:&quot;</span>)
+<span style="color: #8B008B; font-weight: bold">print</span> (<span style="color: #CD5555">&quot;zero power: &quot;</span>,c)
+<span style="color: #8B008B; font-weight: bold">print</span> (<span style="color: #CD5555">&quot;first power: &quot;</span>, b[<span style="color: #B452CD">0</span>])
+<span style="color: #8B008B; font-weight: bold">print</span> (<span style="color: #CD5555">&quot;second power: &quot;</span>,b[<span style="color: #B452CD">1</span>])
+
+z = np.arange(<span style="color: #B452CD">0</span>, steps, .<span style="color: #B452CD">01</span>)
+z_mod=b[<span style="color: #B452CD">1</span>]*z**<span style="color: #B452CD">2</span>+b[<span style="color: #B452CD">0</span>]*z+c
+
+fit_mod=b[<span style="color: #B452CD">1</span>]*X**<span style="color: #B452CD">2</span>+b[<span style="color: #B452CD">0</span>]*X+c
+plt.plot(z, z_mod, color=<span style="color: #CD5555">&#39;r&#39;</span>, label=<span style="color: #CD5555">&quot;2nd Degree Fit&quot;</span>)
+plt.title(<span style="color: #CD5555">&quot;Polynomial Regression&quot;</span>)
+
+plt.xlabel(<span style="color: #CD5555">&quot;Steps&quot;</span>)
+plt.ylabel(<span style="color: #CD5555">&quot;Distance&quot;</span>)
+
+<span style="color: #228B22">#Degree 10</span>
+poly_features10=PolynomialFeatures(degree=<span style="color: #B452CD">10</span>, include_bias=<span style="color: #658b00">False</span>)
+X_poly10=poly_features10.fit_transform(X)
+
+poly_fit10=lin_reg.fit(X_poly10,distance_list)
+
+y_plot=poly_fit10.predict(X_poly10)
+plt.plot(X, y_plot, color=<span style="color: #CD5555">&#39;black&#39;</span>, label=<span style="color: #CD5555">&quot;10th Degree Fit&quot;</span>)
+
+plt.legend()
+plt.show()
+
+
+<span style="color: #228B22">#Decision Tree Regression</span>
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.tree</span> <span style="color: #8B008B; font-weight: bold">import</span> DecisionTreeRegressor
+regr_1=DecisionTreeRegressor(max_depth=<span style="color: #B452CD">2</span>)
+regr_2=DecisionTreeRegressor(max_depth=<span style="color: #B452CD">5</span>)
+regr_3=DecisionTreeRegressor(max_depth=<span style="color: #B452CD">7</span>)
+regr_1.fit(X, distance_list)
+regr_2.fit(X, distance_list)
+regr_3.fit(X, distance_list)
+
+X_test = np.arange(<span style="color: #B452CD">0.0</span>, steps, <span style="color: #B452CD">0.01</span>)[:, np.newaxis]
+y_1 = regr_1.predict(X_test)
+y_2 = regr_2.predict(X_test)
+y_3=regr_3.predict(X_test)
+
+<span style="color: #228B22"># Plot the results</span>
+plt.figure()
+plt.scatter(X, distance_list, s=<span style="color: #B452CD">2.5</span>, c=<span style="color: #CD5555">&quot;black&quot;</span>, label=<span style="color: #CD5555">&quot;data&quot;</span>)
+plt.plot(X_test, y_1, color=<span style="color: #CD5555">&quot;red&quot;</span>,
+         label=<span style="color: #CD5555">&quot;max_depth=2&quot;</span>, linewidth=<span style="color: #B452CD">2</span>)
+plt.plot(X_test, y_2, color=<span style="color: #CD5555">&quot;green&quot;</span>, label=<span style="color: #CD5555">&quot;max_depth=5&quot;</span>, linewidth=<span style="color: #B452CD">2</span>)
+plt.plot(X_test, y_3, color=<span style="color: #CD5555">&quot;m&quot;</span>, label=<span style="color: #CD5555">&quot;max_depth=7&quot;</span>, linewidth=<span style="color: #B452CD">2</span>)
+
+plt.xlabel(<span style="color: #CD5555">&quot;Data&quot;</span>)
+plt.ylabel(<span style="color: #CD5555">&quot;Darget&quot;</span>)
+plt.title(<span style="color: #CD5555">&quot;Decision Tree Regression&quot;</span>)
+plt.legend()
+plt.show()
+</pre></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec6">Building a tree, regression </h2>
+
+<p>
+There are mainly two steps
+
+<ol>
+<li> We split the predictor space (the set of possible values \( x_1,x_2,\dots, x_p \)) into \( J \) distinct and non-non-overlapping regions, \( R_1,R_2,\dots,R_J \).</li>  
+<li> For every observation that falls into the region \( R_j \) , we make the same prediction, which is simply the mean of the response values for the training observations in \( R_j \).</li>
+</ol>
+
+How do we construct the regions \( R_1,\dots,R_J \)?  In theory, the
+regions could have any shape. However, we choose to divide the
+predictor space into high-dimensional rectangles, or boxes, for
+simplicity and for ease of interpretation of the resulting predictive
+model. The goal is to find boxes \( R_1,\dots,R_J \) that minimize the
+MSE, given by
+
+$$
+\sum_{j=1}^J\sum_{i\in R_j}(y_i-\overline{y}_{R_j})^2,
+$$
+
+<p>
+where \( \overline{y}_{R_j} \)  is the mean response for the training observations 
+within box \( j \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec7">A top-down approach, recursive binary splitting </h2>
+
+<p>
+Unfortunately, it is computationally infeasible to consider every
+possible partition of the feature space into \( J \) boxes.  The common
+strategy is to take a top-down approach
+
+<p>
+The approach is top-down because it begins at the top of the tree (all
+observations belong to a single region) and then successively splits
+the predictor space; each split is indicated via two new branches
+further down on the tree. It is greedy because at each step of the
+tree-building process, the best split is made at that particular step,
+rather than looking ahead and picking a split that will lead to a
+better tree in some future step.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec8">Making a tree </h2>
+
+<p>
+In order to implement the recursive binary splitting we start by selecting
+the predictor \( x_j \) and a cutpoint \( s \) that splits the predictor space into two regions \( R_1 \) and \( R_2 \)
+$$
+\left\{X\vert x_j < s\right\},
+$$
+
+and
+$$
+\left\{X\vert x_j \geq s\right\},
+$$
+
+so that we obtain the lowest MSE, that is
+$$
+\sum_{i:x_i\in R_j}(y_i-\overline{y}_{R_1})^2+\sum_{i:x_i\in R_2}(y_i-\overline{y}_{R_2})^2,
+$$
+
+<p>
+which we want to minimize by considering all predictors
+\( x_1,x_2,\dots,x_p \).  We consider also all possible values of \( s \) for
+each predictor. These values could be determined by randomly assigned
+numbers or by starting at the midpoint and then proceed till we find
+an optimal value.
+
+<p>
+For any \( j \) and \( s \), we define the pair of half-planes where
+\( \overline{y}_{R_1} \) is the mean response for the training
+observations in \( R_1(j,s) \), and \( \overline{y}_{R_2} \) is the mean
+response for the training observations in \( R_2(j,s) \).
+
+<p>
+Finding the values of \( j \) and \( s \) that minimize the above equation can be
+done quite quickly, especially when the number of features \( p \) is not
+too large.
+
+<p>
+Next, we repeat the process, looking
+for the best predictor and best cutpoint in order to split the data
+further so as to minimize the MSE within each of the resulting
+regions. However, this time, instead of splitting the entire predictor
+space, we split one of the two previously identified regions. We now
+have three regions. Again, we look to split one of these three regions
+further, so as to minimize the MSE. The process continues until a
+stopping criterion is reached; for instance, we may continue until no
+region contains more than five observations.
+
+<p>
+<!-- !split  -->
+
+<h2 id="___sec9">Pruning the tree </h2>
+
+<p>
+The above procedure is rather straightforward, but leads often to
+overfitting and unnecessarily large and complicated trees. The basic
+idea is to grow a large tree \( T_0 \) and then prune it back in order to
+obtain a subtree. A smaller tree with fewer splits (fewer regions) can
+lead to smaller variance and better interpretation at the cost of a
+little more bias.
+
+<p>
+The so-called Cost complexity pruning algorithm gives us a
+way to do just this. Rather than considering every possible subtree,
+we consider a sequence of trees indexed by a nonnegative tuning
+parameter \( \alpha \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec10">Cost complexity pruning </h2>
+For each value of \( \alpha \)  there corresponds a subtree \( T \in T_0 \) such that
+$$
+\sum_{m=1}^{\overline{T}}\sum_{i:x_i\in R_m}(y_i-\overline{y}_{R_m})^2+\alpha\overline{T},
+$$
+
+is as small as possible. Here \( \overline{T} \) is 
+the number of terminal nodes of the tree \( T \) , \( R_m \) is the
+rectangle (i.e. the subset of predictor space)  corresponding to the \( m \)-th terminal node.
+
+<p>
+The tuning parameter \( \alpha \) controls a trade-off between the subtree&#8217;s
+com- plexity and its fit to the training data. When \( \alpha = 0 \), then the
+subtree \( T \) will simply equal \( T_0 \), 
+because then the above equation just measures the
+training error. 
+However, as \( \alpha \) increases, there is a price to pay for
+having a tree with many terminal nodes. The above equation will
+tend to be minimized for a smaller subtree.
+
+<p>
+It turns out that as we increase \( \alpha \) from zero
+branches get pruned from the tree in a nested and predictable fashion,
+so obtaining the whole sequence of subtrees as a function of \( \alpha \) is
+easy. We can select a value of \( \alpha \) using a validation set or using
+cross-validation. We then return to the full data set and obtain the
+subtree corresponding to \( \alpha \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec11">Schematic Regression Procedure </h2>
+
+<p>
+<div class="alert alert-block alert-block alert-text-normal">
+<b>Building a Regression Tree.</b>
+<p>
+
+<ol>
+<li> Use recursive binary splitting to grow a large tree on the training data, stopping only when each terminal node has fewer than some minimum number of observations.</li>
+<li> Apply cost complexity pruning to the large tree in order to obtain a sequence of best subtrees, as a function of \( \alpha \).</li>
+<li> Use for example \( K \)-fold cross-validation to choose \( \alpha \). Divide the training observations into \( K \) folds. For each \( k=1,2,\dots,K \) we:</li> 
+
+<ul>
+  <li> repeat steps 1 and 2 on all but the \( k \)-th fold of the training data.</li> 
+  <li> Then we valuate the mean squared prediction error on the data in the left-out \( k \)-th fold, as a function of \( \alpha \).</li>
+  <li> Finally  we average the results for each value of \( \alpha \), and pick \( \alpha \) to minimize the average error.</li>
+</ul>
+
+<li> Return the subtree from Step 2 that corresponds to the chosen value of \( \alpha \).</li> 
+</ol>
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec12">A Classification Tree </h2>
+
+<p>
+A classification tree is very similar to a regression tree, except
+that it is used to predict a qualitative response rather than a
+quantitative one. Recall that for a regression tree, the predicted
+response for an observation is given by the mean response of the
+training observations that belong to the same terminal node. In
+contrast, for a classification tree, we predict that each observation
+belongs to the most commonly occurring class of training observations
+in the region to which it belongs. In interpreting the results of a
+classification tree, we are often interested not only in the class
+prediction corresponding to a particular terminal node region, but
+also in the class proportions among the training observations that
+fall into that region.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec13">Growing a classification tree </h2>
+
+<p>
+The task of growing a
+classification tree is quite similar to the task of growing a
+regression tree. Just as in the regression setting, we use recursive
+binary splitting to grow a classification tree. However, in the
+classification setting, the MSE cannot be used as a criterion for making
+the binary splits.  A natural alternative to MSE is the <b>classification
+error rate</b>. Since we plan to assign an observation in a given region
+to the most commonly occurring error rate class of training
+observations in that region, the classification error rate is simply
+the fraction of the training observations in that region that do not
+belong to the most common class.
+
+<p>
+When building a classification tree, either the Gini index or the
+entropy are typically used to evaluate the quality of a particular
+split, since these two approaches are more sensitive to node purity
+than is the classification error rate.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec14">Classification tree, how to split nodes </h2>
+
+<p>
+If our targets are the outcome of a classification process that takes
+for example \( k=1,2,\dots,K \) values, the only thing we need to think of
+is to set up the splitting criteria for each node.
+
+<p>
+We define a PDF \( p_{mk} \) that represents the number of observations of
+a class \( k \) in a region \( R_m \) with \( N_m \) observations. We represent
+this likelihood function in terms of the proportion \( I(y_i=k) \) of
+observations of this class in the region \( R_m \) as
+
+$$
+p_{mk} = \frac{1}{N_m}\sum_{x_i\in R_m}I(y_i=k).
+$$
+
+<p>
+We let \( p_{mk} \) represent the majority class of observations in region
+\( m \). The three most common ways of splitting a node are given by
+
+<ul>
+<li> Misclassification error</li> 
+</ul>
+
+$$
+p_{mk} = \frac{1}{N_m}\sum_{x_i\in R_m}I(y_i\ne k) = 1-p_{mk}.
+$$
+
+
+<ul>
+<li> Gini index \( g \)</li>
+</ul>
+
+$$
+g = \sum_{k=1}^K p_{mk}(1-p_{mk}).
+$$
+
+
+<ul>
+<li> Information entropy or just entropy \( s \)</li>
+</ul>
+
+$$
+s = -\sum_{k=1}^K p_{mk}\log{p_{mk}}.
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec15">Visualizing the Tree, Classification </h2>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">os</span>
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.datasets</span> <span style="color: #8B008B; font-weight: bold">import</span> load_breast_cancer
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.tree</span> <span style="color: #8B008B; font-weight: bold">import</span> DecisionTreeClassifier
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.model_selection</span> <span style="color: #8B008B; font-weight: bold">import</span> train_test_split
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.metrics</span> <span style="color: #8B008B; font-weight: bold">import</span> confusion_matrix
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.tree</span> <span style="color: #8B008B; font-weight: bold">import</span> export_graphviz
+
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">IPython.display</span> <span style="color: #8B008B; font-weight: bold">import</span> Image 
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">pydot</span> <span style="color: #8B008B; font-weight: bold">import</span> graph_from_dot_data
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">pandas</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">pd</span>
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">numpy</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">np</span>
+
+
+cancer = load_breast_cancer()
+X = pd.DataFrame(cancer.data, columns=cancer.feature_names)
+<span style="color: #8B008B; font-weight: bold">print</span>(X)
+y = pd.Categorical.from_codes(cancer.target, cancer.target_names)
+y = pd.get_dummies(y)
+<span style="color: #8B008B; font-weight: bold">print</span>(y)
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=<span style="color: #B452CD">1</span>)
+tree_clf = DecisionTreeClassifier(max_depth=<span style="color: #B452CD">5</span>)
+tree_clf.fit(X_train, y_train)
+
+export_graphviz(
+    tree_clf,
+    out_file=<span style="color: #CD5555">&quot;DataFiles/cancer.dot&quot;</span>,
+    feature_names=cancer.feature_names,
+    class_names=cancer.target_names,
+    rounded=<span style="color: #658b00">True</span>,
+    filled=<span style="color: #658b00">True</span>
+)
+cmd = <span style="color: #CD5555">&#39;dot -Tpng DataFiles/cancer.dot -o DataFiles/cancer.png&#39;</span>
+os.system(cmd)
+</pre></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec16">Visualizing the Tree, The Moons  </h2>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #228B22"># Common imports</span>
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">numpy</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">np</span>
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.model_selection</span> <span style="color: #8B008B; font-weight: bold">import</span>  train_test_split 
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.tree</span> <span style="color: #8B008B; font-weight: bold">import</span> DecisionTreeClassifier
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.datasets</span> <span style="color: #8B008B; font-weight: bold">import</span> make_moons
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.tree</span> <span style="color: #8B008B; font-weight: bold">import</span> export_graphviz
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">pydot</span> <span style="color: #8B008B; font-weight: bold">import</span> graph_from_dot_data
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">pandas</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">pd</span>
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">os</span>
+
+np.random.seed(<span style="color: #B452CD">42</span>)
+X, y = make_moons(n_samples=<span style="color: #B452CD">100</span>, noise=<span style="color: #B452CD">0.25</span>, random_state=<span style="color: #B452CD">53</span>)
+X_train, X_test, y_train, y_test = train_test_split(X,y,random_state=<span style="color: #B452CD">0</span>)
+tree_clf = DecisionTreeClassifier(max_depth=<span style="color: #B452CD">5</span>)
+tree_clf.fit(X_train, y_train)
+
+export_graphviz(
+    tree_clf,
+    out_file=<span style="color: #CD5555">&quot;DataFiles/moons.dot&quot;</span>,
+    rounded=<span style="color: #658b00">True</span>,
+    filled=<span style="color: #658b00">True</span>
+)
+cmd = <span style="color: #CD5555">&#39;dot -Tpng DataFiles/moons.dot -o DataFiles/moons.png&#39;</span>
+os.system(cmd)
+</pre></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec17">Algorithms for Setting up Decision Trees </h2>
+
+<p>
+Two algorithms stand out in the set up of decision trees:
+
+<ol>
+<li> The CART (Classification And Regression Tree) algorithm for both classification and regression</li>
+<li> The ID3 algorithm based on the computation of the information gain for classification</li>
+</ol>
+
+We discuss both algorithms with applications here. The popular library
+<b>Scikit-Learn</b> uses the CART algorithm. For classification problems
+you can use either the <b>gini</b> index or the <b>entropy</b> to split a tree
+in two branches.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec18">The CART algorithm for Classification </h2>
+
+<p>
+For classification, the CART algorithm splits the data set in two subsets using a single feature \( k \) and a threshold \( t_k \).
+This could be for example a threshold set by a number below a certain circumference of a malign tumor.
+
+<p>
+How do we find these two quantities?
+We search for the pair \( (k,t_k) \) that produces the purest subset using for example the <b>gini</b> factor \( G \).
+The cost function it tries to minimize is then
+$$
+C(k,t_k) = \frac{m_{\mathrm{left}}}{m}G_{\mathrm{left}}+ \frac{m_{\mathrm{right}}}{m}G_{\mathrm{right}},
+$$
+
+where \( G_{\mathrm{left/right}} \) measures the impurity of the left/right subset  and \( m_{\mathrm{left/right}} \)
+ is the number of instances in the left/right subset
+
+<p>
+Once it has successfully split the training set in two, it splits the subsets using the same logic, then the subsubsets
+and so on, recursively. It stops recursing once it reaches the maximum depth (defined by the
+\( max\_depth \) hyperparameter), or if it cannot find a split that will reduce impurity. A few other
+hyperparameters control additional stopping conditions such as the \( min\_samples\_split \),
+\( min\_samples\_leaf \), \( min\_weight\_fraction\_leaf \), and \( max\_leaf\_nodes \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec19">The CART algorithm for Regression </h2>
+
+<p>
+The CART algorithm for regression works is similar to the one for classification except that instead of trying to split the
+training set in a way that minimizes say the <b>gini</b> or <b>entropy</b> impurity, it now tries to split the training set in a way that minimizes our well-known mean-squared error (MSE). The cost function is now
+$$
+C(k,t_k) = \frac{m_{\mathrm{left}}}{m}\mathrm{MSE}_{\mathrm{left}}+ \frac{m_{\mathrm{right}}}{m}\mathrm{MSE}_{\mathrm{right}}.
+$$
+
+Here the MSE for a specific node is defined as
+$$
+\mathrm{MSE}_{\mathrm{node}}=\frac{1}{m_\mathrm{node}}\sum_{i\in \mathrm{node}}(\overline{y}_{\mathrm{node}}-y_i)^2,
+$$
+
+with
+$$
+\overline{y}_{\mathrm{node}}=\frac{1}{m_\mathrm{node}}\sum_{i\in \mathrm{node}}y_i,
+$$
+
+the mean value of all observations in a specific node.
+
+<p>
+Without any regularization, the regression task for decision trees, 
+just like for classification tasks, is  prone to overfitting.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec20">Computing the Gini index </h2>
+
+<p>
+The example we will look at is a classical one in many Machine
+Learning applications. Based on various meteorological features, we
+have several so-called attributes which decide whether we at the end
+will do some outdoor activity like skiing, going for a bike ride etc
+etc.  The table here contains the feautures <b>outlook</b>, <b>temperature</b>,
+<b>humidity</b> and <b>wind</b>.  The target or output is whether we ride
+(True=1) or whether we do something else that day (False=0). The
+attributes for each feature are then sunny, overcast and rain for the
+outlook, hot, cold and mild for temperature, high and normal for
+humidity and weak and strong for wind.
+
+<p>
+The table here summarizes the various attributes and
+<table border="1">
+<thead>
+<tr><th align="center">Day</th> <th align="center">Outlook </th> <th align="center">Temperature</th> <th align="center">Humidity</th> <th align="center"> Wind </th> <th align="center">Ride</th> </tr>
+</thead>
+<tbody>
+<tr><td align="center">   1      </td> <td align="center">   Sunny       </td> <td align="center">   Hot            </td> <td align="center">   High        </td> <td align="center">   Weak      </td> <td align="center">   0       </td> </tr>
+<tr><td align="center">   2      </td> <td align="center">   Sunny       </td> <td align="center">   Hot            </td> <td align="center">   High        </td> <td align="center">   Strong    </td> <td align="center">   1       </td> </tr>
+<tr><td align="center">   3      </td> <td align="center">   Overcast    </td> <td align="center">   Hot            </td> <td align="center">   High        </td> <td align="center">   Weak      </td> <td align="center">   1       </td> </tr>
+<tr><td align="center">   4      </td> <td align="center">   Rain        </td> <td align="center">   Mild           </td> <td align="center">   High        </td> <td align="center">   Weak      </td> <td align="center">   1       </td> </tr>
+<tr><td align="center">   5      </td> <td align="center">   Rain        </td> <td align="center">   Cool           </td> <td align="center">   Normal      </td> <td align="center">   Weak      </td> <td align="center">   1       </td> </tr>
+<tr><td align="center">   6      </td> <td align="center">   Rain        </td> <td align="center">   Cool           </td> <td align="center">   Normal      </td> <td align="center">   Strong    </td> <td align="center">   0       </td> </tr>
+<tr><td align="center">   7      </td> <td align="center">   Overcast    </td> <td align="center">   Cool           </td> <td align="center">   Normal      </td> <td align="center">   Strong    </td> <td align="center">   1       </td> </tr>
+<tr><td align="center">   8      </td> <td align="center">   Sunny       </td> <td align="center">   Mild           </td> <td align="center">   High        </td> <td align="center">   Weak      </td> <td align="center">   0       </td> </tr>
+<tr><td align="center">   9      </td> <td align="center">   Sunny       </td> <td align="center">   Cool           </td> <td align="center">   Normal      </td> <td align="center">   Weak      </td> <td align="center">   1       </td> </tr>
+<tr><td align="center">   10     </td> <td align="center">   Rain        </td> <td align="center">   Mild           </td> <td align="center">   Normal      </td> <td align="center">   Weak      </td> <td align="center">   1       </td> </tr>
+<tr><td align="center">   11     </td> <td align="center">   Sunny       </td> <td align="center">   Mild           </td> <td align="center">   Normal      </td> <td align="center">   Strong    </td> <td align="center">   1       </td> </tr>
+<tr><td align="center">   12     </td> <td align="center">   Overcast    </td> <td align="center">   Mild           </td> <td align="center">   High        </td> <td align="center">   Strong    </td> <td align="center">   1       </td> </tr>
+<tr><td align="center">   13     </td> <td align="center">   Overcast    </td> <td align="center">   Hot            </td> <td align="center">   Normal      </td> <td align="center">   Weak      </td> <td align="center">   1       </td> </tr>
+<tr><td align="center">   14     </td> <td align="center">   Rain        </td> <td align="center">   Mild           </td> <td align="center">   High        </td> <td align="center">   Strong    </td> <td align="center">   0       </td> </tr>
+</tbody>
+</table>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec21">Simple Python Code to read in Data and perform Classification </h2>
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #228B22"># Common imports</span>
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">numpy</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">np</span>
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">pandas</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">pd</span>
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">matplotlib.pyplot</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">plt</span>
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.tree</span> <span style="color: #8B008B; font-weight: bold">import</span> DecisionTreeClassifier
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.model_selection</span> <span style="color: #8B008B; font-weight: bold">import</span> train_test_split
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.tree</span> <span style="color: #8B008B; font-weight: bold">import</span> export_graphviz
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.preprocessing</span> <span style="color: #8B008B; font-weight: bold">import</span> StandardScaler, OneHotEncoder
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.compose</span> <span style="color: #8B008B; font-weight: bold">import</span> ColumnTransformer
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">IPython.display</span> <span style="color: #8B008B; font-weight: bold">import</span> Image 
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">pydot</span> <span style="color: #8B008B; font-weight: bold">import</span> graph_from_dot_data
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">os</span>
+
+<span style="color: #228B22"># Where to save the figures and data files</span>
+PROJECT_ROOT_DIR = <span style="color: #CD5555">&quot;Results&quot;</span>
+FIGURE_ID = <span style="color: #CD5555">&quot;Results/FigureFiles&quot;</span>
+DATA_ID = <span style="color: #CD5555">&quot;DataFiles/&quot;</span>
+
+<span style="color: #8B008B; font-weight: bold">if</span> <span style="color: #8B008B">not</span> os.path.exists(PROJECT_ROOT_DIR):
+    os.mkdir(PROJECT_ROOT_DIR)
+
+<span style="color: #8B008B; font-weight: bold">if</span> <span style="color: #8B008B">not</span> os.path.exists(FIGURE_ID):
+    os.makedirs(FIGURE_ID)
+
+<span style="color: #8B008B; font-weight: bold">if</span> <span style="color: #8B008B">not</span> os.path.exists(DATA_ID):
+    os.makedirs(DATA_ID)
+
+<span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">image_path</span>(fig_id):
+    <span style="color: #8B008B; font-weight: bold">return</span> os.path.join(FIGURE_ID, fig_id)
+
+<span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">data_path</span>(dat_id):
+    <span style="color: #8B008B; font-weight: bold">return</span> os.path.join(DATA_ID, dat_id)
+
+<span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">save_fig</span>(fig_id):
+    plt.savefig(image_path(fig_id) + <span style="color: #CD5555">&quot;.png&quot;</span>, format=<span style="color: #CD5555">&#39;png&#39;</span>)
+
+infile = <span style="color: #658b00">open</span>(data_path(<span style="color: #CD5555">&quot;rideclass.csv&quot;</span>),<span style="color: #CD5555">&#39;r&#39;</span>)
+
+<span style="color: #228B22"># Read the experimental data with Pandas</span>
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">IPython.display</span> <span style="color: #8B008B; font-weight: bold">import</span> display
+ridedata = pd.read_csv(infile,names = (<span style="color: #CD5555">&#39;Outlook&#39;</span>,<span style="color: #CD5555">&#39;Temperature&#39;</span>,<span style="color: #CD5555">&#39;Humidity&#39;</span>,<span style="color: #CD5555">&#39;Wind&#39;</span>,<span style="color: #CD5555">&#39;Ride&#39;</span>))
+ridedata = pd.DataFrame(ridedata)
+
+<span style="color: #228B22"># Features and targets</span>
+X = ridedata.loc[:, ridedata.columns != <span style="color: #CD5555">&#39;Ride&#39;</span>].values
+y = ridedata.loc[:, ridedata.columns == <span style="color: #CD5555">&#39;Ride&#39;</span>].values
+
+<span style="color: #228B22"># Create the encoder.</span>
+encoder = OneHotEncoder(handle_unknown=<span style="color: #CD5555">&quot;ignore&quot;</span>)
+<span style="color: #228B22"># Assume for simplicity all features are categorical.</span>
+encoder.fit(X)    
+<span style="color: #228B22"># Apply the encoder.</span>
+X = encoder.transform(X)
+<span style="color: #8B008B; font-weight: bold">print</span>(X)
+<span style="color: #228B22"># Then do a Classification tree</span>
+tree_clf = DecisionTreeClassifier(max_depth=<span style="color: #B452CD">2</span>)
+tree_clf.fit(X, y)
+<span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&quot;Train set accuracy with Decision Tree: {:.2f}&quot;</span>.format(tree_clf.score(X,y)))
+<span style="color: #228B22">#transfer to a decision tree graph</span>
+export_graphviz(
+    tree_clf,
+    out_file=<span style="color: #CD5555">&quot;DataFiles/ride.dot&quot;</span>,
+    rounded=<span style="color: #658b00">True</span>,
+    filled=<span style="color: #658b00">True</span>
+)
+cmd = <span style="color: #CD5555">&#39;dot -Tpng DataFiles/cancer.dot -o DataFiles/cancer.png&#39;</span>
+os.system(cmd)
+</pre></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec22">Computing the Gini Factor  </h2>
+
+<p>
+The above functions (gini, entropy and misclassification error) are
+important components of the so-called CART algorithm. We will discuss
+this algorithm below after we have discussed the information gain
+algorithm ID3.
+
+<p>
+In the example here we have converted all our attributes into numerical values \( 0,1,2 \) etc.
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #228B22"># Split a dataset based on an attribute and an attribute value</span>
+<span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">test_split</span>(index, value, dataset):
+	left, right = <span style="color: #658b00">list</span>(), <span style="color: #658b00">list</span>()
+	<span style="color: #8B008B; font-weight: bold">for</span> row <span style="color: #8B008B">in</span> dataset:
+		<span style="color: #8B008B; font-weight: bold">if</span> row[index] &lt; value:
+			left.append(row)
+		<span style="color: #8B008B; font-weight: bold">else</span>:
+			right.append(row)
+	<span style="color: #8B008B; font-weight: bold">return</span> left, right
+ 
+<span style="color: #228B22"># Calculate the Gini index for a split dataset</span>
+<span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">gini_index</span>(groups, classes):
+	<span style="color: #228B22"># count all samples at split point</span>
+	n_instances = <span style="color: #658b00">float</span>(<span style="color: #658b00">sum</span>([<span style="color: #658b00">len</span>(group) <span style="color: #8B008B; font-weight: bold">for</span> group <span style="color: #8B008B">in</span> groups]))
+	<span style="color: #228B22"># sum weighted Gini index for each group</span>
+	gini = <span style="color: #B452CD">0.0</span>
+	<span style="color: #8B008B; font-weight: bold">for</span> group <span style="color: #8B008B">in</span> groups:
+		size = <span style="color: #658b00">float</span>(<span style="color: #658b00">len</span>(group))
+		<span style="color: #228B22"># avoid divide by zero</span>
+		<span style="color: #8B008B; font-weight: bold">if</span> size == <span style="color: #B452CD">0</span>:
+			<span style="color: #8B008B; font-weight: bold">continue</span>
+		score = <span style="color: #B452CD">0.0</span>
+		<span style="color: #228B22"># score the group based on the score for each class</span>
+		<span style="color: #8B008B; font-weight: bold">for</span> class_val <span style="color: #8B008B">in</span> classes:
+			p = [row[-<span style="color: #B452CD">1</span>] <span style="color: #8B008B; font-weight: bold">for</span> row <span style="color: #8B008B">in</span> group].count(class_val) / size
+			score += p * p
+		<span style="color: #228B22"># weight the group score by its relative size</span>
+		gini += (<span style="color: #B452CD">1.0</span> - score) * (size / n_instances)
+	<span style="color: #8B008B; font-weight: bold">return</span> gini
+
+<span style="color: #228B22"># Select the best split point for a dataset</span>
+<span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">get_split</span>(dataset):
+	class_values = <span style="color: #658b00">list</span>(<span style="color: #658b00">set</span>(row[-<span style="color: #B452CD">1</span>] <span style="color: #8B008B; font-weight: bold">for</span> row <span style="color: #8B008B">in</span> dataset))
+	b_index, b_value, b_score, b_groups = <span style="color: #B452CD">999</span>, <span style="color: #B452CD">999</span>, <span style="color: #B452CD">999</span>, <span style="color: #658b00">None</span>
+	<span style="color: #8B008B; font-weight: bold">for</span> index <span style="color: #8B008B">in</span> <span style="color: #658b00">range</span>(<span style="color: #658b00">len</span>(dataset[<span style="color: #B452CD">0</span>])-<span style="color: #B452CD">1</span>):
+		<span style="color: #8B008B; font-weight: bold">for</span> row <span style="color: #8B008B">in</span> dataset:
+			groups = test_split(index, row[index], dataset)
+			gini = gini_index(groups, class_values)
+			<span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&#39;X%d &lt; %.3f Gini=%.3f&#39;</span> % ((index+<span style="color: #B452CD">1</span>), row[index], gini))
+			<span style="color: #8B008B; font-weight: bold">if</span> gini &lt; b_score:
+				b_index, b_value, b_score, b_groups = index, row[index], gini, groups
+	<span style="color: #8B008B; font-weight: bold">return</span> {<span style="color: #CD5555">&#39;index&#39;</span>:b_index, <span style="color: #CD5555">&#39;value&#39;</span>:b_value, <span style="color: #CD5555">&#39;groups&#39;</span>:b_groups}
+ 
+dataset = [[<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>],
+            [<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">1</span>,<span style="color: #B452CD">1</span>],
+            [<span style="color: #B452CD">1</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">1</span>],
+            [<span style="color: #B452CD">2</span>,<span style="color: #B452CD">1</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">1</span>],
+            [<span style="color: #B452CD">2</span>,<span style="color: #B452CD">2</span>,<span style="color: #B452CD">1</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">1</span>],
+            [<span style="color: #B452CD">2</span>,<span style="color: #B452CD">2</span>,<span style="color: #B452CD">1</span>,<span style="color: #B452CD">1</span>,<span style="color: #B452CD">0</span>],
+            [<span style="color: #B452CD">1</span>,<span style="color: #B452CD">2</span>,<span style="color: #B452CD">1</span>,<span style="color: #B452CD">1</span>,<span style="color: #B452CD">1</span>],
+            [<span style="color: #B452CD">0</span>,<span style="color: #B452CD">1</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>],
+            [<span style="color: #B452CD">0</span>,<span style="color: #B452CD">2</span>,<span style="color: #B452CD">1</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">1</span>],
+            [<span style="color: #B452CD">2</span>,<span style="color: #B452CD">1</span>,<span style="color: #B452CD">1</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">1</span>],
+            [<span style="color: #B452CD">0</span>,<span style="color: #B452CD">1</span>,<span style="color: #B452CD">1</span>,<span style="color: #B452CD">1</span>,<span style="color: #B452CD">1</span>],
+            [<span style="color: #B452CD">1</span>,<span style="color: #B452CD">1</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">1</span>,<span style="color: #B452CD">1</span>],
+            [<span style="color: #B452CD">1</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">1</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">1</span>],
+            [<span style="color: #B452CD">2</span>,<span style="color: #B452CD">1</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">1</span>,<span style="color: #B452CD">0</span>]]
+
+split = get_split(dataset)
+<span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&#39;Split: [X%d &lt; %.3f]&#39;</span> % ((split[<span style="color: #CD5555">&#39;index&#39;</span>]+<span style="color: #B452CD">1</span>), split[<span style="color: #CD5555">&#39;value&#39;</span>]))
+</pre></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec23">Entropy and the ID3 algorithm </h2>
+
+<p>
+ID3, learns decision trees by constructing
+them topdown, beginning with the question <b>which attribute should be tested at the root of the tree</b>?
+
+<ol>
+<li> Each instance attribute is evaluated using a statistical test to determine how well it alone classifies the training examples.</li>
+<li> The best attribute is selected and used as the test at the root node of the tree.</li>
+<li> A descendant of the root node is then created for each possible value of this attribute.</li>
+<li> Training examples are sorted to the appropriate descendant node.</li>
+<li> The entire process is then repeated using the training examples associated with each descendant node to select the best attribute to test at that point in the tree.</li>
+<li> This forms a greedy search for an acceptable decision tree, in which the algorithm never backtracks to reconsider earlier choices.</li> 
+</ol>
+
+The ID3 algorithm selects, which attribute to test at each node in the
+tree.
+
+<p>
+We would like to select the attribute that is most useful for classifying
+examples.
+
+<p>
+What is a good quantitative measure of the worth of an attribute?
+
+<p>
+Information gain measures how well a given attribute separates the
+training examples according to their target classification.
+
+<p>
+The ID3 algorithm uses this information gain measure to select among the candidate
+attributes at each step while growing the tree.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec24">Cancer Data again now with Decision Trees and other Methods </h2>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">matplotlib.pyplot</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">plt</span>
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">numpy</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">np</span>
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.model_selection</span> <span style="color: #8B008B; font-weight: bold">import</span>  train_test_split 
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.datasets</span> <span style="color: #8B008B; font-weight: bold">import</span> load_breast_cancer
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.svm</span> <span style="color: #8B008B; font-weight: bold">import</span> SVC
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.linear_model</span> <span style="color: #8B008B; font-weight: bold">import</span> LogisticRegression
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.tree</span> <span style="color: #8B008B; font-weight: bold">import</span> DecisionTreeClassifier
+
+<span style="color: #228B22"># Load the data</span>
+cancer = load_breast_cancer()
+
+X_train, X_test, y_train, y_test = train_test_split(cancer.data,cancer.target,random_state=<span style="color: #B452CD">0</span>)
+<span style="color: #8B008B; font-weight: bold">print</span>(X_train.shape)
+<span style="color: #8B008B; font-weight: bold">print</span>(X_test.shape)
+<span style="color: #228B22"># Logistic Regression</span>
+logreg = LogisticRegression(solver=<span style="color: #CD5555">&#39;lbfgs&#39;</span>)
+logreg.fit(X_train, y_train)
+<span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&quot;Test set accuracy with Logistic Regression: {:.2f}&quot;</span>.format(logreg.score(X_test,y_test)))
+<span style="color: #228B22"># Support vector machine</span>
+svm = SVC(gamma=<span style="color: #CD5555">&#39;auto&#39;</span>, C=<span style="color: #B452CD">100</span>)
+svm.fit(X_train, y_train)
+<span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&quot;Test set accuracy with SVM: {:.2f}&quot;</span>.format(svm.score(X_test,y_test)))
+<span style="color: #228B22"># Decision Trees</span>
+deep_tree_clf = DecisionTreeClassifier(max_depth=<span style="color: #658b00">None</span>)
+deep_tree_clf.fit(X_train, y_train)
+<span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&quot;Test set accuracy with Decision Trees: {:.2f}&quot;</span>.format(deep_tree_clf.score(X_test,y_test)))
+<span style="color: #228B22">#now scale the data</span>
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.preprocessing</span> <span style="color: #8B008B; font-weight: bold">import</span> StandardScaler
+scaler = StandardScaler()
+scaler.fit(X_train)
+X_train_scaled = scaler.transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+<span style="color: #228B22"># Logistic Regression</span>
+logreg.fit(X_train_scaled, y_train)
+<span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&quot;Test set accuracy Logistic Regression with scaled data: {:.2f}&quot;</span>.format(logreg.score(X_test_scaled,y_test)))
+<span style="color: #228B22"># Support Vector Machine</span>
+svm.fit(X_train_scaled, y_train)
+<span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&quot;Test set accuracy SVM with scaled data: {:.2f}&quot;</span>.format(logreg.score(X_test_scaled,y_test)))
+<span style="color: #228B22"># Decision Trees</span>
+deep_tree_clf.fit(X_train_scaled, y_train)
+<span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&quot;Test set accuracy with Decision Trees and scaled data: {:.2f}&quot;</span>.format(deep_tree_clf.score(X_test_scaled,y_test)))
+</pre></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec25">Pros and cons of trees, pros </h2>
+
+<ul>
+<li> White box, easy to interpret model. Some people believe that decision trees more closely mirror human decision-making than do the regression and classification approaches discussed earlier (think of support vector machines)</li>
+<li> Trees are very easy to explain to people. In fact, they are even easier to explain than linear regression!</li>
+<li> No feature normalization needed</li>
+<li> Tree models can handle both continuous and categorical data (Classification and Regression Trees)</li>
+<li> Can model nonlinear relationships</li>
+<li> Can model interactions between the different descriptive features</li>
+<li> Trees can be displayed graphically, and are easily interpreted even by a non-expert (especially if they are small)</li>
+</ul>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec26">Disadvantages </h2>
+
+<ul>
+<li> Unfortunately, trees generally do not have the same level of predictive accuracy as some of the other regression and classification approaches</li>
+<li> If continuous features are used the tree may become quite large and hence less interpretable</li>
+<li> Decision trees are prone to overfit the training data and hence do not well generalize the data if no stopping criteria or improvements like pruning, boosting or bagging are implemented</li>
+<li> Small changes in the data may lead to a completely different tree. This issue can be addressed by using ensemble methods like bagging, boosting or random forests</li>
+<li> Unbalanced datasets where some target feature values occur much more frequently than others may lead to biased trees since the frequently occurring feature values are preferred over the less frequently occurring ones.</li> 
+<li> If the number of features is relatively large (high dimensional) and the number of instances is relatively low, the tree might overfit the data</li>
+<li> Features with many levels may be preferred over features with less levels since for them it is <em>more easy</em> to split the dataset such that the sub datasets only contain pure target feature values. This issue can be addressed by preferring for instance the information gain ratio as splitting criteria over information gain</li>
+</ul>
+
+However, by aggregating many decision trees, using methods like
+bagging, random forests, and boosting, the predictive performance of
+trees can be substantially improved.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec27">Ensemble Methods: From a Single Tree to Many Trees and Extreme Boosting, Meet the Jungle of Methods </h2>
+
+<p>
+As stated above and seen in many of the examples discussed here about
+a single decision tree, we often end up overfitting our training
+data. This normally means that we have a high variance. Can we reduce
+the variance of a statistical learning method?
+
+<p>
+This leads us to a set of different methods that can combine different
+machine learning algorithms or just use one of them to construct
+forests and jungles of trees, homogeneous ones or heterogenous
+ones. These methods are recognized by different names which we will
+try to explain here. These are
+
+<ol>
+<li> Voting classifiers</li>
+<li> Bagging and Pasting</li>
+<li> Random forests</li>
+<li> Boosting methods, from adaptive to Extreme Gradient Boosting (XGBoost)</li>
+</ol>
+
+We discuss these methods here.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec28">An Overview of Ensemble Methods  </h2>
+
+<p>
+<br /><br /><center><p><img src="DataFiles/ensembleoverview.png" align="bottom" width=600></p></center><br /><br />
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec29">Bagging </h2>
+
+<p>
+The <b>plain</b> decision trees suffer from high
+variance. This means that if we split the training data into two parts
+at random, and fit a decision tree to both halves, the results that we
+get could be quite different. In contrast, a procedure with low
+variance will yield similar results if applied repeatedly to distinct
+data sets; linear regression tends to have low variance, if the ratio
+of \( n \) to \( p \) is moderately large.
+
+<p>
+<b>Bootstrap aggregation</b>, or just <b>bagging</b>, is a
+general-purpose procedure for reducing the variance of a statistical
+learning method.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec30">More bagging </h2>
+
+<p>
+Bagging typically results in improved accuracy
+over prediction using a single tree. Unfortunately, however, it can be
+difficult to interpret the resulting model. Recall that one of the
+advantages of decision trees is the attractive and easily interpreted
+diagram that results.
+
+<p>
+However, when we bag a large number of trees, it is no longer
+possible to represent the resulting statistical learning procedure
+using a single tree, and it is no longer clear which variables are
+most important to the procedure. Thus, bagging improves prediction
+accuracy at the expense of interpretability.  Although the collection
+of bagged trees is much more difficult to interpret than a single
+tree, one can obtain an overall summary of the importance of each
+predictor using the MSE (for bagging regression trees) or the Gini
+index (for bagging classification trees). In the case of bagging
+regression trees, we can record the total amount that the MSE is
+decreased due to splits over a given predictor, averaged over all \( B \) possible
+trees. A large value indicates an important predictor. Similarly, in
+the context of bagging classification trees, we can add up the total
+amount that the Gini index  is decreased by splits over a given
+predictor, averaged over all \( B \) trees.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec31">Making your own Bootstrap: Changing the Level of the Decision Tree </h2>
+
+<p>
+Let us bring up our good old boostrap example from the linear regression lectures. We change the linerar regression algorithm with
+a decision tree wth different depths and perform a bootstrap aggregate (in this case we perform as many bootstraps as data points \( n \)).
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">matplotlib.pyplot</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">plt</span>
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">numpy</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">np</span>
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.model_selection</span> <span style="color: #8B008B; font-weight: bold">import</span> train_test_split
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.pipeline</span> <span style="color: #8B008B; font-weight: bold">import</span> make_pipeline
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.utils</span> <span style="color: #8B008B; font-weight: bold">import</span> resample
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.tree</span> <span style="color: #8B008B; font-weight: bold">import</span> DecisionTreeRegressor
+
+n = <span style="color: #B452CD">100</span>
+n_boostraps = <span style="color: #B452CD">100</span>
+maxdepth = <span style="color: #B452CD">8</span>
+
+<span style="color: #228B22"># Make data set.</span>
+x = np.linspace(-<span style="color: #B452CD">3</span>, <span style="color: #B452CD">3</span>, n).reshape(-<span style="color: #B452CD">1</span>, <span style="color: #B452CD">1</span>)
+y = np.exp(-x**<span style="color: #B452CD">2</span>) + <span style="color: #B452CD">1.5</span> * np.exp(-(x-<span style="color: #B452CD">2</span>)**<span style="color: #B452CD">2</span>)+ np.random.normal(<span style="color: #B452CD">0</span>, <span style="color: #B452CD">0.1</span>, x.shape)
+error = np.zeros(maxdepth)
+bias = np.zeros(maxdepth)
+variance = np.zeros(maxdepth)
+polydegree = np.zeros(maxdepth)
+X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=<span style="color: #B452CD">0.2</span>)
+
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.preprocessing</span> <span style="color: #8B008B; font-weight: bold">import</span> StandardScaler
+scaler = StandardScaler()
+scaler.fit(X_train)
+X_train_scaled = scaler.transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+<span style="color: #228B22"># we produce a simple tree first as benchmark</span>
+simpletree = DecisionTreeRegressor(max_depth=<span style="color: #B452CD">3</span>) 
+simpletree.fit(X_train_scaled, y_train)
+simpleprediction = simpletree.predict(X_test_scaled)
+<span style="color: #8B008B; font-weight: bold">for</span> degree <span style="color: #8B008B">in</span> <span style="color: #658b00">range</span>(<span style="color: #B452CD">1</span>,maxdepth):
+    model = DecisionTreeRegressor(max_depth=degree) 
+    y_pred = np.empty((y_test.shape[<span style="color: #B452CD">0</span>], n_boostraps))
+    <span style="color: #8B008B; font-weight: bold">for</span> i <span style="color: #8B008B">in</span> <span style="color: #658b00">range</span>(n_boostraps):
+        x_, y_ = resample(X_train_scaled, y_train)
+        model.fit(x_, y_)
+        y_pred[:, i] = model.predict(X_test_scaled)<span style="color: #228B22">#.ravel()</span>
+
+    polydegree[degree] = degree
+    error[degree] = np.mean( np.mean((y_test - y_pred)**<span style="color: #B452CD">2</span>, axis=<span style="color: #B452CD">1</span>, keepdims=<span style="color: #658b00">True</span>) )
+    bias[degree] = np.mean( (y_test - np.mean(y_pred, axis=<span style="color: #B452CD">1</span>, keepdims=<span style="color: #658b00">True</span>))**<span style="color: #B452CD">2</span> )
+    variance[degree] = np.mean( np.var(y_pred, axis=<span style="color: #B452CD">1</span>, keepdims=<span style="color: #658b00">True</span>) )
+    <span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&#39;Polynomial degree:&#39;</span>, degree)
+    <span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&#39;Error:&#39;</span>, error[degree])
+    <span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&#39;Bias^2:&#39;</span>, bias[degree])
+    <span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&#39;Var:&#39;</span>, variance[degree])
+    <span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&#39;{} &gt;= {} + {} = {}&#39;</span>.format(error[degree], bias[degree], variance[degree], bias[degree]+variance[degree]))
+
+mse_simpletree = np.mean(np.mean((y_test - simpleprediction)**<span style="color: #B452CD">2</span>))
+<span style="color: #8B008B; font-weight: bold">print</span>(mse_simpletree)
+plt.xlim(<span style="color: #B452CD">1</span>,maxdepth)
+plt.plot(polydegree, error, label=<span style="color: #CD5555">&#39;MSE&#39;</span>)
+plt.plot(polydegree, bias, label=<span style="color: #CD5555">&#39;bias&#39;</span>)
+plt.plot(polydegree, variance, label=<span style="color: #CD5555">&#39;Variance&#39;</span>)
+plt.legend()
+save_fig(<span style="color: #CD5555">&quot;baggingboot&quot;</span>)
+plt.show()
+</pre></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec32">Random forests </h2>
+
+<p>
+Random forests provide an improvement over bagged trees by way of a
+small tweak that decorrelates the trees.
+
+<p>
+As in bagging, we build a
+number of decision trees on bootstrapped training samples. But when
+building these decision trees, each time a split in a tree is
+considered, a random sample of \( m \) predictors is chosen as split
+candidates from the full set of \( p \) predictors. The split is allowed to
+use only one of those \( m \) predictors.
+
+<p>
+A fresh sample of \( m \) predictors is
+taken at each split, and typically we choose 
+
+$$
+m\approx \sqrt{p}.
+$$
+
+<p>
+In building a random forest, at
+each split in the tree, the algorithm is not even allowed to consider
+a majority of the available predictors.
+
+<p>
+The reason for this is rather clever. Suppose that there is one very
+strong predictor in the data set, along with a number of other
+moderately strong predictors. Then in the collection of bagged
+variable importance random forest trees, most or all of the trees will
+use this strong predictor in the top split. Consequently, all of the
+bagged trees will look quite similar to each other. Hence the
+predictions from the bagged trees will be highly correlated.
+Unfortunately, averaging many highly correlated quantities does not
+lead to as large of a reduction in variance as averaging many
+uncorrelated quantities. In particular, this means that bagging will
+not lead to a substantial reduction in variance over a single tree in
+this setting.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec33">Random Forest Algorithm </h2>
+The algorithm described here can be applied to both classification and regression problems.
+
+<p>
+We will grow of forest of say \( B \) trees.
+
+<ol>
+<li> For \( b=1:B \)</li>
+
+<ul>
+  <li> Draw a bootstrap sample of from the training data organized in our \( \boldsymbol{X} \) matrix.</li>
+  <li> We grow then a random forest tree \( T_b \) based on the bootstrapped data by repeating the steps outlined till we reach the maximum node size is reached</li>
+
+<ol>
+   <li> we select \( m \le p \) variables at random from the \( p \) predictors/features</li>
+   <li> pick the best split point among the \( m \) features using either the CART algorithm or the ID3 for classification and create a new node</li>
+   <li> split the node into daughter nodes</li>
+</ol>
+
+</ul>
+
+<li> Output then the ensemble of trees \( \{T_b\}_1^{B} \) and make predictions for either a regression type of problem or a classification type of problem.</li> 
+</ol>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec34">Random Forests Compared with other Methods on the Cancer Data </h2>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">matplotlib.pyplot</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">plt</span>
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">numpy</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">np</span>
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.model_selection</span> <span style="color: #8B008B; font-weight: bold">import</span>  train_test_split 
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.datasets</span> <span style="color: #8B008B; font-weight: bold">import</span> load_breast_cancer
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.svm</span> <span style="color: #8B008B; font-weight: bold">import</span> SVC
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.linear_model</span> <span style="color: #8B008B; font-weight: bold">import</span> LogisticRegression
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.tree</span> <span style="color: #8B008B; font-weight: bold">import</span> DecisionTreeClassifier
+
+<span style="color: #228B22"># Load the data</span>
+cancer = load_breast_cancer()
+
+X_train, X_test, y_train, y_test = train_test_split(cancer.data,cancer.target,random_state=<span style="color: #B452CD">0</span>)
+<span style="color: #8B008B; font-weight: bold">print</span>(X_train.shape)
+<span style="color: #8B008B; font-weight: bold">print</span>(X_test.shape)
+<span style="color: #228B22"># Logistic Regression</span>
+logreg = LogisticRegression(solver=<span style="color: #CD5555">&#39;lbfgs&#39;</span>)
+logreg.fit(X_train, y_train)
+<span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&quot;Test set accuracy with Logistic Regression: {:.2f}&quot;</span>.format(logreg.score(X_test,y_test)))
+<span style="color: #228B22"># Support vector machine</span>
+svm = SVC(gamma=<span style="color: #CD5555">&#39;auto&#39;</span>, C=<span style="color: #B452CD">100</span>)
+svm.fit(X_train, y_train)
+<span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&quot;Test set accuracy with SVM: {:.2f}&quot;</span>.format(svm.score(X_test,y_test)))
+<span style="color: #228B22"># Decision Trees</span>
+deep_tree_clf = DecisionTreeClassifier(max_depth=<span style="color: #658b00">None</span>)
+deep_tree_clf.fit(X_train, y_train)
+<span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&quot;Test set accuracy with Decision Trees: {:.2f}&quot;</span>.format(deep_tree_clf.score(X_test,y_test)))
+<span style="color: #228B22">#now scale the data</span>
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.preprocessing</span> <span style="color: #8B008B; font-weight: bold">import</span> StandardScaler
+scaler = StandardScaler()
+scaler.fit(X_train)
+X_train_scaled = scaler.transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+<span style="color: #228B22"># Logistic Regression</span>
+logreg.fit(X_train_scaled, y_train)
+<span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&quot;Test set accuracy Logistic Regression with scaled data: {:.2f}&quot;</span>.format(logreg.score(X_test_scaled,y_test)))
+<span style="color: #228B22"># Support Vector Machine</span>
+svm.fit(X_train_scaled, y_train)
+<span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&quot;Test set accuracy SVM with scaled data: {:.2f}&quot;</span>.format(logreg.score(X_test_scaled,y_test)))
+<span style="color: #228B22"># Decision Trees</span>
+deep_tree_clf.fit(X_train_scaled, y_train)
+<span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&quot;Test set accuracy with Decision Trees and scaled data: {:.2f}&quot;</span>.format(deep_tree_clf.score(X_test_scaled,y_test)))
+
+
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.ensemble</span> <span style="color: #8B008B; font-weight: bold">import</span> RandomForestClassifier
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.preprocessing</span> <span style="color: #8B008B; font-weight: bold">import</span> LabelEncoder
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.model_selection</span> <span style="color: #8B008B; font-weight: bold">import</span> cross_validate
+<span style="color: #228B22"># Data set not specificied</span>
+<span style="color: #228B22">#Instantiate the model with 500 trees and entropy as splitting criteria</span>
+Random_Forest_model = RandomForestClassifier(n_estimators=<span style="color: #B452CD">500</span>,criterion=<span style="color: #CD5555">&quot;entropy&quot;</span>)
+Random_Forest_model.fit(X_train_scaled, y_train)
+<span style="color: #228B22">#Cross validation</span>
+accuracy = cross_validate(Random_Forest_model,X_test_scaled,y_test,cv=<span style="color: #B452CD">10</span>)[<span style="color: #CD5555">&#39;test_score&#39;</span>]
+<span style="color: #8B008B; font-weight: bold">print</span>(accuracy)
+<span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&quot;Test set accuracy with Random Forests and scaled data: {:.2f}&quot;</span>.format(Random_Forest_model.score(X_test_scaled,y_test)))
+
+
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">scikitplot</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">skplt</span>
+y_pred = Random_Forest_model.predict(X_test_scaled)
+skplt.metrics.plot_confusion_matrix(y_test, y_pred, normalize=<span style="color: #658b00">True</span>)
+plt.show()
+y_probas = Random_Forest_model.predict_proba(X_test_scaled)
+skplt.metrics.plot_roc(y_test, y_probas)
+plt.show()
+skplt.metrics.plot_cumulative_gain(y_test, y_probas)
+plt.show()
+</pre></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec35">Compare  Bagging on Trees with Random Forests  </h2>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span>bag_clf = BaggingClassifier(
+    DecisionTreeClassifier(splitter=<span style="color: #CD5555">&quot;random&quot;</span>, max_leaf_nodes=<span style="color: #B452CD">16</span>, random_state=<span style="color: #B452CD">42</span>),
+    n_estimators=<span style="color: #B452CD">500</span>, max_samples=<span style="color: #B452CD">1.0</span>, bootstrap=<span style="color: #658b00">True</span>, n_jobs=-<span style="color: #B452CD">1</span>, random_state=<span style="color: #B452CD">42</span>)
+</pre></div>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span>bag_clf.fit(X_train, y_train)
+y_pred = bag_clf.predict(X_test)
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.ensemble</span> <span style="color: #8B008B; font-weight: bold">import</span> RandomForestClassifier
+rnd_clf = RandomForestClassifier(n_estimators=<span style="color: #B452CD">500</span>, max_leaf_nodes=<span style="color: #B452CD">16</span>, n_jobs=-<span style="color: #B452CD">1</span>, random_state=<span style="color: #B452CD">42</span>)
+rnd_clf.fit(X_train, y_train)
+y_pred_rf = rnd_clf.predict(X_test)
+np.sum(y_pred == y_pred_rf) / <span style="color: #658b00">len</span>(y_pred) 
+</pre></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec36">Boosting, a Bird's Eye View </h2>
+
+<p>
+The basic idea is to combine weak classifiers in order to create a good
+classifier. With a weak classifier we often intend a classifier which
+produces results which are only slightly better than we would get by
+random guesses.
+
+<p>
+This is done by applying in an iterative way a weak (or a standard
+classifier like decision trees) to modify the data. In each iteration
+we emphasize those observations which are misclassified by weighting
+them with a factor.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec37">What is boosting? Additive Modelling/Iterative Fitting </h2>
+
+<p>
+Boosting is a way of fitting an additive expansion in a set of
+elementary basis functions like for example some simple polynomials.
+Assume for example that we have a function
+$$
+f_M(x) = \sum_{i=1}^M \beta_m b(x;\gamma_m),
+$$
+
+<p>
+where \( \beta_m \) are the expansion parameters to be determined in a
+minimization process and \( b(x;\gamma_m) \) are some simple functions of
+the multivariable parameter \( x \) which is characterized by the
+parameters \( \gamma_m \).
+
+<p>
+As an example, consider the Sigmoid function we used in logistic
+regression. In that case, we can translate the function
+\( b(x;\gamma_m) \) into the Sigmoid function
+
+$$
+\sigma(t) = \frac{1}{1+\exp{(-t)}},
+$$
+
+<p>
+where \( t=\gamma_0+\gamma_1 x \) and the parameters \( \gamma_0 \) and
+\( \gamma_1 \) were determined by the Logistic Regression fitting
+algorithm.
+
+<p>
+As another example, consider the cost function we defined for linear regression
+$$
+C(\boldsymbol{y},\boldsymbol{f}) = \frac{1}{n} \sum_{i=0}^{n-1}(y_i-f(x_i))^2.
+$$
+
+<p>
+In this case the function \( f(x) \) was replaced by the design matrix
+\( \boldsymbol{X} \) and the unknown linear regression parameters \( \boldsymbol{\beta} \),
+that is \( \boldsymbol{f}=\boldsymbol{X}\boldsymbol{\beta} \). In linear regression we can 
+simply invert a matrix and obtain the parameters \( \beta \) by
+
+$$
+\boldsymbol{\beta}=\left(\boldsymbol{X}^T\boldsymbol{X}\right)^{-1}\boldsymbol{X}^T\boldsymbol{y}.
+$$
+
+<p>
+In iterative fitting or additive modeling, we minimize the cost function with respect to the parameters \( \beta_m \) and \( \gamma_m \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec38">Iterative Fitting, Regression and Squared-error Cost Function </h2>
+
+<p>
+The way we proceed is as follows (here we specialize to the squared-error cost function)
+
+<ol>
+<li> Establish a cost function, here \( {\cal C}(\boldsymbol{y},\boldsymbol{f}) = \frac{1}{n} \sum_{i=0}^{n-1}(y_i-f_M(x_i))^2 \) with \( f_M(x) = \sum_{i=1}^M \beta_m b(x;\gamma_m) \).</li>
+<li> Initialize with a guess \( f_0(x) \). It could be one or even zero or some random numbers.</li>
+<li> For \( m=1:M \)
+
+<ol type="a"></li>
+ <li> minimize \( \sum_{i=0}^{n-1}(y_i-f_{m-1}(x_i)-\beta b(x;\gamma))^2 \) wrt \( \gamma \) and \( \beta \)</li>
+ <li> This gives the optimal values \( \beta_m \) and \( \gamma_m \)</li>
+ <li> Determine then the new values \( f_m(x)=f_{m-1}(x) +\beta_m b(x;\gamma_m) \)</li>
+</ol>
+
+</ol>
+
+We could use any of the algorithms we have discussed till now. If we
+use trees, \( \gamma \) parameterizes the split variables and split points
+at the internal nodes, and the predictions at the terminal nodes.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec39">Squared-Error Example and Iterative Fitting </h2>
+
+<p>
+To better understand what happens, let us develop the steps for the iterative fitting using the above squared error function.
+
+<p>
+For simplicity we assume also that our functions \( b(x;\gamma)=1+\gamma x \).
+
+<p>
+This means that for every iteration \( m \), we need to optimize
+
+$$
+(\beta_m,\gamma_m) = \mathrm{argmin}_{\beta,\gamma}\hspace{0.1cm} \sum_{i=0}^{n-1}(y_i-f_{m-1}(x_i)-\beta b(x;\gamma))^2=\sum_{i=0}^{n-1}(y_i-f_{m-1}(x_i)-\beta(1+\gamma x_i))^2.
+$$
+
+<p>
+We start our iteration by simply setting \( f_0(x)=0 \). 
+Taking the derivatives  with respect to \( \beta \) and \( \gamma \) we obtain
+$$
+\frac{\partial {\cal C}}{\partial \beta} = -2\sum_{i}(1+\gamma x_i)(y_i-\beta(1+\gamma x_i))=0,
+$$
+
+and
+$$
+\frac{\partial {\cal C}}{\partial \gamma} =-2\sum_{i}\beta x_i(y_i-\beta(1+\gamma x_i))=0.
+$$
+
+We can then rewrite these equations as (defining \( \boldsymbol{w}=\boldsymbol{e}+\gamma \boldsymbol{x}) \) with \( \boldsymbol{e} \) being the unit vector)
+$$
+\gamma \boldsymbol{w}^T(\boldsymbol{y}-\beta\gamma \boldsymbol{w})=0,
+$$
+
+which gives us \( \beta = \boldsymbol{w}^T\boldsymbol{y}/(\boldsymbol{w}^T\boldsymbol{w}) \). Similarly we have 
+$$
+\beta\gamma \boldsymbol{x}^T(\boldsymbol{y}-\beta(1+\gamma \boldsymbol{x}))=0,
+$$
+
+<p>
+which leads to \( \gamma =(\boldsymbol{x}^T\boldsymbol{y}-\beta\boldsymbol{x}^T\boldsymbol{e})/(\beta\boldsymbol{x}^T\boldsymbol{x}) \).  Inserting
+for \( \beta \) gives us an equation for \( \gamma \). This is a non-linear equation in the unknown \( \gamma \) and has to be solved numerically.
+
+<p>
+The solution to these two equations gives us in turn \( \beta_1 \) and \( \gamma_1 \) leading to the new expression for \( f_1(x) \) as
+\( f_1(x) = \beta_1(1+\gamma_1x) \). Doing this \( M \) times results in our final estimate for the function \( f \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec40">Iterative Fitting, Classification and AdaBoost </h2>
+
+<p>
+Let us consider a binary classification problem with two outcomes \( y_i \in \{-1,1\} \) and \( i=0,1,2,\dots,n-1 \) as our set of
+observations. We define a classification function \( G(x) \) which produces a prediction taking one or the other of the two values 
+\( \{-1,1\} \).
+
+<p>
+The error rate of the training sample is then
+
+$$
+\mathrm{\overline{err}}=\frac{1}{n} \sum_{i=0}^{n-1} I(y_i\ne G(x_i)). 
+$$
+
+<p>
+The iterative procedure starts with defining a weak classifier whose
+error rate is barely better than random guessing.  The iterative
+procedure in boosting is to sequentially apply a  weak
+classification algorithm to repeatedly modified versions of the data
+producing a sequence of weak classifiers \( G_m(x) \).
+
+<p>
+Here we will express our  function \( f(x) \) in terms of \( G(x) \). That is
+$$
+f_M(x) = \sum_{i=1}^M \beta_m b(x;\gamma_m),
+$$
+
+will be a function of 
+$$
+G_M(x) = \mathrm{sign} \sum_{i=1}^M \alpha_m G_m(x).
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec41">Adaptive Boosting, AdaBoost </h2>
+
+<p>
+In our iterative procedure we define thus
+$$
+f_m(x) = f_{m-1}(x)+\beta_mG_m(x).
+$$
+
+<p>
+The simplest possible cost function which leads (also simple from a computational point of view) to the AdaBoost algorithm is the
+exponential cost/loss function defined as
+$$
+C(\boldsymbol{y},\boldsymbol{f}) = \sum_{i=0}^{n-1}\exp{(-y_i(f_{m-1}(x_i)+\beta G(x_i))}.
+$$
+
+<p>
+We optimize \( \beta \) and \( G \) for each value of \( m=1:M \) as we did in the regression case.
+This is normally done in two steps. Let us however first rewrite the cost function as 
+
+$$
+C(\boldsymbol{y},\boldsymbol{f}) = \sum_{i=0}^{n-1}w_i^{m}\exp{(-y_i\beta G(x_i))},
+$$
+
+where we have defined \( w_i^m= \exp{(-y_if_{m-1}(x_i))} \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec42">Building up AdaBoost </h2>
+
+<p>
+First, for any \( \beta > 0 \), we optimize \( G \) by setting
+$$
+G_m(x) = \mathrm{sign} \sum_{i=0}^{n-1} w_i^m I(y_i \ne G_(x_i)),
+$$
+
+which is the classifier that minimizes the weighted error rate in predicting \( y \).
+
+<p>
+We can do this by rewriting
+$$
+\exp{-(\beta)}\sum_{y_i=G(x_i)}w_i^m+\exp{(\beta)}\sum_{y_i\ne G(x_i)}w_i^m,
+$$
+
+which can be rewritten as
+$$
+(\exp{(\beta)}-\exp{-(\beta)})\sum_{i=0}^{n-1}w_i^mI(y_i\ne G(x_i))+\exp{(-\beta)}\sum_{i=0}^{n-1}w_i^m=0,
+$$
+
+which leads to
+$$
+\beta_m = \frac{1}{2}\log{\frac{1-\mathrm{\overline{err}}}{\mathrm{\overline{err}}}},
+$$
+
+where we have redefined the error as 
+$$
+\mathrm{\overline{err}}_m=\frac{1}{n}\frac{\sum_{i=0}^{n-1}w_i^mI(y_i\ne G(x_i)}{\sum_{i=0}^{n-1}w_i^m},
+$$
+
+which leads to an update of
+$$
+f_m(x) = f_{m-1}(x) +\beta_m G_m(x).
+$$
+
+This leads to the new weights
+$$
+w_i^{m+1} = w_i^m \exp{(-y_i\beta_m G_m(x_i))}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec43">Adaptive boosting: AdaBoost, Basic Algorithm </h2>
+
+<p>
+The algorithm here is rather straightforward. Assume that our weak
+classifier is a decision tree and we consider a binary set of outputs
+with \( y_i \in \{-1,1\} \) and \( i=0,1,2,\dots,n-1 \) as our set of
+observations. Our design matrix is given in terms of the
+feature/predictor vectors
+\( \boldsymbol{X}=[\boldsymbol{x}_0\boldsymbol{x}_1\dots\boldsymbol{x}_{p-1}] \). Finally, we define also a
+classifier determined by our data via a function \( G(x) \). This function tells us how well we are able to classify our outputs/targets \( \boldsymbol{y} \).
+
+<p>
+We have already defined the misclassification error \( \mathrm{err} \) as
+$$
+\mathrm{err}=\frac{1}{n}\sum_{i=0}^{n-1}I(y_i\ne G(x_i)),
+$$
+
+where the function \( I() \) is one if we misclassify and zero if we classify correctly.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec44">Basic Steps of AdaBoost </h2>
+
+<p>
+With the above definitions we are now ready to set up the algorithm for AdaBoost.
+The basic idea is to set up weights which will be used to scale the correctly classified and the misclassified cases.
+
+<ol>
+<li> We start by initializing all weights to \( w_i = 1/n \), with \( i=0,1,2,\dots n-1 \). It is easy to see that we must have \( \sum_{i=0}^{n-1}w_i = 1 \).</li>
+<li> We rewrite the misclassification error as</li> 
+</ol>
+
+$$
+\mathrm{\overline{err}}_m=\frac{\sum_{i=0}^{n-1}w_i^m I(y_i\ne G(x_i))}{\sum_{i=0}^{n-1}w_i},
+$$
+
+
+<ol>
+<li> Then we start looping over all attempts at classifying, namely we start an iterative process for \( m=1:M \), where \( M \) is the final number of classifications. Our given classifier could for example be a plain decision tree.
+
+<ol type="a"></li>
+ <li> Fit then a given classifier to the training set using the weights \( w_i \).</li>
+ <li> Compute then \( \mathrm{err} \) and figure out which events are classified properly and which are classified wrongly.</li>
+ <li> Define a quantity \( \alpha_{m} = \log{(1-\mathrm{\overline{err}}_m)/\mathrm{\overline{err}}_m} \)</li>
+ <li> Set the new weights to \( w_i = w_i\times \exp{(\alpha_m I(y_i\ne G(x_i)} \).</li>
+</ol>
+
+<li> Compute the new classifier \( G(x)= \sum_{i=0}^{n-1}\alpha_m I(y_i\ne G(x_i) \).</li>
+</ol>
+
+For the iterations with \( m \le 2 \) the weights are modified
+individually at each steps. The observations which were misclassified
+at iteration \( m-1 \) have a weight which is larger than those which were
+classified properly. As this proceeds, the observations which were
+difficult to classifiy correctly are given a larger influence. Each
+new classification step \( m \) is then forced to concentrate on those
+observations that are missed in the previous iterations.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec45">AdaBoost Examples </h2>
+
+<p>
+Using <b>Scikit-Learn</b> it is easy to apply the adaptive boosting algorithm, as done here.
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.ensemble</span> <span style="color: #8B008B; font-weight: bold">import</span> AdaBoostClassifier
+
+ada_clf = AdaBoostClassifier(
+    DecisionTreeClassifier(max_depth=<span style="color: #B452CD">1</span>), n_estimators=<span style="color: #B452CD">200</span>,
+    algorithm=<span style="color: #CD5555">&quot;SAMME.R&quot;</span>, learning_rate=<span style="color: #B452CD">0.5</span>, random_state=<span style="color: #B452CD">42</span>)
+ada_clf.fit(X_train, y_train)
+
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.ensemble</span> <span style="color: #8B008B; font-weight: bold">import</span> AdaBoostClassifier
+
+ada_clf = AdaBoostClassifier(
+    DecisionTreeClassifier(max_depth=<span style="color: #B452CD">1</span>), n_estimators=<span style="color: #B452CD">200</span>,
+    algorithm=<span style="color: #CD5555">&quot;SAMME.R&quot;</span>, learning_rate=<span style="color: #B452CD">0.5</span>, random_state=<span style="color: #B452CD">42</span>)
+ada_clf.fit(X_train_scaled, y_train)
+y_pred = ada_clf.predict(X_test_scaled)
+skplt.metrics.plot_confusion_matrix(y_test, y_pred, normalize=<span style="color: #658b00">True</span>)
+plt.show()
+y_probas = ada_clf.predict_proba(X_test_scaled)
+skplt.metrics.plot_roc(y_test, y_probas)
+plt.show()
+skplt.metrics.plot_cumulative_gain(y_test, y_probas)
+plt.show()
+</pre></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec46">AdaBoost for Regression </h2>
+
+<p>
+Here we present <a href="https://pdfs.semanticscholar.org/8d49/e2dedb817f2c3330e74b63c5fc86d2399ce3.pdf" target="_blank">Drucker's AdaBoost</a> tailored for regression.
+
+<p>
+In bagging, each training example is equally likely to be
+picked. In boosting, the probability of a particular
+example being in the training set of a particular machine
+depends on the performance of the prior machines on
+that example. The following is a modification of
+Adaboost by Drucker.
+
+<p>
+Start by selecting a set of training data \( n \) and assign to each entry a weight \( w_i=1 \) for \( i=1,2,\dots,n \). As we have done earlier, we could pick say \( 80\% \) of the data set for training. The algorithm runs as follows:
+
+<ol>
+<li> We define the probability that the  training sample \( i \) is in the set by \( p_i = w_i/\sum_iw_i \). We pick \( n \) samples (with replacement) to form our training set. We pick a number uniformly in the range \( [0,\sum_iw_i] \).</li>
+<li> We choose then a regression machine (for example plain linear regression or a simple decision tree). A given regression machine makes then a hypothesis.</li>
+<li> Using every member of the training set with the chosen regression machine we obtain then a prediction \( \tilde{y}_i \).</li>
+<li> We calculate then the loss function \( L_i \) for each training sample. We can use various types of loss function as long as we have a value</li>
+</ol>
+
+\( L_i\in [0,1] \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec47">Gradient boosting: Basics with Steepest Descent </h2>
+
+<p>
+Gradient boosting is again a similar technique to Adaptive boosting,
+it combines so-called weak classifiers or regressors into a strong
+method via a series of iterations.
+
+<p>
+In order to understand the method, let us illustrate its basics by
+bringing back the essential steps in linear regression, where our cost
+function was the least squares function.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec48">The Squared-Error again! Steepest Descent </h2>
+
+<p>
+We start again with our cost function \( {\cal C}(\boldsymbol{y}m\boldsymbol{f})=\sum_{i=0}^{n-1}{\cal L}(y_i, f(x_i)) \) where we want to minimize
+This means that for every iteration, we need to optimize
+
+$$
+(\hat{\boldsymbol{f}}) = \mathrm{argmin}_{\boldsymbol{f}}\hspace{0.1cm} \sum_{i=0}^{n-1}(y_i-f(x_i))^2.
+$$
+
+<p>
+We define a real function \( h_m(x) \) that defines our final function \( f_M(x) \) as
+$$
+f_M(x) = \sum_{m=0}^M h_m(x).
+$$
+
+<p>
+In the steepest decent approach we approximate \( h_m(x) = -\rho_m g_m(x) \), where \( \rho_m \) is a scalar and \( g_m(x) \) the gradient defined as
+$$
+g_m(x_i) = \left[ \frac{\partial {\cal L}(y_i, f(x_i))}{\partial f(x_i)}\right]_{f(x_i)=f_{m-1}(x_i)}.
+$$
+
+<p>
+With the new gradient we can update \( f_m(x) = f_{m-1}(x) -\rho_m g_m(x) \). Using the above squared-error function we see that
+the gradient is \( g_m(x_i) = -2(y_i-f(x_i)) \).
+
+<p>
+Choosing \( f_0(x)=0 \) we obtain \( g_m(x) = -2y_i \) and inserting this into the minimization problem for the cost function we have
+$$
+(\rho_1) = \mathrm{argmin}_{\rho}\hspace{0.1cm} \sum_{i=0}^{n-1}(y_i+2\rho y_i)^2.
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec49">Steepest Descent Example </h2>
+
+<p>
+Optimizing with respect to \( \rho \) we obtain (taking the derivative) that \( \rho_1 = -1/2 \). We have then that
+$$
+f_1(x) = f_{0}(x) -\rho_1 g_1(x)=-y_i.
+$$
+
+We can then proceed and compute
+$$
+g_2(x_i) = \left[ \frac{\partial {\cal L}(y_i, f(x_i))}{\partial f(x_i)}\right]_{f(x_i)=f_{1}(x_i)=y_i}=-4y_i,
+$$
+
+and find a new value for \( \rho_2=-1/2 \) and continue till we have reached \( m=M \). We can modify the steepest descent method, or steepest boosting, by introducing what is called <b>gradient boosting</b>.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec50">Gradient Boosting, algorithm </h2>
+
+<p>
+Suppose we have a cost function \( C(f)=\sum_{i=0}^{n-1}L(y_i, f(x_i)) \) where \( y_i \) is our target and \( f(x_i) \) the function which is meant to model \( y_i \). The above cost function could be our standard  squared-error  function
+$$
+C(\boldsymbol{y},\boldsymbol{f})=\sum_{i=0}^{n-1}(y_i-f(x_i))^2.
+$$
+
+<p>
+The way we proceed in an iterative fashion is to
+
+<ol>
+<li> Initialize our estimate \( f_0(x) \).</li>
+<li> For \( m=1:M \), we
+
+<ol type="a"></li>
+ <li> compute the negative gradient vector \( \boldsymbol{u}_m = -\partial C(\boldsymbol{y},\boldsymbol{f})/\partial \boldsymbol{f}(x) \) at \( f(x) = f_{m-1}(x) \);</li>
+ <li> fit the so-called base-learner to the negative gradient \( h_m(u_m,x) \);</li>
+ <li> update the estimate \( f_m(x) = f_{m-1}(x)+\nu h_m(u_m,x) \);</li>
+</ol>
+
+<li> The final estimate is then \( f_M(x) = \sum_{m=1}^M\nu h_m(u_m,x) \).</li>
+</ol>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec51">Gradient Boosting, Examples of Regression </h2>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">matplotlib.pyplot</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">plt</span>
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">numpy</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">np</span>
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.model_selection</span> <span style="color: #8B008B; font-weight: bold">import</span> train_test_split
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.ensemble</span> <span style="color: #8B008B; font-weight: bold">import</span> GradientBoostingRegressor
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.preprocessing</span> <span style="color: #8B008B; font-weight: bold">import</span> StandardScaler
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">scikitplot</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">skplt</span>
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.metrics</span> <span style="color: #8B008B; font-weight: bold">import</span> mean_squared_error
+
+n = <span style="color: #B452CD">100</span>
+maxdegree = <span style="color: #B452CD">6</span>
+
+<span style="color: #228B22"># Make data set.</span>
+x = np.linspace(-<span style="color: #B452CD">3</span>, <span style="color: #B452CD">3</span>, n).reshape(-<span style="color: #B452CD">1</span>, <span style="color: #B452CD">1</span>)
+y = np.exp(-x**<span style="color: #B452CD">2</span>) + <span style="color: #B452CD">1.5</span> * np.exp(-(x-<span style="color: #B452CD">2</span>)**<span style="color: #B452CD">2</span>)+ np.random.normal(<span style="color: #B452CD">0</span>, <span style="color: #B452CD">0.1</span>, x.shape)
+
+error = np.zeros(maxdegree)
+bias = np.zeros(maxdegree)
+variance = np.zeros(maxdegree)
+polydegree = np.zeros(maxdegree)
+X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=<span style="color: #B452CD">0.2</span>)
+scaler = StandardScaler()
+scaler.fit(X_train)
+X_train_scaled = scaler.transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+<span style="color: #8B008B; font-weight: bold">for</span> degree <span style="color: #8B008B">in</span> <span style="color: #658b00">range</span>(<span style="color: #B452CD">1</span>,maxdegree):
+    model = GradientBoostingRegressor(max_depth=degree, n_estimators=<span style="color: #B452CD">100</span>, learning_rate=<span style="color: #B452CD">1.0</span>)  
+    model.fit(X_train_scaled,y_train)
+    y_pred = model.predict(X_test_scaled)
+    polydegree[degree] = degree
+    error[degree] = np.mean( np.mean((y_test - y_pred)**<span style="color: #B452CD">2</span>) )
+    bias[degree] = np.mean( (y_test - np.mean(y_pred))**<span style="color: #B452CD">2</span> )
+    variance[degree] = np.mean( np.var(y_pred) )
+    <span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&#39;Max depth:&#39;</span>, degree)
+    <span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&#39;Error:&#39;</span>, error[degree])
+    <span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&#39;Bias^2:&#39;</span>, bias[degree])
+    <span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&#39;Var:&#39;</span>, variance[degree])
+    <span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&#39;{} &gt;= {} + {} = {}&#39;</span>.format(error[degree], bias[degree], variance[degree], bias[degree]+variance[degree]))
+
+plt.xlim(<span style="color: #B452CD">1</span>,maxdegree-<span style="color: #B452CD">1</span>)
+plt.plot(polydegree, error, label=<span style="color: #CD5555">&#39;Error&#39;</span>)
+plt.plot(polydegree, bias, label=<span style="color: #CD5555">&#39;bias&#39;</span>)
+plt.plot(polydegree, variance, label=<span style="color: #CD5555">&#39;Variance&#39;</span>)
+plt.legend()
+save_fig(<span style="color: #CD5555">&quot;gdregression&quot;</span>)
+plt.show()
+</pre></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec52">Gradient Boosting, Classification Example </h2>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">matplotlib.pyplot</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">plt</span>
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">numpy</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">np</span>
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.model_selection</span> <span style="color: #8B008B; font-weight: bold">import</span>  train_test_split 
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.datasets</span> <span style="color: #8B008B; font-weight: bold">import</span> load_breast_cancer
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">scikitplot</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">skplt</span>
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.ensemble</span> <span style="color: #8B008B; font-weight: bold">import</span> GradientBoostingClassifier
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.model_selection</span> <span style="color: #8B008B; font-weight: bold">import</span> cross_validate
+
+<span style="color: #228B22"># Load the data</span>
+cancer = load_breast_cancer()
+
+X_train, X_test, y_train, y_test = train_test_split(cancer.data,cancer.target,random_state=<span style="color: #B452CD">0</span>)
+<span style="color: #8B008B; font-weight: bold">print</span>(X_train.shape)
+<span style="color: #8B008B; font-weight: bold">print</span>(X_test.shape)
+<span style="color: #228B22">#now scale the data</span>
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.preprocessing</span> <span style="color: #8B008B; font-weight: bold">import</span> StandardScaler
+scaler = StandardScaler()
+scaler.fit(X_train)
+X_train_scaled = scaler.transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+gd_clf = GradientBoostingClassifier(max_depth=<span style="color: #B452CD">3</span>, n_estimators=<span style="color: #B452CD">100</span>, learning_rate=<span style="color: #B452CD">1.0</span>)  
+gd_clf.fit(X_train_scaled, y_train)
+<span style="color: #228B22">#Cross validation</span>
+accuracy = cross_validate(gd_clf,X_test_scaled,y_test,cv=<span style="color: #B452CD">10</span>)[<span style="color: #CD5555">&#39;test_score&#39;</span>]
+<span style="color: #8B008B; font-weight: bold">print</span>(accuracy)
+<span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&quot;Test set accuracy with Random Forests and scaled data: {:.2f}&quot;</span>.format(gd_clf.score(X_test_scaled,y_test)))
+
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">scikitplot</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">skplt</span>
+y_pred = gd_clf.predict(X_test_scaled)
+skplt.metrics.plot_confusion_matrix(y_test, y_pred, normalize=<span style="color: #658b00">True</span>)
+save_fig(<span style="color: #CD5555">&quot;gdclassiffierconfusion&quot;</span>)
+plt.show()
+y_probas = gd_clf.predict_proba(X_test_scaled)
+skplt.metrics.plot_roc(y_test, y_probas)
+save_fig(<span style="color: #CD5555">&quot;gdclassiffierroc&quot;</span>)
+plt.show()
+skplt.metrics.plot_cumulative_gain(y_test, y_probas)
+save_fig(<span style="color: #CD5555">&quot;gdclassiffiercgain&quot;</span>)
+plt.show()
+</pre></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec53">XGBoost: Extreme Gradient Boosting </h2>
+
+<p>
+<a href="https://github.com/dmlc/xgboost" target="_blank">XGBoost</a> or Extreme Gradient
+Boosting, is an optimized distributed gradient boosting library
+designed to be highly efficient, flexible and portable. It implements
+machine learning algorithms under the Gradient Boosting
+framework. XGBoost provides a parallel tree boosting that solve many
+data science problems in a fast and accurate way. See the <a href="https://arxiv.org/abs/1603.02754" target="_blank">article by Chen and Guestrin</a>.
+
+<p>
+The authors design and build a highly scalable end-to-end tree
+boosting system. It has  a theoretically justified weighted quantile
+sketch for efficient proposal calculation. It introduces a novel sparsity-aware algorithm for parallel tree learning and an effective cache-aware block structure for out-of-core tree learning.
+
+<p>
+It is now the algorithm which wins essentially all ML competitions!!!
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec54">Regression Case </h2>
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">matplotlib.pyplot</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">plt</span>
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">numpy</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">np</span>
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.model_selection</span> <span style="color: #8B008B; font-weight: bold">import</span> train_test_split
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">xgboost</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">xgb</span>
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.preprocessing</span> <span style="color: #8B008B; font-weight: bold">import</span> StandardScaler
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">scikitplot</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">skplt</span>
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.metrics</span> <span style="color: #8B008B; font-weight: bold">import</span> mean_squared_error
+
+n = <span style="color: #B452CD">100</span>
+maxdegree = <span style="color: #B452CD">6</span>
+
+<span style="color: #228B22"># Make data set.</span>
+x = np.linspace(-<span style="color: #B452CD">3</span>, <span style="color: #B452CD">3</span>, n).reshape(-<span style="color: #B452CD">1</span>, <span style="color: #B452CD">1</span>)
+y = np.exp(-x**<span style="color: #B452CD">2</span>) + <span style="color: #B452CD">1.5</span> * np.exp(-(x-<span style="color: #B452CD">2</span>)**<span style="color: #B452CD">2</span>)+ np.random.normal(<span style="color: #B452CD">0</span>, <span style="color: #B452CD">0.1</span>, x.shape)
+
+error = np.zeros(maxdegree)
+bias = np.zeros(maxdegree)
+variance = np.zeros(maxdegree)
+polydegree = np.zeros(maxdegree)
+X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=<span style="color: #B452CD">0.2</span>)
+scaler = StandardScaler()
+scaler.fit(X_train)
+X_train_scaled = scaler.transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+<span style="color: #8B008B; font-weight: bold">for</span> degree <span style="color: #8B008B">in</span> <span style="color: #658b00">range</span>(maxdegree):
+    model =  xgb.XGBRegressor(objective =<span style="color: #CD5555">&#39;reg:squarederror&#39;</span>, colsaobjective =<span style="color: #CD5555">&#39;reg:squarederror&#39;</span>, colsample_bytree = <span style="color: #B452CD">0.3</span>, learning_rate = <span style="color: #B452CD">0.1</span>,max_depth = degree, alpha = <span style="color: #B452CD">10</span>, n_estimators = <span style="color: #B452CD">200</span>)
+
+    model.fit(X_train_scaled,y_train)
+    y_pred = model.predict(X_test_scaled)
+    polydegree[degree] = degree
+    error[degree] = np.mean( np.mean((y_test - y_pred)**<span style="color: #B452CD">2</span>) )
+    bias[degree] = np.mean( (y_test - np.mean(y_pred))**<span style="color: #B452CD">2</span> )
+    variance[degree] = np.mean( np.var(y_pred) )
+    <span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&#39;Max depth:&#39;</span>, degree)
+    <span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&#39;Error:&#39;</span>, error[degree])
+    <span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&#39;Bias^2:&#39;</span>, bias[degree])
+    <span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&#39;Var:&#39;</span>, variance[degree])
+    <span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&#39;{} &gt;= {} + {} = {}&#39;</span>.format(error[degree], bias[degree], variance[degree], bias[degree]+variance[degree]))
+
+plt.xlim(<span style="color: #B452CD">1</span>,maxdegree-<span style="color: #B452CD">1</span>)
+plt.plot(polydegree, error, label=<span style="color: #CD5555">&#39;Error&#39;</span>)
+plt.plot(polydegree, bias, label=<span style="color: #CD5555">&#39;bias&#39;</span>)
+plt.plot(polydegree, variance, label=<span style="color: #CD5555">&#39;Variance&#39;</span>)
+plt.legend()
+plt.show()
+</pre></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec55">Xgboost on the Cancer Data </h2>
+
+<p>
+As you will see from the confusion matrix below, XGBoots does an excellent job on the Wisconsin cancer data and outperforms essentially all agorithms we have discussed till now. 
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">matplotlib.pyplot</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">plt</span>
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">numpy</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">np</span>
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.model_selection</span> <span style="color: #8B008B; font-weight: bold">import</span>  train_test_split 
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.datasets</span> <span style="color: #8B008B; font-weight: bold">import</span> load_breast_cancer
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.preprocessing</span> <span style="color: #8B008B; font-weight: bold">import</span> LabelEncoder
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.model_selection</span> <span style="color: #8B008B; font-weight: bold">import</span> cross_validate
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">scikitplot</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">skplt</span>
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">xgboost</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">xgb</span>
+<span style="color: #228B22"># Load the data</span>
+cancer = load_breast_cancer()
+
+X_train, X_test, y_train, y_test = train_test_split(cancer.data,cancer.target,random_state=<span style="color: #B452CD">0</span>)
+<span style="color: #8B008B; font-weight: bold">print</span>(X_train.shape)
+<span style="color: #8B008B; font-weight: bold">print</span>(X_test.shape)
+<span style="color: #228B22">#now scale the data</span>
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sklearn.preprocessing</span> <span style="color: #8B008B; font-weight: bold">import</span> StandardScaler
+scaler = StandardScaler()
+scaler.fit(X_train)
+X_train_scaled = scaler.transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+xg_clf = xgb.XGBClassifier()
+xg_clf.fit(X_train_scaled,y_train)
+
+y_test = xg_clf.predict(X_test_scaled)
+
+<span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&quot;Test set accuracy with Random Forests and scaled data: {:.2f}&quot;</span>.format(xg_clf.score(X_test_scaled,y_test)))
+
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">scikitplot</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">skplt</span>
+y_pred = xg_clf.predict(X_test_scaled)
+skplt.metrics.plot_confusion_matrix(y_test, y_pred, normalize=<span style="color: #658b00">True</span>)
+save_fig(<span style="color: #CD5555">&quot;xdclassiffierconfusion&quot;</span>)
+plt.show()
+y_probas = xg_clf.predict_proba(X_test_scaled)
+skplt.metrics.plot_roc(y_test, y_probas)
+save_fig(<span style="color: #CD5555">&quot;xdclassiffierroc&quot;</span>)
+plt.show()
+skplt.metrics.plot_cumulative_gain(y_test, y_probas)
+save_fig(<span style="color: #CD5555">&quot;gdclassiffiercgain&quot;</span>)
+plt.show()
+
+
+xgb.plot_tree(xg_clf,num_trees=<span style="color: #B452CD">0</span>)
+plt.rcParams[<span style="color: #CD5555">&#39;figure.figsize&#39;</span>] = [<span style="color: #B452CD">50</span>, <span style="color: #B452CD">10</span>]
+save_fig(<span style="color: #CD5555">&quot;xgtree&quot;</span>)
+plt.show()
+
+xgb.plot_importance(xg_clf)
+plt.rcParams[<span style="color: #CD5555">&#39;figure.figsize&#39;</span>] = [<span style="color: #B452CD">5</span>, <span style="color: #B452CD">5</span>]
+save_fig(<span style="color: #CD5555">&quot;xgparams&quot;</span>)
+plt.show()
+</pre></div>
+<p>
+
+<!-- ------------------- end of main content --------------- -->
+
+
+<center style="font-size:80%">
+<!-- copyright --> &copy; 1999-2020, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+</center>
+
+
+</body>
+</html>
+    
+
