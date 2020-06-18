@@ -498,6 +498,409 @@ Eigvals, Eigvecs = np.linalg.eig(Sigma)
 print(Eigvals)
 !ec
 
+!split
+===== Brief Reminder on Statistical analysis =====  
+!bblock
+The *probability distribution function (PDF)* is a function
+$p(x)$ on the domain which, in the discrete case, gives us the
+probability or relative frequency with which these values of $X$ occur:
+!bt
+\[
+p(x) = \mathrm{prob}(X=x)
+\]
+!et
+In the continuous case, the PDF does not directly depict the
+actual probability. Instead we define the probability for the
+stochastic variable to assume any value on an infinitesimal interval
+around $x$ to be $p(x)dx$. The continuous function $p(x)$ then gives us
+the *density* of the probability rather than the probability
+itself. The probability for a stochastic variable to assume any value
+on a non-infinitesimal interval $[a,\,b]$ is then just the integral:
+!bt
+\[
+\mathrm{prob}(a\leq X\leq b) = \int_a^b p(x)dx
+\]
+!et
+Qualitatively speaking, a stochastic variable represents the values of
+numbers chosen as if by chance from some specified PDF so that the
+selection of a large set of these numbers reproduces this PDF.
+!eblock
+
+
+!split
+===== Statistics, moments =====
+!bblock
+A particularly useful class of special expectation values are the
+*moments*. The $n$-th moment of the PDF $p$ is defined as
+follows:
+!bt
+\[
+\langle x^n\rangle \equiv \int\! x^n p(x)\,dx
+\]
+!et
+The zero-th moment $\langle 1\rangle$ is just the normalization condition of
+$p$. The first moment, $\langle x\rangle$, is called the *mean* of $p$
+and often denoted by the letter $\mu$:
+!bt
+\[
+\langle x\rangle = \mu \equiv \int\! x p(x)\,dx
+\]
+!et
+!eblock
+
+!split
+===== Statistics, central moments =====
+!bblock
+A special version of the moments is the set of *central moments*,
+the n-th central moment defined as:
+!bt
+\[
+\langle (x-\langle x \rangle )^n\rangle \equiv \int\! (x-\langle x\rangle)^n p(x)\,dx
+\]
+!et
+The zero-th and first central moments are both trivial, equal $1$ and
+$0$, respectively. But the second central moment, known as the
+*variance* of $p$, is of particular interest. For the stochastic
+variable $X$, the variance is denoted as $\sigma^2_X$ or $\mathrm{var}(X)$:
+!bt
+\begin{align}
+\sigma^2_X\ \ =\ \ \mathrm{var}(X) & =  \langle (x-\langle x\rangle)^2\rangle =
+\int\! (x-\langle x\rangle)^2 p(x)\,dx\\
+& =  \int\! \left(x^2 - 2 x \langle x\rangle^{2} +
+  \langle x\rangle^2\right)p(x)\,dx\\
+& =  \langle x^2\rangle - 2 \langle x\rangle\langle x\rangle + \langle x\rangle^2\\
+& =  \langle x^2\rangle - \langle x\rangle^2
+\end{align}
+!et
+The square root of the variance, $\sigma =\sqrt{\langle (x-\langle x\rangle)^2\rangle}$ is called the *standard deviation* of $p$. It is clearly just the RMS (root-mean-square)
+value of the deviation of the PDF from its mean value, interpreted
+qualitatively as the *spread* of $p$ around its mean.
+!eblock
+
+!split
+===== Statistics, covariance =====
+!bblock
+Another important quantity is the so called covariance, a variant of
+the above defined variance. Consider again the set $\{X_i\}$ of $n$
+stochastic variables (not necessarily uncorrelated) with the
+multivariate PDF $P(x_1,\dots,x_n)$. The *covariance* of two
+of the stochastic variables, $X_i$ and $X_j$, is defined as follows:
+!bt
+\begin{align}
+\mathrm{cov}(X_i,\,X_j) &\equiv \langle (x_i-\langle x_i\rangle)(x_j-\langle x_j\rangle)\rangle
+\nonumber\\
+&=
+\int\!\cdots\!\int\!(x_i-\langle x_i \rangle)(x_j-\langle x_j \rangle)\,
+P(x_1,\dots,x_n)\,dx_1\dots dx_n
+label{eq:def_covariance}
+\end{align}
+!et
+with
+!bt
+\[
+\langle x_i\rangle =
+\int\!\cdots\!\int\!x_i\,P(x_1,\dots,x_n)\,dx_1\dots dx_n
+\]
+!et
+!eblock
+
+!split
+===== Statistics, more covariance  =====
+!bblock
+If we consider the above covariance as a matrix $C_{ij}=\mathrm{cov}(X_i,\,X_j)$, then the diagonal elements are just the familiar
+variances, $C_{ii} = \mathrm{cov}(X_i,\,X_i) = \mathrm{var}(X_i)$. It turns out that
+all the off-diagonal elements are zero if the stochastic variables are
+uncorrelated. This is easy to show, keeping in mind the linearity of
+the expectation value. Consider the stochastic variables $X_i$ and
+$X_j$, ($i\neq j$):
+!bt
+\begin{align}
+\mathrm{cov}(X_i,\,X_j) &= \langle(x_i-\langle x_i\rangle)(x_j-\langle x_j\rangle)\rangle\\
+&=\langle x_i x_j - x_i\langle x_j\rangle - \langle x_i\rangle x_j + \langle x_i\rangle\langle x_j\rangle\rangle \\
+&=\langle x_i x_j\rangle - \langle x_i\langle x_j\rangle\rangle - \langle \langle x_i\rangle x_j\rangle +
+\langle \langle x_i\rangle\langle x_j\rangle\rangle\\
+&=\langle x_i x_j\rangle - \langle x_i\rangle\langle x_j\rangle - \langle x_i\rangle\langle x_j\rangle +
+\langle x_i\rangle\langle x_j\rangle\\
+&=\langle x_i x_j\rangle - \langle x_i\rangle\langle x_j\rangle
+\end{align}
+!et
+!eblock
+
+!split
+===== Covariance example =====
+
+Suppose we have defined three vectors $\bm{x}, \bm{y}, \bm{z}$ with
+$n$ elements each. The covariance matrix is defined as
+
+
+!bt
+\[
+\bm{\Sigma} = \begin{bmatrix} \sigma_{xx} & \sigma_{xy} & \sigma_{xz} \\
+                              \sigma_{yx} & \sigma_{yy} & \sigma_{yz} \\
+                              \sigma_{zx} & \sigma_{zy} & \sigma_{zz}
+             \end{bmatrix},
+\]
+!et
+where for example
+!bt
+\[
+\sigma_{xy} =\frac{1}{n} \sum_{i=0}^{n-1}(x_i- \overline{x})(y_i- \overline{y}).
+\]
+!et
+
+The Numpy function _np.cov_ calculates the covariance elements using
+the factor $1/(n-1)$ instead of $1/n$ since it assumes we do not have
+the exact mean values.
+
+The following simple function uses the _np.vstack_ function which
+takes each vector of dimension $1\times n$ and produces a $3\times n$
+matrix $\bm{W}$
+
+!bt
+\[
+\bm{W} = \begin{bmatrix} x_0 & y_0 & z_0 \\
+                          x_1 & y_1 & z_1 \\
+                          x_2 & y_2 & z_2 \\
+                          \dots & \dots & \dots \\
+                          x_{n-2} & y_{n-2} & z_{n-2} \\
+                          x_{n-1} & y_{n-1} & z_{n-1}
+             \end{bmatrix},
+\]
+!et
+
+which in turn is converted into into the $3\times 3$ covariance matrix
+$\bm{\Sigma}$ via the Numpy function _np.cov()_. We note that we can
+also calculate the mean value of each set of samples $\bm{x}$ etc
+using the Numpy function _np.mean(x)_. We can also extract the
+eigenvalues of the covariance matrix through the _np.linalg.eig()_
+function.
+
+
+!split
+===== Covariance in numpy =====
+
+!bc pycod
+# Importing various packages
+import numpy as np
+
+n = 100
+x = np.random.normal(size=n)
+print(np.mean(x))
+y = 4+3*x+np.random.normal(size=n)
+print(np.mean(y))
+z = x**3+np.random.normal(size=n)
+print(np.mean(z))
+W = np.vstack((x, y, z))
+Sigma = np.cov(W)
+print(Sigma)
+Eigvals, Eigvecs = np.linalg.eig(Sigma)
+print(Eigvals)
+!ec
+
+
+
+!split
+===== Statistics, independent variables  =====
+!bblock
+If $X_i$ and $X_j$ are independent, we get 
+$\langle x_i x_j\rangle =\langle x_i\rangle\langle x_j\rangle$, resulting in $\mathrm{cov}(X_i, X_j) = 0\ \ (i\neq j)$.
+
+Also useful for us is the covariance of linear combinations of
+stochastic variables. Let $\{X_i\}$ and $\{Y_i\}$ be two sets of
+stochastic variables. Let also $\{a_i\}$ and $\{b_i\}$ be two sets of
+scalars. Consider the linear combination:
+!bt
+\[
+U = \sum_i a_i X_i \qquad V = \sum_j b_j Y_j
+\]
+!et
+By the linearity of the expectation value
+!bt
+\[
+\mathrm{cov}(U, V) = \sum_{i,j}a_i b_j \mathrm{cov}(X_i, Y_j)
+\]
+!et
+!eblock
+
+!split
+===== Statistics, more variance  =====
+!bblock
+Now, since the variance is just $\mathrm{var}(X_i) = \mathrm{cov}(X_i, X_i)$, we get
+the variance of the linear combination $U = \sum_i a_i X_i$:
+!bt
+\begin{equation}
+\mathrm{var}(U) = \sum_{i,j}a_i a_j \mathrm{cov}(X_i, X_j)
+label{eq:variance_linear_combination}
+\end{equation}
+!et
+And in the special case when the stochastic variables are
+uncorrelated, the off-diagonal elements of the covariance are as we
+know zero, resulting in:
+!bt
+\[
+\mathrm{var}(U) = \sum_i a_i^2 \mathrm{cov}(X_i, X_i) = \sum_i a_i^2 \mathrm{var}(X_i)
+\]
+!et
+!bt
+\[
+\mathrm{var}(\sum_i a_i X_i) = \sum_i a_i^2 \mathrm{var}(X_i)
+\]
+!et
+which will become very useful in our study of the error in the mean
+value of a set of measurements.
+!eblock
+
+!split
+===== Statistics and stochastic processes  =====
+!bblock
+A *stochastic process* is a process that produces sequentially a
+chain of values:
+!bt
+\[
+\{x_1, x_2,\dots\,x_k,\dots\}.
+\]
+!et
+We will call these
+values our *measurements* and the entire set as our measured
+*sample*.  The action of measuring all the elements of a sample
+we will call a stochastic *experiment* since, operationally,
+they are often associated with results of empirical observation of
+some physical or mathematical phenomena; precisely an experiment. We
+assume that these values are distributed according to some 
+PDF $p_X^{\phantom X}(x)$, where $X$ is just the formal symbol for the
+stochastic variable whose PDF is $p_X^{\phantom X}(x)$. Instead of
+trying to determine the full distribution $p$ we are often only
+interested in finding the few lowest moments, like the mean
+$\mu_X^{\phantom X}$ and the variance $\sigma_X^{\phantom X}$.
+!eblock
+
+
+!split 
+===== Statistics and sample variables  =====
+!bblock
+In practical situations a sample is always of finite size. Let that
+size be $n$. The expectation value of a sample, the *sample mean*, is then defined as follows:
+!bt
+\[
+\bar{x}_n \equiv \frac{1}{n}\sum_{k=1}^n x_k
+\]
+!et
+The *sample variance* is:
+!bt
+\[
+\mathrm{var}(x) \equiv \frac{1}{n}\sum_{k=1}^n (x_k - \bar{x}_n)^2
+\]
+!et
+its square root being the *standard deviation of the sample*. The
+*sample covariance* is:
+!bt
+\[
+\mathrm{cov}(x)\equiv\frac{1}{n}\sum_{kl}(x_k - \bar{x}_n)(x_l - \bar{x}_n)
+\]
+!et
+!eblock
+
+!split
+===== Statistics, sample variance and covariance =====
+!bblock
+Note that the sample variance is the sample covariance without the
+cross terms. In a similar manner as the covariance in Eq.~(ref{eq:def_covariance}) is a measure of the correlation between
+two stochastic variables, the above defined sample covariance is a
+measure of the sequential correlation between succeeding measurements
+of a sample.
+
+These quantities, being known experimental values, differ
+significantly from and must not be confused with the similarly named
+quantities for stochastic variables, mean $\mu_X$, variance $\mathrm{var}(X)$
+and covariance $\mathrm{cov}(X,Y)$.
+!eblock
+
+!split
+===== Statistics, law of large numbers =====
+!bblock
+The law of large numbers
+states that as the size of our sample grows to infinity, the sample
+mean approaches the true mean $\mu_X^{\phantom X}$ of the chosen PDF:
+!bt
+\[
+\lim_{n\to\infty}\bar{x}_n = \mu_X^{\phantom X}
+\]
+!et
+The sample mean $\bar{x}_n$ works therefore as an estimate of the true
+mean $\mu_X^{\phantom X}$.
+
+What we need to find out is how good an approximation $\bar{x}_n$ is to
+$\mu_X^{\phantom X}$. In any stochastic measurement, an estimated
+mean is of no use to us without a measure of its error. A quantity
+that tells us how well we can reproduce it in another experiment. We
+are therefore interested in the PDF of the sample mean itself. Its
+standard deviation will be a measure of the spread of sample means,
+and we will simply call it the *error* of the sample mean, or
+just sample error, and denote it by $\mathrm{err}_X^{\phantom X}$. In
+practice, we will only be able to produce an *estimate* of the
+sample error since the exact value would require the knowledge of the
+true PDFs behind, which we usually do not have.
+!eblock
+
+
+!split
+===== Statistics, more on sample error =====
+!bblock
+Let us first take a look at what happens to the sample error as the
+size of the sample grows. In a sample, each of the measurements $x_i$
+can be associated with its own stochastic variable $X_i$. The
+stochastic variable $\overline X_n$ for the sample mean $\bar{x}_n$ is
+then just a linear combination, already familiar to us:
+!bt
+\[
+\overline X_n = \frac{1}{n}\sum_{i=1}^n X_i
+\]
+!et
+All the coefficients are just equal $1/n$. The PDF of $\overline X_n$,
+denoted by $p_{\overline X_n}(x)$ is the desired PDF of the sample
+means. 
+!eblock
+
+!split
+===== Statistics  =====
+!bblock
+The probability density of obtaining a sample mean $\bar x_n$
+is the product of probabilities of obtaining arbitrary values $x_1,
+x_2,\dots,x_n$ with the constraint that the mean of the set $\{x_i\}$
+is $\bar x_n$:
+!bt
+\[
+p_{\overline X_n}(x) = \int p_X^{\phantom X}(x_1)\cdots
+\int p_X^{\phantom X}(x_n)\ 
+\delta\!\left(x - \frac{x_1+x_2+\dots+x_n}{n}\right)dx_n \cdots dx_1
+\]
+!et
+And in particular we are interested in its variance $\mathrm{var}(\overline X_n)$.
+!eblock
+
+
+
+!split
+===== Statistics, central limit theorem =====
+!bblock
+It is generally not possible to express $p_{\overline X_n}(x)$ in a
+closed form given an arbitrary PDF $p_X^{\phantom X}$ and a number
+$n$. But for the limit $n\to\infty$ it is possible to make an
+approximation. The very important result is called *the central limit theorem*. It tells us that as $n$ goes to infinity,
+$p_{\overline X_n}(x)$ approaches a Gaussian distribution whose mean
+and variance equal the true mean and variance, $\mu_{X}^{\phantom X}$
+and $\sigma_{X}^{2}$, respectively:
+!bt
+\begin{equation}
+\lim_{n\to\infty} p_{\overline X_n}(x) =
+\left(\frac{n}{2\pi\mathrm{var}(X)}\right)^{1/2}
+e^{-\frac{n(x-\bar x_n)^2}{2\mathrm{var}(X)}}
+label{eq:central_limit_gaussian}
+\end{equation}
+!et
+!eblock
+
+
 
 
 !split
@@ -666,6 +1069,9 @@ later). These values are then used to define a function $y(x)$
 random noise added via the normal distribution.
 
 
+!split
+=== Simple linear regression model using _scikit-learn_, Numpy functions ===
+
 The Numpy functions are imported used the _import numpy as np_
 statement and the random number generator for the uniform distribution
 is called using the function _np.random.rand()_, where we specificy
@@ -690,6 +1096,9 @@ data $(\hat{x},\hat{y})$ for our training data. The Python package
 _scikit-learn_ has also a functionality which extracts the above
 fitting parameters $\alpha$ and $\beta$ (see below). Later we will
 distinguish between training data and test data.
+
+!split
+=== Simple linear regression model using _scikit-learn_, Matplotlib ===
 
 For plotting we use the Python package
 "matplotlib":"https://matplotlib.org/" which produces publication
@@ -722,6 +1131,10 @@ plt.title(r'Simple Linear Regression')
 plt.show()
 !ec
 
+
+!split
+=== Simple linear regression model, what to expect ===
+
 This example serves several aims. It allows us to demonstrate several
 aspects of data analysis and later machine learning algorithms. The
 immediate visualization shows that our linear fit is not
@@ -744,6 +1157,10 @@ set. However, this testing 'by the eye' is obviouly not satisfactory in the
 long run. Here we have only defined the training data and our model, and 
 have not discussed a more rigorous approach to the _cost_ function.
 
+
+!split
+=== Simple linear regression model, how to evaluate the model ===
+
 We need more rigorous criteria in defining whether we have succeeded or
 not in modeling our training data.  You will be surprised to see that
 many scientists seldomly venture beyond this 'by the eye' approach. A
@@ -761,6 +1178,9 @@ $y_i$.  We may not know the explicit value of $\sigma_i^2$, it serves
 however the aim of scaling the equations and make the cost function
 dimensionless.  
 
+!split
+=== Our first Cost/Loss function encounter ===
+
 Minimizing the cost function is a central aspect of
 our discussions to come. Finding its minima as function of the model
 parameters ($\alpha$ and $\beta$ in our case) will be a recurring
@@ -776,7 +1196,18 @@ many practitioners minimize the above function ''by the eye', popularly dubbed a
 'chi by the eye'. That is, change a parameter and see (visually and numerically) that 
 the  $\chi^2$ function becomes smaller. 
 
-There are many ways to define the cost function. A simpler approach is to look at the relative difference between the training data and the predicted data, that is we define 
+!split
+=== Our first Cost/Loss function encounter, naming ===
+
+The terms cost and loss functions are often synonymous, sometimes you will also encounter the usage  error function.
+The more general scenario is to define an objective function first, which we want to optimize.
+It is common to see statements like this however: _The loss function computes the error for a single training example, while the cost function is the average of the loss functions of the entire training set_.
+
+!split
+=== Our first Cost/Loss function encounter, how do we define them?  ===
+
+
+There are many ways to define the cost/loss function. A simpler approach is to look at the relative difference between the training data and the predicted data, that is we define 
 the relative error (why would we prefer the MSE instead of the relative error?) as
 
 !bt
@@ -817,10 +1248,15 @@ have a small or larger relative error. Try to play around with
 different training data sets and study (graphically) the value of the
 relative error.
 
+!split
+=== _Scikit-Learn_ functionality  ===
+
+
 As mentioned above, _Scikit-Learn_ has an impressive functionality.
 We can for example extract the values of $\alpha$ and $\beta$ and
 their error estimates, or the variance and standard deviation and many
 other properties from the statistical data analysis. 
+
 
 Here we show an
 example of the functionality of _Scikit-Learn_.
@@ -1505,3 +1941,7 @@ a probability distribution and try to learn this distribution from the data. We 
 such models statistical models. Models of the second category model the overall
 geometric shape of the data set with deterministic models such as subspaces, smooth
 manifolds, or topological spaces.6 We call such models geometric models.
+
+
+
+
