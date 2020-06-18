@@ -499,19 +499,6 @@ print(Eigvals)
 !ec
 
 
-!bc pycod
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy import sparse
-eye = np.eye(4)
-print(eye)
-sparse_mtx = sparse.csr_matrix(eye)
-print(sparse_mtx)
-x = np.linspace(-10,10,100)
-y = np.sin(x)
-plt.plot(x,y,marker='x')
-plt.show()
-!ec
 
 !split
 ===== Meet the Pandas =====
@@ -540,6 +527,10 @@ data_pandas = pd.DataFrame(data)
 display(data_pandas)
 !ec
 
+
+!split
+===== Data Frames in Pandas =====
+
 In the above we have imported _pandas_ with the shorthand _pd_, the latter has become the standard way we import _pandas_. We make then a list of various variables
 and reorganize the aboves lists into a _DataFrame_ and then print out  a neat table with specific column labels as *Name*, *place of birth* and *date of birth*.
 Displaying these results, we see that the indices are given by the default numbers from zero to three.
@@ -564,6 +555,8 @@ data_pandas=data_pandas.append(pd.DataFrame(new_hobbit, index=['Pippin']))
 display(data_pandas)
 !ec
 
+!split
+===== More  Pandas =====
 
 Here are other examples where we use the _DataFrame_ functionality to handle arrays, now with more interesting features for us, namely numbers. We set up a matrix 
 of dimensionality $10\times 5$ and compute the mean value and standard deviation of each column. Similarly, we can perform mathematial operations like squaring the matrix elements and many other operations. 
@@ -613,6 +606,11 @@ print(df1)
 !ec
 and many other operations. 
 
+
+!split
+===== Pandas Series =====
+
+
 The _Series_ class is another important class included in
 _pandas_. You can view it as a specialization of _DataFrame_ but where
 we have just a single column of data. It shares many of the same features as _DataFrame. As with _DataFrame_,
@@ -621,8 +619,8 @@ As we will see below it leads also to a very concice code close to the mathemati
 For multidimensional arrays, we recommend strongly "xarray":"http://xarray.pydata.org/en/stable/". _xarray_ has much of the same flexibility as _pandas_, but allows for the extension to higher dimensions than two. We will see examples later of the usage of both _pandas_ and _xarray_. 
 
 
-
-===== Reading Data and fitting  =====
+!split
+===== Reading Data and Fitting  =====
 
 In order to study various Machine Learning algorithms, we need to
 access data. Acccessing data is an essential step in all machine
@@ -634,7 +632,7 @@ in various formats, The formats span from reading files from disk,
 loading data from databases and interacting with online sources
 like web application programming interfaces (APIs).
 
-In handling various input formats, as discussed above, we will mainly stay with _pandas_,
+In handling various input formats, as discussed above, we will often stay with _pandas_,
 a Python package which allows us, in a seamless and painless way, to
 deal with a multitude of formats, from standard _csv_ (comma separated
 values) files, via _excel_, _html_ to _hdf5_ formats.  With _pandas_
@@ -653,7 +651,7 @@ you can easily implement other algorithms like decision trees and random forests
 But before we really start with nuclear physics data, let's just look at some simpler polynomial fitting cases, such as,
 (don't be offended) fitting straight lines!
 
-
+!split
 === Simple linear regression model using _scikit-learn_ ===
 
 We start with perhaps our simplest possible example, using _Scikit-Learn_ to perform linear regression analysis on a data set produced by us. 
@@ -1435,6 +1433,75 @@ plt.show()
 !ec
 
 
+Prediction versus estimation; correlation versus causation. When you hear these
+phrases in the context of machine learning, what do you think of? Maybe one
+thinks of the difference between classifying new data points and generating
+new data point
+ssifying new data points and generating
+new data points. Or perhaps one considers that correlation is a symmetric as-
+sessment (e.g., if A is correlated with B, then B is correlated with A), but cau-
+1
+sation is directional (e.g., if A causes B, B does not necessarily cause A) . These concepts are in some sense the difference between machine learning and statistics. In machine learning and prediction based tasks, we are often in- terested in developing algorithms that are capable of learning patterns from given data in an automated fashion, and then using these learned patterns to make predictions or assessments of newly given data. In many cases, our pri- mary concern is the quality of the predictions or assessments, and we are less concerned about the underlying patterns that were learned in order make these predictions. ~
+
+s. Neural networks are, in some sense, the epitome of this point of view. In various contexts they are incredibly good at making predictions, but~
+
+they are often referred to as “black box” methods due to the difficulty in un- derstanding the model by which they make such predictions. For example, the most powerful convolutional neural networks are incredibly good at classify- ing natural images (sometimes even better than humans), but it is very difficult to understand the mechanisms by which they make such predictions.
+In (classical) statistics and estimation, one is more concerned with the un- derlying model that makes the prediction. In other words, are the parameters of the model that makes the prediction statistically significant? Or could sev- eral other models (i.e., different parameter choices) have made the same pre- diction? This is the correlation versus causation issue. It comes up, for example and perhaps most notably, in medical trials and studies, in which one must not only find correlations and patterns in the data, but one must find the causal factors of a disease, so that one may develop and prescribe treatment.
 
 
 
+In science and engineering, one is frequently called upon to infer (or learn) a
+quantitative model M for a given set of sample points X D fx1; x2; : : : ; xNg  RD.
+For instance, Figure 1.1 shows a simple example in which one is given a set of
+four sample points in a two-dimensional plane. Obviously, these points can be
+fit perfectly by a (one-dimensional) straight line L. The line can then be called
+a “model” for the given points. The reason for inferring such a model is that it
+serves many useful purposes. On the one hand, the model can reveal information
+encoded in the data or underlying mechanisms from which the data were generated.
+In addition, it can simplify the representation of the given data set and help
+
+predict future samples. In the case of the four points shown in Figure 1.1, the line
+model gives a more compact one-dimensional representation than the original twodimensional
+plane P. It also suggests that any new point (if generated with a similar
+mechanism as the existing points) will likely fall on the same line.
+
+
+A first important consideration to keep in mind is that inferring the “correct” model
+for a given data set is an elusive, if not impossible, task. The fundamental difficulty
+is that if we are not specific about what we mean by a “correct” model, there
+could easily be many different models that fit the given data set “equally well.”
+For instance, in the example shown in Figure 1.1, any smooth curve that passes
+through the sample points would seem to be as valid a model as the straight
+line. Furthermore, if there were noise in the given sample points, then any curve,
+including the line, passing through the points exactly would unlikely be the “true
+model.”
+The question now is this: in what sense can we say that a model is correct or
+optimal for a given data set? To make the model inference problem well posed, i.e.,
+to guarantee that there is a unique optimal model for the given data, we need to
+impose additional assumptions or restrictions on the class of models considered. To
+this end, we should not be looking for just any model that can describe the data.
+Instead, we should look for a model M that is the best among a restricted class
+of modelsM.4 In addition, to make the model inference problem computationally
+tractable, we need to specify how restricted the class of models needs to be. A
+common strategy, known as the principle of Occam’s razor,5 is to try to get away
+
+with the simplest possible class of models that is just necessary to describe the data
+or solve the problem at hand. More precisely, the model class should be rich enough
+to contain at least one model that can fit the data to a desired accuracy and yet be
+restricted enough that it is relatively simple to find the best model for the given data.
+Thus, in engineering practice, the most popular strategy is to start from the
+simplest class of models and increase the complexity of the models only when the
+simpler models become inadequate. For instance, to fit a set of sample points, one
+may first try the simplest class of models, namely linear models, followed by the
+class of hybrid (piecewise) linear models (subspaces), and then followed by the
+class of (piecewise) nonlinear models (submanifolds). One of the goals of this book
+is to demonstrate that among them, piecewise linear models can already achieve
+an excellent balance between expressiveness and simplicity for many important
+practical data sets and problems.
+
+There are essentially two main categories of models and approaches for modeling
+a data set. Methods of the first category model the data as random samples from
+a probability distribution and try to learn this distribution from the data. We call
+such models statistical models. Models of the second category model the overall
+geometric shape of the data set with deterministic models such as subspaces, smooth
+manifolds, or topological spaces.6 We call such models geometric models.
