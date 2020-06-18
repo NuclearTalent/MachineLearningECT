@@ -1,0 +1,447 @@
+*** error: file has a mako construction ${\mathbb{R}'
+    but seemingly no definition in <%...%>'
+    (it is not a command-line given mako variable either).
+    However, if this is a variable in a Makefile or Bash script
+    run with --no_mako - and you cannot use mako and Makefile or Bash variables
+    in the same document!
+
+translating doconce text in Dimred.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+*** warning: inline math in HTML must have space around <:
+    d << p  ->  d < < p
+*** warning: inline math in HTML must have space around <:
+    l << p  ->  l < < p
+*** warning: inline math in HTML must have space around <:
+    l << p  ->  l < < p
+output in Dimred-reveal.html
+*** error: file has a mako construction ${\mathbb{R}'
+    but seemingly no definition in <%...%>'
+    (it is not a command-line given mako variable either).
+    However, if this is a variable in a Makefile or Bash script
+    run with --no_mako - and you cannot use mako and Makefile or Bash variables
+    in the same document!
+
+translating doconce text in Dimred.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+*** warning: inline math in HTML must have space around <:
+    d << p  ->  d < < p
+*** warning: inline math in HTML must have space around <:
+    l << p  ->  l < < p
+*** warning: inline math in HTML must have space around <:
+    l << p  ->  l < < p
+output in Dimred-solarized.html
+*** error: file has a mako construction ${\mathbb{R}'
+    but seemingly no definition in <%...%>'
+    (it is not a command-line given mako variable either).
+    However, if this is a variable in a Makefile or Bash script
+    run with --no_mako - and you cannot use mako and Makefile or Bash variables
+    in the same document!
+
+translating doconce text in Dimred.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+*** warning: inline math in HTML must have space around <:
+    d << p  ->  d < < p
+*** warning: inline math in HTML must have space around <:
+    l << p  ->  l < < p
+*** warning: inline math in HTML must have space around <:
+    l << p  ->  l < < p
+output in Dimred.html
+*** error: file has a mako construction ${\mathbb{R}'
+    but seemingly no definition in <%...%>'
+    (it is not a command-line given mako variable either).
+    However, if this is a variable in a Makefile or Bash script
+    run with --no_mako - and you cannot use mako and Makefile or Bash variables
+    in the same document!
+
+translating doconce text in Dimred.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+*** warning: inline math in HTML must have space around <:
+    d << p  ->  d < < p
+*** warning: inline math in HTML must have space around <:
+    l << p  ->  l < < p
+*** warning: inline math in HTML must have space around <:
+    l << p  ->  l < < p
+output in Dimred-bs.html
+*** error: file has a mako construction ${\mathbb{R}'
+    but seemingly no definition in <%...%>'
+    (it is not a command-line given mako variable either).
+    However, if this is a variable in a Makefile or Bash script
+    run with --no_mako - and you cannot use mako and Makefile or Bash variables
+    in the same document!
+
+translating doconce text in Dimred.do.txt to ipynb
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+Failed to remove ans_at_end environment
+Failed to remove sol_at_end environment
+output in Dimred.ipynb
+*** error: file has a mako construction ${\mathbb{R}'
+    but seemingly no definition in <%...%>'
+    (it is not a command-line given mako variable either).
+    However, if this is a variable in a Makefile or Bash script
+    run with --no_mako - and you cannot use mako and Makefile or Bash variables
+    in the same document!
+
+translating doconce text in Dimred.do.txt to pdflatex
+*** warning: latex format will have problem with words
+    containing underscores (this warning is very uncertain, might be wrong too):
+
+x_N
+
+    typeset these words with `inline verbatim` or escape with backslash
+    First word appears here:
+\dots,\bm{s}_{p-1}]lp-ln = 1000X = \{ x_1, \ldots, x_N \}1000 \times 2\bm{X}n-1n\bar{X} = \{ \bar{x}_1, \ldots
+output in Dimred.p.tex
+*** error: file has a mako construction ${\mathbb{R}'
+    but seemingly no definition in <%...%>'
+    (it is not a command-line given mako variable either).
+    However, if this is a variable in a Makefile or Bash script
+    run with --no_mako - and you cannot use mako and Makefile or Bash variables
+    in the same document!
+
+translating doconce text in DimRed.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+*** warning: inline math in HTML must have space around <:
+    d << p  ->  d < < p
+*** warning: inline math in HTML must have space around <:
+    l << p  ->  l < < p
+*** warning: inline math in HTML must have space around <:
+    l << p  ->  l < < p
+output in DimRed-reveal.html
+*** error: file has a mako construction ${\mathbb{R}'
+    but seemingly no definition in <%...%>'
+    (it is not a command-line given mako variable either).
+    However, if this is a variable in a Makefile or Bash script
+    run with --no_mako - and you cannot use mako and Makefile or Bash variables
+    in the same document!
+
+translating doconce text in DimRed.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+*** warning: inline math in HTML must have space around <:
+    d << p  ->  d < < p
+*** warning: inline math in HTML must have space around <:
+    l << p  ->  l < < p
+*** warning: inline math in HTML must have space around <:
+    l << p  ->  l < < p
+output in DimRed-solarized.html
+*** error: file has a mako construction ${\mathbb{R}'
+    but seemingly no definition in <%...%>'
+    (it is not a command-line given mako variable either).
+    However, if this is a variable in a Makefile or Bash script
+    run with --no_mako - and you cannot use mako and Makefile or Bash variables
+    in the same document!
+
+translating doconce text in DimRed.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+*** warning: inline math in HTML must have space around <:
+    d << p  ->  d < < p
+*** warning: inline math in HTML must have space around <:
+    l << p  ->  l < < p
+*** warning: inline math in HTML must have space around <:
+    l << p  ->  l < < p
+output in DimRed.html
+*** error: file has a mako construction ${\mathbb{R}'
+    but seemingly no definition in <%...%>'
+    (it is not a command-line given mako variable either).
+    However, if this is a variable in a Makefile or Bash script
+    run with --no_mako - and you cannot use mako and Makefile or Bash variables
+    in the same document!
+
+translating doconce text in DimRed.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+*** warning: inline math in HTML must have space around <:
+    d << p  ->  d < < p
+*** warning: inline math in HTML must have space around <:
+    l << p  ->  l < < p
+*** warning: inline math in HTML must have space around <:
+    l << p  ->  l < < p
+output in DimRed-bs.html
+*** error: file has a mako construction ${\mathbb{R}'
+    but seemingly no definition in <%...%>'
+    (it is not a command-line given mako variable either).
+    However, if this is a variable in a Makefile or Bash script
+    run with --no_mako - and you cannot use mako and Makefile or Bash variables
+    in the same document!
+
+translating doconce text in DimRed.do.txt to ipynb
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+Failed to remove ans_at_end environment
+Failed to remove sol_at_end environment
+output in DimRed.ipynb
+*** error: file has a mako construction ${\mathbb{R}'
+    but seemingly no definition in <%...%>'
+    (it is not a command-line given mako variable either).
+    However, if this is a variable in a Makefile or Bash script
+    run with --no_mako - and you cannot use mako and Makefile or Bash variables
+    in the same document!
+
+translating doconce text in DimRed.do.txt to pdflatex
+*** warning: latex format will have problem with words
+    containing underscores (this warning is very uncertain, might be wrong too):
+
+x_N
+
+    typeset these words with `inline verbatim` or escape with backslash
+    First word appears here:
+\dots,\bm{s}_{p-1}]lp-ln = 1000X = \{ x_1, \ldots, x_N \}1000 \times 2\bm{X}n-1n\bar{X} = \{ \bar{x}_1, \ldots
+output in DimRed.p.tex
+*** error: file has a mako construction ${\mathbb{R}'
+    but seemingly no definition in <%...%>'
+    (it is not a command-line given mako variable either).
+    However, if this is a variable in a Makefile or Bash script
+    run with --no_mako - and you cannot use mako and Makefile or Bash variables
+    in the same document!
+
+translating doconce text in DimRed.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+*** warning: inline math in HTML must have space around <:
+    d << p  ->  d < < p
+*** warning: inline math in HTML must have space around <:
+    l << p  ->  l < < p
+*** warning: inline math in HTML must have space around <:
+    l << p  ->  l < < p
+output in DimRed-reveal.html
+*** error: file has a mako construction ${\mathbb{R}'
+    but seemingly no definition in <%...%>'
+    (it is not a command-line given mako variable either).
+    However, if this is a variable in a Makefile or Bash script
+    run with --no_mako - and you cannot use mako and Makefile or Bash variables
+    in the same document!
+
+translating doconce text in DimRed.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+*** warning: inline math in HTML must have space around <:
+    d << p  ->  d < < p
+*** warning: inline math in HTML must have space around <:
+    l << p  ->  l < < p
+*** warning: inline math in HTML must have space around <:
+    l << p  ->  l < < p
+output in DimRed-solarized.html
+*** error: file has a mako construction ${\mathbb{R}'
+    but seemingly no definition in <%...%>'
+    (it is not a command-line given mako variable either).
+    However, if this is a variable in a Makefile or Bash script
+    run with --no_mako - and you cannot use mako and Makefile or Bash variables
+    in the same document!
+
+translating doconce text in DimRed.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+*** warning: inline math in HTML must have space around <:
+    d << p  ->  d < < p
+*** warning: inline math in HTML must have space around <:
+    l << p  ->  l < < p
+*** warning: inline math in HTML must have space around <:
+    l << p  ->  l < < p
+output in DimRed.html
+*** error: file has a mako construction ${\mathbb{R}'
+    but seemingly no definition in <%...%>'
+    (it is not a command-line given mako variable either).
+    However, if this is a variable in a Makefile or Bash script
+    run with --no_mako - and you cannot use mako and Makefile or Bash variables
+    in the same document!
+
+translating doconce text in DimRed.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+*** warning: inline math in HTML must have space around <:
+    d << p  ->  d < < p
+*** warning: inline math in HTML must have space around <:
+    l << p  ->  l < < p
+*** warning: inline math in HTML must have space around <:
+    l << p  ->  l < < p
+output in DimRed-bs.html
+*** error: file has a mako construction ${\mathbb{R}'
+    but seemingly no definition in <%...%>'
+    (it is not a command-line given mako variable either).
+    However, if this is a variable in a Makefile or Bash script
+    run with --no_mako - and you cannot use mako and Makefile or Bash variables
+    in the same document!
+
+translating doconce text in DimRed.do.txt to ipynb
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+Failed to remove ans_at_end environment
+Failed to remove sol_at_end environment
+output in DimRed.ipynb
+*** error: file has a mako construction ${\mathbb{R}'
+    but seemingly no definition in <%...%>'
+    (it is not a command-line given mako variable either).
+    However, if this is a variable in a Makefile or Bash script
+    run with --no_mako - and you cannot use mako and Makefile or Bash variables
+    in the same document!
+
+translating doconce text in DimRed.do.txt to pdflatex
+*** warning: latex format will have problem with words
+    containing underscores (this warning is very uncertain, might be wrong too):
+
+x_N
+
+    typeset these words with `inline verbatim` or escape with backslash
+    First word appears here:
+\dots,\bm{s}_{p-1}]lp-ln = 1000X = \{ x_1, \ldots, x_N \}1000 \times 2\bm{X}n-1n\bar{X} = \{ \bar{x}_1, \ldots
+output in DimRed.p.tex
