@@ -8,7 +8,7 @@ DATE: today
 
 
 !split
-===== Introduction =====
+======= Introduction =======
 
 During the last two decades there has been a swift and amazing
 development of Machine Learning techniques and algorithms that impact
@@ -29,28 +29,9 @@ Science, Technology, Mathematics and Engineering fields to Life
 Science, Law, education research, the Humanities and the Social
 Sciences.
 
-It has become more
-and more common to see research projects on big data in for example
-the Social Sciences where extracting patterns from complicated survey
-data is one of many research directions.  Having a solid grasp of data
-analysis and machine learning is thus becoming central to scientific
-computing in many fields, and competences and skills within the fields
-of machine learning and scientific computing are nowadays strongly
-requested by many potential employers. The latter cannot be
-overstated, familiarity with machine learning has almost become a
-prerequisite for many of the most exciting employment opportunities,
-whether they are in bioinformatics, life science, physics or finance,
-in the private or the public sector. This author has had several
-students or met students who have been hired recently based on their
-skills and competences in scientific computing and data science, often
-with marginal knowledge of machine learning.
 
-Machine learning is a subfield of computer science, and is closely
-related to computational statistics.  It evolved from the study of
-pattern recognition in artificial intelligence (AI) research, and has
-made contributions to AI tasks like computer vision, natural language
-processing and speech recognition. Many of the methods we will study are also 
-strongly rooted in basic mathematics and physics research. 
+!split
+===== Machine Learning, short overview  =====
 
 Ideally, machine learning represents the science of giving computers
 the ability to learn without being explicitly programmed.  The idea is
@@ -67,21 +48,26 @@ age. The increases we have seen during the last three decades in
 computational capabilities have been followed by developments of
 methods and techniques for analyzing and handling large date sets,
 relying heavily on statistics, computer science and mathematics.  The
-field is rather new and developing rapidly. Popular software packages
+field is rather new and developing rapidly. Popular software libraries
 written in Python for machine learning like
 "Scikit-learn":"http://scikit-learn.org/stable/",
 "Tensorflow":"https://www.tensorflow.org/",
 "PyTorch":"http://pytorch.org/" and "Keras":"https://keras.io/", all
 freely available at their respective GitHub sites, encompass
 communities of developers in the thousands or more. And the number of
-code developers and contributors keeps increasing. Not all the
+code developers and contributors keeps increasing.
+
+!split
+=====  A multidisciplinary approach =====
+
+Not all the
 algorithms and methods can be given a rigorous mathematical
-justification, opening up thereby large rooms for experimenting and
+justification (for example decision trees and random forests), opening up thereby large rooms for experimenting and
 trial and error and thereby exciting new developments.  However, a
 solid command of linear algebra, multivariate theory, probability
 theory, statistical data analysis, understanding errors and Monte
 Carlo methods are central elements in a proper understanding of many
-of algorithms and methods we will discuss.
+of the algorithms and methods we will discuss.
 
 
 !split 
@@ -94,8 +80,8 @@ algorithms and methods essential for studies of data analysis and
 machine learning. 
 
 Hands-on projects and experimenting with data and algorithms plays a central role in
-these lectures, and our hope is, through the various
-projects and exercises, to  expose you to fundamental
+these lectures, and our hope is, through the various examples discussed in this series of lectures,
+to  expose you to fundamental
 research problems in these fields, with the aim to reproduce state of
 the art scientific results. You  will learn to develop and
 structure codes for studying these systems, get acquainted with
@@ -103,13 +89,14 @@ computing facilities and learn to handle large scientific projects. A
 good scientific and ethical conduct is emphasized throughout the
 course. More specifically, you will
 
-o Learn about basic data analysis, data optimization and machine learning;
-o Be capable of extending the acquired knowledge to other systems and cases;
-o Have an understanding of central algorithms used in data analysis and machine learning;
-o Understand methods for regression and classification;
-o Learn about neural network, decision trees and support vector machines
-o Work on numerical projects to illustrate the theory. The projects play a central role and you are expected to know modern programming languages like Python or C++, in addition to a basic knowledge of linear algebra (typically taught during the first one or two years of undergraduate studies).
-
+!bpop
+o color{red}{Learn about basic data analysis, data optimization and machine learning};
+o color{red}{Be capable of extending the acquired knowledge to other systems and cases};
+o color{red}{Have an understanding of central algorithms used in data analysis and machine learning};
+o color{red}{Understand methods for regression and classification};
+o color{red}{Methods we will focus on are Linear and Logistic Regression, Decision trees, random forests, bagging and boosting and various variants of deep learning methods, from feed forward neural networks to more advanced methods};
+o color{red}{Work on numerical examples to illustrate the theory}; 
+!epop
 
 
 !split
@@ -148,103 +135,8 @@ Jupyter notebook framework with the possibility to run _R_ codes or
 compiled programs written in C++, and much more made our choice of
 programming language for this series of lectures easy. However,
 since the focus here is not only on using existing Python libraries such
-as _Scikit-Learn_ or _Tensorflow_, but also on developing your own
+as _Scikit-Learn_, _Tensorflow_ and _Pytorch_, but also on developing your own
 algorithms and codes, we will as far as possible present many of these
 algorithms either as a Python codes or C++ or Fortran (or other languages) codes. 
 
-!split
-===== Data handling, machine learning  and ethical aspects =====
-
-In most of the cases we will study, we will either generate the data
-to analyze ourselves (both for supervised learning and unsupervised
-learning) or we will recur again and again to data present in say
-_Scikit-Learn_ or _Tensorflow_.  Many of the examples we end up
-dealing with are from a privacy and data protection point of view,
-rather inoccuous and boring results of numerical
-calculations. However, this does not hinder us from developing a sound
-ethical attitude to the data we use, how we analyze the data and how
-we handle the data.
-
-The most immediate and simplest possible ethical aspects deal with our
-approach to the scientific process. Nowadays, with version control
-software like "Git":"https://git-scm.com/" and various online
-repositories like "Github":"https://github.com/",
-"Gitlab":"https://about.gitlab.com/" etc, we can easily make our codes
-and data sets we have used, freely and easily accessible to a wider
-community. This helps us almost automagically in making our science
-reproducible. The large open-source development communities involved
-in say "Scikit-Learn":"http://scikit-learn.org/stable/",
-"Tensorflow":"https://www.tensorflow.org/",
-"PyTorch":"http://pytorch.org/" and "Keras":"https://keras.io/", are
-all excellent examples of this. The codes can be tested and improved
-upon continuosly, helping thereby our scientific community at large in
-developing data analysis and machine learning tools.  It is much
-easier today to gain traction and acceptance for making your science
-reproducible. From a societal stand, this is an important element
-since many of the developers are employees of large public institutions like
-universities and research labs. Our fellow taxpayers do deserve to get
-something back for their bucks.
-
-However, this more mechanical aspect of the ethics of science (in
-particular the reproducibility of scientific results) is something
-which is obvious and everybody should do so as part of the dialectics of
-science.  The fact that many scientists are not willing to share their codes or 
-data is detrimental to the scientific discourse.
-
-Before we proceed, we should add a disclaimer. Even though
-we may dream of computers developing some kind of higher learning
-capabilities, at the end (even if the artificial intelligence
-community keeps touting our ears full of fancy futuristic avenues), it is we, yes you reading these lines,
-who end up constructing and instructing, via various algorithms, the
-machine learning approaches. Self-driving cars for example, rely on sofisticated
-programs which take into account all possible situations a car can
-encounter. In addition, extensive usage of training data from GPS
-information, maps etc, are typically fed into the software for
-self-driving cars. Adding to this various sensors and cameras that
-feed information to the programs, there are zillions of ethical issues
-which arise from this.
-
-For self-driving cars, where basically many of the standard machine
-learning algorithms discussed here enter into the codes, at a certain
-stage we have to make choices. Yes, we , the lads and lasses who wrote
-a program for a specific brand of a self-driving car.  As an example,
-all carmakers have as their utmost priority the security of the
-driver and the accompanying passengers. A famous European carmaker, which is
-one of the leaders in the market of self-driving cars, had _if_
-statements of the following type: suppose there are two obstacles in
-front of you and you cannot avoid to collide with one of them. One of
-the obstacles is a monstertruck while the other one is a kindergarten
-class trying to cross the road. The self-driving car algo would then
-opt for the hitting the small folks instead of the monstertruck, since
-the likelihood of surving a collision with our future citizens, is
-much higher.
-
-This leads to serious ethical aspects. Why should we opt for such an
-option? Who decides and who is entitled to make such choices? Keep in
-mind that many of the algorithms you will encounter in this series of
-lectures or hear about later, are indeed based on simple programming
-instructions. And you are very likely to be one of the people who may
-end up writing such a code. Thus, developing a sound ethical attitude
-to what we do, an approach well beyond the simple mechanistic one of
-making our science available and reproducible, is much needed. The
-example of the self-driving cars is just one of infinitely many cases
-where we have to make choices. When you analyze data on economic
-inequalities, who guarantees that you are not weighting some data in a
-particular way, perhaps because you dearly want a specific conclusion
-which may support your political views? Or what about the recent
-claims that a famous IT company like Apple has a sexist bias on the
-their recently "launched credit card":"https://qz.com/1748321/the-role-of-goldman-sachs-algorithms-in-the-apple-credit-card-scandal/"?
-
-We do not have the answers here, nor will we venture into a deeper
-discussions of these aspects, but we want you think over these topics
-in a more overarching way.  A statistical data analysis with its dry
-numbers and graphs meant to guide the eye, does not necessarily
-reflect the truth, whatever that is.  As a scientist, and after a
-university education, you are supposedly a better citizen, with an
-improved critical view and understanding of the scientific method, and
-perhaps some deeper understanding of the ethics of science at
-large. Use these insights. Be a critical citizen. You owe it to our
-society.
-
- 
 
