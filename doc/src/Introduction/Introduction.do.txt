@@ -8,7 +8,7 @@ DATE: today
 
 
 !split
-======= Introduction =======
+===== Introduction =====
 
 During the last two decades there has been a swift and amazing
 development of Machine Learning techniques and algorithms that impact
@@ -29,6 +29,24 @@ Science, Technology, Mathematics and Engineering fields to Life
 Science, Law, education research, the Humanities and the Social
 Sciences.
 
+!split
+===== Overview of these introductory notes =====
+
+The aim of these notes is to give you a birds view over overarching issues on the topic of Machine Learning, a brief review of programming with Python and libraries we will use in this course, a reminder on statistics and finally our first encounters of Machine Learning methods applied to an evergreen in Nuclear Physics, fitting nuclear binding energies.
+If you are familiar with basic Python programming and statistics, you can easily jump some of the introductory material here.
+
+After these introductory words, the set of lectures will contain the following themes:
+!bpop
+* Linear Regression
+* Logistic Regression
+* Decision Trees, Random Forests, Bagging and Boosting
+* Neural Networks and Deep Learning methods
+* Convolutional and Recurrent Neural Networks and how to analyze experimental results
+* Generative Models
+* Reinforcement Learning
+* Our experimental data are based on Beta-decay experiments and experiments from $\beta$-decay experiments and data from Active Target experiments 
+!epop
+
 
 !split
 ===== Machine Learning, short overview  =====
@@ -43,8 +61,11 @@ machines and algorithms are to a large extent developed by humans. The
 insights and knowledge we have about a specific system, play a central
 role when we develop a specific machine learning algorithm. 
 
+!split
+===== Machine Learning, an extremely rich field  =====
+
 Machine learning is an extremely rich field, in spite of its young
-age. The increases we have seen during the last three decades in
+age. The increases we have seen during the last  decades in
 computational capabilities have been followed by developments of
 methods and techniques for analyzing and handling large date sets,
 relying heavily on statistics, computer science and mathematics.  The
@@ -79,15 +100,12 @@ used in machine learning.  We will introduce a variety of central
 algorithms and methods essential for studies of data analysis and
 machine learning. 
 
-Hands-on projects and experimenting with data and algorithms plays a central role in
+Hands-on projects and experimenting with data and algorithms play a central role in
 these lectures, and our hope is, through the various examples discussed in this series of lectures,
 to  expose you to fundamental
 research problems in these fields, with the aim to reproduce state of
-the art scientific results. You  will learn to develop and
-structure codes for studying these systems, get acquainted with
-computing facilities and learn to handle large scientific projects. A
-good scientific and ethical conduct is emphasized throughout the
-course. More specifically, you will
+the art scientific results. 
+More specifically, you will
 
 !bpop
 o color{red}{Learn about basic data analysis, data optimization and machine learning};
@@ -117,11 +135,11 @@ Another way to categorize machine learning tasks is to consider the
 desired output of a system.  Some of the most common tasks are:
 
 !bpop
-  * Classification: Outputs are divided into two or more classes. The goal is to   produce a model that assigns inputs into one of these classes. An example is to identify  digits based on pictures of hand-written ones. Classification is typically supervised learning.
+* Classification: Outputs are divided into two or more classes. The goal is to   produce a model that assigns inputs into one of these classes. An example is to identify  digits based on pictures of hand-written ones. Classification is often supervised learning.
 
-  * Regression: Finding a functional relationship between an input data set and a reference data set.   The goal is to construct a function that maps input data to continuous output values.
+* Regression: Finding a functional relationship between an input data set and a reference data set.   The goal is to construct a function that maps input data to continuous output values.
 
-  * Clustering: Data are divided into groups with certain common traits, without knowing the different groups beforehand.  It is thus a form of unsupervised learning.
+* Clustering: Data are divided into groups with certain common traits, without knowing the different groups beforehand.  It is thus a form of unsupervised learning.
 !epop
 
 
@@ -131,21 +149,91 @@ desired output of a system.  Some of the most common tasks are:
 
 The methods we cover have three main topics in common, irrespective of
 whether we deal with supervised or unsupervised learning.
+!bpop
+* The first ingredient is normally our data set (which can be subdivided into training, validation  and test data). The often difficult part of using Machine Learning is often to set up your data in a meaningful way. 
 
-The first
-ingredient is normally our data set (which can be subdivided into
-training and test data), the second item is a model which is normally a
-function of some parameters.  The model reflects our knowledge of the system (or lack thereof). As an example, if we know that our data show a behavior similar to what would be predicted by a polynomial, fitting our data to a polynomial of some degree would then determin our model. 
+* The second item is a model which is normally a function of some parameters.  The model reflects our knowledge of the system (or lack thereof). As an example, if we know that our data show a behavior similar to what would be predicted by a polynomial, fitting our data to a polynomial of some degree would then determin our model. 
 
-The last ingredient is a so-called _cost_
-function which allows us to present an estimate on how good our model
-is in reproducing the data it is supposed to train.  
-At the heart of basically all ML algorithms there are so-called minimization algorithms, often we end up with various variants of _gradient_ methods.
+* The last ingredient is a so-called _cost/loss_ function (or error function) which allows us to present an estimate on how good our model is in reproducing the data it is supposed to train.  
+!epop
 
 
+At the heart of basically all ML algorithms there are so-called minimization algorithms, often we end up with various variants of _gradient_ methods and variants thereof.
 
 
+!split
+===== A Frequentist approach to data analysis  =====
 
+When you hear phrases like _predictions and estimations_ and
+_correlations and causations_, what do you think of?  May be you think
+of the difference between classifying new data points and generating
+new data points.
+Or perhaps you consider that correlations represent some kind of symmetric statements like
+if $A$ is correlated with $B$, then $B$ is correlated with
+$A$). Causation on the other hand is directional, that is if $A$ causes $B$, $B$ does not
+necessarily cause $A$.
+
+These concepts are in some sense the difference between machine
+learning and statistics. In machine learning and prediction based
+tasks, we are often interested in developing algorithms that are
+capable of learning patterns from given data in an automated fashion,
+and then using these learned patterns to make predictions or
+assessments of newly given data. In many cases, our primary concern
+is the quality of the predictions or assessments, and we are less
+concerned about the underlying patterns that were learned in order
+to make these predictions.
+
+In machine learning we normally use a so-called frequentist approach,
+where the aim is to make predictions and find correlations. We focus
+less on for example extracting a probability function, that can be
+used in turn to make estimations and find causations such as given $A$
+what is the likelihood for finding $B$.
+
+
+!split
+===== What is a good model? =====
+
+In science and engineering we often end up in situations where we want to infer (or learn) a
+quantitative model $M$ for a given set of sample points $\bm{X} \in [x_1, x_2,\dots x_N]$.
+
+As we will see repeatedely in these lectures, we could try to fit these data points to a model given by a
+straight line, or if we wish to be more sophisticated to a more complex
+function.
+
+The reason for inferring such a model is that it
+serves many useful purposes. On the one hand, the model can reveal information
+encoded in the data or underlying mechanisms from which the data were generated. For instance, we could discover important
+corelations that relate interesting physics interpretations.
+
+In addition, it can simplify the representation of the given data set and help
+us in making predictions about  future data samples.
+
+A first important consideration to keep in mind is that inferring the *correct* model
+for a given data set is an elusive, if not impossible, task. The fundamental difficulty
+is that if we are not specific about what we mean by a *correct* model, there
+could easily be many different models that fit the given data set *equally well*.
+
+
+The central question is this: what leads us to say that a model is correct or
+optimal for a given data set? To make the model inference problem well posed, i.e.,
+to guarantee that there is a unique optimal model for the given data, we need to
+impose additional assumptions or restrictions on the class of models considered. To
+this end, we should not be looking for just any model that can describe the data.
+Instead, we should look for a _model_ $M$ that is the best among a restricted class
+of models. In addition, to make the model inference problem computationally
+tractable, we need to specify how restricted the class of models needs to be. A
+common strategy is to start 
+with the simplest possible class of models that is just necessary to describe the data
+or solve the problem at hand. More precisely, the model class should be rich enough
+to contain at least one model that can fit the data to a desired accuracy and yet be
+restricted enough that it is relatively simple to find the best model for the given data.
+
+Thus, the most popular strategy is to start from the
+simplest class of models and increase the complexity of the models only when the
+simpler models become inadequate. For instance, if we work with a regression problem to fit a set of sample points, one
+may first try the simplest class of models, namely linear models, followed obviously by more complex models.
+
+How to evaluate which model fits best the data is something we will come back to over and over again in these set of lectures.
 
 
 
@@ -292,7 +380,7 @@ The inverse of a matrix is defined by
 !eblock
 
 !split
-=== Some famous Matrices ===
+===== Some famous Matrices =====
 
   * Diagonal if $a_{ij}=0$ for $i\ne j$
   * Upper triangular if $a_{ij}=0$ for $i > j$
@@ -305,7 +393,7 @@ The inverse of a matrix is defined by
   * Banded, block upper triangular, block lower triangular....
 
 !split
-=== More Basic Matrix Features ===
+===== More Basic Matrix Features =====
 
 !bblock Some Equivalent Statements
 For an $N\times N$ matrix  $\mathbf{A}$ the following properties are all equivalent
@@ -626,78 +714,6 @@ $X_j$, ($i\neq j$):
 !et
 !eblock
 
-!split
-===== Covariance example =====
-
-Suppose we have defined three vectors $\bm{x}, \bm{y}, \bm{z}$ with
-$n$ elements each. The covariance matrix is defined as
-
-
-!bt
-\[
-\bm{\Sigma} = \begin{bmatrix} \sigma_{xx} & \sigma_{xy} & \sigma_{xz} \\
-                              \sigma_{yx} & \sigma_{yy} & \sigma_{yz} \\
-                              \sigma_{zx} & \sigma_{zy} & \sigma_{zz}
-             \end{bmatrix},
-\]
-!et
-where for example
-!bt
-\[
-\sigma_{xy} =\frac{1}{n} \sum_{i=0}^{n-1}(x_i- \overline{x})(y_i- \overline{y}).
-\]
-!et
-
-The Numpy function _np.cov_ calculates the covariance elements using
-the factor $1/(n-1)$ instead of $1/n$ since it assumes we do not have
-the exact mean values.
-
-The following simple function uses the _np.vstack_ function which
-takes each vector of dimension $1\times n$ and produces a $3\times n$
-matrix $\bm{W}$
-
-!bt
-\[
-\bm{W} = \begin{bmatrix} x_0 & y_0 & z_0 \\
-                          x_1 & y_1 & z_1 \\
-                          x_2 & y_2 & z_2 \\
-                          \dots & \dots & \dots \\
-                          x_{n-2} & y_{n-2} & z_{n-2} \\
-                          x_{n-1} & y_{n-1} & z_{n-1}
-             \end{bmatrix},
-\]
-!et
-
-which in turn is converted into into the $3\times 3$ covariance matrix
-$\bm{\Sigma}$ via the Numpy function _np.cov()_. We note that we can
-also calculate the mean value of each set of samples $\bm{x}$ etc
-using the Numpy function _np.mean(x)_. We can also extract the
-eigenvalues of the covariance matrix through the _np.linalg.eig()_
-function.
-
-
-!split
-===== Covariance in numpy =====
-
-!bc pycod
-# Importing various packages
-import numpy as np
-
-n = 100
-x = np.random.normal(size=n)
-print(np.mean(x))
-y = 4+3*x+np.random.normal(size=n)
-print(np.mean(y))
-z = x**3+np.random.normal(size=n)
-print(np.mean(z))
-W = np.vstack((x, y, z))
-Sigma = np.cov(W)
-print(Sigma)
-Eigvals, Eigvecs = np.linalg.eig(Sigma)
-print(Eigvals)
-!ec
-
-
 
 !split
 ===== Statistics, independent variables  =====
@@ -901,6 +917,78 @@ label{eq:central_limit_gaussian}
 !eblock
 
 
+!split
+===== Covariance example =====
+
+Suppose we have defined three vectors $\bm{x}, \bm{y}, \bm{z}$ with
+$n$ elements each. The covariance matrix is defined as
+
+
+!bt
+\[
+\bm{\Sigma} = \begin{bmatrix} \sigma_{xx} & \sigma_{xy} & \sigma_{xz} \\
+                              \sigma_{yx} & \sigma_{yy} & \sigma_{yz} \\
+                              \sigma_{zx} & \sigma_{zy} & \sigma_{zz}
+             \end{bmatrix},
+\]
+!et
+where for example
+!bt
+\[
+\sigma_{xy} =\frac{1}{n} \sum_{i=0}^{n-1}(x_i- \overline{x})(y_i- \overline{y}).
+\]
+!et
+
+The Numpy function _np.cov_ calculates the covariance elements using
+the factor $1/(n-1)$ instead of $1/n$ since it assumes we do not have
+the exact mean values.
+
+The following simple function uses the _np.vstack_ function which
+takes each vector of dimension $1\times n$ and produces a $3\times n$
+matrix $\bm{W}$
+
+!bt
+\[
+\bm{W} = \begin{bmatrix} x_0 & y_0 & z_0 \\
+                          x_1 & y_1 & z_1 \\
+                          x_2 & y_2 & z_2 \\
+                          \dots & \dots & \dots \\
+                          x_{n-2} & y_{n-2} & z_{n-2} \\
+                          x_{n-1} & y_{n-1} & z_{n-1}
+             \end{bmatrix},
+\]
+!et
+
+which in turn is converted into into the $3\times 3$ covariance matrix
+$\bm{\Sigma}$ via the Numpy function _np.cov()_. We note that we can
+also calculate the mean value of each set of samples $\bm{x}$ etc
+using the Numpy function _np.mean(x)_. We can also extract the
+eigenvalues of the covariance matrix through the _np.linalg.eig()_
+function.
+
+
+!split
+===== Covariance in numpy =====
+
+!bc pycod
+# Importing various packages
+import numpy as np
+
+n = 100
+x = np.random.normal(size=n)
+print(np.mean(x))
+y = 4+3*x+np.random.normal(size=n)
+print(np.mean(y))
+z = x**3+np.random.normal(size=n)
+print(np.mean(z))
+W = np.vstack((x, y, z))
+Sigma = np.cov(W)
+print(Sigma)
+Eigvals, Eigvecs = np.linalg.eig(Sigma)
+print(Eigvals)
+!ec
+
+
 
 
 !split
@@ -1055,7 +1143,7 @@ But before we really start with nuclear physics data, let's just look at some si
 (don't be offended) fitting straight lines!
 
 !split
-=== Simple linear regression model using _scikit-learn_ ===
+===== Simple linear regression model using _scikit-learn_ =====
 
 We start with perhaps our simplest possible example, using _Scikit-Learn_ to perform linear regression analysis on a data set produced by us. 
 
@@ -1070,7 +1158,7 @@ random noise added via the normal distribution.
 
 
 !split
-=== Simple linear regression model using _scikit-learn_, Numpy functions ===
+===== Simple linear regression model using _scikit-learn_, Numpy functions =====
 
 The Numpy functions are imported used the _import numpy as np_
 statement and the random number generator for the uniform distribution
@@ -1098,7 +1186,7 @@ fitting parameters $\alpha$ and $\beta$ (see below). Later we will
 distinguish between training data and test data.
 
 !split
-=== Simple linear regression model using _scikit-learn_, Matplotlib ===
+===== Simple linear regression model using _scikit-learn_, Matplotlib =====
 
 For plotting we use the Python package
 "matplotlib":"https://matplotlib.org/" which produces publication
@@ -1133,7 +1221,7 @@ plt.show()
 
 
 !split
-=== Simple linear regression model, what to expect ===
+===== Simple linear regression model, what to expect =====
 
 This example serves several aims. It allows us to demonstrate several
 aspects of data analysis and later machine learning algorithms. The
@@ -1159,7 +1247,7 @@ have not discussed a more rigorous approach to the _cost_ function.
 
 
 !split
-=== Simple linear regression model, how to evaluate the model ===
+===== Simple linear regression model, how to evaluate the model =====
 
 We need more rigorous criteria in defining whether we have succeeded or
 not in modeling our training data.  You will be surprised to see that
@@ -1179,7 +1267,7 @@ however the aim of scaling the equations and make the cost function
 dimensionless.  
 
 !split
-=== Our first Cost/Loss function encounter ===
+===== Our first Cost/Loss function encounter =====
 
 Minimizing the cost function is a central aspect of
 our discussions to come. Finding its minima as function of the model
@@ -1197,14 +1285,14 @@ many practitioners minimize the above function ''by the eye', popularly dubbed a
 the  $\chi^2$ function becomes smaller. 
 
 !split
-=== Our first Cost/Loss function encounter, naming ===
+===== Our first Cost/Loss function encounter, naming =====
 
 The terms cost and loss functions are often synonymous, sometimes you will also encounter the usage  error function.
 The more general scenario is to define an objective function first, which we want to optimize.
 It is common to see statements like this however: _The loss function computes the error for a single training example, while the cost function is the average of the loss functions of the entire training set_.
 
 !split
-=== Our first Cost/Loss function encounter, how do we define them?  ===
+===== Our first Cost/Loss function encounter, how do we define them?  =====
 
 
 There are many ways to define the cost/loss function. A simpler approach is to look at the relative difference between the training data and the predicted data, that is we define 
@@ -1249,7 +1337,7 @@ different training data sets and study (graphically) the value of the
 relative error.
 
 !split
-=== _Scikit-Learn_ functionality  ===
+===== _Scikit-Learn_ functionality  =====
 
 
 As mentioned above, _Scikit-Learn_ has an impressive functionality.
@@ -1297,6 +1385,7 @@ $\alpha$. Depending on the constant in front of the normal distribution, we get 
 \sum_{i=0}^{n-1}(y_i-\tilde{y}_i)^2, 
 \] 
 !et 
+
 
 The smaller the value, the better the fit. Ideally we would like to
 have an MSE equal zero.  The attentive reader has probably recognized
@@ -1353,12 +1442,16 @@ ways of dealing with outliers.
 The Huber cost function is defined as
 !bt
 \[
-H_{\delta}(a)={\begin{cases}{\frac {1}{2}}{a^{2}}&{\text{for }}|a|\leq \delta ,\\\delta (|a|-{\frac {1}{2}}\delta ),&{\text{otherwise.}}\end{cases}}}.
+H_{\delta}(a)=\begin{bmatrix}\frac {1}{2}}{a^{2}}&{\text{for }}|a|\leq \delta ,\\\delta (|a|-{\frac {1}{2}}\delta ),&{\text{otherwise.}}\end{bmatrix}.
 \]
 !et
 Here $a=\bm{y} - \bm{\tilde{y}}$.
 We will discuss in more
-detail these and other functions in the various lectures.  We conclude this part with another example. Instead of 
+detail these and other functions in the various lectures.
+
+!split
+===== Cubic Polynomial =====
+We conclude this part with another example. Instead of 
 a linear $x$-dependence we study now a cubic polynomial and use the polynomial regression analysis tools of scikit-learn. 
 
 !bc pycod
@@ -1396,8 +1489,8 @@ print (error(y))
 
 
 
-
-=== To our real data: nuclear binding energies. Brief reminder on masses and binding energies ===
+!split
+===== To our real data: nuclear binding energies. Brief reminder on masses and binding energies =====
 
 Let us now dive into  nuclear physics and remind ourselves briefly about some basic features about binding
 energies.  A basic quantity which can be measured for the ground
@@ -1654,7 +1747,7 @@ plt.show()
 
 === Seeing the wood for the trees ===
 
-As a teaser, let us now see how we can do this with decision trees using _scikit-learn_. Later we will switch to so-called _random forests_!
+As a teaser, let us now see how we can do this with decision trees using _scikit-learn_. We will discuss the method in more details later.
 
 
 !bc pycod
@@ -1692,6 +1785,7 @@ print(np.mean( (Energies-y_1)**2))
 
 
 === And what about using neural networks? ===
+
 The _seaborn_ package allows us to visualize data in an efficient way. Note that we use _scikit-learn_'s multi-layer perceptron (or feed forward neural network) 
 functionality.
 !bc pycod
@@ -1729,8 +1823,8 @@ plt.show()
 
 !ec
 
-
-=== More on flexibility with pandas and xarray ===
+!split
+===== More on flexibility with pandas and xarray =====
 
 Let us study the $Q$ values associated with the removal of one or two nucleons from
 a nucleus. These are conventionally defined in terms of the one-nucleon and two-nucleon
@@ -1868,79 +1962,6 @@ plt.show()
 
 !ec
 
-
-Prediction versus estimation; correlation versus causation. When you hear these
-phrases in the context of machine learning, what do you think of? Maybe one
-thinks of the difference between classifying new data points and generating
-new data point
-ssifying new data points and generating
-new data points. Or perhaps one considers that correlation is a symmetric as-
-sessment (e.g., if A is correlated with B, then B is correlated with A), but cau-
-1
-sation is directional (e.g., if A causes B, B does not necessarily cause A) . These concepts are in some sense the difference between machine learning and statistics. In machine learning and prediction based tasks, we are often in- terested in developing algorithms that are capable of learning patterns from given data in an automated fashion, and then using these learned patterns to make predictions or assessments of newly given data. In many cases, our pri- mary concern is the quality of the predictions or assessments, and we are less concerned about the underlying patterns that were learned in order make these predictions. ~
-
-s. Neural networks are, in some sense, the epitome of this point of view. In various contexts they are incredibly good at making predictions, but~
-
-they are often referred to as “black box” methods due to the difficulty in un- derstanding the model by which they make such predictions. For example, the most powerful convolutional neural networks are incredibly good at classify- ing natural images (sometimes even better than humans), but it is very difficult to understand the mechanisms by which they make such predictions.
-In (classical) statistics and estimation, one is more concerned with the un- derlying model that makes the prediction. In other words, are the parameters of the model that makes the prediction statistically significant? Or could sev- eral other models (i.e., different parameter choices) have made the same pre- diction? This is the correlation versus causation issue. It comes up, for example and perhaps most notably, in medical trials and studies, in which one must not only find correlations and patterns in the data, but one must find the causal factors of a disease, so that one may develop and prescribe treatment.
-
-
-
-In science and engineering, one is frequently called upon to infer (or learn) a
-quantitative model M for a given set of sample points X D fx1; x2; : : : ; xNg  RD.
-For instance, Figure 1.1 shows a simple example in which one is given a set of
-four sample points in a two-dimensional plane. Obviously, these points can be
-fit perfectly by a (one-dimensional) straight line L. The line can then be called
-a “model” for the given points. The reason for inferring such a model is that it
-serves many useful purposes. On the one hand, the model can reveal information
-encoded in the data or underlying mechanisms from which the data were generated.
-In addition, it can simplify the representation of the given data set and help
-
-predict future samples. In the case of the four points shown in Figure 1.1, the line
-model gives a more compact one-dimensional representation than the original twodimensional
-plane P. It also suggests that any new point (if generated with a similar
-mechanism as the existing points) will likely fall on the same line.
-
-
-A first important consideration to keep in mind is that inferring the “correct” model
-for a given data set is an elusive, if not impossible, task. The fundamental difficulty
-is that if we are not specific about what we mean by a “correct” model, there
-could easily be many different models that fit the given data set “equally well.”
-For instance, in the example shown in Figure 1.1, any smooth curve that passes
-through the sample points would seem to be as valid a model as the straight
-line. Furthermore, if there were noise in the given sample points, then any curve,
-including the line, passing through the points exactly would unlikely be the “true
-model.”
-The question now is this: in what sense can we say that a model is correct or
-optimal for a given data set? To make the model inference problem well posed, i.e.,
-to guarantee that there is a unique optimal model for the given data, we need to
-impose additional assumptions or restrictions on the class of models considered. To
-this end, we should not be looking for just any model that can describe the data.
-Instead, we should look for a model M that is the best among a restricted class
-of modelsM.4 In addition, to make the model inference problem computationally
-tractable, we need to specify how restricted the class of models needs to be. A
-common strategy, known as the principle of Occam’s razor,5 is to try to get away
-
-with the simplest possible class of models that is just necessary to describe the data
-or solve the problem at hand. More precisely, the model class should be rich enough
-to contain at least one model that can fit the data to a desired accuracy and yet be
-restricted enough that it is relatively simple to find the best model for the given data.
-Thus, in engineering practice, the most popular strategy is to start from the
-simplest class of models and increase the complexity of the models only when the
-simpler models become inadequate. For instance, to fit a set of sample points, one
-may first try the simplest class of models, namely linear models, followed by the
-class of hybrid (piecewise) linear models (subspaces), and then followed by the
-class of (piecewise) nonlinear models (submanifolds). One of the goals of this book
-is to demonstrate that among them, piecewise linear models can already achieve
-an excellent balance between expressiveness and simplicity for many important
-practical data sets and problems.
-
-There are essentially two main categories of models and approaches for modeling
-a data set. Methods of the first category model the data as random samples from
-a probability distribution and try to learn this distribution from the data. We call
-such models statistical models. Models of the second category model the overall
-geometric shape of the data set with deterministic models such as subspaces, smooth
-manifolds, or topological spaces.6 We call such models geometric models.
 
 
 
