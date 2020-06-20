@@ -1,5 +1,5 @@
-TITLE: First and second days: Homework 1
-AUTHOR: Data Analysis and Machine Learning
+TITLE: First and second days: Exercise set 1
+AUTHOR: Data Analysis and Machine Learning for Nuclear Physics
 DATE:Today
 
 ===== Day one and two  exercises =====
@@ -85,7 +85,7 @@ x = np.random.rand(100,1)
 y = 5*x*x+0.1*np.random.randn(100,1)
 !ec
 
-o Write your own code (following the examples under the "regression slides":"https://compphysics.github.io/MachineLearning/doc/pub/Regression/html/Regression-bs.html") for computing the parametrization of the data set fitting a second-order polynomial. 
+o Write your own code (following the examples under the "regression slides":"https://compphysics.github.io/MachineLearningECT/doc/pub/Day1/html/Day1-bs.html") for computing the parametrization of the data set fitting a second-order polynomial. 
 o Use thereafter _scikit-learn_ (see again the examples in the regression slides) and compare with your own code.   
 o Using scikit-learn, compute also the mean square error, a risk metric corresponding to the expected value of the squared (quadratic) error defined as
 !bt 
@@ -169,12 +169,11 @@ Show finally that the variance of $\bm{\beta}$ is
 
 === Exercise 5  ===
 
-Finally, try now to write your own code (you can use the example the nuclear masses in the lecture slides on Regression and Getting started, see URL:"https://compphysics.github.io/MLErasmus/doc/pub/Regression/html/Regression-bs.html" and URL:"https://compphysics.github.io/MLErasmus/doc/pub/How2ReadData/html/How2ReadData-bs.html") that reads in the nuclear masses and
+Finally, try now to write your own code (you can use the example the nuclear masses in the lecture slides on Regression and Getting started from Day1, that reads in the nuclear masses and
 compute the proton separation energies, the two-neutron and two-proton separation energies and finally the shell gaps for selected nuclei.
 
 Finally, try to compute the $Q$-values for $\beta-$ decay for selected nuclei.
 
-We will use this code later as a starting point for our discussions on linear regression. 
 
 
 

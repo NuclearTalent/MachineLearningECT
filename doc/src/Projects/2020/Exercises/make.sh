@@ -37,8 +37,8 @@ system doconce split_html $html.html --method=split --pagination --nav_button=bo
 
 
 # Ordinary plain LaTeX document
-system doconce format pdflatex $name --print_latex_style=trac --latex_admon=paragraph $opt
-system doconce ptex2tex $name envir=print
+system doconce format pdflatex $name --minted_latex_style=trac --latex_admon=paragraph $opt
+system doconce ptex2tex $name envir=minted
 # Add special packages
 doconce subst "% Add user's preamble" "\g<1>\n\\usepackage{simplewick}" $name.tex
 doconce replace 'section{' 'section*{' $name.tex
@@ -48,7 +48,7 @@ mv -f $name.pdf ${name}.pdf
 cp $name.tex ${name}.tex
 
 # Publish
-dest=../../../../Projects/2020
+dest=../../../../ProjectsExercises/2020
 if [ ! -d $dest/$name ]; then
 mkdir $dest/$name
 mkdir $dest/$name/pdf

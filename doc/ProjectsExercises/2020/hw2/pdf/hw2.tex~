@@ -1,0 +1,246 @@
+%%
+%% Automatically generated file from DocOnce source
+%% (https://github.com/hplgit/doconce/)
+%%
+%%
+
+
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % draft: marks overfull hboxes, figures with paths
+10pt]{article}
+
+\listfiles               %  print all files needed to compile this document
+
+\usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{bm,ltablex,microtype}
+
+\usepackage[pdftex]{graphicx}
+
+\usepackage{fancyvrb} % packages needed for verbatim environments
+
+\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
+% Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
+\usepackage{hyperref}
+\hypersetup{
+    breaklinks=true,
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+    }
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % levels in table of contents
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% --- end of standard preamble for documents ---
+
+
+% insert custom LaTeX commands...
+
+\raggedbottom
+\makeindex
+\usepackage[totoc]{idxlayout}   % for index in the toc
+\usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+% matching end for #ifdef PREAMBLE
+
+\newcommand{\exercisesection}[1]{\subsection*{#1}}
+
+
+% ------------------- main content ----------------------
+
+
+
+% ----------------- title -------------------------
+
+\thispagestyle{empty}
+
+\begin{center}
+{\LARGE\bf
+\begin{spacing}{1.25}
+First day: Homework 2
+\end{spacing}
+}
+\end{center}
+
+% ----------------- author(s) -------------------------
+
+\begin{center}
+{\bf Data Analysis and Machine Learning${}^{}$} \\ [0mm]
+\end{center}
+
+\begin{center}
+% List of all institutions:
+\end{center}
+    
+% ----------------- end author(s) -------------------------
+
+% --- begin date ---
+\begin{center}
+Jan 20, 2020
+\end{center}
+% --- end date ---
+
+\vspace{1cm}
+
+
+\subsection*{Day two exercises}
+
+
+\paragraph{Exercise 1.}
+This exercise is a continuation of exercise 2 from homework 1. We will
+use the same function to generate our data set, still staying with a
+simple function $y(x)$ which we want to fit using linear regression,
+but now extending the analysis to include the Ridge and the Lasso
+regression methods. You can use the code under the Regression as an example on how to use the Ridge and the Lasso methods, see the \href{{https://compphysics.github.io/MachineLearning/doc/pub/Regression/html/Regression-bs.html}}{regression slides}). 
+
+We will thus again generate our own dataset for a function $y(x)$ where 
+$x \in [0,1]$ and defined by random numbers computed with the uniform
+distribution. The function $y$ is a quadratic polynomial in $x$ with
+added stochastic noise according to the normal distribution $\cal{N}(0,1)$.
+
+The following simple Python instructions define our $x$ and $y$ values (with 100 data points).
+\begin{print}
+x = np.random.rand(100,1)
+y = 5*x*x+0.1*np.random.randn(100,1)
+\end{print}
+
+\begin{enumerate}
+\item (1a) Write your own code for the Ridge method (see chapter 3.4 of Hastie \emph{et al.}, equations (3.43) and (3.44)) and compute the parametrization for different values of $\lambda$. Compare and analyze your results with those from exercise 2. Study the dependence on $\lambda$ while also varying the strength of the noise in your expression for $y(x)$. 
+
+\item (1b) Repeat the above but using the functionality of \textbf{Scikit-Learn}. Compare your code with the results from \textbf{Scikit-Learn}. Remember to run with the same random numbers for generating $x$ and $y$. 
+
+\item (1c) Our next step is to study the variance of the parameters $\beta_1$ and $\beta_2$ (assuming that we are parameterizing our function with a second-order polynomial). We will use standard linear regression and the Ridge regression.  You can now opt for either writing your own function or using \textbf{Scikit-Learn} to find the parameters $\beta$. From your results calculate the variance of these paramaters (recall that this is equal to the diagonal elements of the matrix $(\hat{X}^T\hat{X})+\lambda\hat{I})^{-1}$). Discuss the results of these variances as functions of $\lambda$. In particular, try to link your discussion with the discussion in Hastie \emph{et al.} and their figure 3.11.
+
+\item (1d) Repeat the previous step but add now the Lasso method, see equation (3.53) of Hastie \emph{et al.}. Discuss your results and compare with standard regression and the Ridge regression results. You can write your own code or use the functionality of \textbf{scikit-learn}.  We recommend the latter since we have not yet discussed how to solve the Lasso equations numerically.
+
+\item (1e) Finally, using \textbf{Scikit-Learn} or your own code, compute also the mean square error, a risk metric corresponding to the expected value of the squared (quadratic) error defined as
+\end{enumerate}
+
+\noindent
+\[ MSE(\hat{y},\hat{\tilde{y}}) = \frac{1}{n}
+\sum_{i=0}^{n-1}(y_i-\tilde{y}_i)^2, 
+\] 
+and the $R^2$ score function.
+If $\tilde{\hat{y}}_i$ is the predicted value of the $i-th$ sample and $y_i$ is the corresponding true value, then the score $R^2$ is defined as
+\[
+R^2(\hat{y}, \tilde{\hat{y}}) = 1 - \frac{\sum_{i=0}^{n - 1} (y_i - \tilde{y}_i)^2}{\sum_{i=0}^{n - 1} (y_i - \bar{y})^2},
+\]
+where we have defined the mean value  of $\hat{y}$ as
+\[
+\bar{y} =  \frac{1}{n} \sum_{i=0}^{n - 1} y_i.
+\]
+Discuss these quantities as functions of the variable $\lambda$ in the Ridge and Lasso regression methods. 
+
+\subsection*{Exercise 2}
+
+
+A much used approach before starting to train the data is  to preprocess our
+data. Normally the data may need a rescaling and/or may be sensitive
+to extreme values. Scaling the data renders our inputs much more
+suitable for the algorithms we want to employ.
+
+\textbf{Scikit-Learn} has several functions which allow us to rescale the
+data, normally resulting in much better results in terms of various
+accuracy scores.  The \textbf{StandardScaler} function in \textbf{Scikit-Learn}
+ensures that for each feature/predictor we study the mean value is
+zero and the variance is one (every column in the design/feature
+matrix).  This scaling has the drawback that it does not ensure that
+we have a particular maximum or minimum in our data set. Another
+function included in \textbf{Scikit-Learn} is the \textbf{MinMaxScaler} which
+ensures that all features are exactly between $0$ and $1$. The
+
+
+The \textbf{Normalizer} scales each data
+point such that the feature vector has a euclidean length of one. In other words, it
+projects a data point on the circle (or sphere in the case of higher dimensions) with a
+radius of 1. This means every data point is scaled by a different number (by the
+inverse of it’s length).
+This normalization is often used when only the direction (or angle) of the data matters,
+not the length of the feature vector.
+
+The \textbf{RobustScaler} works similarly to the StandardScaler in that it
+ensures statistical properties for each feature that guarantee that
+they are on the same scale. However, the RobustScaler uses the median
+and quartiles, instead of mean and variance. This makes the
+RobustScaler ignore data points that are very different from the rest
+(like measurement errors). These odd data points are also called
+outliers, and might often lead to trouble for other scaling
+techniques.
+
+
+It also common to split the data in a \textbf{training} set and a \textbf{testing} set. A typical split is to use $80\%$ of the data for training and the rest
+for testing. This can be done as follows with our design matrix $\bm{X}$ and data $\bm{y}$ (remember to import \textbf{scikit-learn})
+\begin{print}
+# split in training and test data
+X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.2)
+\end{print}
+Then we can use the stadndard scale to scale our data as
+\begin{print}
+scaler = StandardScaler()
+scaler.fit(X_train)
+X_train_scaled = scaler.transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+\end{print}
+
+
+In this exercise we want you to to compute the MSE for the training
+data and the test data as function of the complexity of a polynomial,
+that is the degree of a given polynomial. We want you also to compute the $R2$ score as function of the complexity of the model for both training data and test data.  You should also run the calculation with and without scaling. 
+
+One of 
+the aims is to reproduce Figure 2.11 of \href{{https://github.com/CompPhysics/MLErasmus/blob/master/doc/Textbooks/elementsstat.pdf}}{Hastie et al}.
+We will also use Ridge and Lasso regression. 
+
+
+Our data is defined by $x\in [-3,3]$ with a total of for example $100$ data points.
+\begin{print}
+np.random.seed()
+n = 100
+maxdegree = 14
+# Make data set.
+x = np.linspace(-3, 3, n).reshape(-1, 1)
+y = np.exp(-x**2) + 1.5 * np.exp(-(x-2)**2)+ np.random.normal(0, 0.1, x.shape)
+\end{print}
+where $y$ is the function we want to fit with a given polynomial.
+
+\begin{enumerate}
+\item (2a) Write a first code which sets up a design matrix $X$ defined by a fifth-order polynomial.  Scale your data and split it in training and test data. 
+
+\item (2b) Perform an ordinary least squares and compute the means squared error and the $R2$ factor for the training data and the test data, with and without scaling.
+
+\item (2c) Add now a model which allows you to make polynomials up to degree $15$.  Perform a standard OLS fitting of the training data and compute the MSE and $R2$ for the training and test data and plot both test and training data MSE and $R2$ as functions of the polynomial degree. Compare what you see with Figure 2.11 of Hastie et al.~Comment your results. For which polynomial degree do you find an optimal MSE (smallest value)?
+
+\item (2d) Repeat part (2c) but now using Ridge regressions with various hyperparameters $\lambda$. Make the same plots for the optimal $\lambda$ value for each polynomial degree. Compare these results with those from the standard OLS approach.
+\end{enumerate}
+
+\noindent
+
+% ------------------- end of main content ---------------
+
+\end{document}
+
