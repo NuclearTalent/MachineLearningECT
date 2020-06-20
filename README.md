@@ -57,11 +57,11 @@ https://nucleartalent.github.io/MachineLearningECT/doc/pub/Introduction/html/Int
 
 ### Week 2
 
-- _Monday_	Neural Networks and Deep Learning (Michelle Kuchera and Raghu Ramanujan, MK and RR)
-- _Tuesday_	From Neural Networks to Convolutional Neural Networks and how to analyze experiment (classification of events and real data)	(MK and RR)
+- _Monday_	Neural Networks and Deep Learning (Raghu Ramanujan, RR)
+- _Tuesday_	From Neural Networks to Convolutional Neural Networks and how to analyze experiment (classification of events and real data)	(Michelle Kuchera, MK)
 - _Wednesday_	 Discussion of nuclear experiments and how to analyze data, presentation of simulated data from Active-Target Time-Projection Chamber (AT-TPC)	(Daniel Bazin)
-- _Thursday_	Generative models (MK and RR)
-- _Friday_	Reinforcement Learning (MK and RR)
+- _Thursday_	Generative models (MK)
+- _Friday_	Reinforcement Learning (RR)
 - _Friday_ Future directions in machine learning and summary of course. 
 
 
