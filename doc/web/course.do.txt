@@ -56,39 +56,41 @@ ${text_types(ch)}
 !split
 ===== Projects and Exercises =====
 
+https://github.com/NuclearTalent/
+
 === First exercise set (Day 1 and 2) ===
  * LaTeX and PDF:
-     * "LaTex file":"http://mhjensen.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw1/pdf/hw1.tex"
-     * "PDF file":"http://mhjensen.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw1/pdf/hw1.pdf"
+     * "LaTex file":"http://github.com/NuclearTalent/MachineLearningECT/doc/ProjectsExercises/2020/hw1/pdf/hw1.tex"
+     * "PDF file":"http://github.com/NuclearTalent/MachineLearningECT/doc/ProjectsExercises/2020/hw1/pdf/hw1.pdf"
  * HTML:
-   * "Plain html":"http://mhjensen.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw1/html/hw1.html"
-   * "Bootstrap  slide style, easy for reading on mobile devices": "http://mhjensen.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw1/html/hw1-bs.html"
+   * "Plain html":"http://github.com/NuclearTalent/MachineLearningECT/doc/ProjectsExercises/2020/hw1/html/hw1.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://github.com/NuclearTalent/MachineLearningECT/doc/ProjectsExercises/2020/hw1/html/hw1-bs.html"
 
 === Second exercise set (Day 2 and 3) ===
  * LaTeX and PDF:
-     * "LaTex file":"http://mhjensen.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw2/pdf/hw2.tex"
-     * "PDF file":"http://mhjensen.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw2/pdf/hw2.pdf"
+     * "LaTex file":"http://github.com/NuclearTalent/MachineLearningECT/doc/ProjectsExercises/2020/hw2/pdf/hw2.tex"
+     * "PDF file":"http://github.com/NuclearTalent/MachineLearningECT/doc/ProjectsExercises/2020/hw2/pdf/hw2.pdf"
  * HTML:
-   * "Plain html":"http://mhjensen.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw2/html/hw2.html"
-   * "Bootstrap  slide style, easy for reading on mobile devices": "http://mhjensen.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw2/html/hw2-bs.html"
+   * "Plain html":"http://github.com/NuclearTalent/MachineLearningECT/doc/ProjectsExercises/2020/hw2/html/hw2.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://github.com/NuclearTalent/MachineLearningECT/doc/ProjectsExercises/2020/hw2/html/hw2-bs.html"
 
 
 === Third  exercise set (Day 4 and 5)  ===
  * LaTeX and PDF:
-     * "LaTex file":"http://mhjensen.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw3/pdf/hw3.tex"
-     * "PDF file":"http://mhjensen.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw3/pdf/hw3.pdf"
+     * "LaTex file":"http://github.com/NuclearTalent/MachineLearningECT/doc/ProjectsExercises/2020/hw3/pdf/hw3.tex"
+     * "PDF file":"http://github.com/NuclearTalent/MachineLearningECT/doc/ProjectsExercises/2020/hw3/pdf/hw3.pdf"
  * HTML:
-   * "Plain html":"http://mhjensen.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw3/html/hw3.html"
-   * "Bootstrap  slide style, easy for reading on mobile devices": "http://mhjensen.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw3/html/hw3-bs.html"
+   * "Plain html":"http://github.com/NuclearTalent/MachineLearningECT/doc/ProjectsExercises/2020/hw3/html/hw3.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://github.com/NuclearTalent/MachineLearningECT/doc/ProjectsExercises/2020/hw3/html/hw3-bs.html"
 
 
 === Fourth  exercise set (Day 4 and 5)  ===
  * LaTeX and PDF:
-     * "LaTex file":"http://mhjensen.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw4/pdf/hw4.tex"
-     * "PDF file":"http://mhjensen.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw4/pdf/hw4.pdf"
+     * "LaTex file":"http://github.com/NuclearTalent/MachineLearningECT/doc/ProjectsExercises/2020/hw4/pdf/hw4.tex"
+     * "PDF file":"http://github.com/NuclearTalent/MachineLearningECT/doc/ProjectsExercises/2020/hw4/pdf/hw4.pdf"
  * HTML:
-   * "Plain html":"http://mhjensen.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw4/html/hw4.html"
-   * "Bootstrap  slide style, easy for reading on mobile devices": "http://mhjensen.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw4/html/hw4-bs.html"
+   * "Plain html":"http://github.com/NuclearTalent/MachineLearningECT/doc/ProjectsExercises/2020/hw4/html/hw4.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://github.com/NuclearTalent/MachineLearningECT/doc/ProjectsExercises/2020/hw4/html/hw4-bs.html"
 
 
 
