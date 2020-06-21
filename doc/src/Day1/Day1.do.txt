@@ -36,6 +36,9 @@ For more discussions of Ridge and Lasso regression, "Wessel van Wieringen's":"ht
 Similarly, "Mehta et al's article":"https://arxiv.org/abs/1803.08823" is also recommended. The textbook by "Hastie, Tibshirani, and Friedman on The Elements of Statistical Learning Data Mining":"https://link.springer.com/book/10.1007/978-0-387-84858-7" is highly recommended.  
 
 
+!split
+===== Regression Analysis, Definitions and Aims  =====
+
 
 !split
 ===== Regression analysis, overarching aims  =====
@@ -591,14 +594,6 @@ print(RelativeError(Energies, ytilde))
 !ec
 
 
-We could also add the so-called Huber norm, which we defined as
-!bt
-\[
-H_{\delta}(a)={\begin{cases}{\frac {1}{2}}{a^{2}}&{\text{for }}|a|\leq \delta ,\\\delta (|a|-{\frac {1}{2}}\delta ),&{\text{otherwise.}}\end{cases}}},
-\]
-!et
-with $a=\bm{y} - \bm{\tilde{y}}$.
-
 
 !split
 ===== The $\chi^2$ function  =====
@@ -785,6 +780,8 @@ Lasso and Ridge regression. See below.
 
 !eblock
 
+!split
+===== Regression Examples =====
 
 !split
 ===== Fitting an Equation of State for Dense Nuclear Matter =====
@@ -1141,6 +1138,10 @@ plt.show()
 !ec
 
 
+!split
+===== Singular Value Decomposition Algorithm =====
+
+
 
 !split
 ===== The singular value decomposition  =====
@@ -1367,6 +1368,56 @@ The $n=p$ case is obvious, we retain the full SVD.
 In general the economy-size SVD leads to less FLOPS and still conserving the desired accuracy.
 
 !split
+=====  Codes for the SVD =====
+
+!bc pycod
+import numpy as np
+# SVD inversion
+def SVDinv(A):
+    ''' Takes as input a numpy matrix A and returns inv(A) based on singular value decomposition (SVD).
+    SVD is numerically more stable than the inversion algorithms provided by
+    numpy and scipy.linalg at the cost of being slower.
+    '''
+    U, s, VT = np.linalg.svd(A)
+#    print('test U')
+#    print( (np.transpose(U) @ U - U @np.transpose(U)))
+#    print('test VT')
+#    print( (np.transpose(VT) @ VT - VT @np.transpose(VT)))
+    print(U)
+    print(s)
+    print(VT)
+
+    D = np.zeros((len(U),len(VT)))
+    for i in range(0,len(VT)):
+        D[i,i]=s[i]
+    UT = np.transpose(U); V = np.transpose(VT); invD = np.linalg.inv(D)
+    return np.matmul(V,np.matmul(invD,UT))
+
+
+X = np.array([ [1.0, -1.0, 2.0], [1.0, 0.0, 1.0], [1.0, 2.0, -1.0], [1.0, 1.0, 0.0] ])
+print(X)
+A = np.transpose(X) @ X
+print(A)
+# Brute force inversion of super-collinear matrix
+B = np.linalg.inv(A)
+print(B)
+C = SVDinv(A)
+print(C)
+
+!ec
+
+The matrix $\bm{X}$ has columns that are linearly dependent. The first
+column is the row-wise sum of the other two columns. The rank of a
+matrix (the column rank) is the dimension of space spanned by the
+column vectors. The rank of the matrix is the number of linearly
+independent columns, in this case just $2$. We see this from the
+singular values when running the above code. Running the standard
+inversion algorithm for matrix inversion with $\bm{X}^T\bm{X}$ results
+in the program terminating due to a singular matrix.
+
+
+
+!split
 ===== Mathematical Properties =====
 
 There are several interesting mathematical properties which will be
@@ -1417,6 +1468,11 @@ Going back to our OLS equation we have
 \]
 !et
 We will come back to this expression when we discuss Ridge regression. 
+
+
+
+!split
+=====  Beyond Ordinary Least Squares =====
 
 
 !split
@@ -1595,59 +1651,12 @@ that is the Ridge estimator scales the OLS estimator by the inverse of a factor 
 the Ridge estimator converges to zero when the hyperparameter goes to
 infinity.
 
-We will come back to more interpretations after we have gone through some of the statistical analysis part. 
-
 For more discussions of Ridge and Lasso regression, "Wessel van Wieringen's":"https://arxiv.org/abs/1509.09169" article is highly recommended.
 Similarly, "Mehta et al's article":"https://arxiv.org/abs/1803.08823" is also recommended.
 
+
 !split
-=====  Codes for the SVD =====
-
-!bc pycod
-import numpy as np
-# SVD inversion
-def SVDinv(A):
-    ''' Takes as input a numpy matrix A and returns inv(A) based on singular value decomposition (SVD).
-    SVD is numerically more stable than the inversion algorithms provided by
-    numpy and scipy.linalg at the cost of being slower.
-    '''
-    U, s, VT = np.linalg.svd(A)
-#    print('test U')
-#    print( (np.transpose(U) @ U - U @np.transpose(U)))
-#    print('test VT')
-#    print( (np.transpose(VT) @ VT - VT @np.transpose(VT)))
-    print(U)
-    print(s)
-    print(VT)
-
-    D = np.zeros((len(U),len(VT)))
-    for i in range(0,len(VT)):
-        D[i,i]=s[i]
-    UT = np.transpose(U); V = np.transpose(VT); invD = np.linalg.inv(D)
-    return np.matmul(V,np.matmul(invD,UT))
-
-
-X = np.array([ [1.0, -1.0, 2.0], [1.0, 0.0, 1.0], [1.0, 2.0, -1.0], [1.0, 1.0, 0.0] ])
-print(X)
-A = np.transpose(X) @ X
-print(A)
-# Brute force inversion of super-collinear matrix
-#B = np.linalg.inv(A)
-#print(B)
-C = SVDinv(A)
-print(C)
-
-!ec
-
-The matrix $\bm{X}$ has columns that are linearly dependent. The first
-column is the row-wise sum of the other two columns. The rank of a
-matrix (the column rank) is the dimension of space spanned by the
-column vectors. The rank of the matrix is the number of linearly
-independent columns, in this case just $2$. We see this from the
-singular values when running the above code. Running the standard
-inversion algorithm for matrix inversion with $\bm{X}^T\bm{X}$ results
-in the program terminating due to a singular matrix.
-
+===== Statistics and Resampling Techniques =====
 
 
 !split
@@ -1656,7 +1665,7 @@ in the program terminating due to a singular matrix.
 Before we proceed, we need to rethink what we have been doing. In our
 eager to fit the data, we have omitted several important elements in
 our regression analysis. In what follows we will
-o look at statistical properties, including a discussion of mean values, variance and the so-called bias-variance tradeoff
+o remind ourselves about some statistical properties, including a discussion of mean values, variance and the so-called bias-variance tradeoff
 o introduce resampling techniques like cross-validation, bootstrapping and jackknife and more
 
 This will allow us to link the standard linear algebra methods we have discussed above to a statistical interpretation of the methods. 
@@ -1931,8 +1940,6 @@ print(np.mean(z))
 W = np.vstack((x, y, z))
 Sigma = np.cov(W)
 print(Sigma)
-Eigvals, Eigvecs = np.linalg.eig(Sigma)
-print(Eigvals)
 !ec
 
 
@@ -2305,6 +2312,9 @@ This means the variance we obtain with the standard OLS will always for $\lambda
 
 !split
 ===== Resampling methods =====
+
+!split
+===== Resampling methods, basic overview =====
 
 With all these analytical equations for both the OLS and Ridge
 regression, we will now outline how to assess a given model. This will
@@ -2706,6 +2716,8 @@ plt.show()
 
 !ec
 
+!split
+===== How to decide upon the best model? =====
 
 !split
 ===== The bias-variance tradeoff =====
@@ -2732,7 +2744,7 @@ an approximation to the function $f$ in terms of the parameters
 $\bm{\beta}$ and the design matrix $\bm{X}$ which embody our model,
 that is $\bm{\tilde{y}}=\bm{X}\bm{\beta}$. 
 
-Thereafter we found the parameters $\bm{\beta}$ by optimizing the means squared error via the so-called cost function
+Thereafter we found the parameters $\bm{\beta}$ by optimizing the mean-squared error via the so-called cost function
 !bt
 \[
 C(\bm{X},\bm{\beta}) =\frac{1}{n}\sum_{i=0}^{n-1}(y_i-\tilde{y}_i)^2=\mathbb{E}\left[(\bm{y}-\bm{\tilde{y}})^2\right].
@@ -2930,82 +2942,6 @@ flexible statistical methods have higher variance.
 
 
 You may also find this recent "article":"https://www.pnas.org/content/116/32/15849" of interest.
-
-!split
-===== Another Example from Scikit-Learn's Repository =====
-!bc pycod
-"""
-============================
-Underfitting vs. Overfitting
-============================
-
-This example demonstrates the problems of underfitting and overfitting and
-how we can use linear regression with polynomial features to approximate
-nonlinear functions. The plot shows the function that we want to approximate,
-which is a part of the cosine function. In addition, the samples from the
-real function and the approximations of different models are displayed. The
-models have polynomial features of different degrees. We can see that a
-linear function (polynomial with degree 1) is not sufficient to fit the
-training samples. This is called **underfitting**. A polynomial of degree 4
-approximates the true function almost perfectly. However, for higher degrees
-the model will **overfit** the training data, i.e. it learns the noise of the
-training data.
-We evaluate quantitatively **overfitting** / **underfitting** by using
-cross-validation. We calculate the mean squared error (MSE) on the validation
-set, the higher, the less likely the model generalizes correctly from the
-training data.
-"""
-
-print(__doc__)
-
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import PolynomialFeatures
-from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import cross_val_score
-
-
-def true_fun(X):
-    return np.cos(1.5 * np.pi * X)
-
-np.random.seed(0)
-
-n_samples = 30
-degrees = [1, 4, 15]
-
-X = np.sort(np.random.rand(n_samples))
-y = true_fun(X) + np.random.randn(n_samples) * 0.1
-
-plt.figure(figsize=(14, 5))
-for i in range(len(degrees)):
-    ax = plt.subplot(1, len(degrees), i + 1)
-    plt.setp(ax, xticks=(), yticks=())
-
-    polynomial_features = PolynomialFeatures(degree=degrees[i],
-                                             include_bias=False)
-    linear_regression = LinearRegression()
-    pipeline = Pipeline([("polynomial_features", polynomial_features),
-                         ("linear_regression", linear_regression)])
-    pipeline.fit(X[:, np.newaxis], y)
-
-    # Evaluate the models using crossvalidation
-    scores = cross_val_score(pipeline, X[:, np.newaxis], y,
-                             scoring="neg_mean_squared_error", cv=10)
-
-    X_test = np.linspace(0, 1, 100)
-    plt.plot(X_test, pipeline.predict(X_test[:, np.newaxis]), label="Model")
-    plt.plot(X_test, true_fun(X_test), label="True function")
-    plt.scatter(X, y, edgecolor='b', s=20, label="Samples")
-    plt.xlabel("x")
-    plt.ylabel("y")
-    plt.xlim((0, 1))
-    plt.ylim((-2, 2))
-    plt.legend(loc="best")
-    plt.title("Degree {}\nMSE = {:.2e}(+/- {:.2e})".format(
-        degrees[i], -scores.mean(), scores.std()))
-plt.show()
-!ec
 
 
 !split
@@ -3215,7 +3151,8 @@ plt.show()
 
 
 
-
+!split
+===== Applying Regression Analysis to the Ising Model =====
 
 
 
