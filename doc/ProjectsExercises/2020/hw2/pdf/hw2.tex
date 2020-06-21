@@ -21,6 +21,8 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \usepackage[pdftex]{graphicx}
 
 \usepackage{fancyvrb} % packages needed for verbatim environments
+\usepackage{minted}
+\usemintedstyle{default}
 
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
@@ -82,7 +84,7 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
-Day 3: Homework 2
+Day 3: Exercise set 2
 \end{spacing}
 }
 \end{center}
@@ -90,7 +92,7 @@ Day 3: Homework 2
 % ----------------- author(s) -------------------------
 
 \begin{center}
-{\bf Data Analysis and Machine Learning${}^{}$} \\ [0mm]
+{\bf Data Analysis and Machine Learning for Nuclear Physics${}^{}$} \\ [0mm]
 \end{center}
 
 \begin{center}
@@ -101,7 +103,7 @@ Day 3: Homework 2
 
 % --- begin date ---
 \begin{center}
-May 22, 2020
+Jun 21, 2020
 \end{center}
 % --- end date ---
 
@@ -112,7 +114,7 @@ May 22, 2020
 
 
 \paragraph{Exercise 1.}
-This exercise is a continuation of exercise 3 from homework 1. We will
+This exercise is a continuation of exercise 3 from exercise set 1. We will
 use the same function to generate our data set, still staying with a
 simple function $y(x)$ which we want to fit using linear regression,
 but now extending the analysis to include the Ridge and the Lasso
@@ -124,10 +126,10 @@ distribution. The function $y$ is a quadratic polynomial in $x$ with
 added stochastic noise according to the normal distribution $\cal{N}(0,1)$.
 
 The following simple Python instructions define our $x$ and $y$ values (with 100 data points).
-\begin{print}
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 x = np.random.rand(100,1)
 y = 5*x*x+0.1*np.random.randn(100,1)
-\end{print}
+\end{minted}
 
 \begin{enumerate}
 \item (1a) Write your own code for the Ridge method (see chapter 3.4 of Hastie \emph{et al.}, equations (3.43) and (3.44)) and compute the parametrization for different values of $\lambda$. Compare and analyze your results with those from exercise 2. Study the dependence on $\lambda$ while also varying the strength of the noise in your expression for $y(x)$. 
@@ -195,17 +197,17 @@ techniques.
 
 It also common to split the data in a \textbf{training} set and a \textbf{testing} set. A typical split is to use $80\%$ of the data for training and the rest
 for testing. This can be done as follows with our design matrix $\bm{X}$ and data $\bm{y}$ (remember to import \textbf{scikit-learn})
-\begin{print}
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 # split in training and test data
 X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.2)
-\end{print}
+\end{minted}
 Then we can use the stadndard scale to scale our data as
-\begin{print}
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 scaler = StandardScaler()
 scaler.fit(X_train)
 X_train_scaled = scaler.transform(X_train)
 X_test_scaled = scaler.transform(X_test)
-\end{print}
+\end{minted}
 
 
 In this exercise we want you to to compute the MSE for the training
@@ -218,14 +220,14 @@ We will also use Ridge and Lasso regression.
 
 
 Our data is defined by $x\in [-3,3]$ with a total of for example $100$ data points.
-\begin{print}
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 np.random.seed()
 n = 100
 maxdegree = 14
 # Make data set.
 x = np.linspace(-3, 3, n).reshape(-1, 1)
 y = np.exp(-x**2) + 1.5 * np.exp(-(x-2)**2)+ np.random.normal(0, 0.1, x.shape)
-\end{print}
+\end{minted}
 where $y$ is the function we want to fit with a given polynomial.
 
 \begin{enumerate}
@@ -241,7 +243,7 @@ where $y$ is the function we want to fit with a given polynomial.
 \noindent
 \subsection*{Example of how to solve the previous exercise}
 
-\begin{print}
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -283,11 +285,11 @@ plt.ylabel('MSE')
 plt.legend()
 plt.show()
 
-\end{print}
+\end{minted}
 
 \subsection*{And now with OLS only and Bootstrap}
 
-\begin{print}
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -347,7 +349,7 @@ plt.show()
 
 
 
-\end{print}
+\end{minted}
 
 
 
