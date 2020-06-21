@@ -167,7 +167,7 @@ MathJax.Hub.Config({
 <center>[5] <b>Department of Mathematics and Computer Science, Davidson College, Davidson, North Carolina, USA</b></center>
 <br>
 <p>&nbsp;<br>
-<center><h4>Jun 20, 2020</h4></center> <!-- date -->
+<center><h4>Jun 21, 2020</h4></center> <!-- date -->
 <br>
 </section>
 
@@ -202,7 +202,7 @@ Sciences.
 <h2 id="___sec1">Overview of these introductory notes </h2>
 
 <p>
-The aim of these notes is to give you a birds view over overarching issues on the topic of Machine Learning, a brief review of programming with Python and libraries we will use in this course, a reminder on statistics and finally our first encounters of Machine Learning methods applied to an evergreen in Nuclear Physics, fitting nuclear binding energies.
+The aim of these notes is to give you a birds view over overarching issues on  Machine Learning, a brief review of programming with Python and libraries we will use in this course, a reminder on statistics and finally our first encounters of Machine Learning methods applied to an evergreen in Nuclear Physics, fitting nuclear binding energies.
 If you are familiar with basic Python programming and statistics, you can easily jump some of the introductory material here.
 
 <p>
@@ -217,13 +217,18 @@ After these introductory words, the set of lectures will contain the following t
 <p><li class="fragment"> Convolutional and Recurrent Neural Networks and how to analyze experimental results</li>
 <p><li class="fragment"> Generative Models</li>
 <p><li class="fragment"> Reinforcement Learning</li>
-<p><li class="fragment"> Our experimental data are based on Beta-decay experiments and experiments from \( \beta \)-decay experiments and data from Active Target experiments</li> 
+<p><li class="fragment"> The experimental data we will analyze are based on experiments from \( \beta \)-decay experiments and data from Active Target experiments</li>
 </ul>
 </section>
 
 
 <section>
 <h2 id="___sec2">Machine Learning, short overview  </h2>
+</section>
+
+
+<section>
+<h2 id="___sec3">Machine Learning, a small (and probably biased) introduction  </h2>
 
 <p>
 Ideally, machine learning represents the science of giving computers
@@ -239,7 +244,7 @@ role when we develop a specific machine learning algorithm.
 
 
 <section>
-<h2 id="___sec3">Machine Learning, an extremely rich field  </h2>
+<h2 id="___sec4">Machine Learning, an extremely rich field  </h2>
 
 <p>
 Machine learning is an extremely rich field, in spite of its young
@@ -259,7 +264,7 @@ code developers and contributors keeps increasing.
 
 
 <section>
-<h2 id="___sec4">A multidisciplinary approach </h2>
+<h2 id="___sec5">A multidisciplinary approach </h2>
 
 <p>
 Not all the
@@ -274,7 +279,7 @@ of the algorithms and methods we will discuss.
 
 
 <section>
-<h2 id="___sec5">Learning outcomes </h2>
+<h2 id="___sec6">Learning outcomes </h2>
 
 <p>
 These sets of lectures aim at giving you an overview of central aspects of
@@ -295,7 +300,6 @@ More specifically, you will
 <p><li class="fragment"> <font color="red">Learn about basic data analysis, data optimization and machine learning</font>;</li>
 <p><li class="fragment"> <font color="red">Be capable of extending the acquired knowledge to other systems and cases</font>;</li>
 <p><li class="fragment"> <font color="red">Have an understanding of central algorithms used in data analysis and machine learning</font>;</li>
-<p><li class="fragment"> <font color="red">Understand methods for regression and classification</font>;</li>
 <p><li class="fragment"> <font color="red">Methods we will focus on are Linear and Logistic Regression, Decision trees, random forests, bagging and boosting and various variants of deep learning methods, from feed forward neural networks to more advanced methods</font>;</li>
 <p><li class="fragment"> <font color="red">Work on numerical examples to illustrate the theory</font>;</li> 
 </ol>
@@ -303,7 +307,7 @@ More specifically, you will
 
 
 <section>
-<h2 id="___sec6">Types of Machine Learning </h2>
+<h2 id="___sec7">Types of Machine Learning </h2>
 
 <p>
 The approaches to machine learning are many, but are often split into
@@ -329,7 +333,7 @@ desired output of a system.  Some of the most common tasks are:
 
 
 <section>
-<h2 id="___sec7">Essential elements of ML </h2>
+<h2 id="___sec8">Essential elements of ML </h2>
 
 <p>
 The methods we cover have three main topics in common, irrespective of
@@ -337,17 +341,23 @@ whether we deal with supervised or unsupervised learning.
 
 
 <ul>
-<p><li class="fragment"> The first ingredient is normally our data set (which can be subdivided into training, validation  and test data). The often difficult part of using Machine Learning is often to set up your data in a meaningful way.</li> 
+<p><li class="fragment"> The first ingredient is normally our data set (which can be subdivided into training, validation  and test data). Many find the most difficult part of using Machine Learning to be the set up of your data in a meaningful way.</li> 
 <p><li class="fragment"> The second item is a model which is normally a function of some parameters.  The model reflects our knowledge of the system (or lack thereof). As an example, if we know that our data show a behavior similar to what would be predicted by a polynomial, fitting our data to a polynomial of some degree would then determin our model.</li> 
 <p><li class="fragment"> The last ingredient is a so-called <b>cost/loss</b> function (or error function) which allows us to present an estimate on how good our model is in reproducing the data it is supposed to train.</li>  
 </ul>
-<p>
-At the heart of basically all ML algorithms there are so-called minimization algorithms, often we end up with various variants of <b>gradient</b> methods and variants thereof.
 </section>
 
 
 <section>
-<h2 id="___sec8">A Frequentist approach to data analysis  </h2>
+<h2 id="___sec9">An optimization/minimization problem </h2>
+
+<p>
+At the heart of basically all Machine Learning algorithms we will encounter so-called minimization or optimization algorithms. A large family of such methods are so-called <b>gradient methods</b>.
+</section>
+
+
+<section>
+<h2 id="___sec10">A Frequentist approach to data analysis  </h2>
 
 <p>
 When you hear phrases like <b>predictions and estimations</b> and
@@ -356,7 +366,7 @@ of the difference between classifying new data points and generating
 new data points.
 Or perhaps you consider that correlations represent some kind of symmetric statements like
 if \( A \) is correlated with \( B \), then \( B \) is correlated with
-\( A \)). Causation on the other hand is directional, that is if \( A \) causes \( B \), \( B \) does not
+\( A \). Causation on the other hand is directional, that is if \( A \) causes \( B \), \( B \) does not
 necessarily cause \( A \).
 
 <p>
@@ -371,16 +381,16 @@ concerned about the underlying patterns that were learned in order
 to make these predictions.
 
 <p>
-In machine learning we normally use a so-called frequentist approach,
+In machine learning we normally use <a href="https://en.wikipedia.org/wiki/Frequentist_inference" target="_blank">a so-called frequentist approach</a>,
 where the aim is to make predictions and find correlations. We focus
-less on for example extracting a probability function, that can be
+less on for example extracting a probability distribution function (PDF). The PDF can be
 used in turn to make estimations and find causations such as given \( A \)
-what is the likelihood for finding \( B \).
+what is the likelihood of finding \( B \).
 </section>
 
 
 <section>
-<h2 id="___sec9">What is a good model? </h2>
+<h2 id="___sec11">What is a good model? </h2>
 
 <p>
 In science and engineering we often end up in situations where we want to infer (or learn) a
@@ -434,7 +444,12 @@ How to evaluate which model fits best the data is something we will come back to
 
 
 <section>
-<h2 id="___sec10">Choice of Programming Language </h2>
+<h2 id="___sec12">Practicalities, choice of programming language and other computational issues </h2>
+</section>
+
+
+<section>
+<h2 id="___sec13">Choice of Programming Language </h2>
 
 <p>
 Python plays nowadays a central role in the development of machine
@@ -453,7 +468,7 @@ algorithms either as a Python codes or C++ or Fortran (or other languages) codes
 
 
 <section>
-<h2 id="___sec11">Software and needed installations </h2>
+<h2 id="___sec14">Software and needed installations </h2>
 
 <p>
 We will make extensive use of Python as programming language and its
@@ -499,7 +514,7 @@ etc etc.
 
 
 <section>
-<h2 id="___sec12">Python installers </h2>
+<h2 id="___sec15">Python installers </h2>
 
 <p>
 If you don't want to perform these operations separately and venture
@@ -535,7 +550,7 @@ no setup and runs entirely in the cloud. Try it out!
 
 
 <section>
-<h2 id="___sec13">Useful Python libraries </h2>
+<h2 id="___sec16">Useful Python libraries </h2>
 Here we list several useful Python libraries we strongly recommend (if you use anaconda many of these are already there)
 
 <ul>
@@ -555,7 +570,12 @@ Here we list several useful Python libraries we strongly recommend (if you use a
 
 
 <section>
-<h2 id="___sec14">Basic Matrix Features, Numpy examples and Important Matrix and vector handling packages  </h2>
+<h2 id="___sec17">More Practicalities, handling arrays </h2>
+</section>
+
+
+<section>
+<h2 id="___sec18">Basic Matrix Features, Numpy examples and Important Matrix and vector handling packages  </h2>
 
 <p>
 <div class="alert alert-block alert-block alert-text-normal">
@@ -605,7 +625,7 @@ $$
 
 
 <section>
-<h2 id="___sec15">Some famous Matrices </h2>
+<h2 id="___sec19">Some famous Matrices </h2>
 
 <ul>
 
@@ -631,7 +651,7 @@ $$
 
 
 <section>
-<h2 id="___sec16">More Basic Matrix Features </h2>
+<h2 id="___sec20">More Basic Matrix Features </h2>
 
 <p>
 <div class="alert alert-block alert-block alert-text-normal">
@@ -658,7 +678,7 @@ For an \( N\times N \) matrix  \( \mathbf{A} \) the following properties are all
 
 
 <section>
-<h2 id="___sec17">Numpy and arrays </h2>
+<h2 id="___sec21">Numpy and arrays </h2>
 <a href="http://www.numpy.org/" target="_blank">Numpy</a> provides an easy way to handle arrays in Python. The standard way to import this library is as
 
 <p>
@@ -699,7 +719,7 @@ x = np.log(np.array([<span style="color: #B452CD">4</span>, <span style="color: 
 
 
 <section>
-<h2 id="___sec18">More Examples </h2>
+<h2 id="___sec22">More Examples </h2>
 
 <p>
 In the last example we used Numpy's unary function \( np.log \). This function is
@@ -752,7 +772,7 @@ x = np.log(np.array([<span style="color: #B452CD">4.0</span>, <span style="color
 
 
 <section>
-<h2 id="___sec19">Matrices in Python </h2>
+<h2 id="___sec23">Matrices in Python </h2>
 
 <p>
 Having defined vectors, we are now ready to try out matrices. We can
@@ -823,7 +843,7 @@ A = np.random.rand(n, n)
 
 
 <section>
-<h2 id="___sec20">More Examples, Covariance matrix </h2>
+<h2 id="___sec24">More Examples, Covariance matrix </h2>
 
 <p>
 As we will see throughout these lectures, there are several extremely useful functionalities in Numpy.
@@ -862,7 +882,7 @@ $$
 
 
 <section>
-<h2 id="___sec21">More on the Covariance Matrix </h2>
+<h2 id="___sec25">More on the Covariance Matrix </h2>
 
 <p>
 Our matrix is in turn converted into into the \( 3\times 3 \) covariance matrix
@@ -894,7 +914,12 @@ Eigvals, Eigvecs = np.linalg.eig(Sigma)
 
 
 <section>
-<h2 id="___sec22">Brief Reminder on Statistical analysis </h2>
+<h2 id="___sec26">Practicalities, Reminder on Statistics  </h2>
+</section>
+
+
+<section>
+<h2 id="___sec27">Brief Reminder on Statistical Analysis </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -928,7 +953,7 @@ selection of a large set of these numbers reproduces this PDF.
 
 
 <section>
-<h2 id="___sec23">Statistics, moments </h2>
+<h2 id="___sec28">Statistics, moments </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -954,7 +979,7 @@ $$
 
 
 <section>
-<h2 id="___sec24">Statistics, central moments </h2>
+<h2 id="___sec29">Statistics, central moments </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -995,7 +1020,7 @@ qualitatively as the <em>spread</em> of \( p \) around its mean.
 
 
 <section>
-<h2 id="___sec25">Statistics, covariance </h2>
+<h2 id="___sec30">Statistics, covariance </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1029,7 +1054,7 @@ $$
 
 
 <section>
-<h2 id="___sec26">Statistics, more covariance  </h2>
+<h2 id="___sec31">Statistics, more covariance  </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1062,7 +1087,7 @@ $$
 
 
 <section>
-<h2 id="___sec27">Statistics, independent variables  </h2>
+<h2 id="___sec32">Statistics, independent variables  </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1091,7 +1116,7 @@ $$
 
 
 <section>
-<h2 id="___sec28">Statistics, more variance  </h2>
+<h2 id="___sec33">Statistics, more variance  </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1128,7 +1153,7 @@ value of a set of measurements.
 
 
 <section>
-<h2 id="___sec29">Statistics and stochastic processes  </h2>
+<h2 id="___sec34">Statistics and stochastic processes  </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1157,7 +1182,7 @@ interested in finding the few lowest moments, like the mean
 
 
 <section>
-<h2 id="___sec30">Statistics and sample variables  </h2>
+<h2 id="___sec35">Statistics and sample variables  </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1188,7 +1213,7 @@ $$
 
 
 <section>
-<h2 id="___sec31">Statistics, sample variance and covariance </h2>
+<h2 id="___sec36">Statistics, sample variance and covariance </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1208,7 +1233,7 @@ and covariance \( \mathrm{cov}(X,Y) \).
 
 
 <section>
-<h2 id="___sec32">Statistics, law of large numbers </h2>
+<h2 id="___sec37">Statistics, law of large numbers </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1241,7 +1266,7 @@ true PDFs behind, which we usually do not have.
 
 
 <section>
-<h2 id="___sec33">Statistics, more on sample error </h2>
+<h2 id="___sec38">Statistics, more on sample error </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1264,7 +1289,7 @@ means.
 
 
 <section>
-<h2 id="___sec34">Statistics  </h2>
+<h2 id="___sec39">Statistics  </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1286,7 +1311,7 @@ And in particular we are interested in its variance \( \mathrm{var}(\overline X_
 
 
 <section>
-<h2 id="___sec35">Statistics, central limit theorem </h2>
+<h2 id="___sec40">Statistics, central limit theorem </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1312,7 +1337,7 @@ $$
 
 
 <section>
-<h2 id="___sec36">Covariance example </h2>
+<h2 id="___sec41">Covariance example </h2>
 
 <p>
 Suppose we have defined three vectors \( \boldsymbol{x}, \boldsymbol{y}, \boldsymbol{z} \) with
@@ -1367,7 +1392,7 @@ function.
 
 
 <section>
-<h2 id="___sec37">Covariance in numpy </h2>
+<h2 id="___sec42">Covariance in numpy </h2>
 
 <p>
 
@@ -1385,14 +1410,17 @@ z = x**<span style="color: #B452CD">3</span>+np.random.normal(size=n)
 W = np.vstack((x, y, z))
 Sigma = np.cov(W)
 <span style="color: #8B008B; font-weight: bold">print</span>(Sigma)
-Eigvals, Eigvecs = np.linalg.eig(Sigma)
-<span style="color: #8B008B; font-weight: bold">print</span>(Eigvals)
 </pre></div>
 </section>
 
 
 <section>
-<h2 id="___sec38">Meet the Pandas </h2>
+<h2 id="___sec43">Practicalities, Useful Python Packages </h2>
+</section>
+
+
+<section>
+<h2 id="___sec44">Meet the Pandas </h2>
 
 <p>
 <br /><br /><center><p><img src="fig/pandas.jpg" align="bottom" width=600></p></center><br /><br />
@@ -1425,7 +1453,7 @@ display(data_pandas)
 
 
 <section>
-<h2 id="___sec39">Data Frames in Pandas </h2>
+<h2 id="___sec45">Data Frames in Pandas </h2>
 
 <p>
 In the above we have imported <b>pandas</b> with the shorthand <b>pd</b>, the latter has become the standard way we import <b>pandas</b>. We make then a list of various variables
@@ -1462,7 +1490,7 @@ display(data_pandas)
 
 
 <section>
-<h2 id="___sec40">More  Pandas </h2>
+<h2 id="___sec46">More  Pandas </h2>
 
 <p>
 Here are other examples where we use the <b>DataFrame</b> functionality to handle arrays, now with more interesting features for us, namely numbers. We set up a matrix 
@@ -1524,7 +1552,7 @@ and many other operations.
 
 
 <section>
-<h2 id="___sec41">Pandas Series </h2>
+<h2 id="___sec47">Pandas Series </h2>
 
 <p>
 The <b>Series</b> class is another important class included in
@@ -1532,12 +1560,17 @@ The <b>Series</b> class is another important class included in
 we have just a single column of data. It shares many of the same features as _DataFrame. As with <b>DataFrame</b>,
 most operations are vectorized, achieving thereby a high performance when dealing with computations of arrays, in particular labeled arrays.
 As we will see below it leads also to a very concice code close to the mathematical operations we may be interested in.
-For multidimensional arrays, we recommend strongly <a href="http://xarray.pydata.org/en/stable/" target="_blank">xarray</a>. <b>xarray</b> has much of the same flexibility as <b>pandas</b>, but allows for the extension to higher dimensions than two. We will see examples later of the usage of both <b>pandas</b> and <b>xarray</b>.
+For multidimensional arrays, we also recommend <a href="http://xarray.pydata.org/en/stable/" target="_blank">xarray</a>. <b>xarray</b> has much of the same flexibility as <b>pandas</b>, but allows for the extension to higher dimensions than two. We will see examples later of the usage of both <b>pandas</b> and <b>xarray</b>.
 </section>
 
 
 <section>
-<h2 id="___sec42">Reading Data and Fitting  </h2>
+<h2 id="___sec48">Our first Machine Learning Encounter </h2>
+</section>
+
+
+<section>
+<h2 id="___sec49">Reading Data and Fitting  </h2>
 
 <p>
 In order to study various Machine Learning algorithms, we need to
@@ -1576,7 +1609,7 @@ But before we really start with nuclear physics data, let's just look at some si
 
 
 <section>
-<h2 id="___sec43">Simple linear regression model using <b>scikit-learn</b> </h2>
+<h2 id="___sec50">Simple linear regression model using <b>scikit-learn</b> </h2>
 
 <p>
 We start with perhaps our simplest possible example, using <b>Scikit-Learn</b> to perform linear regression analysis on a data set produced by us.
@@ -1594,7 +1627,7 @@ random noise added via the normal distribution.
 
 
 <section>
-<h2 id="___sec44">Simple linear regression model using <b>scikit-learn</b>, Numpy functions </h2>
+<h2 id="___sec51">Simple linear regression model using <b>scikit-learn</b>, Numpy functions </h2>
 
 <p>
 The Numpy functions are imported used the <b>import numpy as np</b>
@@ -1626,7 +1659,7 @@ distinguish between training data and test data.
 
 
 <section>
-<h2 id="___sec45">Simple linear regression model using <b>scikit-learn</b>, Matplotlib </h2>
+<h2 id="___sec52">Simple linear regression model using <b>scikit-learn</b>, Matplotlib </h2>
 
 <p>
 For plotting we use the Python package
@@ -1666,7 +1699,7 @@ plt.show()
 
 
 <section>
-<h2 id="___sec46">Simple linear regression model, what to expect </h2>
+<h2 id="___sec53">Simple linear regression model, what to expect </h2>
 
 <p>
 This example serves several aims. It allows us to demonstrate several
@@ -1695,7 +1728,7 @@ have not discussed a more rigorous approach to the <b>cost</b> function.
 
 
 <section>
-<h2 id="___sec47">Simple linear regression model, how to evaluate the model </h2>
+<h2 id="___sec54">Simple linear regression model, how to evaluate the model </h2>
 
 <p>
 We need more rigorous criteria in defining whether we have succeeded or
@@ -1719,7 +1752,7 @@ dimensionless.
 
 
 <section>
-<h2 id="___sec48">Our first Cost/Loss function encounter </h2>
+<h2 id="___sec55">Our first Cost/Loss function encounter </h2>
 
 <p>
 Minimizing the cost function is a central aspect of
@@ -1740,7 +1773,7 @@ the  \( \chi^2 \) function becomes smaller.
 
 
 <section>
-<h2 id="___sec49">Our first Cost/Loss function encounter, naming </h2>
+<h2 id="___sec56">Our first Cost/Loss function encounter </h2>
 
 <p>
 The terms cost and loss functions are often synonymous, sometimes you will also encounter the usage  error function.
@@ -1750,7 +1783,7 @@ It is common to see statements like this however: <b>The loss function computes 
 
 
 <section>
-<h2 id="___sec50">Our first Cost/Loss function encounter, how do we define them?  </h2>
+<h2 id="___sec57">Our first Cost/Loss function encounter, how do we define them?  </h2>
 
 <p>
 There are many ways to define the cost/loss function. A simpler approach is to look at the relative difference between the training data and the predicted data, that is we define 
@@ -1801,7 +1834,7 @@ relative error.
 
 
 <section>
-<h2 id="___sec51"><b>Scikit-Learn</b> functionality  </h2>
+<h2 id="___sec58"><b>Scikit-Learn</b> functionality  </h2>
 
 <p>
 As mentioned above, <b>Scikit-Learn</b> has an impressive functionality.
@@ -1927,7 +1960,7 @@ detail these and other functions in the various lectures.
 
 
 <section>
-<h2 id="___sec52">Cubic Polynomial </h2>
+<h2 id="___sec59">Cubic Polynomial </h2>
 We conclude this part with another example. Instead of 
 a linear \( x \)-dependence we study now a cubic polynomial and use the polynomial regression analysis tools of scikit-learn.
 
@@ -1969,7 +2002,12 @@ plt.show()
 
 
 <section>
-<h2 id="___sec53">To our real data: nuclear binding energies. Brief reminder on masses and binding energies </h2>
+<h2 id="___sec60">Getting more serious, fitting Nuclear Binding Energies </h2>
+</section>
+
+
+<section>
+<h2 id="___sec61">To our real data: nuclear binding energies. Brief reminder on masses and binding energies </h2>
 
 <p>
 Let us now dive into  nuclear physics and remind ourselves briefly about some basic features about binding
@@ -2063,7 +2101,7 @@ We could also add a so-called pairing term, which is a correction term that
 arises from the tendency of proton pairs and neutron pairs to
 occur. An even number of particles is more stable than an odd number.
 
-<h3 id="___sec54">Organizing our data </h3>
+<h3 id="___sec62">Organizing our data </h3>
 
 <p>
 Let us start with reading and organizing our data. 
@@ -2108,23 +2146,6 @@ DATA_ID = <span style="color: #CD5555">&quot;DataFiles/&quot;</span>
     plt.savefig(image_path(fig_id) + <span style="color: #CD5555">&quot;.png&quot;</span>, format=<span style="color: #CD5555">&#39;png&#39;</span>)
 
 infile = <span style="color: #658b00">open</span>(data_path(<span style="color: #CD5555">&quot;MassEval2016.dat&quot;</span>),<span style="color: #CD5555">&#39;r&#39;</span>)
-</pre></div>
-<p>
-Before we proceed, we define also a function for making our plots. You can obviously avoid this and simply set up various <b>matplotlib</b> commands every time you need them. You may however find it convenient to collect all such commands in one function and simply call this function. 
-<p>
-
-<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">pylab</span> <span style="color: #8B008B; font-weight: bold">import</span> plt, mpl
-plt.style.use(<span style="color: #CD5555">&#39;seaborn&#39;</span>)
-mpl.rcParams[<span style="color: #CD5555">&#39;font.family&#39;</span>] = <span style="color: #CD5555">&#39;serif&#39;</span>
-
-<span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">MakePlot</span>(x,y, styles, labels, axlabels):
-    plt.figure(figsize=(<span style="color: #B452CD">10</span>,<span style="color: #B452CD">6</span>))
-    <span style="color: #8B008B; font-weight: bold">for</span> i <span style="color: #8B008B">in</span> <span style="color: #658b00">range</span>(<span style="color: #658b00">len</span>(x)):
-        plt.plot(x[i], y[i], styles[i], label = labels[i])
-        plt.xlabel(axlabels[<span style="color: #B452CD">0</span>])
-        plt.ylabel(axlabels[<span style="color: #B452CD">1</span>])
-    plt.legend(loc=<span style="color: #B452CD">0</span>)
 </pre></div>
 <p>
 Our next step is to read the data on experimental binding energies and
@@ -2200,8 +2221,8 @@ Energies = Masses[<span style="color: #CD5555">&#39;Ebinding&#39;</span>]
 <span style="color: #8B008B; font-weight: bold">print</span>(Masses)
 </pre></div>
 <p>
-The next step, and we will define this mathematically later, is to set up the so-called <b>design matrix</b>. We will throughout call this matrix \( \boldsymbol{X} \).
-It has dimensionality \( p\times n \), where \( n \) is the number of data points and \( p \) are the so-called predictors. In our case here they are given by the number of polynomials in \( A \) we wish to include in the fit. 
+The next step, and we will define this mathematically later, is to set up the so-called <b>design/feature matrix</b>. We will throughout label  this matrix as \( \boldsymbol{X} \).
+It has dimensionality \( n\times p \), where \( n \) is the number of data points and \( p \) are the so-called features/predictors. In our case here they are given by the number of polynomials in \( A \) we wish to include in the fit. 
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
@@ -2222,7 +2243,9 @@ With <b>scikitlearn</b> we are now ready to use linear regression and fit our da
 fity = clf.predict(X)
 </pre></div>
 <p>
-Pretty simple!  
+Pretty simple!
+
+<p>
 Now we can print measures of how our fit is doing, the coefficients from the fits and plot the final fit together with our data.
 <p>
 
@@ -2249,7 +2272,7 @@ save_fig(<span style="color: #CD5555">&quot;Masses2016&quot;</span>)
 plt.show()
 </pre></div>
 
-<h3 id="___sec55">Seeing the wood for the trees </h3>
+<h3 id="___sec63">Seeing the wood for the trees </h3>
 
 <p>
 As a teaser, let us now see how we can do this with decision trees using <b>scikit-learn</b>. We will discuss the method in more details later.
@@ -2288,7 +2311,7 @@ plt.show()
 <span style="color: #8B008B; font-weight: bold">print</span>(np.mean( (Energies-y_1)**<span style="color: #B452CD">2</span>))
 </pre></div>
 
-<h3 id="___sec56">And what about using neural networks? </h3>
+<h3 id="___sec64">And what about using neural networks? </h3>
 
 <p>
 The <b>seaborn</b> package allows us to visualize data in an efficient way. Note that we use <b>scikit-learn</b>'s multi-layer perceptron (or feed forward neural network) 
@@ -2330,7 +2353,7 @@ plt.show()
 
 
 <section>
-<h2 id="___sec57">More on flexibility with pandas and xarray </h2>
+<h2 id="___sec65">More on flexibility with pandas and xarray </h2>
 
 <p>
 Let us study the \( Q \) values associated with the removal of one or two nucleons from
