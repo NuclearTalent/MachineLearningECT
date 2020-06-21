@@ -2,7 +2,7 @@ TITLE: Fourth and fifth days: Homework set 3
 AUTHOR: Data Analysis and Machine Learning
 DATE:Today
 
-===== Day four and five exercises =====
+===== Day three and four exercises =====
 
 The exercises here are somewhat longer and we expect to use at least two days on them.
 

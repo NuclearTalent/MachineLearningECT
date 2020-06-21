@@ -21,6 +21,8 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \usepackage[pdftex]{graphicx}
 
 \usepackage{fancyvrb} % packages needed for verbatim environments
+\usepackage{minted}
+\usemintedstyle{default}
 
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
@@ -101,14 +103,14 @@ Fourth and fifth days: Homework set 3
 
 % --- begin date ---
 \begin{center}
-May 19, 2020
+Jun 21, 2020
 \end{center}
 % --- end date ---
 
 \vspace{1cm}
 
 
-\subsection*{Day four and five exercises}
+\subsection*{Day three and four exercises}
 
 The exercises here are somewhat longer and we expect to use at least two days on them.
 
@@ -122,14 +124,14 @@ One of the aims of that exercise was
 to reproduce Figure 2.11 of \href{{https://github.com/CompPhysics/MLErasmus/blob/master/doc/Textbooks/elementsstat.pdf}}{Hastie et al}.
 
 Our data is defined by $x\in [-3,3]$ with a total of for example $100$ data points.
-\begin{print}
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 np.random.seed()
 n = 100
 maxdegree = 14
 # Make data set.
 x = np.linspace(-3, 3, n).reshape(-1, 1)
 y = np.exp(-x**2) + 1.5 * np.exp(-(x-2)**2)+ np.random.normal(0, 0.1, x.shape)
-\end{print}
+\end{minted}
 where $y$ is the function we want to fit with a given polynomial.
 
 \paragraph{Part (1a) Proving the bias-variance tradeoff.}
@@ -224,7 +226,7 @@ which polynomial fits the data best.
 
 
 The Python fucntion for the Franke function is included here (it performs also a three-dimensional plot of it)
-\begin{print}
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 from matplotlib import cm
@@ -265,7 +267,7 @@ fig.colorbar(surf, shrink=0.5, aspect=5)
 
 plt.show()
 
-\end{print}
+\end{minted}
 
 
 \paragraph{(2a) Ordinary Least Square on the Franke function  with resampling.}
@@ -303,7 +305,7 @@ where we have defined the mean value  of $\hat{y}$ as
 
 
 To set up the design matrix, the following code can be used
-\begin{print}
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 def FrankeFunction(x,y):
 	term1 = 0.75*np.exp(-(0.25*(9*x-2)**2) - 0.25*((9*y-2)**2))
 	term2 = 0.75*np.exp(-((9*x+1)**2)/49.0 - 0.1*(9*y+1))
@@ -336,7 +338,7 @@ x = np.sort(np.random.uniform(0, 1, N))
 y = np.sort(np.random.uniform(0, 1, N))
 z = FrankeFunction(x, y)
 X = create_X(x, y, n=n)    
-\end{print}
+\end{minted}
 
 
 \paragraph{Part (2b) Resampling techniques, adding more complexity.}
