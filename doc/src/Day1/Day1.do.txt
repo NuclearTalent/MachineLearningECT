@@ -2487,12 +2487,12 @@ The independent bootstrap works like this:
 
 o Draw with replacement $n$ numbers for the observed variables $\bm{x} = (x_1,x_2,\cdots,x_n)$. 
 o Define a vector $\bm{x}^*$ containing the values which were drawn from $\bm{x}$. 
-o Using the vector $\bm{x}^*$ compute $\widehat{\theta}^*$ by evaluating $\widehat \theta$ under the observations $\bm{x}^*$. 
+o Using the vector $\bm{x}^*$ compute the estimate (parameter) $\widehat{\theta}^*$ by evaluating $\widehat \theta$ under the observations $\bm{x}^*$. 
 o Repeat this process $k$ times. 
 
 When you are done, you can draw a histogram of the relative frequency
 of $\widehat \theta^*$. This is your estimate of the probability
-distribution $p(t)$. Using this probability distribution you can
+distribution $p(x)$. Using this probability distribution you can
 estimate any statistics thereof. In principle you never draw the
 histogram of the relative frequency of $\widehat{\theta}^*$. Instead
 you use the estimators corresponding to the statistic of interest. For
