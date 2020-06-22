@@ -222,6 +222,10 @@ is that if we are not specific about what we mean by a *correct* model, there
 could easily be many different models that fit the given data set *equally well*.
 
 
+!split
+===== What is a good model? Can we define it?  =====
+
+
 The central question is this: what leads us to say that a model is correct or
 optimal for a given data set? To make the model inference problem well posed, i.e.,
 to guarantee that there is a unique optimal model for the given data, we need to
@@ -281,22 +285,22 @@ on Python.
 
 If you have Python installed (we strongly recommend Python3) and you feel
 pretty familiar with installing different packages, we recommend that
-you install the following Python packages via _pip_ as 
+you install the following Python packages via _pip_ as (examples of relevant packages)
 
 o pip install numpy scipy matplotlib ipython scikit-learn mglearn sympy pandas pillow 
 
-For Python3, replace _pip_ with _pip3_.
+
 
 For OSX users we recommend, after having installed Xcode, to
 install _brew_. Brew allows for a seamless installation of additional
 software via for example 
 
-o brew install python3
+o brew install python
 
 For Linux users, with its variety of distributions like for example the widely popular Ubuntu distribution,
 you can use _pip_ as well and simply install Python as 
 
-o sudo apt-get install python3  (or python for pyhton2.7)
+o sudo apt-get install python
 
 etc etc. 
 
@@ -482,7 +486,7 @@ print(x)
 To check the number of bytes (remember that one byte contains eight bits for double precision variables), you can use simple use the _itemsize_ functionality (the array $x$ is actually an object which inherits the functionalities defined in Numpy) as 
 !bc pycod
 import numpy as np
-x = np.log(np.array([4.0, 7.0, 8.0])
+x = np.log(np.array([4.0, 7.0, 8.0]))
 print(x.itemsize)
 !ec
 
@@ -740,27 +744,13 @@ $X_j$, ($i\neq j$):
 If $X_i$ and $X_j$ are independent, we get 
 $\langle x_i x_j\rangle =\langle x_i\rangle\langle x_j\rangle$, resulting in $\mathrm{cov}(X_i, X_j) = 0\ \ (i\neq j)$.
 
-Also useful for us is the covariance of linear combinations of
-stochastic variables. Let $\{X_i\}$ and $\{Y_i\}$ be two sets of
-stochastic variables. Let also $\{a_i\}$ and $\{b_i\}$ be two sets of
-scalars. Consider the linear combination:
-!bt
-\[
-U = \sum_i a_i X_i \qquad V = \sum_j b_j Y_j
-\]
-!et
-By the linearity of the expectation value
-!bt
-\[
-\mathrm{cov}(U, V) = \sum_{i,j}a_i b_j \mathrm{cov}(X_i, Y_j)
-\]
-!et
+We normally use the acronym _iid_ for independent and identically distributed stochastic variables.
 !eblock
 
 !split
 ===== Statistics, more variance  =====
 !bblock
-Now, since the variance is just $\mathrm{var}(X_i) = \mathrm{cov}(X_i, X_i)$, we get
+Since the variance is just $\mathrm{var}(X_i) = \mathrm{cov}(X_i, X_i)$, we get
 the variance of the linear combination $U = \sum_i a_i X_i$:
 !bt
 \begin{equation}
