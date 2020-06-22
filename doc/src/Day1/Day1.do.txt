@@ -5,15 +5,21 @@ DATE: today
 !split
 ===== Linear Regression, basic overview =====
 
-The aim of this set of lectures is to introduce basic aspects of linear regression, a widely applied set of methods used to fit continuous functions. We will in particular focus on
+The aim of this set of lectures is to introduce basic aspects of linear regression, a widely applied set of methods used to fit continuous functions.
+
+We will also use these widely popular methods to introduce resampling techniques like bootstrapping and cross-validation. 
+
+We will in particular focus on
 
 !bpop
 * Ordinary linear regression
 * Ridge regression
 * Lasso regression
+* Resampling techniques
+* Bias-variance tradeoff
 !epop
 
-We will also use these widely popular methods to introduce resampling techniques like bootstrapping and cross-validation. 
+
 
 
 !split
