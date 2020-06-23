@@ -38,6 +38,9 @@ Fitting a continuous function with linear parameterization in terms of the param
 * and many more features
 !epop
 
+!split
+===== Additional Reading  =====
+
 For more discussions of Ridge and Lasso regression, "Wessel van Wieringen's":"https://arxiv.org/abs/1509.09169" article is highly recommended.
 Similarly, "Mehta et al's article":"https://arxiv.org/abs/1803.08823" is also recommended. The textbook by "Hastie, Tibshirani, and Friedman on The Elements of Statistical Learning Data Mining":"https://link.springer.com/book/10.1007/978-0-387-84858-7" is highly recommended.  
 
@@ -56,7 +59,8 @@ The first variable is called the _dependent_, the _outcome_ or the _response_ va
 A regression model aims at finding a likelihood function $p(\bm{y}\vert \bm{x})$, that is the conditional distribution for $\bm{y}$ with a given $\bm{x}$. The estimation of  $p(\bm{y}\vert \bm{x})$ is made using a data set with 
 * $n$ cases $i = 0, 1, 2, \dots, n-1$ 
 * Response (target, dependent or outcome) variable $y_i$ with $i = 0, 1, 2, \dots, n-1$ 
-* $p$ so-called explanatory (independent or predictor) variables $\bm{x}_i=[x_{i0}, x_{i1}, \dots, x_{ip-1}]$ with $i = 0, 1, 2, \dots, n-1$ and explanatory variables running from $0$ to $p-1$. See below for more explicit examples.   
+* $p$ so-called explanatory (independent or predictor) variables $\bm{x}_i=[x_{i0}, x_{i1}, \dots, x_{ip-1}]$ with $i = 0, 1, 2, \dots, n-1$ and explanatory variables running from $0$ to $p-1$. See below for more explicit examples.   These variables are also called features or predictors.
+
  The goal of the regression analysis is to extract/exploit relationship between $\bm{y}$ and $\bm{x}$ in or to infer causal dependencies, approximations to the likelihood functions, functional relationships and to make predictions, making fits and many other things.
 !eblock
 
@@ -101,8 +105,8 @@ BE(A) = a_0+a_1A+a_2A^{2/3}+a_3A^{-1/3}+a_4A^{-1},
 \]
 !et
 we have five predictors, that is the intercept, the $A$ dependent term, the $A^{2/3}$ term and the $A^{-1/3}$ and $A^{-1}$ terms.
-This gives $p=0,1,2,3,4$. Furthermore we have $n$ entries for each predictor. It means that our design matrix is a 
-$p\times n$ matrix $\bm{X}$.
+This gives $p=0,1,2,3,4$. Furthermore we have $n$ entries for each predictor. It means that our design matrix is an 
+$n\times p$ matrix $\bm{X}$.
 
 Here the predictors are based on a model we have made. A popular data set which is widely encountered in ML applications is the
 so-called "credit card default data from Taiwan":"https://www.sciencedirect.com/science/article/pii/S0957417407006719?via%3Dihub". The data set contains data on $n=30000$ credit card holders with predictors like gender, marital status, age, profession, education, etc. In total there are $24$ such predictors or attributes leading to a design matrix of dimensionality $24 \times 30000$. This is however a classification problem and we will come back to it when we discuss Logistic Regression. 
@@ -211,7 +215,7 @@ y_{n-1}&=\beta_0x_{n-1,0}+\beta_1x_{n-1,2}+\beta_2x_{n-1,2}+\dots+\beta_{n-1}x_{
 \end{align*}
 !et
 
-_Note that we have $p=n$ here. The matrix is symmetric. This is generally not the case!_
+Note that we have used $p=n$ here. The matrix is thus quadratic (it may be symmetric). This is generally not the case!
 !eblock
 
 
@@ -369,7 +373,7 @@ C(\bm{\beta})=\frac{1}{n}\sum_{i=0}^{n-1}\left(y_i-\tilde{y}_i\right)^2=\frac{1}
 or using the matrix $\bm{X}$ and in a more compact matrix-vector notation as
 !bt
 \[
-C(\bm{\beta})=\frac{1}{n}\left\{\left(\bm{y}-\bm{X}^T\bm{\beta}\right)^T\left(\bm{y}-\bm{X}^T\bm{\beta}\right)\right\}.
+C(\bm{\beta})=\frac{1}{n}\left\{\left(\bm{y}-\bm{X}\bm{\beta}\right)^T\left(\bm{y}-\bm{X}\bm{\beta}\right)\right\}.
 \]
 !et
 This function is one possible way to define the so-called cost function.
@@ -377,7 +381,7 @@ This function is one possible way to define the so-called cost function.
 
 
 It is also common to define
-the function $Q$ as
+the function $C$ as
 
 !bt
 \[
@@ -398,8 +402,8 @@ The function
 C(\bm{\beta})=\frac{1}{n}\left\{\left(\bm{y}-\bm{X}\bm{\beta}\right)^T\left(\bm{y}-\bm{X}\bm{\beta}\right)\right\},
 \]
 !et
-can be linked to the variance of the quantity $y_i$ if we interpret the latter as the mean value. 
-When linking (see the discussion below) with the maximum likelihood approach below, we will indeed interpret $y_i$ as a mean value
+can be linked to the variance of the quantity $y_i$ if we interpret the latter as the mean value.
+Below we will show that
 !bt
 \[
 y_{i}=\langle y_i \rangle = \beta_0x_{i,0}+\beta_1x_{i,1}+\beta_2x_{i,2}+\dots+\beta_{n-1}x_{i,n-1}+\epsilon_i,
@@ -544,7 +548,9 @@ It is rather straightforward to implement the matrix inversion and obtain the pa
 write
 !bc pycod 
 # matrix inversion to find beta
-beta = np.linalg.inv(X.T.dot(X)).dot(X.T).dot(Energies)
+beta = np.linalg.inv(X.T @ X) @ X.T @ Energies
+# or in a more old-fashioned way
+# beta = np.linalg.inv(X.T.dot(X)).dot(X.T).dot(Energies)
 # and then make the prediction
 ytilde = X @ beta
 !ec
@@ -584,7 +590,7 @@ and we would be using it as
 print(R2(Energies,ytilde))
 !ec
 
-We can easily add our _MSE_ score as
+We can also add our _MSE_ score as
 !bc pycod
 def MSE(y_data,y_model):
     n = np.size(y_model)
@@ -797,7 +803,7 @@ nuclear equation of state using results from many-body calculations.
 The equation of state we have made available here, as function of
 density, has been derived using modern nucleon-nucleon potentials with
 "the addition of three-body
-forces":"https://www.sciencedirect.com/science/article/pii/S0370157399001106". This
+interactions":"https://www.sciencedirect.com/science/article/pii/S0370157399001106". This
 time the file is presented as a standard _csv_ file.
 
 The beginning of the Python code here is similar to what you have seen
@@ -975,7 +981,7 @@ X[:,4] = Density**(5.0/3.0)
 # We split the data in test and training data
 X_train, X_test, y_train, y_test = train_test_split(X, Energies, test_size=0.2)
 # matrix inversion to find beta
-beta = np.linalg.inv(X_train.T.dot(X_train)).dot(X_train.T).dot(y_train)
+beta = np.linalg.inv(X_train.T @ X_train) @ X_train.T @ y_train
 # and then make the prediction
 ytilde = X_train @ beta
 print("Training R2")
@@ -1547,17 +1553,24 @@ Here we have defined the norm-1 as
 !split
 ===== More on Ridge Regression =====
 
-Using the matrix-vector expression for Ridge regression,
+Using the matrix-vector expression for Ridge regression (we drop the $1/n$ factor),
 
 !bt
 \[
-C(\bm{X},\bm{\beta})=\frac{1}{n}\left\{(\bm{y}-\bm{X}\bm{\beta})^T(\bm{y}-\bm{X}\bm{\beta})\right\}+\lambda\bm{\beta}^T\bm{\beta},
+C(\bm{X},\bm{\beta})=\left\{(\bm{y}-\bm{X}\bm{\beta})^T(\bm{y}-\bm{X}\bm{\beta})\right\}+\lambda\bm{\beta}^T\bm{\beta},
 \]
 !et
 
-by taking the derivatives with respect to $\bm{\beta}$ we obtain then
+by taking the derivatives with respect to $\bm{\beta}$ we obtain
+!bt
+\[
+\frac{\partial C(\bm{\beta})}{\partial \bm{\beta}} = 0 = 2\bm{X}^T\left( \bm{y}-\bm{X}\bm{\beta}\right)-2\lambda\bm{\beta}.
+\]
+!et
+
+We obtain 
 a slightly modified matrix inversion problem which for finite values
-of $\lambda$ does not suffer from singularity problems. We obtain
+of $\lambda$ does not suffer from singularity problems, that is
 
 !bt
 \[
@@ -1580,7 +1593,7 @@ OLS with a modified diagonal term added to $\bm{X}^T\bm{X}$. The
 consequences, in particular for our discussion of the bias-variance tradeoff 
 are rather interesting.
 
-Furthermore, if we use the result above in terms of the SVD decomposition (our analysis was done for the OLS method), we had
+Furthermore, if we use the result above in terms of the SVD decomposition (our analysis was done for the OLS method), we get
 !bt
 \[
 (\bm{X}\bm{X}^T)\bm{U} = \bm{U}\bm{D}.
@@ -1751,410 +1764,10 @@ bootstrap is widely used.
 
 
 
-!split
-===== Statistics  ===== 
-!bblock
-The *probability distribution function (PDF)* is a function
-$p(x)$ on the domain which, in the discrete case, gives us the
-probability or relative frequency with which these values of $X$ occur:
-!bt
-\[
-p(x) = \mathrm{prob}(X=x)
-\]
-!et
-In the continuous case, the PDF does not directly depict the
-actual probability. Instead we define the probability for the
-stochastic variable to assume any value on an infinitesimal interval
-around $x$ to be $p(x)dx$. The continuous function $p(x)$ then gives us
-the *density* of the probability rather than the probability
-itself. The probability for a stochastic variable to assume any value
-on a non-infinitesimal interval $[a,\,b]$ is then just the integral:
-!bt
-\[
-\mathrm{prob}(a\leq X\leq b) = \int_a^b p(x)dx
-\]
-!et
-Qualitatively speaking, a stochastic variable represents the values of
-numbers chosen as if by chance from some specified PDF so that the
-selection of a large set of these numbers reproduces this PDF.
-!eblock
-
-
-!split
-===== Statistics, moments =====
-!bblock
-A particularly useful class of special expectation values are the
-*moments*. The $n$-th moment of the PDF $p$ is defined as
-follows:
-!bt
-\[
-\langle x^n\rangle \equiv \int\! x^n p(x)\,dx
-\]
-!et
-The zero-th moment $\langle 1\rangle$ is just the normalization condition of
-$p$. The first moment, $\langle x\rangle$, is called the *mean* of $p$
-and often denoted by the letter $\mu$:
-!bt
-\[
-\langle x\rangle = \mu \equiv \int\! x p(x)\,dx
-\]
-!et
-!eblock
-
-!split
-===== Statistics, central moments =====
-!bblock
-A special version of the moments is the set of *central moments*,
-the n-th central moment defined as:
-!bt
-\[
-\langle (x-\langle x \rangle )^n\rangle \equiv \int\! (x-\langle x\rangle)^n p(x)\,dx
-\]
-!et
-The zero-th and first central moments are both trivial, equal $1$ and
-$0$, respectively. But the second central moment, known as the
-*variance* of $p$, is of particular interest. For the stochastic
-variable $X$, the variance is denoted as $\sigma^2_X$ or $\mathrm{var}(X)$:
-!bt
-\begin{align}
-\sigma^2_X\ \ =\ \ \mathrm{var}(X) & =  \langle (x-\langle x\rangle)^2\rangle =
-\int\! (x-\langle x\rangle)^2 p(x)\,dx\\
-& =  \int\! \left(x^2 - 2 x \langle x\rangle^{2} +
-  \langle x\rangle^2\right)p(x)\,dx\\
-& =  \langle x^2\rangle - 2 \langle x\rangle\langle x\rangle + \langle x\rangle^2\\
-& =  \langle x^2\rangle - \langle x\rangle^2
-\end{align}
-!et
-The square root of the variance, $\sigma =\sqrt{\langle (x-\langle x\rangle)^2\rangle}$ is called the *standard deviation* of $p$. It is clearly just the RMS (root-mean-square)
-value of the deviation of the PDF from its mean value, interpreted
-qualitatively as the *spread* of $p$ around its mean.
-!eblock
-
-!split
-===== Statistics, covariance =====
-!bblock
-Another important quantity is the so called covariance, a variant of
-the above defined variance. Consider again the set $\{X_i\}$ of $n$
-stochastic variables (not necessarily uncorrelated) with the
-multivariate PDF $P(x_1,\dots,x_n)$. The *covariance* of two
-of the stochastic variables, $X_i$ and $X_j$, is defined as follows:
-!bt
-\begin{align}
-\mathrm{cov}(X_i,\,X_j) &\equiv \langle (x_i-\langle x_i\rangle)(x_j-\langle x_j\rangle)\rangle
-\nonumber\\
-&=
-\int\!\cdots\!\int\!(x_i-\langle x_i \rangle)(x_j-\langle x_j \rangle)\,
-P(x_1,\dots,x_n)\,dx_1\dots dx_n
-label{eq:def_covariance}
-\end{align}
-!et
-with
-!bt
-\[
-\langle x_i\rangle =
-\int\!\cdots\!\int\!x_i\,P(x_1,\dots,x_n)\,dx_1\dots dx_n
-\]
-!et
-!eblock
-
-!split
-===== Statistics, more covariance  =====
-!bblock
-If we consider the above covariance as a matrix $C_{ij}=\mathrm{cov}(X_i,\,X_j)$, then the diagonal elements are just the familiar
-variances, $C_{ii} = \mathrm{cov}(X_i,\,X_i) = \mathrm{var}(X_i)$. It turns out that
-all the off-diagonal elements are zero if the stochastic variables are
-uncorrelated. This is easy to show, keeping in mind the linearity of
-the expectation value. Consider the stochastic variables $X_i$ and
-$X_j$, ($i\neq j$):
-!bt
-\begin{align}
-\mathrm{cov}(X_i,\,X_j) &= \langle(x_i-\langle x_i\rangle)(x_j-\langle x_j\rangle)\rangle\\
-&=\langle x_i x_j - x_i\langle x_j\rangle - \langle x_i\rangle x_j + \langle x_i\rangle\langle x_j\rangle\rangle \\
-&=\langle x_i x_j\rangle - \langle x_i\langle x_j\rangle\rangle - \langle \langle x_i\rangle x_j\rangle +
-\langle \langle x_i\rangle\langle x_j\rangle\rangle\\
-&=\langle x_i x_j\rangle - \langle x_i\rangle\langle x_j\rangle - \langle x_i\rangle\langle x_j\rangle +
-\langle x_i\rangle\langle x_j\rangle\\
-&=\langle x_i x_j\rangle - \langle x_i\rangle\langle x_j\rangle
-\end{align}
-!et
-!eblock
-
-!split
-===== Covariance example =====
-
-Suppose we have defined three vectors $\bm{x}, \bm{y}, \bm{z}$ with
-$n$ elements each. The covariance matrix is defined as
-
-
-!bt
-\[
-\bm{\Sigma} = \begin{bmatrix} \sigma_{xx} & \sigma_{xy} & \sigma_{xz} \\
-                              \sigma_{yx} & \sigma_{yy} & \sigma_{yz} \\
-                              \sigma_{zx} & \sigma_{zy} & \sigma_{zz}
-             \end{bmatrix},
-\]
-!et
-where for example
-!bt
-\[
-\sigma_{xy} =\frac{1}{n} \sum_{i=0}^{n-1}(x_i- \overline{x})(y_i- \overline{y}).
-\]
-!et
-
-The Numpy function _np.cov_ calculates the covariance elements using
-the factor $1/(n-1)$ instead of $1/n$ since it assumes we do not have
-the exact mean values.
-
-The following simple function uses the _np.vstack_ function which
-takes each vector of dimension $1\times n$ and produces a $3\times n$
-matrix $\bm{W}$
-
-!bt
-\[
-\bm{W} = \begin{bmatrix} x_0 & y_0 & z_0 \\
-                          x_1 & y_1 & z_1 \\
-                          x_2 & y_2 & z_2 \\
-                          \dots & \dots & \dots \\
-                          x_{n-2} & y_{n-2} & z_{n-2} \\
-                          x_{n-1} & y_{n-1} & z_{n-1}
-             \end{bmatrix},
-\]
-!et
-
-which in turn is converted into into the $3\times 3$ covariance matrix
-$\bm{\Sigma}$ via the Numpy function _np.cov()_. We note that we can
-also calculate the mean value of each set of samples $\bm{x}$ etc
-using the Numpy function _np.mean(x)_. We can also extract the
-eigenvalues of the covariance matrix through the _np.linalg.eig()_
-function.
-
-
-!split
-===== Covariance in numpy =====
-
-!bc pycod
-# Importing various packages
-import numpy as np
-
-n = 100
-x = np.random.normal(size=n)
-print(np.mean(x))
-y = 4+3*x+np.random.normal(size=n)
-print(np.mean(y))
-z = x**3+np.random.normal(size=n)
-print(np.mean(z))
-W = np.vstack((x, y, z))
-Sigma = np.cov(W)
-print(Sigma)
-!ec
-
-
-
-!split
-===== Statistics, independent variables  =====
-!bblock
-If $X_i$ and $X_j$ are independent, we get 
-$\langle x_i x_j\rangle =\langle x_i\rangle\langle x_j\rangle$, resulting in $\mathrm{cov}(X_i, X_j) = 0\ \ (i\neq j)$.
-
-Also useful for us is the covariance of linear combinations of
-stochastic variables. Let $\{X_i\}$ and $\{Y_i\}$ be two sets of
-stochastic variables. Let also $\{a_i\}$ and $\{b_i\}$ be two sets of
-scalars. Consider the linear combination:
-!bt
-\[
-U = \sum_i a_i X_i \qquad V = \sum_j b_j Y_j
-\]
-!et
-By the linearity of the expectation value
-!bt
-\[
-\mathrm{cov}(U, V) = \sum_{i,j}a_i b_j \mathrm{cov}(X_i, Y_j)
-\]
-!et
-!eblock
-
-!split
-===== Statistics, more variance  =====
-!bblock
-Now, since the variance is just $\mathrm{var}(X_i) = \mathrm{cov}(X_i, X_i)$, we get
-the variance of the linear combination $U = \sum_i a_i X_i$:
-!bt
-\begin{equation}
-\mathrm{var}(U) = \sum_{i,j}a_i a_j \mathrm{cov}(X_i, X_j)
-label{eq:variance_linear_combination}
-\end{equation}
-!et
-And in the special case when the stochastic variables are
-uncorrelated, the off-diagonal elements of the covariance are as we
-know zero, resulting in:
-!bt
-\[
-\mathrm{var}(U) = \sum_i a_i^2 \mathrm{cov}(X_i, X_i) = \sum_i a_i^2 \mathrm{var}(X_i)
-\]
-!et
-!bt
-\[
-\mathrm{var}(\sum_i a_i X_i) = \sum_i a_i^2 \mathrm{var}(X_i)
-\]
-!et
-which will become very useful in our study of the error in the mean
-value of a set of measurements.
-!eblock
-
-!split
-===== Statistics and stochastic processes  =====
-!bblock
-A *stochastic process* is a process that produces sequentially a
-chain of values:
-!bt
-\[
-\{x_1, x_2,\dots\,x_k,\dots\}.
-\]
-!et
-We will call these
-values our *measurements* and the entire set as our measured
-*sample*.  The action of measuring all the elements of a sample
-we will call a stochastic *experiment* since, operationally,
-they are often associated with results of empirical observation of
-some physical or mathematical phenomena; precisely an experiment. We
-assume that these values are distributed according to some 
-PDF $p_X^{\phantom X}(x)$, where $X$ is just the formal symbol for the
-stochastic variable whose PDF is $p_X^{\phantom X}(x)$. Instead of
-trying to determine the full distribution $p$ we are often only
-interested in finding the few lowest moments, like the mean
-$\mu_X^{\phantom X}$ and the variance $\sigma_X^{\phantom X}$.
-!eblock
-
-
-!split 
-===== Statistics and sample variables  =====
-!bblock
-In practical situations a sample is always of finite size. Let that
-size be $n$. The expectation value of a sample, the *sample mean*, is then defined as follows:
-!bt
-\[
-\bar{x}_n \equiv \frac{1}{n}\sum_{k=1}^n x_k
-\]
-!et
-The *sample variance* is:
-!bt
-\[
-\mathrm{var}(x) \equiv \frac{1}{n}\sum_{k=1}^n (x_k - \bar{x}_n)^2
-\]
-!et
-its square root being the *standard deviation of the sample*. The
-*sample covariance* is:
-!bt
-\[
-\mathrm{cov}(x)\equiv\frac{1}{n}\sum_{kl}(x_k - \bar{x}_n)(x_l - \bar{x}_n)
-\]
-!et
-!eblock
-
-!split
-===== Statistics, sample variance and covariance =====
-!bblock
-Note that the sample variance is the sample covariance without the
-cross terms. In a similar manner as the covariance in Eq.~(ref{eq:def_covariance}) is a measure of the correlation between
-two stochastic variables, the above defined sample covariance is a
-measure of the sequential correlation between succeeding measurements
-of a sample.
-
-These quantities, being known experimental values, differ
-significantly from and must not be confused with the similarly named
-quantities for stochastic variables, mean $\mu_X$, variance $\mathrm{var}(X)$
-and covariance $\mathrm{cov}(X,Y)$.
-!eblock
-
-!split
-===== Statistics, law of large numbers =====
-!bblock
-The law of large numbers
-states that as the size of our sample grows to infinity, the sample
-mean approaches the true mean $\mu_X^{\phantom X}$ of the chosen PDF:
-!bt
-\[
-\lim_{n\to\infty}\bar{x}_n = \mu_X^{\phantom X}
-\]
-!et
-The sample mean $\bar{x}_n$ works therefore as an estimate of the true
-mean $\mu_X^{\phantom X}$.
-
-What we need to find out is how good an approximation $\bar{x}_n$ is to
-$\mu_X^{\phantom X}$. In any stochastic measurement, an estimated
-mean is of no use to us without a measure of its error. A quantity
-that tells us how well we can reproduce it in another experiment. We
-are therefore interested in the PDF of the sample mean itself. Its
-standard deviation will be a measure of the spread of sample means,
-and we will simply call it the *error* of the sample mean, or
-just sample error, and denote it by $\mathrm{err}_X^{\phantom X}$. In
-practice, we will only be able to produce an *estimate* of the
-sample error since the exact value would require the knowledge of the
-true PDFs behind, which we usually do not have.
-!eblock
-
-
-!split
-===== Statistics, more on sample error =====
-!bblock
-Let us first take a look at what happens to the sample error as the
-size of the sample grows. In a sample, each of the measurements $x_i$
-can be associated with its own stochastic variable $X_i$. The
-stochastic variable $\overline X_n$ for the sample mean $\bar{x}_n$ is
-then just a linear combination, already familiar to us:
-!bt
-\[
-\overline X_n = \frac{1}{n}\sum_{i=1}^n X_i
-\]
-!et
-All the coefficients are just equal $1/n$. The PDF of $\overline X_n$,
-denoted by $p_{\overline X_n}(x)$ is the desired PDF of the sample
-means. 
-!eblock
-
-!split
-===== Statistics  =====
-!bblock
-The probability density of obtaining a sample mean $\bar x_n$
-is the product of probabilities of obtaining arbitrary values $x_1,
-x_2,\dots,x_n$ with the constraint that the mean of the set $\{x_i\}$
-is $\bar x_n$:
-!bt
-\[
-p_{\overline X_n}(x) = \int p_X^{\phantom X}(x_1)\cdots
-\int p_X^{\phantom X}(x_n)\ 
-\delta\!\left(x - \frac{x_1+x_2+\dots+x_n}{n}\right)dx_n \cdots dx_1
-\]
-!et
-And in particular we are interested in its variance $\mathrm{var}(\overline X_n)$.
-!eblock
-
-
-
-!split
-===== Statistics, central limit theorem =====
-!bblock
-It is generally not possible to express $p_{\overline X_n}(x)$ in a
-closed form given an arbitrary PDF $p_X^{\phantom X}$ and a number
-$n$. But for the limit $n\to\infty$ it is possible to make an
-approximation. The very important result is called *the central limit theorem*. It tells us that as $n$ goes to infinity,
-$p_{\overline X_n}(x)$ approaches a Gaussian distribution whose mean
-and variance equal the true mean and variance, $\mu_{X}^{\phantom X}$
-and $\sigma_{X}^{2}$, respectively:
-!bt
-\begin{equation}
-\lim_{n\to\infty} p_{\overline X_n}(x) =
-\left(\frac{n}{2\pi\mathrm{var}(X)}\right)^{1/2}
-e^{-\frac{n(x-\bar x_n)^2}{2\mathrm{var}(X)}}
-label{eq:central_limit_gaussian}
-\end{equation}
-!et
-!eblock
-
 !split 
 ===== Linking the regression analysis with a statistical interpretation =====
 
-Finally, we are going to discuss several statistical properties which can be obtained in terms of analytical expressions. 
+We are going to discuss several statistical properties which can be obtained in terms of analytical expressions. 
 The
 advantage of doing linear regression is that we actually end up with
 analytical expressions for several statistical quantities.  
@@ -2201,9 +1814,13 @@ We approximate this function with our model from the solution of the linear regr
 function $f$ is approximated by $\bm{\tilde{y}}$ where we want to minimize $(\bm{y}-\bm{\tilde{y}})^2$, our MSE, with
 !bt
 \[
-\bm{\tilde{y}} = \bm{X}\bm{\beta}.
+\bm{\tilde{y}} = \bm{X}\bm{\beta}\approx f(\bm{x}).
 \]
 !et
+
+Note that we reserve the design matrix $\bm{X}$ to represent our specific rewrite of the input variables $\bm{x}$.
+
+
 
 !split
 ===== Expectation value and variance =====
@@ -2344,8 +1961,43 @@ test error.  For a certain level of complexity the test error will
 reach a minimum, before starting to increase again. The training error
 reaches a saturation.
 
+!split
+===== Train and test,  an example =====
+!bc pycod
+import matplotlib.pyplot as plt
+import numpy as np
+from sklearn.linear_model import LinearRegression, Ridge, Lasso
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import make_pipeline
+from sklearn.utils import resample
 
+np.random.seed(2018)
+n = 50
+maxdegree = 15
 
+# Make data set.
+x = np.linspace(-3, 3, n).reshape(-1, 1)
+y = np.exp(-x**2) + 1.5 * np.exp(-(x-2)**2)+ np.random.normal(0, 0.1, x.shape)
+TestError = np.zeros(maxdegree)
+TrainError = np.zeros(maxdegree)
+polydegree = np.zeros(maxdegree)
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
+
+for degree in range(maxdegree):
+    model = make_pipeline(PolynomialFeatures(degree=degree), LinearRegression(fit_intercept=False))
+    clf = model.fit(x_train,y_train)
+    y_fit = clf.predict(x_train)
+    y_pred = clf.predict(x_test) 
+    polydegree[degree] = degree
+    TestError[degree] = np.mean( np.mean((y_test - y_pred)**2) )
+    TrainError[degree] = np.mean( np.mean((y_train - y_fit)**2) )
+
+plt.plot(polydegree, TestError, label='Test Error')
+plt.plot(polydegree, TrainError, label='Train Error')
+plt.legend()
+plt.show()
+!ec
 
 !split
 ===== Resampling methods: Jackknife and Bootstrap =====
@@ -2360,62 +2012,7 @@ the independent bootstrap soared, new variants, such as _the dependent bootstrap
 The Jackknife and independent bootstrap work for
 independent, identically distributed random variables.
 If these conditions are not
-satisfied, the methods will fail.  Yet, it should be said that if the data are
-independent, identically distributed, and we only want to estimate the
-variance of $\overline{X}$ (which often is the case), then there is no
-need for bootstrapping. 
-
-!split
-===== Resampling methods: Jackknife =====
-
-The Jackknife works by making many replicas of the estimator $\widehat{\theta}$. 
-The jackknife is a resampling method where we systematically leave out one observation from the vector of observed values $\bm{x} = (x_1,x_2,\cdots,X_n)$. 
-Let $\bm{x}_i$ denote the vector
-!bt
-\[
-\bm{x}_i = (x_1,x_2,\cdots,x_{i-1},x_{i+1},\cdots,x_n),
-\]
-!et
-
-which equals the vector $\bm{x}$ with the exception that observation
-number $i$ is left out. Using this notation, define
-$\widehat{\theta}_i$ to be the estimator
-$\widehat{\theta}$ computed using $\vec{X}_i$. 
-
-
-!split
-=====  Jackknife code example =====
-!bc pycod
-from numpy import *
-from numpy.random import randint, randn
-from time import time
-
-def jackknife(data, stat):
-    n = len(data);t = zeros(n); inds = arange(n); t0 = time()
-    ## 'jackknifing' by leaving out an observation for each i                                                                                                                      
-    for i in range(n):
-        t[i] = stat(delete(data,i) )
-
-    # analysis                                                                                                                                                                     
-    print("Runtime: %g sec" % (time()-t0)); print("Jackknife Statistics :")
-    print("original           bias      std. error")
-    print("%8g %14g %15g" % (stat(data),(n-1)*mean(t)/n, (n*var(t))**.5))
-
-    return t
-
-
-# Returns mean of data samples                                                                                                                                                     
-def stat(data):
-    return mean(data)
-
-
-mu, sigma = 100, 15
-datapoints = 10000
-x = mu + sigma*random.randn(datapoints)
-# jackknife returns the data sample                                                                                                                                                
-t = jackknife(x, stat)
-
-!ec
+satisfied, the methods will fail.
 
 
 !split
@@ -2428,57 +2025,8 @@ advantages:
 o The bootstrap is quite general, although there are some cases in which it fails.  
 o Because it does not require distributional assumptions (such as normally distributed errors), the bootstrap can provide more accurate inferences when the data are not well behaved or when the sample size is small.  
 o It is possible to apply the bootstrap to statistics with sampling distributions that are difficult to derive, even asymptotically. 
-o It is relatively simple to apply the bootstrap to complex data-collection plans (such as stratified and clustered samples).
+o It is relatively simple to apply the bootstrap.
 !eblock
-
-
-!split
-===== Resampling methods: Bootstrap background =====
-
-Since $\widehat{\theta} = \widehat{\theta}(\bm{X})$ is a function of random variables,
-$\widehat{\theta}$ itself must be a random variable. Thus it has
-a pdf, call this function $p(\bm{t})$. The aim of the bootstrap is to
-estimate $p(\bm{t})$ by the relative frequency of
-$\widehat{\theta}$. You can think of this as using a histogram
-in the place of $p(\bm{t})$. If the relative frequency closely
-resembles $p(\vec{t})$, then using numerics, it is straight forward to
-estimate all the interesting parameters of $p(\bm{t})$ using point
-estimators.  
-
-
-!split
-===== Resampling methods: More Bootstrap background =====
-
-In the case that $\widehat{\theta}$ has
-more than one component, and the components are independent, we use the
-same estimator on each component separately.  If the probability
-density function of $X_i$, $p(x)$, had been known, then it would have
-been straight forward to do this by: 
-o Drawing lots of numbers from $p(x)$, suppose we call one such set of numbers $(X_1^*, X_2^*, \cdots, X_n^*)$. 
-o Then using these numbers, we could compute a replica of $\widehat{\theta}$ called $\widehat{\theta}^*$. 
-
-By repeated use of (1) and (2), many
-estimates of $\widehat{\theta}$ could have been obtained. The
-idea is to use the relative frequency of $\widehat{\theta}^*$
-(think of a histogram) as an estimate of $p(\bm{t})$.
-
-!split
-===== Resampling methods: Bootstrap approach =====
-
-But
-unless there is enough information available about the process that
-generated $X_1,X_2,\cdots,X_n$, $p(x)$ is in general
-unknown. Therefore, "Efron in 1979":"https://projecteuclid.org/euclid.aos/1176344552"  asked the
-question: What if we replace $p(x)$ by the relative frequency
-of the observation $X_i$; if we draw observations in accordance with
-the relative frequency of the observations, will we obtain the same
-result in some asymptotic sense? The answer is yes.
-
-
-Instead of generating the histogram for the relative
-frequency of the observation $X_i$, just draw the values
-$(X_1^*,X_2^*,\cdots,X_n^*)$ with replacement from the vector
-$\bm{X}$. 
 
 !split
 ===== Resampling methods: Bootstrap steps =====
@@ -2491,7 +2039,7 @@ o Using the vector $\bm{x}^*$ compute the estimate (parameter) $\widehat{\theta}
 o Repeat this process $k$ times. 
 
 When you are done, you can draw a histogram of the relative frequency
-of $\widehat \theta^*$. This is your estimate of the probability
+of the estimator/parameter $\widehat \theta^*$. This is your estimate of the probability
 distribution $p(x)$. Using this probability distribution you can
 estimate any statistics thereof. In principle you never draw the
 histogram of the relative frequency of $\widehat{\theta}^*$. Instead
@@ -2587,9 +2135,9 @@ cross-validation (LOOCV).
 
 * Define a range of interest for the penalty parameter.
 
-* Divide the data set into training and test set comprising samples $\{1, \ldots, n\} \setminus i$ and $\{ i \}$, respectively.
+* Divide the data set into training and test set comprising samples $\{1, \ldots, n\} \setminus i$ and $\{i \}$, respectively.
 
-* Fit the linear regression model by means of ridge estimation  for each $\lambda$ in the grid using the training set, and the corresponding estimate of the error variance $\bm{\sigma}_{-i}^2(\lambda)$, as
+* Fit the linear regression model by means of OLS, or Ridge or Lasso estimations  for each $\lambda$ in the grid using the training set, and the corresponding estimate of the error variance $\bm{\sigma}_{-i}^2(\lambda)$, as
 !bt
 \begin{align*}
 \bm{\beta}_{-i}(\lambda) & =  ( \bm{X}_{-i, \ast}^{T}
@@ -2791,69 +2339,6 @@ which, using the abovementioned expectation values can be rewritten as
 !et
 that is the rewriting in terms of the so-called bias, the variance of the model $\bm{\tilde{y}}$ and the variance of $\bm{\epsilon}$.
 
-
-
-
-
-!split
-===== Example code for Bias-Variance tradeoff =====
-!bc pycod
-import matplotlib.pyplot as plt
-import numpy as np
-from sklearn.linear_model import LinearRegression, Ridge, Lasso
-from sklearn.preprocessing import PolynomialFeatures
-from sklearn.model_selection import train_test_split
-from sklearn.pipeline import make_pipeline
-from sklearn.utils import resample
-
-np.random.seed(2018)
-
-n = 500
-n_boostraps = 100
-degree = 18  # A quite high value, just to show.
-noise = 0.1
-
-# Make data set.
-x = np.linspace(-1, 3, n).reshape(-1, 1)
-y = np.exp(-x**2) + 1.5 * np.exp(-(x-2)**2) + np.random.normal(0, 0.1, x.shape)
-
-# Hold out some test data that is never used in training.
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
-
-# Combine x transformation and model into one operation.
-# Not neccesary, but convenient.
-model = make_pipeline(PolynomialFeatures(degree=degree), LinearRegression(fit_intercept=False))
-
-# The following (m x n_bootstraps) matrix holds the column vectors y_pred
-# for each bootstrap iteration.
-y_pred = np.empty((y_test.shape[0], n_boostraps))
-for i in range(n_boostraps):
-    x_, y_ = resample(x_train, y_train)
-
-    # Evaluate the new model on the same test data each time.
-    y_pred[:, i] = model.fit(x_, y_).predict(x_test).ravel()
-
-# Note: Expectations and variances taken w.r.t. different training
-# data sets, hence the axis=1. Subsequent means are taken across the test data
-# set in order to obtain a total value, but before this we have error/bias/variance
-# calculated per data point in the test set.
-# Note 2: The use of keepdims=True is important in the calculation of bias as this 
-# maintains the column vector form. Dropping this yields very unexpected results.
-error = np.mean( np.mean((y_test - y_pred)**2, axis=1, keepdims=True) )
-bias = np.mean( (y_test - np.mean(y_pred, axis=1, keepdims=True))**2 )
-variance = np.mean( np.var(y_pred, axis=1, keepdims=True) )
-print('Error:', error)
-print('Bias^2:', bias)
-print('Var:', variance)
-print('{} >= {} + {} = {}'.format(error, bias, variance, bias+variance))
-
-plt.plot(x[::5, :], y[::5, :], label='f(x)')
-plt.scatter(x_test, y_test, label='Data points')
-plt.scatter(x_test, np.mean(y_pred, axis=1), label='Pred')
-plt.legend()
-plt.show()
-
-!ec
 
 
 !split
