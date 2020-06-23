@@ -32,7 +32,7 @@ Sciences.
 !split
 ===== Overview of these introductory notes =====
 
-The aim of these notes is to give you a birds view over overarching issues on the topic of Machine Learning, a brief review of programming with Python and libraries we will use in this course, a reminder on statistics and finally our first encounters of Machine Learning methods applied to an evergreen in Nuclear Physics, fitting nuclear binding energies.
+The aim of these notes is to give you a birds view over overarching issues on  Machine Learning, a brief review of programming with Python and libraries we will use in this course, a reminder on statistics and finally our first encounters of Machine Learning methods applied to an evergreen in Nuclear Physics, fitting nuclear binding energies.
 If you are familiar with basic Python programming and statistics, you can easily jump some of the introductory material here.
 
 After these introductory words, the set of lectures will contain the following themes:
@@ -44,12 +44,17 @@ After these introductory words, the set of lectures will contain the following t
 * Convolutional and Recurrent Neural Networks and how to analyze experimental results
 * Generative Models
 * Reinforcement Learning
-* Our experimental data are based on Beta-decay experiments and experiments from $\beta$-decay experiments and data from Active Target experiments 
+* The experimental data we will analyze are based on experiments from $\beta$-decay experiments and data from Active Target experiments
 !epop
 
 
 !split
 ===== Machine Learning, short overview  =====
+
+
+!split
+===== Machine Learning, a small (and probably biased) introduction  =====
+
 
 Ideally, machine learning represents the science of giving computers
 the ability to learn without being explicitly programmed.  The idea is
@@ -111,7 +116,6 @@ More specifically, you will
 o color{red}{Learn about basic data analysis, data optimization and machine learning};
 o color{red}{Be capable of extending the acquired knowledge to other systems and cases};
 o color{red}{Have an understanding of central algorithms used in data analysis and machine learning};
-o color{red}{Understand methods for regression and classification};
 o color{red}{Methods we will focus on are Linear and Logistic Regression, Decision trees, random forests, bagging and boosting and various variants of deep learning methods, from feed forward neural networks to more advanced methods};
 o color{red}{Work on numerical examples to illustrate the theory}; 
 !epop
@@ -150,7 +154,7 @@ desired output of a system.  Some of the most common tasks are:
 The methods we cover have three main topics in common, irrespective of
 whether we deal with supervised or unsupervised learning.
 !bpop
-* The first ingredient is normally our data set (which can be subdivided into training, validation  and test data). The often difficult part of using Machine Learning is often to set up your data in a meaningful way. 
+* The first ingredient is normally our data set (which can be subdivided into training, validation  and test data). Many find the most difficult part of using Machine Learning to be the set up of your data in a meaningful way. 
 
 * The second item is a model which is normally a function of some parameters.  The model reflects our knowledge of the system (or lack thereof). As an example, if we know that our data show a behavior similar to what would be predicted by a polynomial, fitting our data to a polynomial of some degree would then determin our model. 
 
@@ -158,8 +162,12 @@ whether we deal with supervised or unsupervised learning.
 !epop
 
 
-At the heart of basically all ML algorithms there are so-called minimization algorithms, often we end up with various variants of _gradient_ methods and variants thereof.
 
+
+!split
+===== An optimization/minimization problem =====
+
+At the heart of basically all Machine Learning algorithms we will encounter so-called minimization or optimization algorithms. A large family of such methods are so-called _gradient methods_.
 
 !split
 ===== A Frequentist approach to data analysis  =====
@@ -170,7 +178,7 @@ of the difference between classifying new data points and generating
 new data points.
 Or perhaps you consider that correlations represent some kind of symmetric statements like
 if $A$ is correlated with $B$, then $B$ is correlated with
-$A$). Causation on the other hand is directional, that is if $A$ causes $B$, $B$ does not
+$A$. Causation on the other hand is directional, that is if $A$ causes $B$, $B$ does not
 necessarily cause $A$.
 
 These concepts are in some sense the difference between machine
@@ -183,11 +191,11 @@ is the quality of the predictions or assessments, and we are less
 concerned about the underlying patterns that were learned in order
 to make these predictions.
 
-In machine learning we normally use a so-called frequentist approach,
+In machine learning we normally use "a so-called frequentist approach":"https://en.wikipedia.org/wiki/Frequentist_inference",
 where the aim is to make predictions and find correlations. We focus
-less on for example extracting a probability function, that can be
+less on for example extracting a probability distribution function (PDF). The PDF can be
 used in turn to make estimations and find causations such as given $A$
-what is the likelihood for finding $B$.
+what is the likelihood of finding $B$.
 
 
 !split
@@ -214,6 +222,10 @@ is that if we are not specific about what we mean by a *correct* model, there
 could easily be many different models that fit the given data set *equally well*.
 
 
+!split
+===== What is a good model? Can we define it?  =====
+
+
 The central question is this: what leads us to say that a model is correct or
 optimal for a given data set? To make the model inference problem well posed, i.e.,
 to guarantee that there is a unique optimal model for the given data, we need to
@@ -235,7 +247,8 @@ may first try the simplest class of models, namely linear models, followed obvio
 
 How to evaluate which model fits best the data is something we will come back to over and over again in these set of lectures.
 
-
+!split
+===== Practicalities, choice of programming language and other computational issues =====
 
 !split
 ===== Choice of Programming Language =====
@@ -272,22 +285,22 @@ on Python.
 
 If you have Python installed (we strongly recommend Python3) and you feel
 pretty familiar with installing different packages, we recommend that
-you install the following Python packages via _pip_ as 
+you install the following Python packages via _pip_ as (examples of relevant packages)
 
 o pip install numpy scipy matplotlib ipython scikit-learn mglearn sympy pandas pillow 
 
-For Python3, replace _pip_ with _pip3_.
+
 
 For OSX users we recommend, after having installed Xcode, to
 install _brew_. Brew allows for a seamless installation of additional
 software via for example 
 
-o brew install python3
+o brew install python
 
 For Linux users, with its variety of distributions like for example the widely popular Ubuntu distribution,
 you can use _pip_ as well and simply install Python as 
 
-o sudo apt-get install python3  (or python for pyhton2.7)
+o sudo apt-get install python
 
 etc etc. 
 
@@ -333,6 +346,10 @@ Here we list several useful Python libraries we strongly recommend (if you use a
 * "TensorFlow":"https://www.tensorflow.org/" is a Python library for fast numerical computing created and released by Google
 * "Keras":"https://keras.io/" is a high-level neural networks API, written in Python and capable of running on top of TensorFlow, CNTK, or Theano
 * And many more such as "pytorch":"https://pytorch.org/",  "Theano":"https://pypi.org/project/Theano/" etc 
+
+
+!split
+===== More Practicalities, handling arrays =====
 
 
 !split
@@ -469,15 +486,15 @@ print(x)
 To check the number of bytes (remember that one byte contains eight bits for double precision variables), you can use simple use the _itemsize_ functionality (the array $x$ is actually an object which inherits the functionalities defined in Numpy) as 
 !bc pycod
 import numpy as np
-x = np.log(np.array([4.0, 7.0, 8.0])
-print(x.itemsize)
+x = np.log(np.array([4.0, 7.0, 8.0]))
+print(x)
 !ec
 
 !split
 ===== Matrices in Python =====
 
 Having defined vectors, we are now ready to try out matrices. We can
-define a $3 \times 3 $ real matrix $\hat{A}$ as (recall that we user
+define a $3 \times 3 $ real matrix $\bm{A}$ as (recall that we user
 lowercase letters for vectors and uppercase letters for matrices)
 
 !bc pycod
@@ -529,10 +546,10 @@ print(A)
 
 As we will see throughout these lectures, there are several extremely useful functionalities in Numpy.
 As an example, consider the discussion of the covariance matrix. Suppose we have defined three vectors
-$\hat{x}, \hat{y}, \hat{z}$ with $n$ elements each. The covariance matrix is defined as 
+$\bm{x}, \bm{y}, \bm{z}$ with $n$ elements each. The covariance matrix is defined as 
 !bt
 \[
-\hat{\Sigma} = \begin{bmatrix} \sigma_{xx} & \sigma_{xy} & \sigma_{xz} \\
+\bm{\Sigma} = \begin{bmatrix} \sigma_{xx} & \sigma_{xy} & \sigma_{xz} \\
                               \sigma_{yx} & \sigma_{yy} & \sigma_{yz} \\
                               \sigma_{zx} & \sigma_{zy} & \sigma_{zz} 
              \end{bmatrix},
@@ -545,10 +562,10 @@ where for example
 \]
 !et
 The Numpy function _np.cov_ calculates the covariance elements using the factor $1/(n-1)$ instead of $1/n$ since it assumes we do not have the exact mean values. 
-The following simple function uses the _np.vstack_ function which takes each vector of dimension $1\times n$ and produces a $3\times n$ matrix $\hat{W}$
+The following simple function uses the _np.vstack_ function which takes each vector of dimension $1\times n$ and produces a $3\times n$ matrix $\bm{W}$
 !bt
 \[
-\hat{W} = \begin{bmatrix} x_0 & y_0 & z_0 \\
+\bm{W} = \begin{bmatrix} x_0 & y_0 & z_0 \\
                           x_1 & y_1 & z_1 \\
                           x_2 & y_2 & z_2 \\
                           \dots & \dots & \dots \\
@@ -563,8 +580,8 @@ The following simple function uses the _np.vstack_ function which takes each vec
 ===== More on the Covariance Matrix =====
 
 Our matrix is in turn converted into into the $3\times 3$ covariance matrix
-$\hat{\Sigma}$ via the Numpy function _np.cov()_. We note that we can also calculate
-the mean value of each set of samples $\hat{x}$ etc using the Numpy
+$\bm{\Sigma}$ via the Numpy function _np.cov()_. We note that we can also calculate
+the mean value of each set of samples $\bm{x}$ etc using the Numpy
 function _np.mean(x)_. We can also extract the eigenvalues of the
 covariance matrix through the _np.linalg.eig()_ function.
 
@@ -586,8 +603,14 @@ Eigvals, Eigvecs = np.linalg.eig(Sigma)
 print(Eigvals)
 !ec
 
+
 !split
-===== Brief Reminder on Statistical analysis =====  
+===== Practicalities, Reminder on Statistics  =====
+
+
+
+!split
+===== Brief Reminder on Statistical Analysis =====  
 !bblock
 The *probability distribution function (PDF)* is a function
 $p(x)$ on the domain which, in the discrete case, gives us the
@@ -721,27 +744,13 @@ $X_j$, ($i\neq j$):
 If $X_i$ and $X_j$ are independent, we get 
 $\langle x_i x_j\rangle =\langle x_i\rangle\langle x_j\rangle$, resulting in $\mathrm{cov}(X_i, X_j) = 0\ \ (i\neq j)$.
 
-Also useful for us is the covariance of linear combinations of
-stochastic variables. Let $\{X_i\}$ and $\{Y_i\}$ be two sets of
-stochastic variables. Let also $\{a_i\}$ and $\{b_i\}$ be two sets of
-scalars. Consider the linear combination:
-!bt
-\[
-U = \sum_i a_i X_i \qquad V = \sum_j b_j Y_j
-\]
-!et
-By the linearity of the expectation value
-!bt
-\[
-\mathrm{cov}(U, V) = \sum_{i,j}a_i b_j \mathrm{cov}(X_i, Y_j)
-\]
-!et
+We normally use the acronym _iid_ for independent and identically distributed stochastic variables.
 !eblock
 
 !split
 ===== Statistics, more variance  =====
 !bblock
-Now, since the variance is just $\mathrm{var}(X_i) = \mathrm{cov}(X_i, X_i)$, we get
+Since the variance is just $\mathrm{var}(X_i) = \mathrm{cov}(X_i, X_i)$, we get
 the variance of the linear combination $U = \sum_i a_i X_i$:
 !bt
 \begin{equation}
@@ -984,11 +993,10 @@ print(np.mean(z))
 W = np.vstack((x, y, z))
 Sigma = np.cov(W)
 print(Sigma)
-Eigvals, Eigvecs = np.linalg.eig(Sigma)
-print(Eigvals)
 !ec
 
-
+!split
+===== Practicalities, Useful Python Packages =====
 
 
 !split
@@ -1107,8 +1115,13 @@ _pandas_. You can view it as a specialization of _DataFrame_ but where
 we have just a single column of data. It shares many of the same features as _DataFrame. As with _DataFrame_,
 most operations are vectorized, achieving thereby a high performance when dealing with computations of arrays, in particular labeled arrays.
 As we will see below it leads also to a very concice code close to the mathematical operations we may be interested in.
-For multidimensional arrays, we recommend strongly "xarray":"http://xarray.pydata.org/en/stable/". _xarray_ has much of the same flexibility as _pandas_, but allows for the extension to higher dimensions than two. We will see examples later of the usage of both _pandas_ and _xarray_. 
+For multidimensional arrays, we also recommend "xarray":"http://xarray.pydata.org/en/stable/". _xarray_ has much of the same flexibility as _pandas_, but allows for the extension to higher dimensions than two. We will see examples later of the usage of both _pandas_ and _xarray_. 
 
+
+
+
+!split
+===== Our first Machine Learning Encounter =====
 
 !split
 ===== Reading Data and Fitting  =====
@@ -1149,7 +1162,7 @@ We start with perhaps our simplest possible example, using _Scikit-Learn_ to per
 
 What follows is a simple Python code where we have defined a function
 $y$ in terms of the variable $x$. Both are defined as vectors with  $100$ entries. 
-The numbers in the vector $\hat{x}$ are given
+The numbers in the vector $\bm{x}$ are given
 by random numbers generated with a uniform distribution with entries
 $x_i \in [0,1]$ (more about probability distribution functions
 later). These values are then used to define a function $y(x)$
@@ -1180,7 +1193,7 @@ where $N(0,1)$ represents random numbers generated by the normal
 distribution.  From _Scikit-Learn_ we import then the
 _LinearRegression_ functionality and make a prediction $\tilde{y} =
 \alpha + \beta x$ using the function _fit(x,y)_. We call the set of
-data $(\hat{x},\hat{y})$ for our training data. The Python package
+data $(\bm{x},\bm{y})$ for our training data. The Python package
 _scikit-learn_ has also a functionality which extracts the above
 fitting parameters $\alpha$ and $\beta$ (see below). Later we will
 distinguish between training data and test data.
@@ -1285,7 +1298,7 @@ many practitioners minimize the above function ''by the eye', popularly dubbed a
 the  $\chi^2$ function becomes smaller. 
 
 !split
-===== Our first Cost/Loss function encounter, naming =====
+===== Our first Cost/Loss function encounter =====
 
 The terms cost and loss functions are often synonymous, sometimes you will also encounter the usage  error function.
 The more general scenario is to define an objective function first, which we want to optimize.
@@ -1300,7 +1313,7 @@ the relative error (why would we prefer the MSE instead of the relative error?) 
 
 !bt
 \[
-\epsilon_{\mathrm{relative}}= \frac{\vert \hat{y} -\hat{\tilde{y}}\vert}{\vert \hat{y}\vert}.
+\epsilon_{\mathrm{relative}}= \frac{\vert \bm{y} -\bm{\tilde{y}}\vert}{\vert \bm{y}\vert}.
 \]
 !et
 
@@ -1381,7 +1394,7 @@ plt.show()
 The function _coef_ gives us the parameter $\beta$ of our fit while _intercept_ yields 
 $\alpha$. Depending on the constant in front of the normal distribution, we get values near or far from $alpha =2$ and $\beta =5$. Try to play around with different parameters in front of the normal distribution. The function _meansquarederror_ gives us the mean square error, a risk metric corresponding to the expected value of the squared (quadratic) error or loss defined as
 !bt 
-\[ MSE(\hat{y},\hat{\tilde{y}}) = \frac{1}{n}
+\[ MSE(\bm{y},\bm{\tilde{y}}) = \frac{1}{n}
 \sum_{i=0}^{n-1}(y_i-\tilde{y}_i)^2, 
 \] 
 !et 
@@ -1395,13 +1408,13 @@ The _r2score_ function computes $R^2$, the coefficient of
 determination. It provides a measure of how well future samples are
 likely to be predicted by the model. Best possible score is 1.0 and it
 can be negative (because the model can be arbitrarily worse). A
-constant model that always predicts the expected value of $\hat{y}$,
+constant model that always predicts the expected value of $\bm{y}$,
 disregarding the input features, would get a $R^2$ score of $0.0$.
 
-If $\tilde{\hat{y}}_i$ is the predicted value of the $i-th$ sample and $y_i$ is the corresponding true value, then the score $R^2$ is defined as
+If $\tilde{\bm{y}}_i$ is the predicted value of the $i-th$ sample and $y_i$ is the corresponding true value, then the score $R^2$ is defined as
 !bt
 \[
-R^2(\hat{y}, \tilde{\hat{y}}) = 1 - \frac{\sum_{i=0}^{n - 1} (y_i - \tilde{y}_i)^2}{\sum_{i=0}^{n - 1} (y_i - \bar{y})^2},
+R^2(\bm{y}, \tilde{\bm{y}}) = 1 - \frac{\sum_{i=0}^{n - 1} (y_i - \tilde{y}_i)^2}{\sum_{i=0}^{n - 1} (y_i - \bar{y})^2},
 \]
 !et
 where we have defined the mean value  of $\hat{y}$ as
@@ -1415,14 +1428,14 @@ Another quantity taht we will meet again in our discussions of regression analys
 The MAE is defined as follows
 !bt
 \[
-\text{MAE}(\hat{y}, \hat{\tilde{y}}) = \frac{1}{n} \sum_{i=0}^{n-1} \left| y_i - \tilde{y}_i \right|.
+\text{MAE}(\bm{y}, \bm{\tilde{y}}) = \frac{1}{n} \sum_{i=0}^{n-1} \left| y_i - \tilde{y}_i \right|.
 \]
 !et
 We present the 
 squared logarithmic (quadratic) error
 !bt
 \[
-\text{MSLE}(\hat{y}, \hat{\tilde{y}}) = \frac{1}{n} \sum_{i=0}^{n - 1} (\log_e (1 + y_i) - \log_e (1 + \tilde{y}_i) )^2,
+\text{MSLE}(\bm{y}, \bm{\tilde{y}}) = \frac{1}{n} \sum_{i=0}^{n - 1} (\log_e (1 + y_i) - \log_e (1 + \tilde{y}_i) )^2,
 \]
 !et
 
@@ -1442,7 +1455,7 @@ ways of dealing with outliers.
 The Huber cost function is defined as
 !bt
 \[
-H_{\delta}(a)=\begin{bmatrix}\frac {1}{2}}{a^{2}}&{\text{for }}|a|\leq \delta ,\\\delta (|a|-{\frac {1}{2}}\delta ),&{\text{otherwise.}}\end{bmatrix}.
+H_{\delta}(a)=\begin{bmatrix}\frac{1}{2}a^{2}& \text{for }|a|\leq \delta ,\\ \delta (|a|-{\frac {1}{2}}\delta ),&\text{otherwise.}\end{bmatrix}.
 \]
 !et
 Here $a=\bm{y} - \bm{\tilde{y}}$.
@@ -1487,6 +1500,8 @@ def error(a):
 print (error(y))
 !ec
 
+!split
+===== Getting more serious, fitting Nuclear Binding Energies =====
 
 
 !split
@@ -1623,20 +1638,6 @@ infile = open(data_path("MassEval2016.dat"),'r')
 !ec
 
 
-Before we proceed, we define also a function for making our plots. You can obviously avoid this and simply set up various _matplotlib_ commands every time you need them. You may however find it convenient to collect all such commands in one function and simply call this function. 
-!bc pycod 
-from pylab import plt, mpl
-plt.style.use('seaborn')
-mpl.rcParams['font.family'] = 'serif'
-
-def MakePlot(x,y, styles, labels, axlabels):
-    plt.figure(figsize=(10,6))
-    for i in range(len(x)):
-        plt.plot(x[i], y[i], styles[i], label = labels[i])
-        plt.xlabel(axlabels[0])
-        plt.ylabel(axlabels[1])
-    plt.legend(loc=0)
-!ec
 
 Our next step is to read the data on experimental binding energies and
 reorganize them as functions of the mass number $A$, the number of
@@ -1703,8 +1704,8 @@ Element = Masses['Element']
 Energies = Masses['Ebinding']
 print(Masses)
 !ec
-The next step, and we will define this mathematically later, is to set up the so-called _design matrix_. We will throughout call this matrix $\bm{X}$.
-It has dimensionality $p\times n$, where $n$ is the number of data points and $p$ are the so-called predictors. In our case here they are given by the number of polynomials in $A$ we wish to include in the fit. 
+The next step, and we will define this mathematically later, is to set up the so-called _design/feature matrix_. We will throughout label  this matrix as $\bm{X}$.
+It has dimensionality $n\times p$, where $n$ is the number of data points and $p$ are the so-called features/predictors. In our case here they are given by the number of polynomials in $A$ we wish to include in the fit. 
 !bc pycod
 # Now we set up the design matrix X
 X = np.zeros((len(A),5))
@@ -1720,6 +1721,7 @@ clf = skl.LinearRegression().fit(X, Energies)
 fity = clf.predict(X)
 !ec
 Pretty simple!  
+
 Now we can print measures of how our fit is doing, the coefficients from the fits and plot the final fit together with our data.
 !bc pycod
 # The mean squared error                               
