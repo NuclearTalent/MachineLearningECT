@@ -177,32 +177,29 @@ div { text-align: justify; text-justify: inter-word; }
               ('Resampling methods', 2, None, '___sec58'),
               ('Resampling methods, basic overview', 2, None, '___sec59'),
               ('Train and test,  an example', 2, None, '___sec60'),
+              ('Bringing back our Equation of State data', 2, None, '___sec61'),
               ('Resampling methods: Jackknife and Bootstrap',
                2,
                None,
-               '___sec61'),
-              ('Resampling methods: Bootstrap', 2, None, '___sec62'),
-              ('Resampling methods: Bootstrap steps', 2, None, '___sec63'),
-              ('Code example for the Bootstrap method', 2, None, '___sec64'),
-              ('Various steps in cross-validation', 2, None, '___sec65'),
+               '___sec62'),
+              ('Resampling methods: Bootstrap', 2, None, '___sec63'),
+              ('Resampling methods: Bootstrap steps', 2, None, '___sec64'),
+              ('Code example for the Bootstrap method', 2, None, '___sec65'),
+              ('Various steps in cross-validation', 2, None, '___sec66'),
               ('How to set up the cross-validation for Ridge and/or Lasso',
                2,
                None,
-               '___sec66'),
-              ('Cross-validation in brief', 2, None, '___sec67'),
+               '___sec67'),
+              ('Cross-validation in brief', 2, None, '___sec68'),
               ('Code Example for Cross-validation and $k$-fold '
                'Cross-validation',
                2,
                None,
-               '___sec68'),
-              ('How to decide upon the best model?', 2, None, '___sec69'),
-              ('The bias-variance tradeoff', 2, None, '___sec70'),
-              ('Understanding what happens', 2, None, '___sec71'),
-              ('Summing up', 2, None, '___sec72'),
-              ('More examples on bootstrap and cross-validation and errors',
-               2,
-               None,
-               '___sec73'),
+               '___sec69'),
+              ('How to decide upon the best model?', 2, None, '___sec70'),
+              ('The bias-variance tradeoff', 2, None, '___sec71'),
+              ('Understanding what happens', 2, None, '___sec72'),
+              ('Summing up', 2, None, '___sec73'),
               ('The same example but now with cross-validation',
                2,
                None,
@@ -2492,7 +2489,94 @@ plt<span style="color: #666666">.</span>show()
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec61">Resampling methods: Jackknife and Bootstrap </h2>
+<h2 id="___sec61">Bringing back our Equation of State data </h2>
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic"># Common imports</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">os</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">pandas</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">pd</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">matplotlib.pyplot</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">plt</span>
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.linear_model</span> <span style="color: #008000; font-weight: bold">import</span> LinearRegression, Ridge, Lasso
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.model_selection</span> <span style="color: #008000; font-weight: bold">import</span> train_test_split
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.utils</span> <span style="color: #008000; font-weight: bold">import</span> resample
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.metrics</span> <span style="color: #008000; font-weight: bold">import</span> mean_squared_error
+<span style="color: #408080; font-style: italic"># Where to save the figures and data files</span>
+PROJECT_ROOT_DIR <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;Results&quot;</span>
+FIGURE_ID <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;Results/FigureFiles&quot;</span>
+DATA_ID <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;DataFiles/&quot;</span>
+
+<span style="color: #008000; font-weight: bold">if</span> <span style="color: #AA22FF; font-weight: bold">not</span> os<span style="color: #666666">.</span>path<span style="color: #666666">.</span>exists(PROJECT_ROOT_DIR):
+    os<span style="color: #666666">.</span>mkdir(PROJECT_ROOT_DIR)
+
+<span style="color: #008000; font-weight: bold">if</span> <span style="color: #AA22FF; font-weight: bold">not</span> os<span style="color: #666666">.</span>path<span style="color: #666666">.</span>exists(FIGURE_ID):
+    os<span style="color: #666666">.</span>makedirs(FIGURE_ID)
+
+<span style="color: #008000; font-weight: bold">if</span> <span style="color: #AA22FF; font-weight: bold">not</span> os<span style="color: #666666">.</span>path<span style="color: #666666">.</span>exists(DATA_ID):
+    os<span style="color: #666666">.</span>makedirs(DATA_ID)
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">image_path</span>(fig_id):
+    <span style="color: #008000; font-weight: bold">return</span> os<span style="color: #666666">.</span>path<span style="color: #666666">.</span>join(FIGURE_ID, fig_id)
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">data_path</span>(dat_id):
+    <span style="color: #008000; font-weight: bold">return</span> os<span style="color: #666666">.</span>path<span style="color: #666666">.</span>join(DATA_ID, dat_id)
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">save_fig</span>(fig_id):
+    plt<span style="color: #666666">.</span>savefig(image_path(fig_id) <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;.png&quot;</span>, format<span style="color: #666666">=</span><span style="color: #BA2121">&#39;png&#39;</span>)
+
+infile <span style="color: #666666">=</span> <span style="color: #008000">open</span>(data_path(<span style="color: #BA2121">&quot;EoS.csv&quot;</span>),<span style="color: #BA2121">&#39;r&#39;</span>)
+
+<span style="color: #408080; font-style: italic"># Read the EoS data as  csv file and organize the data into two arrays with density and energies</span>
+EoS <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>read_csv(infile, names<span style="color: #666666">=</span>(<span style="color: #BA2121">&#39;Density&#39;</span>, <span style="color: #BA2121">&#39;Energy&#39;</span>))
+EoS[<span style="color: #BA2121">&#39;Energy&#39;</span>] <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>to_numeric(EoS[<span style="color: #BA2121">&#39;Energy&#39;</span>], errors<span style="color: #666666">=</span><span style="color: #BA2121">&#39;coerce&#39;</span>)
+EoS <span style="color: #666666">=</span> EoS<span style="color: #666666">.</span>dropna()
+Energies <span style="color: #666666">=</span> EoS[<span style="color: #BA2121">&#39;Energy&#39;</span>]
+Density <span style="color: #666666">=</span> EoS[<span style="color: #BA2121">&#39;Density&#39;</span>]
+<span style="color: #408080; font-style: italic">#  The design matrix now as function of various polytrops</span>
+
+Maxpolydegree <span style="color: #666666">=</span> <span style="color: #666666">30</span>
+X <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros((<span style="color: #008000">len</span>(Density),Maxpolydegree))
+X[:,<span style="color: #666666">0</span>] <span style="color: #666666">=</span> <span style="color: #666666">1.0</span>
+testerror <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros(Maxpolydegree)
+trainingerror <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros(Maxpolydegree)
+polynomial <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros(Maxpolydegree)
+
+trials <span style="color: #666666">=</span> <span style="color: #666666">100</span>
+<span style="color: #008000; font-weight: bold">for</span> polydegree <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(<span style="color: #666666">1</span>, Maxpolydegree):
+    polynomial[polydegree] <span style="color: #666666">=</span> polydegree
+    <span style="color: #008000; font-weight: bold">for</span> degree <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(polydegree):
+        X[:,degree] <span style="color: #666666">=</span> Density<span style="color: #666666">**</span>(degree<span style="color: #666666">/3.0</span>)
+
+<span style="color: #408080; font-style: italic"># loop over trials in order to estimate the expectation value of the MSE</span>
+    testerror[polydegree] <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>
+    trainingerror[polydegree] <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>
+    <span style="color: #008000; font-weight: bold">for</span> samples <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(trials):
+        x_train, x_test, y_train, y_test <span style="color: #666666">=</span> train_test_split(X, Energies, test_size<span style="color: #666666">=0.2</span>)
+        model <span style="color: #666666">=</span> LinearRegression(fit_intercept<span style="color: #666666">=</span><span style="color: #008000">True</span>)<span style="color: #666666">.</span>fit(x_train, y_train)
+        ypred <span style="color: #666666">=</span> model<span style="color: #666666">.</span>predict(x_train)
+        ytilde <span style="color: #666666">=</span> model<span style="color: #666666">.</span>predict(x_test)
+        testerror[polydegree] <span style="color: #666666">+=</span> mean_squared_error(y_test, ytilde)
+        trainingerror[polydegree] <span style="color: #666666">+=</span> mean_squared_error(y_train, ypred) 
+
+    testerror[polydegree] <span style="color: #666666">/=</span> trials
+    trainingerror[polydegree] <span style="color: #666666">/=</span> trials
+    <span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;Degree of polynomial: </span><span style="color: #BB6688; font-weight: bold">%3d</span><span style="color: #BA2121">&quot;</span><span style="color: #666666">%</span> polynomial[polydegree])
+    <span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;Mean squared error on training data: </span><span style="color: #BB6688; font-weight: bold">%.8f</span><span style="color: #BA2121">&quot;</span> <span style="color: #666666">%</span> trainingerror[polydegree])
+    <span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;Mean squared error on test data: </span><span style="color: #BB6688; font-weight: bold">%.8f</span><span style="color: #BA2121">&quot;</span> <span style="color: #666666">%</span> testerror[polydegree])
+
+plt<span style="color: #666666">.</span>plot(polynomial, np<span style="color: #666666">.</span>log10(trainingerror), label<span style="color: #666666">=</span><span style="color: #BA2121">&#39;Training Error&#39;</span>)
+plt<span style="color: #666666">.</span>plot(polynomial, np<span style="color: #666666">.</span>log10(testerror), label<span style="color: #666666">=</span><span style="color: #BA2121">&#39;Test Error&#39;</span>)
+plt<span style="color: #666666">.</span>xlabel(<span style="color: #BA2121">&#39;Polynomial degree&#39;</span>)
+plt<span style="color: #666666">.</span>ylabel(<span style="color: #BA2121">&#39;log10[MSE]&#39;</span>)
+plt<span style="color: #666666">.</span>legend()
+plt<span style="color: #666666">.</span>show()
+</pre></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec62">Resampling methods: Jackknife and Bootstrap </h2>
 
 <p>
 Two famous
@@ -2512,7 +2596,7 @@ satisfied, the methods will fail.
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec62">Resampling methods: Bootstrap </h2>
+<h2 id="___sec63">Resampling methods: Bootstrap </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2533,7 +2617,7 @@ advantages:
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec63">Resampling methods: Bootstrap steps </h2>
+<h2 id="___sec64">Resampling methods: Bootstrap steps </h2>
 
 <p>
 The independent bootstrap works like this: 
@@ -2558,7 +2642,7 @@ example, if you are interested in estimating the variance of \( \widehat
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec64">Code example for the Bootstrap method </h2>
+<h2 id="___sec65">Code example for the Bootstrap method </h2>
 
 <p>
 The following code starts with a Gaussian distribution with mean value
@@ -2622,7 +2706,7 @@ plt<span style="color: #666666">.</span>show()
 <p>
 <!-- !split  -->
 
-<h2 id="___sec65">Various steps in cross-validation </h2>
+<h2 id="___sec66">Various steps in cross-validation </h2>
 
 <p>
 When the repetitive splitting of the data set is done randomly,
@@ -2643,7 +2727,7 @@ cross-validation (LOOCV).
 <p>
 <!-- !split  -->
 
-<h2 id="___sec66">How to set up the cross-validation for Ridge and/or Lasso </h2>
+<h2 id="___sec67">How to set up the cross-validation for Ridge and/or Lasso </h2>
 
 <ul>
 <li> Define a range of interest for the penalty parameter.</li>
@@ -2675,7 +2759,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec67">Cross-validation in brief </h2>
+<h2 id="___sec68">Cross-validation in brief </h2>
 
 <p>
 For the various values of \( k \)
@@ -2697,7 +2781,7 @@ For the various values of \( k \)
 
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec68">Code Example for Cross-validation and \( k \)-fold Cross-validation </h2>
+<h2 id="___sec69">Code Example for Cross-validation and \( k \)-fold Cross-validation </h2>
 
 <p>
 The code here uses Ridge regression with cross-validation (CV)  resampling and \( k \)-fold CV in order to fit a specific polynomial. 
@@ -2797,12 +2881,12 @@ plt<span style="color: #666666">.</span>show()
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec69">How to decide upon the best model? </h2>
+<h2 id="___sec70">How to decide upon the best model? </h2>
 
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec70">The bias-variance tradeoff </h2>
+<h2 id="___sec71">The bias-variance tradeoff </h2>
 
 <p>
 We will discuss the bias-variance tradeoff in the context of
@@ -2868,7 +2952,7 @@ that is the rewriting in terms of the so-called bias, the variance of the model 
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec71">Understanding what happens </h2>
+<h2 id="___sec72">Understanding what happens </h2>
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
@@ -2922,7 +3006,7 @@ plt<span style="color: #666666">.</span>show()
 <p>
 <!-- !split  -->
 
-<h2 id="___sec72">Summing up </h2>
+<h2 id="___sec73">Summing up </h2>
 
 <p>
 The bias-variance tradeoff summarizes the fundamental tension in
@@ -2956,93 +3040,6 @@ flexible statistical methods have higher variance.
 <p>
 You may also find this recent <a href="https://www.pnas.org/content/116/32/15849" target="_blank">article</a> of interest.
 
-<p>
-<!-- !split --><br><br><br><br><br><br><br><br><br><br>
-
-<h2 id="___sec73">More examples on bootstrap and cross-validation and errors </h2>
-
-<p>
-
-<!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic"># Common imports</span>
-<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">os</span>
-<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
-<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">pandas</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">pd</span>
-<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">matplotlib.pyplot</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">plt</span>
-<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.linear_model</span> <span style="color: #008000; font-weight: bold">import</span> LinearRegression, Ridge, Lasso
-<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.model_selection</span> <span style="color: #008000; font-weight: bold">import</span> train_test_split
-<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.utils</span> <span style="color: #008000; font-weight: bold">import</span> resample
-<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.metrics</span> <span style="color: #008000; font-weight: bold">import</span> mean_squared_error
-<span style="color: #408080; font-style: italic"># Where to save the figures and data files</span>
-PROJECT_ROOT_DIR <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;Results&quot;</span>
-FIGURE_ID <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;Results/FigureFiles&quot;</span>
-DATA_ID <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;DataFiles/&quot;</span>
-
-<span style="color: #008000; font-weight: bold">if</span> <span style="color: #AA22FF; font-weight: bold">not</span> os<span style="color: #666666">.</span>path<span style="color: #666666">.</span>exists(PROJECT_ROOT_DIR):
-    os<span style="color: #666666">.</span>mkdir(PROJECT_ROOT_DIR)
-
-<span style="color: #008000; font-weight: bold">if</span> <span style="color: #AA22FF; font-weight: bold">not</span> os<span style="color: #666666">.</span>path<span style="color: #666666">.</span>exists(FIGURE_ID):
-    os<span style="color: #666666">.</span>makedirs(FIGURE_ID)
-
-<span style="color: #008000; font-weight: bold">if</span> <span style="color: #AA22FF; font-weight: bold">not</span> os<span style="color: #666666">.</span>path<span style="color: #666666">.</span>exists(DATA_ID):
-    os<span style="color: #666666">.</span>makedirs(DATA_ID)
-
-<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">image_path</span>(fig_id):
-    <span style="color: #008000; font-weight: bold">return</span> os<span style="color: #666666">.</span>path<span style="color: #666666">.</span>join(FIGURE_ID, fig_id)
-
-<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">data_path</span>(dat_id):
-    <span style="color: #008000; font-weight: bold">return</span> os<span style="color: #666666">.</span>path<span style="color: #666666">.</span>join(DATA_ID, dat_id)
-
-<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">save_fig</span>(fig_id):
-    plt<span style="color: #666666">.</span>savefig(image_path(fig_id) <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;.png&quot;</span>, format<span style="color: #666666">=</span><span style="color: #BA2121">&#39;png&#39;</span>)
-
-infile <span style="color: #666666">=</span> <span style="color: #008000">open</span>(data_path(<span style="color: #BA2121">&quot;EoS.csv&quot;</span>),<span style="color: #BA2121">&#39;r&#39;</span>)
-
-<span style="color: #408080; font-style: italic"># Read the EoS data as  csv file and organize the data into two arrays with density and energies</span>
-EoS <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>read_csv(infile, names<span style="color: #666666">=</span>(<span style="color: #BA2121">&#39;Density&#39;</span>, <span style="color: #BA2121">&#39;Energy&#39;</span>))
-EoS[<span style="color: #BA2121">&#39;Energy&#39;</span>] <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>to_numeric(EoS[<span style="color: #BA2121">&#39;Energy&#39;</span>], errors<span style="color: #666666">=</span><span style="color: #BA2121">&#39;coerce&#39;</span>)
-EoS <span style="color: #666666">=</span> EoS<span style="color: #666666">.</span>dropna()
-Energies <span style="color: #666666">=</span> EoS[<span style="color: #BA2121">&#39;Energy&#39;</span>]
-Density <span style="color: #666666">=</span> EoS[<span style="color: #BA2121">&#39;Density&#39;</span>]
-<span style="color: #408080; font-style: italic">#  The design matrix now as function of various polytrops</span>
-
-Maxpolydegree <span style="color: #666666">=</span> <span style="color: #666666">30</span>
-X <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros((<span style="color: #008000">len</span>(Density),Maxpolydegree))
-X[:,<span style="color: #666666">0</span>] <span style="color: #666666">=</span> <span style="color: #666666">1.0</span>
-testerror <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros(Maxpolydegree)
-trainingerror <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros(Maxpolydegree)
-polynomial <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros(Maxpolydegree)
-
-trials <span style="color: #666666">=</span> <span style="color: #666666">100</span>
-<span style="color: #008000; font-weight: bold">for</span> polydegree <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(<span style="color: #666666">1</span>, Maxpolydegree):
-    polynomial[polydegree] <span style="color: #666666">=</span> polydegree
-    <span style="color: #008000; font-weight: bold">for</span> degree <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(polydegree):
-        X[:,degree] <span style="color: #666666">=</span> Density<span style="color: #666666">**</span>(degree<span style="color: #666666">/3.0</span>)
-
-<span style="color: #408080; font-style: italic"># loop over trials in order to estimate the expectation value of the MSE</span>
-    testerror[polydegree] <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>
-    trainingerror[polydegree] <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>
-    <span style="color: #008000; font-weight: bold">for</span> samples <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(trials):
-        x_train, x_test, y_train, y_test <span style="color: #666666">=</span> train_test_split(X, Energies, test_size<span style="color: #666666">=0.2</span>)
-        model <span style="color: #666666">=</span> LinearRegression(fit_intercept<span style="color: #666666">=</span><span style="color: #008000">True</span>)<span style="color: #666666">.</span>fit(x_train, y_train)
-        ypred <span style="color: #666666">=</span> model<span style="color: #666666">.</span>predict(x_train)
-        ytilde <span style="color: #666666">=</span> model<span style="color: #666666">.</span>predict(x_test)
-        testerror[polydegree] <span style="color: #666666">+=</span> mean_squared_error(y_test, ytilde)
-        trainingerror[polydegree] <span style="color: #666666">+=</span> mean_squared_error(y_train, ypred) 
-
-    testerror[polydegree] <span style="color: #666666">/=</span> trials
-    trainingerror[polydegree] <span style="color: #666666">/=</span> trials
-    <span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;Degree of polynomial: </span><span style="color: #BB6688; font-weight: bold">%3d</span><span style="color: #BA2121">&quot;</span><span style="color: #666666">%</span> polynomial[polydegree])
-    <span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;Mean squared error on training data: </span><span style="color: #BB6688; font-weight: bold">%.8f</span><span style="color: #BA2121">&quot;</span> <span style="color: #666666">%</span> trainingerror[polydegree])
-    <span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;Mean squared error on test data: </span><span style="color: #BB6688; font-weight: bold">%.8f</span><span style="color: #BA2121">&quot;</span> <span style="color: #666666">%</span> testerror[polydegree])
-
-plt<span style="color: #666666">.</span>plot(polynomial, np<span style="color: #666666">.</span>log10(trainingerror), label<span style="color: #666666">=</span><span style="color: #BA2121">&#39;Training Error&#39;</span>)
-plt<span style="color: #666666">.</span>plot(polynomial, np<span style="color: #666666">.</span>log10(testerror), label<span style="color: #666666">=</span><span style="color: #BA2121">&#39;Test Error&#39;</span>)
-plt<span style="color: #666666">.</span>xlabel(<span style="color: #BA2121">&#39;Polynomial degree&#39;</span>)
-plt<span style="color: #666666">.</span>ylabel(<span style="color: #BA2121">&#39;log10[MSE]&#39;</span>)
-plt<span style="color: #666666">.</span>legend()
-plt<span style="color: #666666">.</span>show()
-</pre></div>
 <p>
 <!-- !split  -->
 
