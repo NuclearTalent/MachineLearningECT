@@ -2071,9 +2071,6 @@ for polydegree in range(1, Maxpolydegree):
 
     testerror[polydegree] /= trials
     trainingerror[polydegree] /= trials
-    print("Degree of polynomial: %3d"% polynomial[polydegree])
-    print("Mean squared error on training data: %.8f" % trainingerror[polydegree])
-    print("Mean squared error on test data: %.8f" % testerror[polydegree])
 
 plt.plot(polynomial, np.log10(trainingerror), label='Training Error')
 plt.plot(polynomial, np.log10(testerror), label='Test Error')
@@ -2467,11 +2464,11 @@ for degree in range(maxdegree):
     error[degree] = np.mean( np.mean((y_test - y_pred)**2, axis=1, keepdims=True) )
     bias[degree] = np.mean( (y_test - np.mean(y_pred, axis=1, keepdims=True))**2 )
     variance[degree] = np.mean( np.var(y_pred, axis=1, keepdims=True) )
-    print('Polynomial degree:', degree)
-    print('Error:', error[degree])
-    print('Bias^2:', bias[degree])
-    print('Var:', variance[degree])
-    print('{} >= {} + {} = {}'.format(error[degree], bias[degree], variance[degree], bias[degree]+variance[degree]))
+#    print('Polynomial degree:', degree)
+#    print('Error:', error[degree])
+#    print('Bias^2:', bias[degree])
+#    print('Var:', variance[degree])
+#    print('{} >= {} + {} = {}'.format(error[degree], bias[degree], variance[degree], bias[degree]+variance[degree]))
 
 plt.plot(polydegree, error, label='Error')
 plt.plot(polydegree, bias, label='bias')
