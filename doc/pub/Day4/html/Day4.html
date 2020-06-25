@@ -248,7 +248,7 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and Facility for Rare Ion Beams and National Superconducting Cyclotron Laboratory, Michigan State University, USA</b></center>
 <br>
 <p>
-<center><h4>Jun 16, 2020</h4></center> <!-- date -->
+<center><h4>Jun 25, 2020</h4></center> <!-- date -->
 <br>
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
@@ -870,9 +870,6 @@ the potential of being universal approximators.
 <h2 id="___sec21">Deriving the back propagation code for a multilayer perceptron model </h2>
 
 <p>
-<b>Note: figures will be inserted later!</b>
-
-<p>
 As we have seen now in a feed forward network, we can express the final output of our network in terms of basic matrix-vector multiplications.
 The unknowwn quantities are our weights \( w_{ij} \) and we need to find an algorithm for changing them so that our errors are as small as possible.
 This leads us to the famous <a href="https://www.nature.com/articles/323533a0" target="_blank">back propagation algorithm</a>.
@@ -1364,6 +1361,8 @@ In case we use another activation function than the logistic one, we need to eva
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
 <h2 id="___sec33">The Softmax function </h2>
+
+<p>
 In case we employ the more general case given by the Softmax equation, we need to evaluate the derivative of the activation function with respect to the activation \( z_i^l \), that is we need
 $$
 \frac{\partial f(z_i^l)}{\partial w_{jk}^l} =
@@ -2363,7 +2362,7 @@ To install tensorflow on Unix/Linux systems, use pip as
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>pip3 install tensorflow
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>pip install tensorflow
 </pre></div>
 <p>
 and/or if you use <b>anaconda</b>, just write (or install from the graphical user interface)
@@ -2681,7 +2680,7 @@ Alternatively, if you have Tensorflow or one of the other supported backends ins
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>pip3 install keras
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>pip install keras
 </pre></div>
 <p>
 or look up the <a href="https://keras.io/" target="_blank">instructions here</a>.

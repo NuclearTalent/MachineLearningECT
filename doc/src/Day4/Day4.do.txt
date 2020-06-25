@@ -537,7 +537,6 @@ the potential of being universal approximators.
 =====  Deriving the back propagation code for a multilayer perceptron model =====
 
 
-_Note: figures will be inserted later!_
 
 As we have seen now in a feed forward network, we can express the final output of our network in terms of basic matrix-vector multiplications.
 The unknowwn quantities are our weights $w_{ij}$ and we need to find an algorithm for changing them so that our errors are as small as possible.
@@ -1009,6 +1008,7 @@ In case we use another activation function than the logistic one, we need to eva
 
 !split
 ===== The Softmax function =====
+
 In case we employ the more general case given by the Softmax equation, we need to evaluate the derivative of the activation function with respect to the activation $z_i^l$, that is we need
 !bt
 \[
@@ -1887,7 +1887,7 @@ how simple solving a machine learning problem can be.
   
 To install tensorflow on Unix/Linux systems, use pip as
 !bc pycod
-pip3 install tensorflow
+pip install tensorflow
 !ec
 and/or if you use _anaconda_, just write (or install from the graphical user interface)
 !bc pycod
@@ -2184,7 +2184,7 @@ conda install keras
 Alternatively, if you have Tensorflow or one of the other supported backends install you may use the pip package manager: 
 
 !bc pycod
-pip3 install keras
+pip install keras
 !ec
 or look up the "instructions here":"https://keras.io/".
 
