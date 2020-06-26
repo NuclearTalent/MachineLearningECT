@@ -2199,11 +2199,11 @@ from tensorflow.keras.utils import to_categorical   #This allows using categoric
 
 def create_neural_network_keras(n_neurons_layer1, n_neurons_layer2, n_categories, eta, lmbd):
     model = Sequential()
-    model.add(Dense(n_neurons_layer1, activation='sigmoid', kernel_regularizer=l2(lmbd)))
-    model.add(Dense(n_neurons_layer2, activation='sigmoid', kernel_regularizer=l2(lmbd)))
+    model.add(Dense(n_neurons_layer1, activation='sigmoid', kernel_regularizer=regularizers.l2(lmbd)))
+    model.add(Dense(n_neurons_layer2, activation='sigmoid', kernel_regularizer=regularizers.l2(lmbd)))
     model.add(Dense(n_categories, activation='softmax'))
     
-    sgd = SGD(lr=eta)
+    sgd = optimizers.SGD(lr=eta)
     model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
     
     return model
@@ -2226,6 +2226,8 @@ for i, eta in enumerate(eta_vals):
         print("Test accuracy: %.3f" % scores[1])
         print()
 !ec
+
+
 
 !bc pycod
 # optional

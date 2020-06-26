@@ -2809,11 +2809,11 @@ or look up the <a href="https://keras.io/" target="_blank">instructions here</a>
 
 <span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">create_neural_network_keras</span>(n_neurons_layer1, n_neurons_layer2, n_categories, eta, lmbd):
     model = Sequential()
-    model.add(Dense(n_neurons_layer1, activation=<span style="color: #CD5555">&#39;sigmoid&#39;</span>, kernel_regularizer=l2(lmbd)))
-    model.add(Dense(n_neurons_layer2, activation=<span style="color: #CD5555">&#39;sigmoid&#39;</span>, kernel_regularizer=l2(lmbd)))
+    model.add(Dense(n_neurons_layer1, activation=<span style="color: #CD5555">&#39;sigmoid&#39;</span>, kernel_regularizer=regularizers.l2(lmbd)))
+    model.add(Dense(n_neurons_layer2, activation=<span style="color: #CD5555">&#39;sigmoid&#39;</span>, kernel_regularizer=regularizers.l2(lmbd)))
     model.add(Dense(n_categories, activation=<span style="color: #CD5555">&#39;softmax&#39;</span>))
     
-    sgd = SGD(lr=eta)
+    sgd = optimizers.SGD(lr=eta)
     model.compile(loss=<span style="color: #CD5555">&#39;categorical_crossentropy&#39;</span>, optimizer=sgd, metrics=[<span style="color: #CD5555">&#39;accuracy&#39;</span>])
     
     <span style="color: #8B008B; font-weight: bold">return</span> model

@@ -2701,11 +2701,11 @@ or look up the <a href="https://keras.io/" target="_blank">instructions here</a>
 
 <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">create_neural_network_keras</span>(n_neurons_layer1, n_neurons_layer2, n_categories, eta, lmbd):
     model <span style="color: #666666">=</span> Sequential()
-    model<span style="color: #666666">.</span>add(Dense(n_neurons_layer1, activation<span style="color: #666666">=</span><span style="color: #BA2121">&#39;sigmoid&#39;</span>, kernel_regularizer<span style="color: #666666">=</span>l2(lmbd)))
-    model<span style="color: #666666">.</span>add(Dense(n_neurons_layer2, activation<span style="color: #666666">=</span><span style="color: #BA2121">&#39;sigmoid&#39;</span>, kernel_regularizer<span style="color: #666666">=</span>l2(lmbd)))
+    model<span style="color: #666666">.</span>add(Dense(n_neurons_layer1, activation<span style="color: #666666">=</span><span style="color: #BA2121">&#39;sigmoid&#39;</span>, kernel_regularizer<span style="color: #666666">=</span>regularizers<span style="color: #666666">.</span>l2(lmbd)))
+    model<span style="color: #666666">.</span>add(Dense(n_neurons_layer2, activation<span style="color: #666666">=</span><span style="color: #BA2121">&#39;sigmoid&#39;</span>, kernel_regularizer<span style="color: #666666">=</span>regularizers<span style="color: #666666">.</span>l2(lmbd)))
     model<span style="color: #666666">.</span>add(Dense(n_categories, activation<span style="color: #666666">=</span><span style="color: #BA2121">&#39;softmax&#39;</span>))
     
-    sgd <span style="color: #666666">=</span> SGD(lr<span style="color: #666666">=</span>eta)
+    sgd <span style="color: #666666">=</span> optimizers<span style="color: #666666">.</span>SGD(lr<span style="color: #666666">=</span>eta)
     model<span style="color: #666666">.</span>compile(loss<span style="color: #666666">=</span><span style="color: #BA2121">&#39;categorical_crossentropy&#39;</span>, optimizer<span style="color: #666666">=</span>sgd, metrics<span style="color: #666666">=</span>[<span style="color: #BA2121">&#39;accuracy&#39;</span>])
     
     <span style="color: #008000; font-weight: bold">return</span> model
