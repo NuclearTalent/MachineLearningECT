@@ -54,3 +54,5 @@ doc/Projects/2016/Project2/.project2_2016.copyright
 doc/Programs/ParallelizationMPI/dill10
 
 doc/pub/*
+Pipfile
+Pipfile.lock
