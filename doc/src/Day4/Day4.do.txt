@@ -537,7 +537,6 @@ the potential of being universal approximators.
 =====  Deriving the back propagation code for a multilayer perceptron model =====
 
 
-_Note: figures will be inserted later!_
 
 As we have seen now in a feed forward network, we can express the final output of our network in terms of basic matrix-vector multiplications.
 The unknowwn quantities are our weights $w_{ij}$ and we need to find an algorithm for changing them so that our errors are as small as possible.
@@ -1009,6 +1008,7 @@ In case we use another activation function than the logistic one, we need to eva
 
 !split
 ===== The Softmax function =====
+
 In case we employ the more general case given by the Softmax equation, we need to evaluate the derivative of the activation function with respect to the activation $z_i^l$, that is we need
 !bt
 \[
@@ -1887,7 +1887,7 @@ how simple solving a machine learning problem can be.
   
 To install tensorflow on Unix/Linux systems, use pip as
 !bc pycod
-pip3 install tensorflow
+pip install tensorflow
 !ec
 and/or if you use _anaconda_, just write (or install from the graphical user interface)
 !bc pycod
@@ -2184,7 +2184,7 @@ conda install keras
 Alternatively, if you have Tensorflow or one of the other supported backends install you may use the pip package manager: 
 
 !bc pycod
-pip3 install keras
+pip install keras
 !ec
 or look up the "instructions here":"https://keras.io/".
 
@@ -2199,11 +2199,11 @@ from tensorflow.keras.utils import to_categorical   #This allows using categoric
 
 def create_neural_network_keras(n_neurons_layer1, n_neurons_layer2, n_categories, eta, lmbd):
     model = Sequential()
-    model.add(Dense(n_neurons_layer1, activation='sigmoid', kernel_regularizer=l2(lmbd)))
-    model.add(Dense(n_neurons_layer2, activation='sigmoid', kernel_regularizer=l2(lmbd)))
+    model.add(Dense(n_neurons_layer1, activation='sigmoid', kernel_regularizer=regularizers.l2(lmbd)))
+    model.add(Dense(n_neurons_layer2, activation='sigmoid', kernel_regularizer=regularizers.l2(lmbd)))
     model.add(Dense(n_categories, activation='softmax'))
     
-    sgd = SGD(lr=eta)
+    sgd = optimizers.SGD(lr=eta)
     model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
     
     return model
@@ -2226,6 +2226,8 @@ for i, eta in enumerate(eta_vals):
         print("Test accuracy: %.3f" % scores[1])
         print()
 !ec
+
+
 
 !bc pycod
 # optional
@@ -2634,7 +2636,7 @@ Some of these remarks are particular to DNNs, others are shared by all supervise
 
 Pulsar classification can be one of the best training grounds for
 performing machine learning in astrophysics. These pulsars are said to
-be "pulsating radio sources", which have now been identified to be
+be *pulsating radio sources*, which have now been identified to be
 caused by rapidly rotating highly magnetized neutron stars and are
 detectable here on Earth . One of the characteristic properties of
 these pulsars is that they exhibit periodic bursts of emission
@@ -2661,18 +2663,21 @@ of data and then identifying which features or characteristics are
 relevant. Since the individual pulses are very much different,
 astronomers particularly stack them up and generate an integrated
 pulse profile for pulsar classification. This profile is the coherent
-addition of thousands of pulses together in a process known as folding
-[1]. Moreover, pulses will arrive at various times across different
+addition of thousands of pulses together in a process known as folding.
+Moreover, pulses will arrive at various times across different
 radio frequencies. The delay of these pulses from frequency to
 frequency is called dispersion and is said to be caused by the ionized
 inter-stellar medium. The method usually employed by astronomers
 is that they fit for the shape of the delay as to reduce its negative
 effect. However, as with all kinds of fitting procedures, there would
 always be an uncertainty associated with it. This is expressed in the
-so-called DM-SNR ("dispersion-measure-signal-to-noise-ratio")
+so-called DM-SNR (*dispersion-measure-signal-to-noise-ratio*)
 curve. Both the integrated profile curve and DM-SNR curve are used in
 identifying possible pulsar candidates. These curves provide eight
-numerical characteristic features as depicted and listed below. </div>
+numerical characteristic features as depicted and listed below. 
+
+!split
+===== Pulsar data set =====
 
 For this dataset, there is already an initial classification of the
 potential pulsar candidates as pulsars and non-pulsars by the
@@ -2721,15 +2726,19 @@ plt.show()
 !ec
 
 
-The dataset contains 17898 candidates for which only 1639 (~9%) are
+!split
+=====  Number of pulsar candidates =====
+
+The dataset contains 17898 candidates for which only 1639 ($\approx 9\%$) are
 classified as real pulsars. In addition, the dataset consists of
 features rather than raw data from observations. The eight features
 considered in the study are given above as column headers. The first
 four are the usual statistics obtained from the integrated pulse
-profile. A class label ("target_class") is also included which
+profile. A class label (*targetclass*) is also included which
 determines if the candidate is considered to be a pulsar (1) or not
 (0). This serves as our target column for the analysis. 
 
+!split
 === Preprocessing and Statistical Analysis of the Data ===
 
 When dealing with all sorts of data, an important first step is to
@@ -2743,9 +2752,8 @@ possible problem of overfitting since the difference between the
 numbers of candidates identified as pulsars and non-pulsars is large,
 with a ratio of about 1:10. The other issue is the huge distribution
 for the range differences of the eight features. This is evident in
-Figure 4 which depicts the distribution of variables in the dataset
-with associated mean and standard deviation. The plots were done using
-the distplot() function in the package seaborn. This draws a histogram
+the figures here. The plots were done using
+the _distplot()_ function in the package seaborn. This draws a histogram
 and fit a kernel density estimate (KDE).
 
 
@@ -2915,6 +2923,9 @@ plt.grid()
 plt.legend()
 plt.show()
 !ec 
+
+!split
+===== The neural network =====
 
 
 !bc pycod

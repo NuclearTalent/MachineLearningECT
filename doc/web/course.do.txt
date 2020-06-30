@@ -31,7 +31,7 @@ chapters = {
 
  * LaTeX PDF:
    * For printing:
-     * "Standard one-page format": "${pub_url}/${name}/pdf/${name}-minted.pdf"
+     * "Standard one-page format": "${pub_url}/${name}/pdf/${name}.pdf"
  * HTML:
    * "Plain html": "${pub_url}/${name}/html/${name}.html"
    * "reveal.js slide style": "${pub_url}/${name}/html/${name}-reveal.html"

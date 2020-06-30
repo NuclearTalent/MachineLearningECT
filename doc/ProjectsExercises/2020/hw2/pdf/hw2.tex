@@ -103,7 +103,7 @@ Day 3: Exercise set 2
 
 % --- begin date ---
 \begin{center}
-Jun 21, 2020
+Jun 25, 2020
 \end{center}
 % --- end date ---
 
@@ -136,9 +136,9 @@ y = 5*x*x+0.1*np.random.randn(100,1)
 
 \item (1b) Repeat the above but using the functionality of \textbf{Scikit-Learn}. Compare your code with the results from \textbf{Scikit-Learn}. Remember to run with the same random numbers for generating $x$ and $y$. 
 
-\item (1c) Our next step is to study the variance of the parameters $\beta_1$ and $\beta_2$ (assuming that we are parameterizing our function with a second-order polynomial). We will use standard linear regression and the Ridge regression.  You can now opt for either writing your own function or using \textbf{Scikit-Learn} to find the parameters $\beta$. From your results calculate the variance of these paramaters (recall that this is equal to the diagonal elements of the matrix $(\hat{X}^T\hat{X})+\lambda\hat{I})^{-1}$). Discuss the results of these variances as functions of $\lambda$. In particular, try to link your discussion with the discussion in Hastie \emph{et al.} and their figure 3.11.
+\item (1c) Our next step is to study the variance of the parameters $\beta_1$ and $\beta_2$ (assuming that we are parameterizing our function with a second-order polynomial). We will use standard linear regression and the Ridge regression.  You can now opt for either writing your own function or using \textbf{Scikit-Learn} to find the parameters $\beta$. From your results calculate the variance of these paramaters (recall that this is equal to the diagonal elements of the matrix $(\hat{X}^T\hat{X})+\lambda\hat{I})^{-1}$). Discuss the results of these variances as functions of $\lambda$. In particular, try to link your discussion with the discussion in Hastie \emph{et al.} and their figures 3.10 and  3.11. \textbf{Scikit-Learn} may not provide the variance of the parameters $\beta$. This needs to be checked. With your own code you can however do so.
 
-\item (1d) Repeat the previous step but add now the Lasso method, see equation (3.53) of Hastie \emph{et al.}. Discuss your results and compare with standard regression and the Ridge regression results. You can write your own code or use the functionality of \textbf{scikit-learn}.  We recommend the latter since we have not yet discussed how to solve the Lasso equations numerically.
+\item (1d) Repeat the previous step but add now the Lasso method, see equation (3.53) of Hastie \emph{et al.}. Discuss your results and compare with standard regression and the Ridge regression results. You can write your own code or use the functionality of \textbf{scikit-learn}.  We recommend the latter since we have not yet discussed how to solve the Lasso equations numerically. Also, you do not need to compute the variance of the parameters $\beta$ but you can extract their values and study their behavior as functions of the regularization parameter $\lambda$.
 
 \item (1e) Finally, using \textbf{Scikit-Learn} or your own code, compute also the mean square error, a risk metric corresponding to the expected value of the squared (quadratic) error defined as
 \end{enumerate}

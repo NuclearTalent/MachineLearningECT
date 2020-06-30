@@ -50,10 +50,10 @@ The lecture plan is as follows
 
 - _Monday_ Linear Regression and intro to statistical data analysis	(Morten Hjorth-Jensen MHJ). Learning slides at
 https://nucleartalent.github.io/MachineLearningECT/doc/pub/Introduction/html/Introduction.html and https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day1/html/Day1.html and link to  video from lecture June 22 https://mediaspace.msu.edu/media/t/1_ogq38oqq
-- _Tuesday_	Logistic Regression and classification problems, intro to gradient methods	(MHJ). Learning slides at https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day1/html/Day2.html and link to  video for first lecture at https://mediaspace.msu.edu/media/t/1_po1a5e9v and second lecture at https://mediaspace.msu.edu/media/t/1_wbz4v2gm
-- _Wednesday_	Decision Trees, Random Forests and Boosting methods (MHJ). Learning slides at https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day1/html/Day3.html and link to  video at _to be filled in_
-- _Thursday_	Basics of Neural Networks and writing your own Nueral Network code (MHJ). Learning slides at https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day1/html/Day4.html and link to  video at _to be filled in_
-- _Friday_	Beta-decay experiments, how to analyze various events, with hands-on examples . (Sean Liddick)
+- _Tuesday_	Logistic Regression and classification problems, intro to gradient methods	(MHJ). Learning slides at https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day2/html/Day2.html and link to  video for first lecture at https://mediaspace.msu.edu/media/t/1_po1a5e9v and second lecture at https://mediaspace.msu.edu/media/t/1_wbz4v2gm
+- _Wednesday_	Decision Trees, Random Forests and Boosting methods (MHJ). Learning slides at https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day3/html/Day3.html and link to  video at https://mediaspace.msu.edu/media/t/1_vrt5rxls
+- _Thursday_	Basics of Neural Networks and writing your own Neural Network code (MHJ). Learning slides at https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day4/html/Day4.html and link to  video at https://mediaspace.msu.edu/media/t/1_ksuz0ero. The link to the video of the additional exercise session is at  https://mediaspace.msu.edu/media/t/1_shte4iw5
+- _Friday_	Beta-decay experiments, how to analyze various events, with hands-on examples . (Sean Liddick) Videos and teaching material https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day5/html/Day5.html. Link to  video of online lecture at https://mediaspace.msu.edu/media/1_5n2bssbl. The link to the video of the additional exercise session is at https://mediaspace.msu.edu/media/1_q74f31cw
 
 ### Week 2
 

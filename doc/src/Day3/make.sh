@@ -50,8 +50,8 @@ system doconce format html $name --html_style=bootstrap --pygments_html_style=de
 system doconce format ipynb $name $opt
 
 # Ordinary plain LaTeX document
-system doconce format pdflatex $name --print_latex_style=trac --latex_admon=paragraph $opt
-system doconce ptex2tex $name envir=print
+system doconce format pdflatex $name --minted_latex_style=trac --latex_admon=paragraph $opt
+system doconce ptex2tex $name envir=minted
 # Add special packages
 doconce subst "% Add user's preamble" "\g<1>\n\\usepackage{simplewick}" $name.tex
 doconce replace 'section{' 'section*{' $name.tex

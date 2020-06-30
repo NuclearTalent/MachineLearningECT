@@ -1,0 +1,313 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Data Analysis and Machine Learning: Neural networks, from the simple perceptron to deep learning">
+
+<title>Data Analysis and Machine Learning: Neural networks, from the simple perceptron to deep learning</title>
+
+
+<style type="text/css">
+/* bloodish style */
+
+body {
+  font-family: Helvetica, Verdana, Arial, Sans-serif;
+  color: #404040;
+  background: #ffffff;
+}
+h1 { font-size: 1.8em;  color: #8A0808; }
+h2 { font-size: 1.6em;  color: #8A0808; }
+h3 { font-size: 1.4em;  color: #8A0808; }
+h4 { color: #8A0808; }
+a { color: #8A0808; text-decoration:none; }
+tt { font-family: "Courier New", Courier; }
+/* pre style removed because it will interfer with pygments */
+p { text-indent: 0px; }
+hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+p.caption { width: 80%; font-style: normal; text-align: left; }
+hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+.alert-text-small   { font-size: 80%;  }
+.alert-text-large   { font-size: 130%; }
+.alert-text-normal  { font-size: 90%;  }
+.alert {
+  padding:8px 35px 8px 14px; margin-bottom:18px;
+  text-shadow:0 1px 0 rgba(255,255,255,0.5);
+  border:1px solid #bababa;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  color: #555;
+  background-color: #f8f8f8;
+  background-position: 10px 5px;
+  background-repeat: no-repeat;
+  background-size: 38px;
+  padding-left: 55px;
+  width: 75%;
+ }
+.alert-block {padding-top:14px; padding-bottom:14px}
+.alert-block > p, .alert-block > ul {margin-bottom:1em}
+.alert li {margin-top: 1em}
+.alert-block p+p {margin-top:5px}
+.alert-notice { background-image: url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_gray_notice.png); }
+.alert-summary  { background-image:url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_gray_summary.png); }
+.alert-warning { background-image: url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_gray_warning.png); }
+.alert-question {background-image:url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_gray_question.png); }
+
+div { text-align: justify; text-justify: inter-word; }
+</style>
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [('Neural networks', 2, None, '___sec0'),
+              ('Artificial neurons', 2, None, '___sec1'),
+              ('Neural network types', 2, None, '___sec2'),
+              ('Feed-forward neural networks', 2, None, '___sec3'),
+              ('Convolutional Neural Network', 2, None, '___sec4'),
+              ('Recurrent neural networks', 2, None, '___sec5'),
+              ('Other types of networks', 2, None, '___sec6'),
+              ('Multilayer perceptrons', 2, None, '___sec7'),
+              ('Why multilayer perceptrons?', 2, None, '___sec8'),
+              ('Mathematical model', 2, None, '___sec9'),
+              ('Mathematical model', 2, None, '___sec10'),
+              ('Mathematical model', 2, None, '___sec11'),
+              ('Mathematical model', 2, None, '___sec12'),
+              ('Mathematical model', 2, None, '___sec13'),
+              ('Matrix-vector notation', 3, None, '___sec14'),
+              ('Matrix-vector notation  and activation', 3, None, '___sec15'),
+              ('Activation functions', 3, None, '___sec16'),
+              ('Activation functions, Logistic and Hyperbolic ones',
+               3,
+               None,
+               '___sec17'),
+              ('Relevance', 3, None, '___sec18'),
+              ('The multilayer  perceptron (MLP)', 2, None, '___sec19'),
+              ('From one to many layers, the universal approximation theorem',
+               2,
+               None,
+               '___sec20'),
+              ('Deriving the back propagation code for a multilayer perceptron '
+               'model',
+               2,
+               None,
+               '___sec21'),
+              ('Definitions', 2, None, '___sec22'),
+              ('Derivatives and the chain rule', 2, None, '___sec23'),
+              ('Derivative of the cost function', 2, None, '___sec24'),
+              ('Bringing it together, first back propagation equation',
+               2,
+               None,
+               '___sec25'),
+              ('Derivatives in terms of $z_j^L$', 2, None, '___sec26'),
+              ('Bringing it together', 2, None, '___sec27'),
+              ('Final back propagating equation', 2, None, '___sec28'),
+              ('Setting up the Back propagation algorithm',
+               2,
+               None,
+               '___sec29'),
+              ('Setting up a Multi-layer perceptron model for classification',
+               2,
+               None,
+               '___sec30'),
+              ('Defining the cost function', 2, None, '___sec31'),
+              ('Example: binary classification problem', 2, None, '___sec32'),
+              ('The Softmax function', 2, None, '___sec33'),
+              ('Developing a code for doing neural networks with back '
+               'propagation',
+               2,
+               None,
+               '___sec34'),
+              ('Collect and pre-process data', 2, None, '___sec35'),
+              ('Train and test datasets', 2, None, '___sec36'),
+              ('Define model and architecture', 2, None, '___sec37'),
+              ('Layers', 2, None, '___sec38'),
+              ('Weights and biases', 2, None, '___sec39'),
+              ('Feed-forward pass', 2, None, '___sec40'),
+              ('Matrix multiplications', 2, None, '___sec41'),
+              ('Choose cost function and optimizer', 2, None, '___sec42'),
+              ('Optimizing the cost function', 2, None, '___sec43'),
+              ('Regularization', 2, None, '___sec44'),
+              ('Matrix  multiplication', 2, None, '___sec45'),
+              ('Improving performance', 2, None, '___sec46'),
+              ('Full object-oriented implementation', 2, None, '___sec47'),
+              ('Evaluate model performance on test data', 2, None, '___sec48'),
+              ('Adjust hyperparameters', 2, None, '___sec49'),
+              ('Visualization', 2, None, '___sec50'),
+              ('scikit-learn implementation', 2, None, '___sec51'),
+              ('Visualization', 2, None, '___sec52'),
+              ('Building neural networks in Tensorflow and Keras',
+               2,
+               None,
+               '___sec53'),
+              ('Tensorflow', 2, None, '___sec54'),
+              ('Collect and pre-process data', 2, None, '___sec55'),
+              ('Using TensorFlow backend', 2, None, '___sec56'),
+              ('Optimizing and using gradient descent', 2, None, '___sec57'),
+              ('Using Keras', 2, None, '___sec58'),
+              ('The Breast Cancer Data, now with Keras', 2, None, '___sec59'),
+              ('Which activation function should I use?', 2, None, '___sec60'),
+              ('Is the Logistic activation function (Sigmoid)  our choice?',
+               2,
+               None,
+               '___sec61'),
+              ('The derivative of the Logistic funtion', 2, None, '___sec62'),
+              ('The RELU function family', 2, None, '___sec63'),
+              ('Which activation function should we use?', 2, None, '___sec64'),
+              ('A top-down perspective on Neural networks',
+               2,
+               None,
+               '___sec65'),
+              ('Limitations of supervised learning with deep networks',
+               2,
+               None,
+               '___sec66'),
+              ('Examples: Pulsar identification', 2, None, '___sec67'),
+              ('Preprocessing and Statistical Analysis of the Data',
+               3,
+               None,
+               '___sec68'),
+              ('Convolutional Neural Networks (recognizing images)',
+               2,
+               None,
+               '___sec69'),
+              ('Regular NNs don’t scale well to full images',
+               2,
+               None,
+               '___sec70'),
+              ('3D volumes of neurons', 2, None, '___sec71'),
+              ('Layers used to build CNNs', 2, None, '___sec72'),
+              ('Transforming images', 2, None, '___sec73'),
+              ('CNNs in brief', 2, None, '___sec74'),
+              ('CNNs in more detail, building convolutional neural networks in '
+               'Tensorflow and Keras',
+               2,
+               None,
+               '___sec75'),
+              ('Setting it up', 2, None, '___sec76'),
+              ('The MNIST dataset again', 2, None, '___sec77'),
+              ('Strong correlations', 2, None, '___sec78'),
+              ('Layers of a CNN', 2, None, '___sec79'),
+              ('Systematic reduction', 2, None, '___sec80'),
+              ('Prerequisites: Collect and pre-process data',
+               2,
+               None,
+               '___sec81'),
+              ('Importing Keras and Tensorflow', 2, None, '___sec82'),
+              ('Using TensorFlow backend', 2, None, '___sec83'),
+              ('Train the model', 2, None, '___sec84'),
+              ('Visualizing the results', 2, None, '___sec85'),
+              ('Running with Keras', 2, None, '___sec86'),
+              ('Final part', 2, None, '___sec87'),
+              ('Final visualization', 2, None, '___sec88'),
+              ('Fun links', 2, None, '___sec89')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<center><h1>Nuclear Science, Beta Decay, and Machine Learning </h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): S.N. Liddick -->
+
+<center>
+<b>S.N. Liddick</b> [1, 2]
+</center>
+
+<p>
+<!-- institution(s) -->
+
+<center>[1] <b>Department of Chemistry, Michigan State University, USA</b></center>
+<center>[2] <b>National Superconducting Cyclotron Laboratory, Michigan State University, USA</b></center>
+<br>
+<p>
+<center><h4>Jun 24, 2020</h4></center> <!-- date -->
+<br>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec0">Overview </h2>
+
+<p>
+This section of material is intended to provide a 
+simple, high-level background necessary to understand
+the purpose of the experimental measurement and the goals
+for improvement in the data analysis.  The context will provide
+guidance on the appropriate look of extract experimental spectra
+from the application of machine learning techniques.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<ol>
+  <li><a href="https://mediaspace.msu.edu/media/SNL_Overview_zoom_0/1_x8t1t559" target="_blank">Overview </a></li> 
+<li>Nuclear Science</li>
+  <ol>
+  <li><a href="https://mediaspace.msu.edu/media/SNL_NuclearScience_zoom_0/1_wm7aw8q5" target="_blank">Introduction to Shell Structure</a></li>
+  <li><a href="https://mediaspace.msu.edu/media/SNL_Isomer_zoom_0/1_cl5grtxh" target="_blank">Isomers</a></li>
+  <li><a href="https://mediaspace.msu.edu/media/SNL_E0_zoom_0/1_ht8h525f" target="_blank">E0 transitions</a></li>
+  </ol>
+<li>Isotope Production</li>
+  <ol>
+  <li><a href="https://mediaspace.msu.edu/media/SNL_Production_zoom_0/1_hkmvi1x3" target="_blank">Production, delivery and characterization of rare isotopes</a></li>
+  </ol>
+<li>Decay Spectroscopy</li>
+  <ol>
+  <li><a href="https://mediaspace.msu.edu/media/SNL_DecayIntro_zoom_0/1_h6zkhuw5" target="_blank">Introduction</a></li>
+  <li><a href="https://mediaspace.msu.edu/media/SNL_BetaDecay_zoom_0/1_5ziunvwr" target="_blank">Beta decay</a></li>
+  <li><a href="https://mediaspace.msu.edu/media/SNL_GammaDecay_zoom_0/1_g7dteq9v" target="_blank">Gamma-ray decay and internal conversion electron emission</a></li>
+  <li><a href="https://mediaspace.msu.edu/media/SNL_Integrate_zoom_0/1_ugg794cg" target="_blank">Integrating the decays</a></li>
+  </ol>
+<li>Detector Operation</li>
+  <ol>
+  <li>Scintillator Operation</li>
+    <li>Practical Implementation</li>
+  </ol>
+<li>Introduction to Data</li>
+  <ol>
+  <li>1D time dimension</li>
+  <li>2D energy distribution</li>
+  </ol>
+</ol>
+
+
+
+
+
+<!-- ------------------- end of main content --------------- -->
+
+
+<center style="font-size:80%">
+<!-- copyright --> &copy; 2020, S.N. Liddick. Released under CC Attribution-NonCommercial 4.0 license
+</center>
+
+
+</body>
+</html>
