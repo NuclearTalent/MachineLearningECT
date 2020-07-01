@@ -81,6 +81,22 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \clubpenalty = 10000
 \widowpenalty = 10000
 
+\newenvironment{doconceexercise}{}{}
+\newcounter{doconceexercisecounter}
+
+
+% ------ header in subexercises ------
+%\newcommand{\subex}[1]{\paragraph{#1}}
+%\newcommand{\subex}[1]{\par\vspace{1.7mm}\noindent{\bf #1}\ \ }
+\makeatletter
+% 1.5ex is the spacing above the header, 0.5em the spacing after subex title
+\newcommand\subex{\@startsection{paragraph}{4}{\z@}%
+                  {1.5ex\@plus1ex \@minus.2ex}%
+                  {-0.5em}%
+                  {\normalfont\normalsize\bfseries}}
+\makeatother
+
+
 % --- end of standard preamble for documents ---
 
 
@@ -131,7 +147,7 @@ First and second days: Exercise set 1
 
 % --- begin date ---
 \begin{center}
-Jun 20, 2020
+Jul 1, 2020
 \end{center}
 % --- end date ---
 
@@ -141,7 +157,15 @@ Jun 20, 2020
 \subsection{Day one and two  exercises}
 
 
-\paragraph{Exercise 1.}
+
+
+% --- begin exercise ---
+\begin{doconceexercise}
+\refstepcounter{doconceexercisecounter}
+
+\exercisesection{Exercise \thedoconceexercisecounter: Getting started}
+
+
 The first exercise here is of a mere technical art. We want you to have 
 \begin{itemize}
 \item git as a version control software and to establish a user account on a provider like GitHub. Other providers like GitLab etc are equally fine. 
@@ -219,8 +243,19 @@ license.
 
 We recommend using \textbf{Anaconda}.
 
+\end{doconceexercise}
+% --- end exercise ---
 
-\paragraph{Exercise 2: Python getting started.}
+
+
+
+% --- begin exercise ---
+\begin{doconceexercise}
+\refstepcounter{doconceexercisecounter}
+
+\exercisesection{Exercise \thedoconceexercisecounter: Our first Python encounter}
+
+
 This exercise has as its aim to write a small program which reads in data from a \textbf{csv} file on the equation of state for dense nuclear matter. The file is localized at \href{{https://github.com/mhjensen/MachineLearningMSU-FRIB2020/blob/master/doc/pub/Regression/ipynb/datafiles/EoS.csv}}{\nolinkurl{https://github.com/mhjensen/MachineLearningMSU-FRIB2020/blob/master/doc/pub/Regression/ipynb/datafiles/EoS.csv}}. Thereafter you will have to set up the design matrix $\bm{X}$ for the  $n$
 datapoints and a polynomial of degree $3$. The steps are:
 \begin{itemize}
@@ -232,9 +267,21 @@ datapoints and a polynomial of degree $3$. The steps are:
 \end{itemize}
 
 \noindent
-We recommend looking at the examples in the \href{{https://compphysics.github.io/MachineLearning/doc/pub/Regression/html/Regression-bs.html}}{regression slides}. 
+We recommend looking at the examples in the \href{{https://compphysics.github.io/MachineLearning/doc/pub/Regression/html/Regression-bs.html}}{regression slides}.
 
-\paragraph{Exercise 3.}
+\end{doconceexercise}
+% --- end exercise ---
+
+
+
+
+% --- begin exercise ---
+\begin{doconceexercise}
+\refstepcounter{doconceexercisecounter}
+
+\exercisesection{Exercise \thedoconceexercisecounter: making your own data and exploring scikit-learn}
+
+
 We will generate our own dataset for a function $y(x)$ where $x \in [0,1]$ and defined by random numbers computed with the uniform distribution. The function $y$ is a quadratic polynomial in $x$ with added stochastic noise according to the normal distribution $\cal {N}(0,1)$.
 The following simple Python instructions define our $x$ and $y$ values (with 100 data points).
 \bpycod
@@ -266,10 +313,19 @@ where we have defined the mean value  of $\hat{y}$ as
 You can use the functionality included in scikit-learn. If you feel for it, you can use your own program and define functions which compute the above two functions. 
 Discuss the meaning of these results. Try also to vary the coefficient in front of the added stochastic noise term and discuss the quality of the fits.
 
+\end{doconceexercise}
+% --- end exercise ---
 
 
 
-\paragraph{Exercise 4, mean values and variances in linear regression.}
+
+% --- begin exercise ---
+\begin{doconceexercise}
+\refstepcounter{doconceexercisecounter}
+
+\exercisesection{Exercise \thedoconceexercisecounter: mean values and variances in linear regression}
+
+
 This exercise deals with various mean values ad variances in  linear regression method (here it may be useful to look up chapter 3, equation (3.8) of \href{{https://www.springer.com/gp/book/9780387848570}}{Trevor Hastie, Robert Tibshirani, Jerome H. Friedman, The Elements of Statistical Learning, Springer}).
 
 The assumption we have made is 
@@ -284,9 +340,10 @@ function $f$ is approximated by $\bm{\tilde{y}}$ where we minimized  $(\bm{y}-\b
 \[
 \bm{\tilde{y}} = \bm{X}\bm{\beta}.
 \]
-The matrix $\bm{X}$ is the so-called design matrix. 
+The matrix $\bm{X}$ is the so-called design matrix.
 
 
+\subex{a)}
 Show that  the expectation value of $\bm{y}$ for a given element $i$ 
 \begin{align*} 
 \mathbb{E}(y_i) & =\mathbf{X}_{i, \ast} \, \beta, 
@@ -298,26 +355,39 @@ its variance is
 Hence, $y_i \sim \mathcal{N}( \mathbf{X}_{i, \ast} \, \bm{\beta}, \sigma^2)$, that is $\bm{y}$ follows a normal distribution with 
 mean value $\bm{X}\bm{\beta}$ and variance $\sigma^2$.
 
-
+\subex{b)}
 With the OLS expressions for the parameters $\bm{\beta}$ show that
 \[
 \mathbb{E}(\bm{\beta}) = \bm{\beta}.
 \]
 This means that the estimator of the regression parameters is unbiased.
 
+\subex{c)}
 Show finally that the variance of $\bm{\beta}$ is
 \begin{eqnarray*}
 \mbox{Var}(\bm{\beta}) & = & \sigma^2 \, (\mathbf{X}^{T} \mathbf{X})^{-1}.
 \end{eqnarray*}
 
-\paragraph{Exercise 5.}
+\end{doconceexercise}
+% --- end exercise ---
+
+
+
+
+% --- begin exercise ---
+\begin{doconceexercise}
+\refstepcounter{doconceexercisecounter}
+
+\exercisesection{Exercise \thedoconceexercisecounter: Playing with nuclear masses}
+
+
 Finally, try now to write your own code (you can use the example the nuclear masses in the lecture slides on Regression and Getting started from Day1, that reads in the nuclear masses and
 compute the proton separation energies, the two-neutron and two-proton separation energies and finally the shell gaps for selected nuclei.
 
 Finally, try to compute the $Q$-values for $\beta-$ decay for selected nuclei.
 
-
-
+\end{doconceexercise}
+% --- end exercise ---
 
 
 % ------------------- end of main content ---------------

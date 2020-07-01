@@ -41,14 +41,17 @@ div { text-align: justify; text-justify: inter-word; }
 <!-- tocinfo
 {'highest level': 2,
  'sections': [('Day one and two  exercises', 2, None, '___sec0'),
-              ('Exercise 1', 3, None, '___sec1'),
-              ('Exercise 2: Python getting started', 3, None, '___sec2'),
-              ('Exercise 3', 3, None, '___sec3'),
-              ('Exercise 4, mean values and variances in linear regression',
-               3,
+              ('Exercise 1: Getting started', 2, None, '___sec1'),
+              ('Exercise 2: Our first Python encounter', 2, None, '___sec2'),
+              ('Exercise 3: making your own data and exploring scikit-learn',
+               2,
+               None,
+               '___sec3'),
+              ('Exercise 4: mean values and variances in linear regression',
+               2,
                None,
                '___sec4'),
-              ('Exercise 5', 3, None, '___sec5')]}
+              ('Exercise 5: Playing with nuclear masses', 2, None, '___sec5')]}
 end of tocinfo -->
 
 <body>
@@ -88,12 +91,15 @@ MathJax.Hub.Config({
 
 <br>
 <p>
-<center><h4>Jun 20, 2020</h4></center> <!-- date -->
+<center><h4>Jul 1, 2020</h4></center> <!-- date -->
 <br>
 
 <h2 id="___sec0">Day one and two  exercises </h2>
 
-<h3 id="___sec1">Exercise 1  </h3>
+<p>
+<!-- --- begin exercise --- -->
+
+<h2 id="___sec1">Exercise 1: Getting started </h2>
 
 <p>
 The first exercise here is of a mere technical art. We want you to have 
@@ -172,7 +178,13 @@ license.
 <p>
 We recommend using <b>Anaconda</b>.
 
-<h3 id="___sec2">Exercise 2: Python getting started </h3>
+<p>
+<!-- --- end exercise --- -->
+
+<p>
+<!-- --- begin exercise --- -->
+
+<h2 id="___sec2">Exercise 2: Our first Python encounter </h2>
 
 <p>
 This exercise has as its aim to write a small program which reads in data from a <b>csv</b> file on the equation of state for dense nuclear matter. The file is localized at <a href="https://github.com/mhjensen/MachineLearningMSU-FRIB2020/blob/master/doc/pub/Regression/ipynb/datafiles/EoS.csv" target="_blank"><tt>https://github.com/mhjensen/MachineLearningMSU-FRIB2020/blob/master/doc/pub/Regression/ipynb/datafiles/EoS.csv</tt></a>. Thereafter you will have to set up the design matrix \( \boldsymbol{X} \) for the  \( n \)
@@ -186,7 +198,13 @@ datapoints and a polynomial of degree \( 3 \). The steps are:
 
 We recommend looking at the examples in the <a href="https://compphysics.github.io/MachineLearning/doc/pub/Regression/html/Regression-bs.html" target="_blank">regression slides</a>.
 
-<h3 id="___sec3">Exercise 3  </h3>
+<p>
+<!-- --- end exercise --- -->
+
+<p>
+<!-- --- begin exercise --- -->
+
+<h2 id="___sec3">Exercise 3: making your own data and exploring scikit-learn </h2>
 
 <p>
 We will generate our own dataset for a function \( y(x) \) where \( x \in [0,1] \) and defined by random numbers computed with the uniform distribution. The function \( y \) is a quadratic polynomial in \( x \) with added stochastic noise according to the normal distribution \( \cal {N}(0,1) \).
@@ -221,7 +239,13 @@ $$
 You can use the functionality included in scikit-learn. If you feel for it, you can use your own program and define functions which compute the above two functions. 
 Discuss the meaning of these results. Try also to vary the coefficient in front of the added stochastic noise term and discuss the quality of the fits.
 
-<h3 id="___sec4">Exercise 4, mean values and variances in linear regression  </h3>
+<p>
+<!-- --- end exercise --- -->
+
+<p>
+<!-- --- begin exercise --- -->
+
+<h2 id="___sec4">Exercise 4: mean values and variances in linear regression </h2>
 
 <p>
 This exercise deals with various mean values ad variances in  linear regression method (here it may be useful to look up chapter 3, equation (3.8) of <a href="https://www.springer.com/gp/book/9780387848570" target="_blank">Trevor Hastie, Robert Tibshirani, Jerome H. Friedman, The Elements of Statistical Learning, Springer</a>).
@@ -244,6 +268,7 @@ $$
 The matrix \( \boldsymbol{X} \) is the so-called design matrix.
 
 <p>
+<b>a)</b>
 Show that  the expectation value of \( \boldsymbol{y} \) for a given element \( i \) 
 $$
 \begin{align*} 
@@ -262,6 +287,7 @@ Hence, \( y_i \sim \mathcal{N}( \mathbf{X}_{i, \ast} \, \boldsymbol{\beta}, \sig
 mean value \( \boldsymbol{X}\boldsymbol{\beta} \) and variance \( \sigma^2 \).
 
 <p>
+<b>b)</b>
 With the OLS expressions for the parameters \( \boldsymbol{\beta} \) show that
 $$
 \mathbb{E}(\boldsymbol{\beta}) = \boldsymbol{\beta}.
@@ -270,6 +296,7 @@ $$
 This means that the estimator of the regression parameters is unbiased.
 
 <p>
+<b>c)</b>
 Show finally that the variance of \( \boldsymbol{\beta} \) is
 $$
 \begin{eqnarray*}
@@ -277,7 +304,13 @@ $$
 \end{eqnarray*}
 $$
 
-<h3 id="___sec5">Exercise 5  </h3>
+<p>
+<!-- --- end exercise --- -->
+
+<p>
+<!-- --- begin exercise --- -->
+
+<h2 id="___sec5">Exercise 5: Playing with nuclear masses </h2>
 
 <p>
 Finally, try now to write your own code (you can use the example the nuclear masses in the lecture slides on Regression and Getting started from Day1, that reads in the nuclear masses and
@@ -287,6 +320,7 @@ compute the proton separation energies, the two-neutron and two-proton separatio
 Finally, try to compute the \( Q \)-values for \( \beta- \) decay for selected nuclei.
 
 <p>
+<!-- --- end exercise --- -->
 
 <!-- ------------------- end of main content --------------- -->
 

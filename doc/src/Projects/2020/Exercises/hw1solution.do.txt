@@ -1,4 +1,4 @@
-TITLE: First and second days: Exercise set 1
+TITLE: First and second days: Exercise set 1, solutions
 AUTHOR: Data Analysis and Machine Learning for Nuclear Physics
 DATE:Today
 
@@ -76,6 +76,9 @@ datapoints and a polynomial of degree $3$. The steps are:
 
 We recommend looking at the examples in the "regression slides":"https://compphysics.github.io/MachineLearning/doc/pub/Regression/html/Regression-bs.html". 
 
+=== Solution ===
+
+
 === Exercise 3  ===
 
 We will generate our own dataset for a function $y(x)$ where $x \in [0,1]$ and defined by random numbers computed with the uniform distribution. The function $y$ is a quadratic polynomial in $x$ with added stochastic noise according to the normal distribution $\cal {N}(0,1)$.
@@ -109,6 +112,8 @@ where we have defined the mean value  of $\hat{y}$ as
 You can use the functionality included in scikit-learn. If you feel for it, you can use your own program and define functions which compute the above two functions. 
 Discuss the meaning of these results. Try also to vary the coefficient in front of the added stochastic noise term and discuss the quality of the fits.
 
+
+=== Solution ===
 
 
 
