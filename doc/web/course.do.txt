@@ -61,11 +61,14 @@ ${text_types(ch)}
  * HTML:
    * "Plain html":"http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw1/html/hw1.html"
    * "Bootstrap  slide style, easy for reading on mobile devices": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw1/html/hw1-bs.html"
+   * "Jupyter notebook": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw1/ipynb/hw1.ipynb"
 
 === Second exercise set (Day 2 and 3) ===
  * HTML:
    * "Plain html":"http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw2/html/hw2.html"
    * "Bootstrap  slide style, easy for reading on mobile devices": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw2/html/hw2-bs.html"
+   * "Jupyter notebook": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw2/ipynb/hw2.ipynb"
+
 
 Note that the remaining days we will present and discuss how to read and handle data from experiments. The videos should give you all relevant details as well as the notebooks.
 
