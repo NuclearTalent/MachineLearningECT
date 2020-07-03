@@ -91,9 +91,9 @@ ${text_types(ch)}
 
 === Project on analysis of $\beta$-decay experiments ===
  * HTML:
-   * "Plain html":"http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectBeta/html/ProjectBeta.html"
-   * "Bootstrap  slide style, easy for reading on mobile devices": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectBeta/html/ProjectBeta-bs.html"
-   * "Jupyter notebook": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectBeta/ipynb/ProjectBeta.ipynb"
+   * "Plain html":"http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectBetaDecay/html/ProjectBetaDecay.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectBetaDecay/html/ProjectBetaDecay-bs.html"
+   * "Jupyter notebook": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectBetaDecay/ipynb/ProjectBetaDecay.ipynb"
 
 
 === Project on analysis of AT  experiments ===
