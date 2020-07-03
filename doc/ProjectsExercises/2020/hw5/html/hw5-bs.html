@@ -1,0 +1,413 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Second week">
+
+<title>Second week</title>
+
+<!-- Bootstrap style: bootstrap -->
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+<style type="text/css">
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
+</style>
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [('Regression examples, from linear regression, via decision '
+               'trees and various forests to neural networks',
+               2,
+               None,
+               '___sec0'),
+              ('Part a): Producing the data for the one-dimensional Ising '
+               'model',
+               3,
+               None,
+               '___sec1'),
+              ('Part b): Estimating the coupling constant of the '
+               'one-dimensional Ising model using linear regression',
+               3,
+               None,
+               '___sec2'),
+              ('Part c): Random forests and boosting', 3, None, '___sec3'),
+              ('Part d): Regression analysis of the one-dimensional Ising '
+               'model using neural networks',
+               3,
+               None,
+               '___sec4'),
+              ('Background literature', 2, None, '___sec5')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="hw5-bs.html">Second week</a>
+  </div>
+
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="#___sec0" style="font-size: 80%;"><b>Regression examples, from linear regression, via decision trees and various forests to neural networks</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec1" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Part a): Producing the data for the one-dimensional Ising model</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Part b): Estimating the coupling constant of the one-dimensional Ising model using linear regression</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec3" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Part c): Random forests and boosting</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Part d): Regression analysis of the one-dimensional Ising model using neural networks</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;"><b>Background literature</b></a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<a name="part0000"></a>
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<div class="jumbotron">
+<center><h1>Second week</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Data Analysis and Machine Learning -->
+
+<center>
+<b>Data Analysis and Machine Learning</b> 
+</center>
+
+<p>
+<!-- institution(s) -->
+
+<br>
+<p>
+<center><h4>Jul 3, 2020</h4></center> <!-- date -->
+<br>
+<p>
+</div> <!-- end jumbotron -->
+
+<h2 id="___sec0" class="anchor">Regression examples, from linear regression, via decision trees and various forests to neural networks  </h2>
+
+<p>
+The main aim of this project is to study some specific 
+regression problems, starting with the regression algorithms studied
+in homework set 3 (exercise 2 in particular).
+We will include decision trees, random forests and eventually boosting
+methods  and neural network with <b>tensorflow</b> (feel free however to write your own code).
+
+<p>
+The case we encounter here
+is  the so-called Ising model for  our training data and we will
+focus on supervised training. We will follow closely the recent
+article of <a href="https://arxiv.org/abs/1803.08823" target="_self">Mehta et al, arXiv
+1803.08823</a>. This article stands
+out as an excellent review on machine learning (ML) algorithms.
+The added benefit is that each figure and
+model presented in <a href="https://physics.bu.edu/~pankajm/MLnotebooks.html" target="_self">this article is accompanied by its jupyter
+notebook</a>. This
+means that we can start using these and compare with our own results.
+
+<p>
+You can also look up the <a href="https://compphysics.github.io/MachineLearningECT/doc/pub/Day1/html/Day1.html" target="_self">Regression slides for a discussion of the Ising model</a> (scroll down to the end).
+
+<p>
+Alternatively, you can replace the Ising thorughout the exercises with the nuclear binding energies. The choice is yours. Or if you have other data sets suitable for regression, feel free to use those.
+
+<p>
+What follows here is however a discussion of the Ising model. The nuclear binding energies were discussed during the lectures.
+
+<p>
+With the abovementioned configurations we will determine, using first
+various regression methods, the value of the coupling constant for the
+energy of the one-dimensional Ising model.
+We will mainly use <b>scikit-learn</b> or <b>tensorflow</b> or other Python packages such as <b>keras</b> or other.
+
+<p>
+Feel free to use the notebooks to benchmark your code.
+
+<h3 id="___sec1" class="anchor">Part a): Producing the data for the one-dimensional Ising model </h3>
+
+<p>
+The model we will employ in our studies is the so-called <a href="https://en.wikipedia.org/wiki/Ising_model" target="_self">Ising
+model</a>.  Together with
+models like the <a href="https://en.wikipedia.org/wiki/Potts_model" target="_self">Potts
+model</a> and similar
+so-called lattice models, the Ising model has been widely studied in
+mathematics (in statistics in particular), physics, <a href="https://journals.aps.org/pre/abstract/10.1103/PhysRevE.93.062402" target="_self">life
+science</a>,
+chemistry and even in the <a href="https://www.springer.com/gp/book/9781461420316" target="_self">social sciences in order to model social
+behavior</a>. It is a
+simple binary value system where the variables of the model (spins often in
+physics) can take two values only, for example \( \pm 1 \) or \( 0 \) and \( 1 \).
+The system exhibits a phase transition in two or higher dimensions and
+the first person to find the analytical expressions for various
+expectation values was the Norwegian chemist <a href="https://en.wikipedia.org/wiki/Lars_Onsager" target="_self">Lars
+Onsager</a> (Nobel prize in
+chemistry) after a tour de force mathematics exercise.
+
+<p>
+In our discussions here we will stay with a physicist's approach and
+call the variables for spin. You could replace this with any other
+type of binary variables, ranging from a two political parties to blue
+and red spheres.  In its simplest form we define the energy of the
+system as
+
+$$
+\begin{equation*}
+  E=-J\sum_{< kl>}^{N}s_ks_l,
+\end{equation*}
+$$
+
+with  \( s_k=\pm 1 \), \( N \) is the total number of spins,
+\( J \) is a coupling constant expressing the strength of the interaction
+between neighboring spins.
+
+<p>
+The symbol \( < kl> \) indicates that we sum over nearest
+neighbors only.
+Notice that for \( J>0 \) it is energetically favorable for neighboring spins
+to be aligned. This feature leads to, at low enough temperatures,
+a cooperative phenomenon called spontaneous magnetization. That is,
+through interactions between nearest neighbors, a given magnetic
+moment can influence the alignment of spins  that are separated
+from the given spin by a macroscopic distance. These long range correlations
+between spins are associated with a long-range order in which
+the lattice has a net magnetization in the absence of a magnetic field.
+
+<p>
+We start by considering the one-dimensional Ising model with nearest neighbor interactions. This model does not exhibit any phase transition.
+
+<p>
+Consider the 1D Ising model with nearest-neighbor interactions 
+
+$$
+\begin{equation*}
+  E[\hat{s}]=-J\sum_{j=1}^{N}s_{j}s_{j+1},
+\end{equation*}
+$$
+
+<p>
+on a chain of length \( N \) with so-called periodic boundary conditions and \( S_j=\pm 1 \) Ising spin variables.
+In one dimension, this model has no phase transition at finite temperature.
+
+<p>
+In the Python code below we generate, with a coupling coefficient set to \( J=1 \), a large number of spin configurations say \( 10000 \) as shown in the code below.
+It means that our data will be a set of \( i=1\ldots n \) points of the form
+\( \{(E[\boldsymbol{s}^i],\boldsymbol{s}^i)\} \).
+Our task is to find the value of \( J \) from the data set using linear regression.
+
+<p>
+Here is the Python code you need to generate the training data, see
+also the <a href="https://physics.bu.edu/~pankajm/ML-Notebooks/HTML/NB_CVI-linreg_ising.html" target="_self">notebook of Mehta et
+al</a>.
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">scipy.sparse</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">sp</span>
+np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>seed(<span style="color: #666666">12</span>)
+
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">warnings</span>
+<span style="color: #408080; font-style: italic">#Comment this to turn on warnings</span>
+warnings<span style="color: #666666">.</span>filterwarnings(<span style="color: #BA2121">&#39;ignore&#39;</span>)
+
+<span style="color: #408080; font-style: italic">### define Ising model aprams</span>
+<span style="color: #408080; font-style: italic"># system size</span>
+L<span style="color: #666666">=40</span>
+
+<span style="color: #408080; font-style: italic"># create 10000 random Ising states</span>
+states<span style="color: #666666">=</span>np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>choice([<span style="color: #666666">-1</span>, <span style="color: #666666">1</span>], size<span style="color: #666666">=</span>(<span style="color: #666666">10000</span>,L))
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">ising_energies</span>(states,L):
+    <span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
+<span style="color: #BA2121; font-style: italic">    This function calculates the energies of the states in the nn Ising Hamiltonian</span>
+<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
+    J<span style="color: #666666">=</span>np<span style="color: #666666">.</span>zeros((L,L),)
+    <span style="color: #008000; font-weight: bold">for</span> i <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(L):
+        J[i,(i<span style="color: #666666">+1</span>)<span style="color: #666666">%</span>L]<span style="color: #666666">-=1.0</span>
+    <span style="color: #408080; font-style: italic"># compute energies</span>
+    E <span style="color: #666666">=</span> np<span style="color: #666666">.</span>einsum(<span style="color: #BA2121">&#39;...i,ij,...j-&gt;...&#39;</span>,states,J,states)
+
+    <span style="color: #008000; font-weight: bold">return</span> E
+<span style="color: #408080; font-style: italic"># calculate Ising energies</span>
+energies<span style="color: #666666">=</span>ising_energies(states,L)
+</pre></div>
+<p>
+We can now recast the problem as a linear regression model using our codes from homework set 3 (exercise 2 in particular).
+The way we are going to build our model mimicks the way we could think of finding say the gravitional constant for the graviational force between two planets.
+In the absence of any prior knowledge, one sensible choice is the all-to-all Ising model
+
+$$
+E_\mathrm{model}[\boldsymbol{s}^i] = - \sum_{j=1}^N \sum_{k=1}^N J_{j,k}s_{j}^is_{k}^i.
+$$
+
+<p>
+Here \( i \) represents a particular spin configuration (one of the possible \( n \) configurations we generated with the code above).
+
+<p>
+This model is uniquely defined by the non-local coupling strengths \( J_{jk} \) which we want to learn.
+The model is linear in \( \mathbf{J} \) which makes it possible to use linear regression.
+
+<p>
+To apply linear regression, we recast this model in the form
+$$
+E_\mathrm{model}^i \equiv \mathbf{X}^i \cdot \mathbf{J},
+$$
+
+<p>
+where the vectors \( \mathbf{X}^i \) represent all two-body interactions
+\( \{s_{j}^is_{k}^i \}_{j,k=1}^N \), and the index \( i \) runs over the
+samples in the data set.  To make the analogy complete, we can also
+represent the dot product by a single index \( p = \{j,k\} \),
+i.e. \( \mathbf{X}^i \cdot \mathbf{J}=X^i_pJ_p \).  Note that the
+regression model does not include the minus sign, so we expect to
+learn negative \( J \)'s.
+
+<h3 id="___sec2" class="anchor">Part b): Estimating the coupling constant of the one-dimensional Ising model using linear regression </h3>
+
+<p>
+We start with the one-dimensional Ising model and use the data we have
+generated with \( J=1 \) in the previous point.
+
+<p>
+<b>Use linear regression,
+Lasso and Ridge regression as done in homework 3</b>.
+Make an analysis of the guessed coupling constant as function of the hyperparameters \( \lambda \). 
+You can compare your
+results with those of <a href="https://physics.bu.edu/~pankajm/ML-Notebooks/HTML/NB_CVI-linreg_ising.html" target="_self">Mehta
+et al.</a>.
+Make sure it is the 1D data which is used.
+
+<p>
+Discuss the methods and how they perform in computing the coupling
+constant \( J \) and include a bias-variance analysis using the bootstrap resampling method.
+Discuss also the mean squared error and
+the \( R2 \) score as measures to assess your model.
+
+<p>
+Give a critical analysis of your results.
+
+<p>
+You can replace the Ising model data with the nuclear binding energy data.
+
+<h3 id="___sec3" class="anchor">Part c): Random forests and boosting  </h3>
+
+<p>
+Repeat the above analysis but using random forests and boosting (XGboost or normal gradient boosting). You can use the functions
+in <b>scikit-learn</b> for random forests and gradient boosting. For <b>XGBoost</b> you need to install it separately. You can still use other functionality in <b>scikit-Learn</b>.
+
+<h3 id="___sec4" class="anchor">Part d): Regression analysis of the one-dimensional Ising model using neural networks  </h3>
+
+<p>
+Your aim now is to use either <b>scikit-learn</b> or <b>tensorflow</b> in order to set up a neural network to find the optimal weights and biases.
+
+<p>
+Train your network and compare the results with those from your linear regression code and random forests/boosting methods.
+
+<p>
+You can test your results against a similar code using <b>scikit-learn</b> or <b>tensorflow/keras</b>.
+
+<p>
+A useful reference on the back progagation algorithm is <a href="http://neuralnetworksanddeeplearning.com/" target="_self">Nielsen's book</a>. It is an excellent read.
+
+<p>
+Finally, give a critical analysis of your results with pros and cons of the various methods.
+
+<h2 id="___sec5" class="anchor">Background literature </h2>
+
+<ol>
+<li> The text of Michael Nielsen is highly recommended, see <a href="http://neuralnetworksanddeeplearning.com/" target="_self">Nielsen's book</a>. It is an excellent read.</li>
+<li> The textbook of <a href="https://www.springer.com/gp/book/9780387848570" target="_self">Trevor Hastie, Robert Tibshirani, Jerome H. Friedman, The Elements of Statistical Learning, Springer</a>, chapters 3 and 7 are the most relevant ones for the analysis here.</li> 
+<li> <a href="https://arxiv.org/abs/1803.08823" target="_self">Mehta et al, arXiv 1803.08823</a>, <em>A high-bias, low-variance introduction to Machine Learning for physicists</em>, ArXiv:1803.08823.</li>
+</ol>
+
+If you wish to read more about the Ising model and statistical physics here are three suggestions.
+
+<ol>
+<li> <a href="http://www.worldscientific.com/worldscibooks/10.1142/5660" target="_self">M. Plischke and B. Bergersen</a>, <em>Equilibrium Statistical Physics</em>, World Scientific, see chapters 5 and 6.</li>
+<li> <a href="http://www.cambridge.org/no/academic/subjects/physics/computational-science-and-modelling/guide-monte-carlo-simulations-statistical-physics-4th-edition?format=HB" target="_self">D. P. Landau and K. Binder</a>, <em>A Guide to Monte Carlo Simulations in Statistical Physics</em>, Cambridge, see chapters 2,3 and 4.</li>
+<li> <a href="https://global.oup.com/academic/product/monte-carlo-methods-in-statistical-physics-9780198517979?cc=no&lang=en&" target="_self">M. E. J. Newman and T. Barkema</a>, <em>Monte Carlo Methods in Statistical Physics</em>, Oxford, see chapters 3 and 4.</li>
+</ol>
+
+
+<p>
+<!-- navigation buttons at the bottom of the page -->
+<ul class="pagination">
+  <li class="active"><a href="._hw5-bs000.html">1</a></li>
+</ul>
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+</body>
+</html>
+    
+

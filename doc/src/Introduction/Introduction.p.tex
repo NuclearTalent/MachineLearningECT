@@ -1,0 +1,2202 @@
+%%
+%% Automatically generated file from DocOnce source
+%% (https://github.com/hplgit/doconce/)
+%%
+%%
+% #ifdef PTEX2TEX_EXPLANATION
+%%
+%% The file follows the ptex2tex extended LaTeX format, see
+%% ptex2tex: http://code.google.com/p/ptex2tex/
+%%
+%% Run
+%%      ptex2tex myfile
+%% or
+%%      doconce ptex2tex myfile
+%%
+%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
+%% (The ptex2tex program: http://code.google.com/p/ptex2tex)
+%% Many preprocess options can be added to ptex2tex or doconce ptex2tex
+%%
+%%      ptex2tex -DMINTED myfile
+%%      doconce ptex2tex myfile envir=minted
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples). If doconce ptex2tex has envir=minted, it enables the
+%% minted style without needing -DMINTED.
+% #endif
+
+% #define PREAMBLE
+
+% #ifdef PREAMBLE
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % draft: marks overfull hboxes, figures with paths
+10pt]{article}
+
+\listfiles               %  print all files needed to compile this document
+
+\usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{bm,ltablex,microtype}
+
+\usepackage[pdftex]{graphicx}
+
+\usepackage{ptex2tex}
+% #ifdef MINTED
+\usepackage{minted}
+\usemintedstyle{default}
+% #endif
+
+\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
+% Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
+\usepackage{hyperref}
+\hypersetup{
+    breaklinks=true,
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+    }
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % levels in table of contents
+
+% Tricks for having figures close to where they are defined:
+% 1. define less restrictive rules for where to put figures
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.95}
+\renewcommand{\textfraction}{0}
+\renewcommand{\floatpagefraction}{0.75}
+% floatpagefraction must always be less than topfraction!
+% 2. ensure all figures are flushed before next section
+\usepackage[section]{placeins}
+% 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
+%\usepackage{float}\restylefloat{figure}
+
+% newcommands for typesetting inline (doconce) comments
+\newcommand{\shortinlinecomment}[3]{{\color{red}{\bf #1}: #2}}
+\newcommand{\longinlinecomment}[3]{{\color{red}{\bf #1}: #2}}
+
+\usepackage[framemethod=TikZ]{mdframed}
+
+% --- begin definitions of admonition environments ---
+
+% --- end of definitions of admonition environments ---
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% --- end of standard preamble for documents ---
+
+
+% insert custom LaTeX commands...
+
+\raggedbottom
+\makeindex
+\usepackage[totoc]{idxlayout}   % for index in the toc
+\usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+% matching end for #ifdef PREAMBLE
+% #endif
+
+\newcommand{\exercisesection}[1]{\subsection*{#1}}
+
+
+% ------------------- main content ----------------------
+
+
+
+% ----------------- title -------------------------
+
+\thispagestyle{empty}
+
+\begin{center}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Nuclear Talent course  on Machine Learning in Nuclear Experiment and Theory
+\end{spacing}
+}
+\end{center}
+
+% ----------------- author(s) -------------------------
+
+\begin{center}
+{\bf \href{{https://www.nscl.msu.edu/directory/bazin.html}}{Daniel Bazin}${}^{1}$} \\ [0mm]
+\end{center}
+
+
+\begin{center}
+{\bf \href{{http://mhjgit.github.io/info/doc/web/}}{Morten Hjorth-Jensen}${}^{1, 2}$} \\ [0mm]
+\end{center}
+
+
+\begin{center}
+{\bf \href{{https://www.davidson.edu/academics/physics/faculty-and-staff/michelle-kuchera}}{Michelle Kuchera}${}^{3}$} \\ [0mm]
+\end{center}
+
+
+\begin{center}
+{\bf \href{{https://www.nscl.msu.edu/directory/liddick.html}}{Sean Liddick}${}^{4}$} \\ [0mm]
+\end{center}
+
+
+\begin{center}
+{\bf \href{{https://www.davidson.edu/academics/mathematics-and-computer-science/faculty-and-staff/raghuram-ramanujan}}{Raghuram Ramanujan}${}^{5}$} \\ [0mm]
+\end{center}
+
+\begin{center}
+% List of all institutions:
+\centerline{{\small ${}^1$Department of Physics and Astronomy and Facility for Rare Ion Beams and National Superconducting Cyclotron Laboratory, Michigan State University, East Lansing, Michigan, USA}}
+\centerline{{\small ${}^2$Department of Physics and Center for Computing in Science Education, University of Oslo, Oslo, Norway}}
+\centerline{{\small ${}^3$Physics Department, Davidson College, Davidson, North Carolina, USA}}
+\centerline{{\small ${}^4$Department of Chemistry and Facility for Rare Ion Beams  and National Superconducting Cyclotron Laboratory, Michigan State University, East Lansing, Michigan, USA}}
+\centerline{{\small ${}^5$Department of Mathematics and Computer Science, Davidson College, Davidson, North Carolina, USA}}
+\end{center}
+    
+% ----------------- end author(s) -------------------------
+
+% --- begin date ---
+\begin{center}
+Jun 22, 2020
+\end{center}
+% --- end date ---
+
+\vspace{1cm}
+
+
+% !split
+\subsection{Introduction}
+
+During the last two decades there has been a swift and amazing
+development of Machine Learning techniques and algorithms that impact
+many areas in not only Science and Technology but also the Humanities,
+Social Sciences, Medicine, Law, indeed, almost all possible
+disciplines. The applications are incredibly many, from self-driving
+cars to solving high-dimensional differential equations or complicated
+quantum mechanical many-body problems. Machine Learning is perceived
+by many as one of the main disruptive techniques nowadays. 
+
+Statistics, Data science and Machine Learning form important
+fields of research in modern science.  They describe how to learn and
+make predictions from data, as well as allowing us to extract
+important correlations about physical process and the underlying laws
+of motion in large data sets. The latter, big data sets, appear
+frequently in essentially all disciplines, from the traditional
+Science, Technology, Mathematics and Engineering fields to Life
+Science, Law, education research, the Humanities and the Social
+Sciences.
+
+% !split
+\subsection{Overview of these introductory notes}
+
+The aim of these notes is to give you a birds view over overarching issues on  Machine Learning, a brief review of programming with Python and libraries we will use in this course, a reminder on statistics and finally our first encounters of Machine Learning methods applied to an evergreen in Nuclear Physics, fitting nuclear binding energies.
+If you are familiar with basic Python programming and statistics, you can easily jump some of the introductory material here.
+
+After these introductory words, the set of lectures will contain the following themes:
+% !bpop
+\begin{itemize}
+\item Linear Regression
+
+\item Logistic Regression
+
+\item Decision Trees, Random Forests, Bagging and Boosting
+
+\item Neural Networks and Deep Learning methods
+
+\item Convolutional and Recurrent Neural Networks and how to analyze experimental results
+
+\item Generative Models
+
+\item Reinforcement Learning
+
+\item The experimental data we will analyze are based on experiments from $\beta$-decay experiments and data from Active Target experiments
+\end{itemize}
+
+\noindent
+% !epop
+
+
+% !split
+\subsection{Machine Learning, short overview}
+
+
+% !split
+\subsection{Machine Learning, a small (and probably biased) introduction}
+
+
+Ideally, machine learning represents the science of giving computers
+the ability to learn without being explicitly programmed.  The idea is
+that there exist generic algorithms which can be used to find patterns
+in a broad class of data sets without having to write code
+specifically for each problem. The algorithm will build its own logic
+based on the data.  You should however always keep in mind that
+machines and algorithms are to a large extent developed by humans. The
+insights and knowledge we have about a specific system, play a central
+role when we develop a specific machine learning algorithm. 
+
+% !split
+\subsection{Machine Learning, an extremely rich field}
+
+Machine learning is an extremely rich field, in spite of its young
+age. The increases we have seen during the last  decades in
+computational capabilities have been followed by developments of
+methods and techniques for analyzing and handling large date sets,
+relying heavily on statistics, computer science and mathematics.  The
+field is rather new and developing rapidly. Popular software libraries
+written in Python for machine learning like
+\href{{http://scikit-learn.org/stable/}}{Scikit-learn},
+\href{{https://www.tensorflow.org/}}{Tensorflow},
+\href{{http://pytorch.org/}}{PyTorch} and \href{{https://keras.io/}}{Keras}, all
+freely available at their respective GitHub sites, encompass
+communities of developers in the thousands or more. And the number of
+code developers and contributors keeps increasing.
+
+% !split
+\subsection{A multidisciplinary approach}
+
+Not all the
+algorithms and methods can be given a rigorous mathematical
+justification (for example decision trees and random forests), opening up thereby large rooms for experimenting and
+trial and error and thereby exciting new developments.  However, a
+solid command of linear algebra, multivariate theory, probability
+theory, statistical data analysis, understanding errors and Monte
+Carlo methods are central elements in a proper understanding of many
+of the algorithms and methods we will discuss.
+
+
+% !split 
+\subsection{Learning outcomes}
+
+These sets of lectures aim at giving you an overview of central aspects of
+statistical data analysis as well as some of the central algorithms
+used in machine learning.  We will introduce a variety of central
+algorithms and methods essential for studies of data analysis and
+machine learning. 
+
+Hands-on projects and experimenting with data and algorithms play a central role in
+these lectures, and our hope is, through the various examples discussed in this series of lectures,
+to  expose you to fundamental
+research problems in these fields, with the aim to reproduce state of
+the art scientific results. 
+More specifically, you will
+
+% !bpop
+\begin{enumerate}
+\item \textcolor{red}{Learn about basic data analysis, data optimization and machine learning};
+
+\item \textcolor{red}{Be capable of extending the acquired knowledge to other systems and cases};
+
+\item \textcolor{red}{Have an understanding of central algorithms used in data analysis and machine learning};
+
+\item \textcolor{red}{Methods we will focus on are Linear and Logistic Regression, Decision trees, random forests, bagging and boosting and various variants of deep learning methods, from feed forward neural networks to more advanced methods};
+
+\item \textcolor{red}{Work on numerical examples to illustrate the theory}; 
+\end{enumerate}
+
+\noindent
+% !epop
+
+
+% !split
+\subsection{Types of Machine Learning}
+
+
+The approaches to machine learning are many, but are often split into
+two main categories.  In \emph{supervised learning} we know the answer to a
+problem, and let the computer deduce the logic behind it. On the other
+hand, \emph{unsupervised learning} is a method for finding patterns and
+relationship in data sets without any prior knowledge of the system.
+Some authours also operate with a third category, namely
+\emph{reinforcement learning}. This is a paradigm of learning inspired by
+behavioral psychology, where learning is achieved by trial-and-error,
+solely from rewards and punishment.
+
+Another way to categorize machine learning tasks is to consider the
+desired output of a system.  Some of the most common tasks are:
+
+% !bpop
+\begin{itemize}
+\item Classification: Outputs are divided into two or more classes. The goal is to   produce a model that assigns inputs into one of these classes. An example is to identify  digits based on pictures of hand-written ones. Classification is often supervised learning.
+
+\item Regression: Finding a functional relationship between an input data set and a reference data set.   The goal is to construct a function that maps input data to continuous output values.
+
+\item Clustering: Data are divided into groups with certain common traits, without knowing the different groups beforehand.  It is thus a form of unsupervised learning.
+\end{itemize}
+
+\noindent
+% !epop
+
+
+
+% !split
+\subsection{Essential elements of ML}
+
+The methods we cover have three main topics in common, irrespective of
+whether we deal with supervised or unsupervised learning.
+% !bpop
+\begin{itemize}
+\item The first ingredient is normally our data set (which can be subdivided into training, validation  and test data). Many find the most difficult part of using Machine Learning to be the set up of your data in a meaningful way. 
+
+\item The second item is a model which is normally a function of some parameters.  The model reflects our knowledge of the system (or lack thereof). As an example, if we know that our data show a behavior similar to what would be predicted by a polynomial, fitting our data to a polynomial of some degree would then determin our model. 
+
+\item The last ingredient is a so-called \textbf{cost/loss} function (or error function) which allows us to present an estimate on how good our model is in reproducing the data it is supposed to train.  
+\end{itemize}
+
+\noindent
+% !epop
+
+
+
+
+% !split
+\subsection{An optimization/minimization problem}
+
+At the heart of basically all Machine Learning algorithms we will encounter so-called minimization or optimization algorithms. A large family of such methods are so-called \textbf{gradient methods}.
+
+% !split
+\subsection{A Frequentist approach to data analysis}
+
+When you hear phrases like \textbf{predictions and estimations} and
+\textbf{correlations and causations}, what do you think of?  May be you think
+of the difference between classifying new data points and generating
+new data points.
+Or perhaps you consider that correlations represent some kind of symmetric statements like
+if $A$ is correlated with $B$, then $B$ is correlated with
+$A$. Causation on the other hand is directional, that is if $A$ causes $B$, $B$ does not
+necessarily cause $A$.
+
+These concepts are in some sense the difference between machine
+learning and statistics. In machine learning and prediction based
+tasks, we are often interested in developing algorithms that are
+capable of learning patterns from given data in an automated fashion,
+and then using these learned patterns to make predictions or
+assessments of newly given data. In many cases, our primary concern
+is the quality of the predictions or assessments, and we are less
+concerned about the underlying patterns that were learned in order
+to make these predictions.
+
+In machine learning we normally use \href{{https://en.wikipedia.org/wiki/Frequentist_inference}}{a so-called frequentist approach},
+where the aim is to make predictions and find correlations. We focus
+less on for example extracting a probability distribution function (PDF). The PDF can be
+used in turn to make estimations and find causations such as given $A$
+what is the likelihood of finding $B$.
+
+
+% !split
+\subsection{What is a good model?}
+
+In science and engineering we often end up in situations where we want to infer (or learn) a
+quantitative model $M$ for a given set of sample points $\bm{X} \in [x_1, x_2,\dots x_N]$.
+
+As we will see repeatedely in these lectures, we could try to fit these data points to a model given by a
+straight line, or if we wish to be more sophisticated to a more complex
+function.
+
+The reason for inferring such a model is that it
+serves many useful purposes. On the one hand, the model can reveal information
+encoded in the data or underlying mechanisms from which the data were generated. For instance, we could discover important
+corelations that relate interesting physics interpretations.
+
+In addition, it can simplify the representation of the given data set and help
+us in making predictions about  future data samples.
+
+A first important consideration to keep in mind is that inferring the \emph{correct} model
+for a given data set is an elusive, if not impossible, task. The fundamental difficulty
+is that if we are not specific about what we mean by a \emph{correct} model, there
+could easily be many different models that fit the given data set \emph{equally well}.
+
+
+% !split
+\subsection{What is a good model? Can we define it?}
+
+
+The central question is this: what leads us to say that a model is correct or
+optimal for a given data set? To make the model inference problem well posed, i.e.,
+to guarantee that there is a unique optimal model for the given data, we need to
+impose additional assumptions or restrictions on the class of models considered. To
+this end, we should not be looking for just any model that can describe the data.
+Instead, we should look for a \textbf{model} $M$ that is the best among a restricted class
+of models. In addition, to make the model inference problem computationally
+tractable, we need to specify how restricted the class of models needs to be. A
+common strategy is to start 
+with the simplest possible class of models that is just necessary to describe the data
+or solve the problem at hand. More precisely, the model class should be rich enough
+to contain at least one model that can fit the data to a desired accuracy and yet be
+restricted enough that it is relatively simple to find the best model for the given data.
+
+Thus, the most popular strategy is to start from the
+simplest class of models and increase the complexity of the models only when the
+simpler models become inadequate. For instance, if we work with a regression problem to fit a set of sample points, one
+may first try the simplest class of models, namely linear models, followed obviously by more complex models.
+
+How to evaluate which model fits best the data is something we will come back to over and over again in these set of lectures.
+
+% !split
+\subsection{Practicalities, choice of programming language and other computational issues}
+
+% !split
+\subsection{Choice of Programming Language}
+
+Python plays nowadays a central role in the development of machine
+learning techniques and tools for data analysis. In particular, seen
+the wealth of machine learning and data analysis libraries written in
+Python, easy to use libraries with immediate visualization(and not the
+least impressive galleries of existing examples), the popularity of the
+Jupyter notebook framework with the possibility to run \textbf{R} codes or
+compiled programs written in C++, and much more made our choice of
+programming language for this series of lectures easy. However,
+since the focus here is not only on using existing Python libraries such
+as \textbf{Scikit-Learn}, \textbf{Tensorflow} and \textbf{Pytorch}, but also on developing your own
+algorithms and codes, we will as far as possible present many of these
+algorithms either as a Python codes or C++ or Fortran (or other languages) codes. 
+
+
+
+
+
+
+% !split
+\subsection{Software and needed installations}
+
+We will make extensive use of Python as programming language and its
+myriad of available libraries.  You will find
+Jupyter notebooks invaluable in your work.  You can run \textbf{R}
+codes in the Jupyter/IPython notebooks, with the immediate benefit of
+visualizing your data. You can also use compiled languages like C++,
+Rust, Julia, Fortran etc if you prefer. The focus in these lectures will be
+on Python.
+
+
+If you have Python installed (we strongly recommend Python3) and you feel
+pretty familiar with installing different packages, we recommend that
+you install the following Python packages via \textbf{pip} as (examples of relevant packages)
+
+\begin{enumerate}
+\item pip install numpy scipy matplotlib ipython scikit-learn mglearn sympy pandas pillow 
+\end{enumerate}
+
+\noindent
+For OSX users we recommend, after having installed Xcode, to
+install \textbf{brew}. Brew allows for a seamless installation of additional
+software via for example 
+
+\begin{enumerate}
+\item brew install python
+\end{enumerate}
+
+\noindent
+For Linux users, with its variety of distributions like for example the widely popular Ubuntu distribution,
+you can use \textbf{pip} as well and simply install Python as 
+
+\begin{enumerate}
+\item sudo apt-get install python
+\end{enumerate}
+
+\noindent
+etc etc. 
+
+
+% !split
+\subsection{Python installers}
+
+If you don't want to perform these operations separately and venture
+into the hassle of exploring how to set up dependencies and paths, we
+recommend two widely used distrubutions which set up all relevant
+dependencies for Python, namely 
+
+\begin{itemize}
+\item \href{{https://docs.anaconda.com/}}{Anaconda}, 
+\end{itemize}
+
+\noindent
+which is an open source
+distribution of the Python and R programming languages for large-scale
+data processing, predictive analytics, and scientific computing, that
+aims to simplify package management and deployment. Package versions
+are managed by the package management system \textbf{conda}. 
+
+\begin{itemize}
+\item \href{{https://www.enthought.com/product/canopy/}}{Enthought canopy} 
+\end{itemize}
+
+\noindent
+is a Python
+distribution for scientific and analytic computing distribution and
+analysis environment, available for free and under a commercial
+license.
+
+Furthermore, \href{{https://colab.research.google.com/notebooks/welcome.ipynb}}{Google's Colab} is a free Jupyter notebook environment that requires 
+no setup and runs entirely in the cloud. Try it out!
+
+% !split
+\subsection{Useful Python libraries}
+Here we list several useful Python libraries we strongly recommend (if you use anaconda many of these are already there)
+
+\begin{itemize}
+\item \href{{https://www.numpy.org/}}{NumPy} is a highly popular library for large, multi-dimensional arrays and matrices, along with a large collection of high-level mathematical functions to operate on these arrays
+
+\item \href{{https://pandas.pydata.org/}}{The pandas} library provides high-performance, easy-to-use data structures and data analysis tools 
+
+\item \href{{http://xarray.pydata.org/en/stable/}}{Xarray} is a Python package that makes working with labelled multi-dimensional arrays simple, efficient, and fun!
+
+\item \href{{https://www.scipy.org/}}{Scipy} (pronounced “Sigh Pie”) is a Python-based ecosystem of open-source software for mathematics, science, and engineering. 
+
+\item \href{{https://matplotlib.org/}}{Matplotlib} is a Python 2D plotting library which produces publication quality figures in a variety of hardcopy formats and interactive environments across platforms.
+
+\item \href{{https://github.com/HIPS/autograd}}{Autograd} can automatically differentiate native Python and Numpy code. It can handle a large subset of Python's features, including loops, ifs, recursion and closures, and it can even take derivatives of derivatives of derivatives
+
+\item \href{{https://www.sympy.org/en/index.html}}{SymPy} is a Python library for symbolic mathematics. 
+
+\item \href{{https://scikit-learn.org/stable/}}{scikit-learn} has simple and efficient tools for machine learning, data mining and data analysis
+
+\item \href{{https://www.tensorflow.org/}}{TensorFlow} is a Python library for fast numerical computing created and released by Google
+
+\item \href{{https://keras.io/}}{Keras} is a high-level neural networks API, written in Python and capable of running on top of TensorFlow, CNTK, or Theano
+
+\item And many more such as \href{{https://pytorch.org/}}{pytorch},  \href{{https://pypi.org/project/Theano/}}{Theano} etc 
+\end{itemize}
+
+\noindent
+% !split
+\subsection{More Practicalities, handling arrays}
+
+
+% !split
+\subsection{Basic Matrix Features, Numpy examples and Important Matrix and vector handling packages}
+
+
+% --- begin paragraph admon ---
+\paragraph{Matrix properties reminder.}
+\[
+ \mathbf{A} =
+      \begin{bmatrix} a_{11} & a_{12} & a_{13} & a_{14} \\
+                                 a_{21} & a_{22} & a_{23} & a_{24} \\
+                                   a_{31} & a_{32} & a_{33} & a_{34} \\
+                                  a_{41} & a_{42} & a_{43} & a_{44}
+             \end{bmatrix}\qquad
+\mathbf{I} =
+      \begin{bmatrix} 1 & 0 & 0 & 0 \\
+                                 0 & 1 & 0 & 0 \\
+                                 0 & 0 & 1 & 0 \\
+                                 0 & 0 & 0 & 1
+             \end{bmatrix}
+\]
+
+
+
+The inverse of a matrix is defined by
+
+\[
+\mathbf{A}^{-1} \cdot \mathbf{A} = I
+\]
+
+
+
+\begin{quote}
+\begin{tabular}{ccc}
+\hline
+\multicolumn{1}{c}{ Relations } & \multicolumn{1}{c}{ Name } & \multicolumn{1}{c}{ matrix elements } \\
+\hline
+$A = A^{T}$                            & symmetric       & $a_{ij} = a_{ji}$                                                       \\
+$A = \left (A^{T} \right )^{-1}$       & real orthogonal & $\sum_k a_{ik} a_{jk} = \sum_k a_{ki} a_{kj} = \delta_{ij}$             \\
+$A = A^{ * }$                          & real matrix     & $a_{ij} = a_{ij}^{ * }$                                                 \\
+$A = A^{\dagger}$                      & hermitian       & $a_{ij} = a_{ji}^{ * }$                                                 \\
+$A = \left (A^{\dagger} \right )^{-1}$ & unitary         & $\sum_k a_{ik} a_{jk}^{ * } = \sum_k a_{ki}^{ * } a_{kj} = \delta_{ij}$ \\
+\hline
+\end{tabular}
+\end{quote}
+
+\noindent
+% --- end paragraph admon ---
+
+
+
+% !split
+\subsection{Some famous Matrices}
+
+\begin{itemize}
+  \item Diagonal if $a_{ij}=0$ for $i\ne j$
+
+  \item Upper triangular if $a_{ij}=0$ for $i > j$
+
+  \item Lower triangular if $a_{ij}=0$ for $i < j$
+
+  \item Upper Hessenberg if $a_{ij}=0$ for $i > j+1$
+
+  \item Lower Hessenberg if $a_{ij}=0$ for $i < j+1$
+
+  \item Tridiagonal if $a_{ij}=0$ for $|i -j| > 1$
+
+  \item Lower banded with bandwidth $p$: $a_{ij}=0$ for $i > j+p$
+
+  \item Upper banded with bandwidth $p$: $a_{ij}=0$ for $i < j+p$
+
+  \item Banded, block upper triangular, block lower triangular....
+\end{itemize}
+
+\noindent
+% !split
+\subsection{More Basic Matrix Features}
+
+
+% --- begin paragraph admon ---
+\paragraph{Some Equivalent Statements.}
+For an $N\times N$ matrix  $\mathbf{A}$ the following properties are all equivalent
+
+\begin{itemize}
+  \item If the inverse of $\mathbf{A}$ exists, $\mathbf{A}$ is nonsingular.
+
+  \item The equation $\mathbf{Ax}=0$ implies $\mathbf{x}=0$.
+
+  \item The rows of $\mathbf{A}$ form a basis of $R^N$.
+
+  \item The columns of $\mathbf{A}$ form a basis of $R^N$.
+
+  \item $\mathbf{A}$ is a product of elementary matrices.
+
+  \item $0$ is not eigenvalue of $\mathbf{A}$.
+\end{itemize}
+
+\noindent
+% --- end paragraph admon ---
+
+
+
+% !split
+\subsection{Numpy and arrays}
+\href{{http://www.numpy.org/}}{Numpy} provides an easy way to handle arrays in Python. The standard way to import this library is as
+
+\bpycod
+import numpy as np
+\epycod
+Here follows a simple example where we set up an array of ten elements, all determined by random numbers drawn according to the normal distribution,
+\bpycod
+n = 10
+x = np.random.normal(size=n)
+print(x)
+\epycod
+We defined a vector $x$ with $n=10$ elements with its values given by the Normal distribution $N(0,1)$.
+Another alternative is to declare a vector as follows
+\bpycod
+import numpy as np
+x = np.array([1, 2, 3])
+print(x)
+\epycod
+Here we have defined a vector with three elements, with $x_0=1$, $x_1=2$ and $x_2=3$. Note that both Python and C++
+start numbering array elements from $0$ and on. This means that a vector with $n$ elements has a sequence of entities $x_0, x_1, x_2, \dots, x_{n-1}$. We could also let (recommended) Numpy to compute the logarithms of a specific array as
+\bpycod
+import numpy as np
+x = np.log(np.array([4, 7, 8]))
+print(x)
+\epycod
+
+% !split
+\subsection{More Examples}
+
+In the last example we used Numpy's unary function $np.log$. This function is
+highly tuned to compute array elements since the code is vectorized
+and does not require looping. We normaly recommend that you use the
+Numpy intrinsic functions instead of the corresponding \textbf{log} function
+from Python's \textbf{math} module. The looping is done explicitely by the
+\textbf{np.log} function. The alternative, and slower way to compute the
+logarithms of a vector would be to write
+
+\bpycod
+import numpy as np
+from math import log
+x = np.array([4, 7, 8])
+for i in range(0, len(x)):
+    x[i] = log(x[i])
+print(x)
+\epycod
+We note that our code is much longer already and we need to import the \textbf{log} function from the \textbf{math} module. 
+The attentive reader will also notice that the output is $[1, 1, 2]$. Python interprets automagically our numbers as integers (like the \textbf{automatic} keyword in C++). To change this we could define our array elements to be double precision numbers as
+\bpycod
+import numpy as np
+x = np.log(np.array([4, 7, 8], dtype = np.float64))
+print(x)
+\epycod
+or simply write them as double precision numbers (Python uses 64 bits as default for floating point type variables), that is
+\bpycod
+import numpy as np
+x = np.log(np.array([4.0, 7.0, 8.0])
+print(x)
+\epycod
+To check the number of bytes (remember that one byte contains eight bits for double precision variables), you can use simple use the \textbf{itemsize} functionality (the array $x$ is actually an object which inherits the functionalities defined in Numpy) as 
+\bpycod
+import numpy as np
+x = np.log(np.array([4.0, 7.0, 8.0]))
+print(x)
+\epycod
+
+% !split
+\subsection{Matrices in Python}
+
+Having defined vectors, we are now ready to try out matrices. We can
+define a $3 \times 3 $ real matrix $\bm{A}$ as (recall that we user
+lowercase letters for vectors and uppercase letters for matrices)
+
+\bpycod
+import numpy as np
+A = np.log(np.array([ [4.0, 7.0, 8.0], [3.0, 10.0, 11.0], [4.0, 5.0, 7.0] ]))
+print(A)
+\epycod
+If we use the \textbf{shape} function we would get $(3, 3)$ as output, that is verifying that our matrix is a $3\times 3$ matrix. We can slice the matrix and print for example the first column (Python organized matrix elements in a row-major order, see below) as
+\bpycod
+import numpy as np
+A = np.log(np.array([ [4.0, 7.0, 8.0], [3.0, 10.0, 11.0], [4.0, 5.0, 7.0] ]))
+# print the first column, row-major order and elements start with 0
+print(A[:,0]) 
+\epycod
+We can continue this was by printing out other columns or rows. The example here prints out the second column
+\bpycod
+import numpy as np
+A = np.log(np.array([ [4.0, 7.0, 8.0], [3.0, 10.0, 11.0], [4.0, 5.0, 7.0] ]))
+# print the first column, row-major order and elements start with 0
+print(A[1,:]) 
+\epycod
+Numpy contains many other functionalities that allow us to slice, subdivide etc etc arrays. We strongly recommend that you look up the \href{{http://www.numpy.org/}}{Numpy website for more details}. Useful functions when defining a matrix are the \textbf{np.zeros} function which declares a matrix of a given dimension and sets all elements to zero
+\bpycod
+import numpy as np
+n = 10
+# define a matrix of dimension 10 x 10 and set all elements to zero
+A = np.zeros( (n, n) )
+print(A) 
+\epycod
+or initializing all elements to 
+\bpycod
+import numpy as np
+n = 10
+# define a matrix of dimension 10 x 10 and set all elements to one
+A = np.ones( (n, n) )
+print(A) 
+\epycod
+or as unitarily distributed random numbers (see the material on random number generators in the statistics part)
+\bpycod
+import numpy as np
+n = 10
+# define a matrix of dimension 10 x 10 and set all elements to random numbers with x \in [0, 1]
+A = np.random.rand(n, n)
+print(A) 
+\epycod
+
+% !split
+\subsection{More Examples, Covariance matrix}
+
+As we will see throughout these lectures, there are several extremely useful functionalities in Numpy.
+As an example, consider the discussion of the covariance matrix. Suppose we have defined three vectors
+$\bm{x}, \bm{y}, \bm{z}$ with $n$ elements each. The covariance matrix is defined as 
+\[
+\bm{\Sigma} = \begin{bmatrix} \sigma_{xx} & \sigma_{xy} & \sigma_{xz} \\
+                              \sigma_{yx} & \sigma_{yy} & \sigma_{yz} \\
+                              \sigma_{zx} & \sigma_{zy} & \sigma_{zz} 
+             \end{bmatrix},
+\]
+where for example
+\[
+\sigma_{xy} =\frac{1}{n} \sum_{i=0}^{n-1}(x_i- \overline{x})(y_i- \overline{y}).
+\]
+The Numpy function \textbf{np.cov} calculates the covariance elements using the factor $1/(n-1)$ instead of $1/n$ since it assumes we do not have the exact mean values. 
+The following simple function uses the \textbf{np.vstack} function which takes each vector of dimension $1\times n$ and produces a $3\times n$ matrix $\bm{W}$
+\[
+\bm{W} = \begin{bmatrix} x_0 & y_0 & z_0 \\
+                          x_1 & y_1 & z_1 \\
+                          x_2 & y_2 & z_2 \\
+                          \dots & \dots & \dots \\
+                          x_{n-2} & y_{n-2} & z_{n-2} \\
+                          x_{n-1} & y_{n-1} & z_{n-1}
+             \end{bmatrix},
+\]
+
+
+% !split
+\subsection{More on the Covariance Matrix}
+
+Our matrix is in turn converted into into the $3\times 3$ covariance matrix
+$\bm{\Sigma}$ via the Numpy function \textbf{np.cov()}. We note that we can also calculate
+the mean value of each set of samples $\bm{x}$ etc using the Numpy
+function \textbf{np.mean(x)}. We can also extract the eigenvalues of the
+covariance matrix through the \textbf{np.linalg.eig()} function.
+
+\bpycod
+# Importing various packages
+import numpy as np
+
+n = 100
+x = np.random.normal(size=n)
+print(np.mean(x))
+y = 4+3*x+np.random.normal(size=n)
+print(np.mean(y))
+z = x**3+np.random.normal(size=n)
+print(np.mean(z))
+W = np.vstack((x, y, z))
+Sigma = np.cov(W)
+print(Sigma)
+Eigvals, Eigvecs = np.linalg.eig(Sigma)
+print(Eigvals)
+\epycod
+
+
+% !split
+\subsection{Practicalities, Reminder on Statistics}
+
+
+
+% !split
+\subsection{Brief Reminder on Statistical Analysis}
+
+% --- begin paragraph admon ---
+\paragraph{}
+The \emph{probability distribution function (PDF)} is a function
+$p(x)$ on the domain which, in the discrete case, gives us the
+probability or relative frequency with which these values of $X$ occur:
+\[
+p(x) = \mathrm{prob}(X=x)
+\]
+In the continuous case, the PDF does not directly depict the
+actual probability. Instead we define the probability for the
+stochastic variable to assume any value on an infinitesimal interval
+around $x$ to be $p(x)dx$. The continuous function $p(x)$ then gives us
+the \emph{density} of the probability rather than the probability
+itself. The probability for a stochastic variable to assume any value
+on a non-infinitesimal interval $[a,\,b]$ is then just the integral:
+\[
+\mathrm{prob}(a\leq X\leq b) = \int_a^b p(x)dx
+\]
+Qualitatively speaking, a stochastic variable represents the values of
+numbers chosen as if by chance from some specified PDF so that the
+selection of a large set of these numbers reproduces this PDF.
+% --- end paragraph admon ---
+
+
+
+
+% !split
+\subsection{Statistics, moments}
+
+% --- begin paragraph admon ---
+\paragraph{}
+A particularly useful class of special expectation values are the
+\emph{moments}. The $n$-th moment of the PDF $p$ is defined as
+follows:
+\[
+\langle x^n\rangle \equiv \int\! x^n p(x)\,dx
+\]
+The zero-th moment $\langle 1\rangle$ is just the normalization condition of
+$p$. The first moment, $\langle x\rangle$, is called the \emph{mean} of $p$
+and often denoted by the letter $\mu$:
+\[
+\langle x\rangle = \mu \equiv \int\! x p(x)\,dx
+\]
+% --- end paragraph admon ---
+
+
+
+% !split
+\subsection{Statistics, central moments}
+
+% --- begin paragraph admon ---
+\paragraph{}
+A special version of the moments is the set of \emph{central moments},
+the n-th central moment defined as:
+\[
+\langle (x-\langle x \rangle )^n\rangle \equiv \int\! (x-\langle x\rangle)^n p(x)\,dx
+\]
+The zero-th and first central moments are both trivial, equal $1$ and
+$0$, respectively. But the second central moment, known as the
+\emph{variance} of $p$, is of particular interest. For the stochastic
+variable $X$, the variance is denoted as $\sigma^2_X$ or $\mathrm{var}(X)$:
+\begin{align}
+\sigma^2_X\ \ =\ \ \mathrm{var}(X) & =  \langle (x-\langle x\rangle)^2\rangle =
+\int\! (x-\langle x\rangle)^2 p(x)\,dx\\
+& =  \int\! \left(x^2 - 2 x \langle x\rangle^{2} +
+  \langle x\rangle^2\right)p(x)\,dx\\
+& =  \langle x^2\rangle - 2 \langle x\rangle\langle x\rangle + \langle x\rangle^2\\
+& =  \langle x^2\rangle - \langle x\rangle^2
+\end{align}
+The square root of the variance, $\sigma =\sqrt{\langle (x-\langle x\rangle)^2\rangle}$ is called the \emph{standard deviation} of $p$. It is clearly just the RMS (root-mean-square)
+value of the deviation of the PDF from its mean value, interpreted
+qualitatively as the \emph{spread} of $p$ around its mean.
+% --- end paragraph admon ---
+
+
+
+% !split
+\subsection{Statistics, covariance}
+
+% --- begin paragraph admon ---
+\paragraph{}
+Another important quantity is the so called covariance, a variant of
+the above defined variance. Consider again the set $\{X_i\}$ of $n$
+stochastic variables (not necessarily uncorrelated) with the
+multivariate PDF $P(x_1,\dots,x_n)$. The \emph{covariance} of two
+of the stochastic variables, $X_i$ and $X_j$, is defined as follows:
+\begin{align}
+\mathrm{cov}(X_i,\,X_j) &\equiv \langle (x_i-\langle x_i\rangle)(x_j-\langle x_j\rangle)\rangle
+\nonumber\\
+&=
+\int\!\cdots\!\int\!(x_i-\langle x_i \rangle)(x_j-\langle x_j \rangle)\,
+P(x_1,\dots,x_n)\,dx_1\dots dx_n
+\label{eq:def_covariance}
+\end{align}
+with
+\[
+\langle x_i\rangle =
+\int\!\cdots\!\int\!x_i\,P(x_1,\dots,x_n)\,dx_1\dots dx_n
+\]
+% --- end paragraph admon ---
+
+
+
+% !split
+\subsection{Statistics, more covariance}
+
+% --- begin paragraph admon ---
+\paragraph{}
+If we consider the above covariance as a matrix $C_{ij}=\mathrm{cov}(X_i,\,X_j)$, then the diagonal elements are just the familiar
+variances, $C_{ii} = \mathrm{cov}(X_i,\,X_i) = \mathrm{var}(X_i)$. It turns out that
+all the off-diagonal elements are zero if the stochastic variables are
+uncorrelated. This is easy to show, keeping in mind the linearity of
+the expectation value. Consider the stochastic variables $X_i$ and
+$X_j$, ($i\neq j$):
+\begin{align}
+\mathrm{cov}(X_i,\,X_j) &= \langle(x_i-\langle x_i\rangle)(x_j-\langle x_j\rangle)\rangle\\
+&=\langle x_i x_j - x_i\langle x_j\rangle - \langle x_i\rangle x_j + \langle x_i\rangle\langle x_j\rangle\rangle \\
+&=\langle x_i x_j\rangle - \langle x_i\langle x_j\rangle\rangle - \langle \langle x_i\rangle x_j\rangle +
+\langle \langle x_i\rangle\langle x_j\rangle\rangle\\
+&=\langle x_i x_j\rangle - \langle x_i\rangle\langle x_j\rangle - \langle x_i\rangle\langle x_j\rangle +
+\langle x_i\rangle\langle x_j\rangle\\
+&=\langle x_i x_j\rangle - \langle x_i\rangle\langle x_j\rangle
+\end{align}
+% --- end paragraph admon ---
+
+
+
+
+% !split
+\subsection{Statistics, independent variables}
+
+% --- begin paragraph admon ---
+\paragraph{}
+If $X_i$ and $X_j$ are independent, we get 
+$\langle x_i x_j\rangle =\langle x_i\rangle\langle x_j\rangle$, resulting in $\mathrm{cov}(X_i, X_j) = 0\ \ (i\neq j)$.
+
+We normally use the acronym \textbf{iid} for independent and identically distributed stochastic variables.
+% --- end paragraph admon ---
+
+
+
+% !split
+\subsection{Statistics, more variance}
+
+% --- begin paragraph admon ---
+\paragraph{}
+Since the variance is just $\mathrm{var}(X_i) = \mathrm{cov}(X_i, X_i)$, we get
+the variance of the linear combination $U = \sum_i a_i X_i$:
+\begin{equation}
+\mathrm{var}(U) = \sum_{i,j}a_i a_j \mathrm{cov}(X_i, X_j)
+\label{eq:variance_linear_combination}
+\end{equation}
+And in the special case when the stochastic variables are
+uncorrelated, the off-diagonal elements of the covariance are as we
+know zero, resulting in:
+\[
+\mathrm{var}(U) = \sum_i a_i^2 \mathrm{cov}(X_i, X_i) = \sum_i a_i^2 \mathrm{var}(X_i)
+\]
+\[
+\mathrm{var}(\sum_i a_i X_i) = \sum_i a_i^2 \mathrm{var}(X_i)
+\]
+which will become very useful in our study of the error in the mean
+value of a set of measurements.
+% --- end paragraph admon ---
+
+
+
+% !split
+\subsection{Statistics and stochastic processes}
+
+% --- begin paragraph admon ---
+\paragraph{}
+A \emph{stochastic process} is a process that produces sequentially a
+chain of values:
+\[
+\{x_1, x_2,\dots\,x_k,\dots\}.
+\]
+We will call these
+values our \emph{measurements} and the entire set as our measured
+\emph{sample}.  The action of measuring all the elements of a sample
+we will call a stochastic \emph{experiment} since, operationally,
+they are often associated with results of empirical observation of
+some physical or mathematical phenomena; precisely an experiment. We
+assume that these values are distributed according to some 
+PDF $p_X^{\phantom X}(x)$, where $X$ is just the formal symbol for the
+stochastic variable whose PDF is $p_X^{\phantom X}(x)$. Instead of
+trying to determine the full distribution $p$ we are often only
+interested in finding the few lowest moments, like the mean
+$\mu_X^{\phantom X}$ and the variance $\sigma_X^{\phantom X}$.
+% --- end paragraph admon ---
+
+
+
+
+% !split 
+\subsection{Statistics and sample variables}
+
+% --- begin paragraph admon ---
+\paragraph{}
+In practical situations a sample is always of finite size. Let that
+size be $n$. The expectation value of a sample, the \emph{sample mean}, is then defined as follows:
+\[
+\bar{x}_n \equiv \frac{1}{n}\sum_{k=1}^n x_k
+\]
+The \emph{sample variance} is:
+\[
+\mathrm{var}(x) \equiv \frac{1}{n}\sum_{k=1}^n (x_k - \bar{x}_n)^2
+\]
+its square root being the \emph{standard deviation of the sample}. The
+\emph{sample covariance} is:
+\[
+\mathrm{cov}(x)\equiv\frac{1}{n}\sum_{kl}(x_k - \bar{x}_n)(x_l - \bar{x}_n)
+\]
+% --- end paragraph admon ---
+
+
+
+% !split
+\subsection{Statistics, sample variance and covariance}
+
+% --- begin paragraph admon ---
+\paragraph{}
+Note that the sample variance is the sample covariance without the
+cross terms. In a similar manner as the covariance in Eq.~(\ref{eq:def_covariance}) is a measure of the correlation between
+two stochastic variables, the above defined sample covariance is a
+measure of the sequential correlation between succeeding measurements
+of a sample.
+
+These quantities, being known experimental values, differ
+significantly from and must not be confused with the similarly named
+quantities for stochastic variables, mean $\mu_X$, variance $\mathrm{var}(X)$
+and covariance $\mathrm{cov}(X,Y)$.
+% --- end paragraph admon ---
+
+
+
+% !split
+\subsection{Statistics, law of large numbers}
+
+% --- begin paragraph admon ---
+\paragraph{}
+The law of large numbers
+states that as the size of our sample grows to infinity, the sample
+mean approaches the true mean $\mu_X^{\phantom X}$ of the chosen PDF:
+\[
+\lim_{n\to\infty}\bar{x}_n = \mu_X^{\phantom X}
+\]
+The sample mean $\bar{x}_n$ works therefore as an estimate of the true
+mean $\mu_X^{\phantom X}$.
+
+What we need to find out is how good an approximation $\bar{x}_n$ is to
+$\mu_X^{\phantom X}$. In any stochastic measurement, an estimated
+mean is of no use to us without a measure of its error. A quantity
+that tells us how well we can reproduce it in another experiment. We
+are therefore interested in the PDF of the sample mean itself. Its
+standard deviation will be a measure of the spread of sample means,
+and we will simply call it the \emph{error} of the sample mean, or
+just sample error, and denote it by $\mathrm{err}_X^{\phantom X}$. In
+practice, we will only be able to produce an \emph{estimate} of the
+sample error since the exact value would require the knowledge of the
+true PDFs behind, which we usually do not have.
+% --- end paragraph admon ---
+
+
+
+
+% !split
+\subsection{Statistics, more on sample error}
+
+% --- begin paragraph admon ---
+\paragraph{}
+Let us first take a look at what happens to the sample error as the
+size of the sample grows. In a sample, each of the measurements $x_i$
+can be associated with its own stochastic variable $X_i$. The
+stochastic variable $\overline X_n$ for the sample mean $\bar{x}_n$ is
+then just a linear combination, already familiar to us:
+\[
+\overline X_n = \frac{1}{n}\sum_{i=1}^n X_i
+\]
+All the coefficients are just equal $1/n$. The PDF of $\overline X_n$,
+denoted by $p_{\overline X_n}(x)$ is the desired PDF of the sample
+means.
+% --- end paragraph admon ---
+
+
+
+% !split
+\subsection{Statistics}
+
+% --- begin paragraph admon ---
+\paragraph{}
+The probability density of obtaining a sample mean $\bar x_n$
+is the product of probabilities of obtaining arbitrary values $x_1,
+x_2,\dots,x_n$ with the constraint that the mean of the set $\{x_i\}$
+is $\bar x_n$:
+\[
+p_{\overline X_n}(x) = \int p_X^{\phantom X}(x_1)\cdots
+\int p_X^{\phantom X}(x_n)\ 
+\delta\!\left(x - \frac{x_1+x_2+\dots+x_n}{n}\right)dx_n \cdots dx_1
+\]
+And in particular we are interested in its variance $\mathrm{var}(\overline X_n)$.
+% --- end paragraph admon ---
+
+
+
+
+
+% !split
+\subsection{Statistics, central limit theorem}
+
+% --- begin paragraph admon ---
+\paragraph{}
+It is generally not possible to express $p_{\overline X_n}(x)$ in a
+closed form given an arbitrary PDF $p_X^{\phantom X}$ and a number
+$n$. But for the limit $n\to\infty$ it is possible to make an
+approximation. The very important result is called \emph{the central limit theorem}. It tells us that as $n$ goes to infinity,
+$p_{\overline X_n}(x)$ approaches a Gaussian distribution whose mean
+and variance equal the true mean and variance, $\mu_{X}^{\phantom X}$
+and $\sigma_{X}^{2}$, respectively:
+\begin{equation}
+\lim_{n\to\infty} p_{\overline X_n}(x) =
+\left(\frac{n}{2\pi\mathrm{var}(X)}\right)^{1/2}
+e^{-\frac{n(x-\bar x_n)^2}{2\mathrm{var}(X)}}
+\label{eq:central_limit_gaussian}
+\end{equation}
+% --- end paragraph admon ---
+
+
+
+
+% !split
+\subsection{Covariance example}
+
+Suppose we have defined three vectors $\bm{x}, \bm{y}, \bm{z}$ with
+$n$ elements each. The covariance matrix is defined as
+
+
+\[
+\bm{\Sigma} = \begin{bmatrix} \sigma_{xx} & \sigma_{xy} & \sigma_{xz} \\
+                              \sigma_{yx} & \sigma_{yy} & \sigma_{yz} \\
+                              \sigma_{zx} & \sigma_{zy} & \sigma_{zz}
+             \end{bmatrix},
+\]
+where for example
+\[
+\sigma_{xy} =\frac{1}{n} \sum_{i=0}^{n-1}(x_i- \overline{x})(y_i- \overline{y}).
+\]
+
+The Numpy function \textbf{np.cov} calculates the covariance elements using
+the factor $1/(n-1)$ instead of $1/n$ since it assumes we do not have
+the exact mean values.
+
+The following simple function uses the \textbf{np.vstack} function which
+takes each vector of dimension $1\times n$ and produces a $3\times n$
+matrix $\bm{W}$
+
+\[
+\bm{W} = \begin{bmatrix} x_0 & y_0 & z_0 \\
+                          x_1 & y_1 & z_1 \\
+                          x_2 & y_2 & z_2 \\
+                          \dots & \dots & \dots \\
+                          x_{n-2} & y_{n-2} & z_{n-2} \\
+                          x_{n-1} & y_{n-1} & z_{n-1}
+             \end{bmatrix},
+\]
+
+which in turn is converted into into the $3\times 3$ covariance matrix
+$\bm{\Sigma}$ via the Numpy function \textbf{np.cov()}. We note that we can
+also calculate the mean value of each set of samples $\bm{x}$ etc
+using the Numpy function \textbf{np.mean(x)}. We can also extract the
+eigenvalues of the covariance matrix through the \textbf{np.linalg.eig()}
+function.
+
+
+% !split
+\subsection{Covariance in numpy}
+
+\bpycod
+# Importing various packages
+import numpy as np
+
+n = 100
+x = np.random.normal(size=n)
+print(np.mean(x))
+y = 4+3*x+np.random.normal(size=n)
+print(np.mean(y))
+z = x**3+np.random.normal(size=n)
+print(np.mean(z))
+W = np.vstack((x, y, z))
+Sigma = np.cov(W)
+print(Sigma)
+\epycod
+
+% !split
+\subsection{Practicalities, Useful Python Packages}
+
+
+% !split
+\subsection{Meet the Pandas}
+
+
+
+
+\vspace{6mm}
+
+% inline figure
+\centerline{\includegraphics[width=0.8\linewidth]{fig/pandas.jpg}}
+
+\vspace{6mm}
+
+
+
+Another useful Python package is
+\href{{https://pandas.pydata.org/}}{pandas}, which is an open source library
+providing high-performance, easy-to-use data structures and data
+analysis tools for Python. \textbf{pandas} stands for panel data, a term borrowed from econometrics and is an efficient library for data analysis with an emphasis on tabular data.
+\textbf{pandas} has two major classes, the \textbf{DataFrame} class with two-dimensional data objects and tabular data organized in columns and the class \textbf{Series} with a focus on one-dimensional data objects. Both classes allow you to index data easily as we will see in the examples below. 
+\textbf{pandas} allows you also to perform mathematical operations on the data, spanning from simple reshapings of vectors and matrices to statistical operations. 
+
+The following simple example shows how we can, in an easy way make tables of our data. Here we define a data set which includes names, place of birth and date of birth, and displays the data in an easy to read way. We will see repeated use of \textbf{pandas}, in particular in connection with classification of data. 
+
+\bpycod
+import pandas as pd
+from IPython.display import display
+data = {'First Name': ["Frodo", "Bilbo", "Aragorn II", "Samwise"],
+        'Last Name': ["Baggins", "Baggins","Elessar","Gamgee"],
+        'Place of birth': ["Shire", "Shire", "Eriador", "Shire"],
+        'Date of Birth T.A.': [2968, 2890, 2931, 2980]
+        }
+data_pandas = pd.DataFrame(data)
+display(data_pandas)
+\epycod
+
+
+% !split
+\subsection{Data Frames in Pandas}
+
+In the above we have imported \textbf{pandas} with the shorthand \textbf{pd}, the latter has become the standard way we import \textbf{pandas}. We make then a list of various variables
+and reorganize the aboves lists into a \textbf{DataFrame} and then print out  a neat table with specific column labels as \emph{Name}, \emph{place of birth} and \emph{date of birth}.
+Displaying these results, we see that the indices are given by the default numbers from zero to three.
+\textbf{pandas} is extremely flexible and we can easily change the above indices by defining a new type of indexing as
+\bpycod
+data_pandas = pd.DataFrame(data,index=['Frodo','Bilbo','Aragorn','Sam'])
+display(data_pandas)
+\epycod
+Thereafter we display the content of the row which begins with the index \textbf{Aragorn}
+\bpycod
+display(data_pandas.loc['Aragorn'])
+\epycod
+
+We can easily append data to this, for example
+\bpycod
+new_hobbit = {'First Name': ["Peregrin"],
+              'Last Name': ["Took"],
+              'Place of birth': ["Shire"],
+              'Date of Birth T.A.': [2990]
+              }
+data_pandas=data_pandas.append(pd.DataFrame(new_hobbit, index=['Pippin']))
+display(data_pandas)
+\epycod
+
+% !split
+\subsection{More  Pandas}
+
+Here are other examples where we use the \textbf{DataFrame} functionality to handle arrays, now with more interesting features for us, namely numbers. We set up a matrix 
+of dimensionality $10\times 5$ and compute the mean value and standard deviation of each column. Similarly, we can perform mathematial operations like squaring the matrix elements and many other operations. 
+\bpycod
+import numpy as np
+import pandas as pd
+from IPython.display import display
+np.random.seed(100)
+# setting up a 10 x 5 matrix
+rows = 10
+cols = 5
+a = np.random.randn(rows,cols)
+df = pd.DataFrame(a)
+display(df)
+print(df.mean())
+print(df.std())
+display(df**2)
+\epycod
+
+Thereafter we can select specific columns only and plot final results
+\bpycod
+df.columns = ['First', 'Second', 'Third', 'Fourth', 'Fifth']
+df.index = np.arange(10)
+
+display(df)
+print(df['Second'].mean() )
+print(df.info())
+print(df.describe())
+
+from pylab import plt, mpl
+plt.style.use('seaborn')
+mpl.rcParams['font.family'] = 'serif'
+
+df.cumsum().plot(lw=2.0, figsize=(10,6))
+plt.show()
+
+
+df.plot.bar(figsize=(10,6), rot=15)
+plt.show()
+\epycod
+We can produce a $4\times 4$ matrix
+\bpycod
+b = np.arange(16).reshape((4,4))
+print(b)
+df1 = pd.DataFrame(b)
+print(df1)
+\epycod
+and many other operations. 
+
+
+% !split
+\subsection{Pandas Series}
+
+
+The \textbf{Series} class is another important class included in
+\textbf{pandas}. You can view it as a specialization of \textbf{DataFrame} but where
+we have just a single column of data. It shares many of the same features as _DataFrame. As with \textbf{DataFrame},
+most operations are vectorized, achieving thereby a high performance when dealing with computations of arrays, in particular labeled arrays.
+As we will see below it leads also to a very concice code close to the mathematical operations we may be interested in.
+For multidimensional arrays, we also recommend \href{{http://xarray.pydata.org/en/stable/}}{xarray}. \textbf{xarray} has much of the same flexibility as \textbf{pandas}, but allows for the extension to higher dimensions than two. We will see examples later of the usage of both \textbf{pandas} and \textbf{xarray}. 
+
+
+
+
+% !split
+\subsection{Our first Machine Learning Encounter}
+
+% !split
+\subsection{Reading Data and Fitting}
+
+In order to study various Machine Learning algorithms, we need to
+access data. Acccessing data is an essential step in all machine
+learning algorithms. In particular, setting up the so-called \textbf{design
+matrix} (to be defined below) is often the first element we need in
+order to perform our calculations. To set up the design matrix means
+reading (and later, when the calculations are done, writing) data
+in various formats, The formats span from reading files from disk,
+loading data from databases and interacting with online sources
+like web application programming interfaces (APIs).
+
+In handling various input formats, as discussed above, we will often stay with \textbf{pandas},
+a Python package which allows us, in a seamless and painless way, to
+deal with a multitude of formats, from standard \textbf{csv} (comma separated
+values) files, via \textbf{excel}, \textbf{html} to \textbf{hdf5} formats.  With \textbf{pandas}
+and the \textbf{DataFrame}  and \textbf{Series} functionalities we are able to convert text data
+into the calculational formats we need for a specific algorithm. And our code is going to be 
+pretty close the basic mathematical expressions.
+
+Our first data set is going to be a classic from nuclear physics, namely all
+available data on binding energies. Don't be intimidated if you are not familiar with nuclear physics. It serves simply as an example here of a data set. 
+
+We will show some of the
+strengths of packages like \textbf{Scikit-Learn} in fitting nuclear binding energies to
+specific functions using linear regression first. Then, as a teaser, we will show you how 
+you can easily implement other algorithms like decision trees and random forests and neural networks.
+
+But before we really start with nuclear physics data, let's just look at some simpler polynomial fitting cases, such as,
+(don't be offended) fitting straight lines!
+
+% !split
+\subsection{Simple linear regression model using \textbf{scikit-learn}}
+
+We start with perhaps our simplest possible example, using \textbf{Scikit-Learn} to perform linear regression analysis on a data set produced by us. 
+
+What follows is a simple Python code where we have defined a function
+$y$ in terms of the variable $x$. Both are defined as vectors with  $100$ entries. 
+The numbers in the vector $\bm{x}$ are given
+by random numbers generated with a uniform distribution with entries
+$x_i \in [0,1]$ (more about probability distribution functions
+later). These values are then used to define a function $y(x)$
+(tabulated again as a vector) with a linear dependence on $x$ plus a
+random noise added via the normal distribution.
+
+
+% !split
+\subsection{Simple linear regression model using \textbf{scikit-learn}, Numpy functions}
+
+The Numpy functions are imported used the \textbf{import numpy as np}
+statement and the random number generator for the uniform distribution
+is called using the function \textbf{np.random.rand()}, where we specificy
+that we want $100$ random variables.  Using Numpy we define
+automatically an array with the specified number of elements, $100$ in
+our case.  With the Numpy function \textbf{randn()} we can compute random
+numbers with the normal distribution (mean value $\mu$ equal to zero and
+variance $\sigma^2$ set to one) and produce the values of $y$ assuming a linear
+dependence as function of $x$
+
+\[
+y = 2x+N(0,1),
+\]
+
+where $N(0,1)$ represents random numbers generated by the normal
+distribution.  From \textbf{Scikit-Learn} we import then the
+\textbf{LinearRegression} functionality and make a prediction $\tilde{y} =
+\alpha + \beta x$ using the function \textbf{fit(x,y)}. We call the set of
+data $(\bm{x},\bm{y})$ for our training data. The Python package
+\textbf{scikit-learn} has also a functionality which extracts the above
+fitting parameters $\alpha$ and $\beta$ (see below). Later we will
+distinguish between training data and test data.
+
+% !split
+\subsection{Simple linear regression model using \textbf{scikit-learn}, Matplotlib}
+
+For plotting we use the Python package
+\href{{https://matplotlib.org/}}{matplotlib} which produces publication
+quality figures. Feel free to explore the extensive
+\href{{https://matplotlib.org/gallery/index.html}}{gallery} of examples. In
+this example we plot our original values of $x$ and $y$ as well as the
+prediction \textbf{ypredict} ($\tilde{y}$), which attempts at fitting our
+data with a straight line.
+
+The Python code follows here.
+\bpycod
+# Importing various packages
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+
+x = np.random.rand(100,1)
+y = 2*x+np.random.randn(100,1)
+linreg = LinearRegression()
+linreg.fit(x,y)
+xnew = np.array([[0],[1]])
+ypredict = linreg.predict(xnew)
+
+plt.plot(xnew, ypredict, "r-")
+plt.plot(x, y ,'ro')
+plt.axis([0,1.0,0, 5.0])
+plt.xlabel(r'$x$')
+plt.ylabel(r'$y$')
+plt.title(r'Simple Linear Regression')
+plt.show()
+\epycod
+
+
+% !split
+\subsection{Simple linear regression model, what to expect}
+
+This example serves several aims. It allows us to demonstrate several
+aspects of data analysis and later machine learning algorithms. The
+immediate visualization shows that our linear fit is not
+impressive. It goes through the data points, but there are many
+outliers which are not reproduced by our linear regression.  We could
+now play around with this small program and change for example the
+factor in front of $x$ and the normal distribution.  Try to change the
+function $y$ to
+
+\[
+y = 10x+0.01 \times N(0,1),
+\]
+
+where $x$ is defined as before.  Does the fit look better? Indeed, by
+reducing the role of the noise given by the normal distribution we see immediately that
+our linear prediction seemingly reproduces better the training
+set. However, this testing 'by the eye' is obviouly not satisfactory in the
+long run. Here we have only defined the training data and our model, and 
+have not discussed a more rigorous approach to the \textbf{cost} function.
+
+
+% !split
+\subsection{Simple linear regression model, how to evaluate the model}
+
+We need more rigorous criteria in defining whether we have succeeded or
+not in modeling our training data.  You will be surprised to see that
+many scientists seldomly venture beyond this 'by the eye' approach. A
+standard approach for the \emph{cost} function is the so-called $\chi^2$
+function (a variant of the mean-squared error (MSE))
+
+\[ \chi^2 = \frac{1}{n}
+\sum_{i=0}^{n-1}\frac{(y_i-\tilde{y}_i)^2}{\sigma_i^2}, 
+\] 
+
+where $\sigma_i^2$ is the variance (to be defined later) of the entry
+$y_i$.  We may not know the explicit value of $\sigma_i^2$, it serves
+however the aim of scaling the equations and make the cost function
+dimensionless.  
+
+% !split
+\subsection{Our first Cost/Loss function encounter}
+
+Minimizing the cost function is a central aspect of
+our discussions to come. Finding its minima as function of the model
+parameters ($\alpha$ and $\beta$ in our case) will be a recurring
+theme in these series of lectures. Essentially all machine learning
+algorithms we will discuss center around the minimization of the
+chosen cost function. This depends in turn on our specific
+model for describing the data, a typical situation in supervised
+learning. Automatizing the search for the minima of the cost function is a
+central ingredient in all algorithms. Typical methods which are
+employed are various variants of \textbf{gradient} methods. These will be
+discussed in more detail later. Again, you'll be surprised to hear that
+many practitioners minimize the above function ''by the eye', popularly dubbed as 
+'chi by the eye'. That is, change a parameter and see (visually and numerically) that 
+the  $\chi^2$ function becomes smaller. 
+
+% !split
+\subsection{Our first Cost/Loss function encounter}
+
+The terms cost and loss functions are often synonymous, sometimes you will also encounter the usage  error function.
+The more general scenario is to define an objective function first, which we want to optimize.
+It is common to see statements like this however: \textbf{The loss function computes the error for a single training example, while the cost function is the average of the loss functions of the entire training set}.
+
+% !split
+\subsection{Our first Cost/Loss function encounter, how do we define them?}
+
+
+There are many ways to define the cost/loss function. A simpler approach is to look at the relative difference between the training data and the predicted data, that is we define 
+the relative error (why would we prefer the MSE instead of the relative error?) as
+
+\[
+\epsilon_{\mathrm{relative}}= \frac{\vert \bm{y} -\bm{\tilde{y}}\vert}{\vert \bm{y}\vert}.
+\]
+
+The squared cost function results in an arithmetic mean-unbiased
+estimator, and the absolute-value cost function results in a
+median-unbiased estimator (in the one-dimensional case, and a
+geometric median-unbiased estimator for the multi-dimensional
+case). The squared cost function has the disadvantage that it has the tendency
+to be dominated by outliers.
+
+We can modify easily the above Python code and plot the relative error instead
+\bpycod
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+
+x = np.random.rand(100,1)
+y = 5*x+0.01*np.random.randn(100,1)
+linreg = LinearRegression()
+linreg.fit(x,y)
+ypredict = linreg.predict(x)
+
+plt.plot(x, np.abs(ypredict-y)/abs(y), "ro")
+plt.axis([0,1.0,0.0, 0.5])
+plt.xlabel(r'$x$')
+plt.ylabel(r'$\epsilon_{\mathrm{relative}}$')
+plt.title(r'Relative error')
+plt.show()
+\epycod
+
+Depending on the parameter in front of the normal distribution, we may
+have a small or larger relative error. Try to play around with
+different training data sets and study (graphically) the value of the
+relative error.
+
+% !split
+\subsection{\textbf{Scikit-Learn} functionality}
+
+
+As mentioned above, \textbf{Scikit-Learn} has an impressive functionality.
+We can for example extract the values of $\alpha$ and $\beta$ and
+their error estimates, or the variance and standard deviation and many
+other properties from the statistical data analysis. 
+
+
+Here we show an
+example of the functionality of \textbf{Scikit-Learn}.
+\bpycod
+import numpy as np 
+import matplotlib.pyplot as plt 
+from sklearn.linear_model import LinearRegression 
+from sklearn.metrics import mean_squared_error, r2_score, mean_squared_log_error, mean_absolute_error
+
+x = np.random.rand(100,1)
+y = 2.0+ 5*x+0.5*np.random.randn(100,1)
+linreg = LinearRegression()
+linreg.fit(x,y)
+ypredict = linreg.predict(x)
+print('The intercept alpha: \n', linreg.intercept_)
+print('Coefficient beta : \n', linreg.coef_)
+# The mean squared error                               
+print("Mean squared error: %.2f" % mean_squared_error(y, ypredict))
+# Explained variance score: 1 is perfect prediction                                 
+print('Variance score: %.2f' % r2_score(y, ypredict))
+# Mean squared log error                                                        
+print('Mean squared log error: %.2f' % mean_squared_log_error(y, ypredict) )
+# Mean absolute error                                                           
+print('Mean absolute error: %.2f' % mean_absolute_error(y, ypredict))
+plt.plot(x, ypredict, "r-")
+plt.plot(x, y ,'ro')
+plt.axis([0.0,1.0,1.5, 7.0])
+plt.xlabel(r'$x$')
+plt.ylabel(r'$y$')
+plt.title(r'Linear Regression fit ')
+plt.show()
+
+\epycod
+The function \textbf{coef} gives us the parameter $\beta$ of our fit while \textbf{intercept} yields 
+$\alpha$. Depending on the constant in front of the normal distribution, we get values near or far from $alpha =2$ and $\beta =5$. Try to play around with different parameters in front of the normal distribution. The function \textbf{meansquarederror} gives us the mean square error, a risk metric corresponding to the expected value of the squared (quadratic) error or loss defined as
+\[ MSE(\bm{y},\bm{\tilde{y}}) = \frac{1}{n}
+\sum_{i=0}^{n-1}(y_i-\tilde{y}_i)^2, 
+\] 
+
+
+The smaller the value, the better the fit. Ideally we would like to
+have an MSE equal zero.  The attentive reader has probably recognized
+this function as being similar to the $\chi^2$ function defined above.
+
+The \textbf{r2score} function computes $R^2$, the coefficient of
+determination. It provides a measure of how well future samples are
+likely to be predicted by the model. Best possible score is 1.0 and it
+can be negative (because the model can be arbitrarily worse). A
+constant model that always predicts the expected value of $\bm{y}$,
+disregarding the input features, would get a $R^2$ score of $0.0$.
+
+If $\tilde{\bm{y}}_i$ is the predicted value of the $i-th$ sample and $y_i$ is the corresponding true value, then the score $R^2$ is defined as
+\[
+R^2(\bm{y}, \tilde{\bm{y}}) = 1 - \frac{\sum_{i=0}^{n - 1} (y_i - \tilde{y}_i)^2}{\sum_{i=0}^{n - 1} (y_i - \bar{y})^2},
+\]
+where we have defined the mean value  of $\hat{y}$ as
+\[
+\bar{y} =  \frac{1}{n} \sum_{i=0}^{n - 1} y_i.
+\]
+Another quantity taht we will meet again in our discussions of regression analysis is 
+ the mean absolute error (MAE), a risk metric corresponding to the expected value of the absolute error loss or what we call the $l1$-norm loss. In our discussion above we presented the relative error.
+The MAE is defined as follows
+\[
+\text{MAE}(\bm{y}, \bm{\tilde{y}}) = \frac{1}{n} \sum_{i=0}^{n-1} \left| y_i - \tilde{y}_i \right|.
+\]
+We present the 
+squared logarithmic (quadratic) error
+\[
+\text{MSLE}(\bm{y}, \bm{\tilde{y}}) = \frac{1}{n} \sum_{i=0}^{n - 1} (\log_e (1 + y_i) - \log_e (1 + \tilde{y}_i) )^2,
+\]
+
+where $\log_e (x)$ stands for the natural logarithm of $x$. This error
+estimate is best to use when targets having exponential growth, such
+as population counts, average sales of a commodity over a span of
+years etc. 
+
+
+Finally, another cost function is the Huber cost function used in robust regression.
+
+The rationale behind this possible cost function is its reduced
+sensitivity to outliers in the data set. In our discussions on
+dimensionality reduction and normalization of data we will meet other
+ways of dealing with outliers.
+
+The Huber cost function is defined as
+\[
+H_{\delta}(a)=\begin{bmatrix}\frac{1}{2}a^{2}& \text{for }|a|\leq \delta ,\\ \delta (|a|-{\frac {1}{2}}\delta ),&\text{otherwise.}\end{bmatrix}.
+\]
+Here $a=\bm{y} - \bm{\tilde{y}}$.
+We will discuss in more
+detail these and other functions in the various lectures.
+
+% !split
+\subsection{Cubic Polynomial}
+We conclude this part with another example. Instead of 
+a linear $x$-dependence we study now a cubic polynomial and use the polynomial regression analysis tools of scikit-learn. 
+
+\bpycod
+import matplotlib.pyplot as plt
+import numpy as np
+import random
+from sklearn.linear_model import Ridge
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.pipeline import make_pipeline
+from sklearn.linear_model import LinearRegression
+
+x=np.linspace(0.02,0.98,200)
+noise = np.asarray(random.sample((range(200)),200))
+y=x**3*noise
+yn=x**3*100
+poly3 = PolynomialFeatures(degree=3)
+X = poly3.fit_transform(x[:,np.newaxis])
+clf3 = LinearRegression()
+clf3.fit(X,y)
+
+Xplot=poly3.fit_transform(x[:,np.newaxis])
+poly3_plot=plt.plot(x, clf3.predict(Xplot), label='Cubic Fit')
+plt.plot(x,yn, color='red', label="True Cubic")
+plt.scatter(x, y, label='Data', color='orange', s=15)
+plt.legend()
+plt.show()
+
+def error(a):
+    for i in y:
+        err=(y-yn)/yn
+    return abs(np.sum(err))/len(err)
+
+print (error(y))
+\epycod
+
+% !split
+\subsection{Getting more serious, fitting Nuclear Binding Energies}
+
+
+% !split
+\subsection{To our real data: nuclear binding energies. Brief reminder on masses and binding energies}
+
+Let us now dive into  nuclear physics and remind ourselves briefly about some basic features about binding
+energies.  A basic quantity which can be measured for the ground
+states of nuclei is the atomic mass $M(N, Z)$ of the neutral atom with
+atomic mass number $A$ and charge $Z$. The number of neutrons is $N$. There are indeed several sophisticated experiments worldwide which allow us to measure this quantity to high precision (parts per million even). 
+
+Atomic masses are usually tabulated in terms of the mass excess defined by
+\[
+\Delta M(N, Z) =  M(N, Z) - uA,
+\]
+where $u$ is the Atomic Mass Unit 
+\[
+u = M(^{12}\mathrm{C})/12 = 931.4940954(57) \hspace{0.1cm} \mathrm{MeV}/c^2.
+\]
+The nucleon masses are
+\[
+m_p =  1.00727646693(9)u,
+\] 
+and
+\[
+m_n = 939.56536(8)\hspace{0.1cm} \mathrm{MeV}/c^2 = 1.0086649156(6)u.
+\]
+
+In the \href{{http://nuclearmasses.org/resources_folder/Wang_2017_Chinese_Phys_C_41_030003.pdf}}{2016 mass evaluation of by W.J.Huang, G.Audi, M.Wang, F.G.Kondev, S.Naimi and X.Xu}
+there are data on masses and decays of 3437 nuclei.
+
+The nuclear binding energy is defined as the energy required to break
+up a given nucleus into its constituent parts of $N$ neutrons and $Z$
+protons. In terms of the atomic masses $M(N, Z)$ the binding energy is
+defined by
+
+
+\[
+BE(N, Z) = ZM_H c^2 + Nm_n c^2 - M(N, Z)c^2 ,
+\]
+where $M_H$ is the mass of the hydrogen atom and $m_n$ is the mass of the neutron.
+In terms of the mass excess the binding energy is given by
+\[
+BE(N, Z) = Z\Delta_H c^2 + N\Delta_n c^2 -\Delta(N, Z)c^2 ,
+\]
+where $\Delta_H c^2 = 7.2890$ MeV and $\Delta_n c^2 = 8.0713$ MeV.
+
+
+A popular and physically intuitive model which can be used to parametrize 
+the experimental binding energies as function of $A$, is the so-called 
+\textbf{liquid drop model}. The ansatz is based on the following expression
+
+\[ 
+BE(N,Z) = a_1A-a_2A^{2/3}-a_3\frac{Z^2}{A^{1/3}}-a_4\frac{(N-Z)^2}{A},
+\]
+
+where $A$ stands for the number of nucleons and the $a_i$s are parameters which are determined by a fit 
+to the experimental data.  
+
+
+
+
+To arrive at the above expression we have assumed that we can make the following assumptions:
+
+\begin{itemize}
+ \item There is a volume term $a_1A$ proportional with the number of nucleons (the energy is also an extensive quantity). When an assembly of nucleons of the same size is packed together into the smallest volume, each interior nucleon has a certain number of other nucleons in contact with it. This contribution is proportional to the volume.
+
+ \item There is a surface energy term $a_2A^{2/3}$. The assumption here is that a nucleon at the surface of a nucleus interacts with fewer other nucleons than one in the interior of the nucleus and hence its binding energy is less. This surface energy term takes that into account and is therefore negative and is proportional to the surface area.
+
+ \item There is a Coulomb energy term $a_3\frac{Z^2}{A^{1/3}}$. The electric repulsion between each pair of protons in a nucleus yields less binding. 
+
+ \item There is an asymmetry term $a_4\frac{(N-Z)^2}{A}$. This term is associated with the Pauli exclusion principle and reflects the fact that the proton-neutron interaction is more attractive on the average than the neutron-neutron and proton-proton interactions.
+\end{itemize}
+
+\noindent
+We could also add a so-called pairing term, which is a correction term that
+arises from the tendency of proton pairs and neutron pairs to
+occur. An even number of particles is more stable than an odd number. 
+
+
+\paragraph{Organizing our data.}
+Let us start with reading and organizing our data. 
+We start with the compilation of masses and binding energies from 2016.
+After having downloaded this file to our own computer, we are now ready to read the file and start structuring our data.
+
+
+We start with preparing folders for storing our calculations and the data file over masses and binding energies. We import also various modules that we will find useful in order to present various Machine Learning methods. Here we focus mainly on the functionality of \textbf{scikit-learn}.
+\bpycod
+# Common imports
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import sklearn.linear_model as skl
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
+import os
+
+# Where to save the figures and data files
+PROJECT_ROOT_DIR = "Results"
+FIGURE_ID = "Results/FigureFiles"
+DATA_ID = "DataFiles/"
+
+if not os.path.exists(PROJECT_ROOT_DIR):
+    os.mkdir(PROJECT_ROOT_DIR)
+
+if not os.path.exists(FIGURE_ID):
+    os.makedirs(FIGURE_ID)
+
+if not os.path.exists(DATA_ID):
+    os.makedirs(DATA_ID)
+
+def image_path(fig_id):
+    return os.path.join(FIGURE_ID, fig_id)
+
+def data_path(dat_id):
+    return os.path.join(DATA_ID, dat_id)
+
+def save_fig(fig_id):
+    plt.savefig(image_path(fig_id) + ".png", format='png')
+
+infile = open(data_path("MassEval2016.dat"),'r')
+\epycod
+
+
+
+Our next step is to read the data on experimental binding energies and
+reorganize them as functions of the mass number $A$, the number of
+protons $Z$ and neutrons $N$ using \textbf{pandas}.  Before we do this it is
+always useful (unless you have a binary file or other types of compressed
+data) to actually open the file and simply take a look at it!
+
+
+In particular, the program that outputs the final nuclear masses is written in Fortran with a specific format. It means that we need to figure out the format and which columns contain the data we are interested in. Pandas comes with a function that reads formatted output. After having admired the file, we are now ready to start massaging it with \textbf{pandas}. The file begins with some basic format information.
+\bpycod
+"""                                                                                                                         
+This is taken from the data file of the mass 2016 evaluation.                                                               
+All files are 3436 lines long with 124 character per line.                                                                  
+       Headers are 39 lines long.                                                                                           
+   col 1     :  Fortran character control: 1 = page feed  0 = line feed                                                     
+   format    :  a1,i3,i5,i5,i5,1x,a3,a4,1x,f13.5,f11.5,f11.3,f9.3,1x,a2,f11.3,f9.3,1x,i3,1x,f12.5,f11.5                     
+   These formats are reflected in the pandas widths variable below, see the statement                                       
+   widths=(1,3,5,5,5,1,3,4,1,13,11,11,9,1,2,11,9,1,3,1,12,11,1),                                                            
+   Pandas has also a variable header, with length 39 in this case.                                                          
+"""
+\epycod
+
+The data we are interested in are in columns 2, 3, 4 and 11, giving us
+the number of neutrons, protons, mass numbers and binding energies,
+respectively. We add also for the sake of completeness the element name. The data are in fixed-width formatted lines and we will
+covert them into the \textbf{pandas} DataFrame structure.
+
+\bpycod
+# Read the experimental data with Pandas
+Masses = pd.read_fwf(infile, usecols=(2,3,4,6,11),
+              names=('N', 'Z', 'A', 'Element', 'Ebinding'),
+              widths=(1,3,5,5,5,1,3,4,1,13,11,11,9,1,2,11,9,1,3,1,12,11,1),
+              header=39,
+              index_col=False)
+
+# Extrapolated values are indicated by '#' in place of the decimal place, so
+# the Ebinding column won't be numeric. Coerce to float and drop these entries.
+Masses['Ebinding'] = pd.to_numeric(Masses['Ebinding'], errors='coerce')
+Masses = Masses.dropna()
+# Convert from keV to MeV.
+Masses['Ebinding'] /= 1000
+
+# Group the DataFrame by nucleon number, A.
+Masses = Masses.groupby('A')
+# Find the rows of the grouped DataFrame with the maximum binding energy.
+Masses = Masses.apply(lambda t: t[t.Ebinding==t.Ebinding.max()])
+\epycod
+
+We have now read in the data, grouped them according to the variables we are interested in. 
+We see how easy it is to reorganize the data using \textbf{pandas}. If we
+were to do these operations in C/C++ or Fortran, we would have had to
+write various functions/subroutines which perform the above
+reorganizations for us.  Having reorganized the data, we can now start
+to make some simple fits using both the functionalities in \textbf{numpy} and
+\textbf{Scikit-Learn} afterwards. 
+
+Now we define five variables which contain
+the number of nucleons $A$, the number of protons $Z$ and the number of neutrons $N$, the element name and finally the energies themselves.
+\bpycod
+A = Masses['A']
+Z = Masses['Z']
+N = Masses['N']
+Element = Masses['Element']
+Energies = Masses['Ebinding']
+print(Masses)
+\epycod
+The next step, and we will define this mathematically later, is to set up the so-called \textbf{design/feature matrix}. We will throughout label  this matrix as $\bm{X}$.
+It has dimensionality $n\times p$, where $n$ is the number of data points and $p$ are the so-called features/predictors. In our case here they are given by the number of polynomials in $A$ we wish to include in the fit. 
+\bpycod
+# Now we set up the design matrix X
+X = np.zeros((len(A),5))
+X[:,0] = 1
+X[:,1] = A
+X[:,2] = A**(2.0/3.0)
+X[:,3] = A**(-1.0/3.0)
+X[:,4] = A**(-1.0)
+\epycod
+With \textbf{scikitlearn} we are now ready to use linear regression and fit our data.
+\bpycod
+clf = skl.LinearRegression().fit(X, Energies)
+fity = clf.predict(X)
+\epycod
+Pretty simple!  
+
+Now we can print measures of how our fit is doing, the coefficients from the fits and plot the final fit together with our data.
+\bpycod
+# The mean squared error                               
+print("Mean squared error: %.2f" % mean_squared_error(Energies, fity))
+# Explained variance score: 1 is perfect prediction                                 
+print('Variance score: %.2f' % r2_score(Energies, fity))
+# Mean absolute error                                                           
+print('Mean absolute error: %.2f' % mean_absolute_error(Energies, fity))
+print(clf.coef_, clf.intercept_)
+
+Masses['Eapprox']  = fity
+# Generate a plot comparing the experimental with the fitted values values.
+fig, ax = plt.subplots()
+ax.set_xlabel(r'$A = N + Z$')
+ax.set_ylabel(r'$E_\mathrm{bind}\,/\mathrm{MeV}$')
+ax.plot(Masses['A'], Masses['Ebinding'], alpha=0.7, lw=2,
+            label='Ame2016')
+ax.plot(Masses['A'], Masses['Eapprox'], alpha=0.7, lw=2, c='m',
+            label='Fit')
+ax.legend()
+save_fig("Masses2016")
+plt.show()
+\epycod
+
+
+\paragraph{Seeing the wood for the trees.}
+As a teaser, let us now see how we can do this with decision trees using \textbf{scikit-learn}. We will discuss the method in more details later.
+
+
+\bpycod
+
+#Decision Tree Regression
+from sklearn.tree import DecisionTreeRegressor
+regr_1=DecisionTreeRegressor(max_depth=5)
+regr_2=DecisionTreeRegressor(max_depth=7)
+regr_3=DecisionTreeRegressor(max_depth=9)
+regr_1.fit(X, Energies)
+regr_2.fit(X, Energies)
+regr_3.fit(X, Energies)
+
+
+y_1 = regr_1.predict(X)
+y_2 = regr_2.predict(X)
+y_3=regr_3.predict(X)
+Masses['Eapprox'] = y_3
+# Plot the results
+plt.figure()
+plt.plot(A, Energies, color="blue", label="Data", linewidth=2)
+plt.plot(A, y_1, color="red", label="max_depth=5", linewidth=2)
+plt.plot(A, y_2, color="green", label="max_depth=7", linewidth=2)
+plt.plot(A, y_3, color="m", label="max_depth=9", linewidth=2)
+
+plt.xlabel("$A$")
+plt.ylabel("$E$[MeV]")
+plt.title("Decision Tree Regression")
+plt.legend()
+save_fig("Masses2016Trees")
+plt.show()
+print(Masses)
+print(np.mean( (Energies-y_1)**2))
+\epycod
+
+
+\paragraph{And what about using neural networks?}
+The \textbf{seaborn} package allows us to visualize data in an efficient way. Note that we use \textbf{scikit-learn}'s multi-layer perceptron (or feed forward neural network) 
+functionality.
+\bpycod
+from sklearn.neural_network import MLPRegressor
+from sklearn.metrics import accuracy_score
+import seaborn as sns
+
+X_train = X
+Y_train = Energies
+n_hidden_neurons = 100
+epochs = 100
+# store models for later use
+eta_vals = np.logspace(-5, 1, 7)
+lmbd_vals = np.logspace(-5, 1, 7)
+# store the models for later use
+DNN_scikit = np.zeros((len(eta_vals), len(lmbd_vals)), dtype=object)
+train_accuracy = np.zeros((len(eta_vals), len(lmbd_vals)))
+sns.set()
+for i, eta in enumerate(eta_vals):
+    for j, lmbd in enumerate(lmbd_vals):
+        dnn = MLPRegressor(hidden_layer_sizes=(n_hidden_neurons), activation='logistic',
+                            alpha=lmbd, learning_rate_init=eta, max_iter=epochs)
+        dnn.fit(X_train, Y_train)
+        DNN_scikit[i][j] = dnn
+        train_accuracy[i][j] = dnn.score(X_train, Y_train)
+
+fig, ax = plt.subplots(figsize = (10, 10))
+sns.heatmap(train_accuracy, annot=True, ax=ax, cmap="viridis")
+ax.set_title("Training Accuracy")
+ax.set_ylabel("$\eta$")
+ax.set_xlabel("$\lambda$")
+plt.show()
+
+
+
+\epycod
+
+% !split
+\subsection{More on flexibility with pandas and xarray}
+
+Let us study the $Q$ values associated with the removal of one or two nucleons from
+a nucleus. These are conventionally defined in terms of the one-nucleon and two-nucleon
+separation energies. With the functionality in \textbf{pandas}, two to three lines of code will allow us to plot the separation energies.
+The neutron separation energy is defined as 
+
+\[
+S_n= -Q_n= BE(N,Z)-BE(N-1,Z),
+\]
+and the proton separation energy reads
+\[
+S_p= -Q_p= BE(N,Z)-BE(N,Z-1).
+\]
+The two-neutron separation energy is defined as
+\[
+S_{2n}= -Q_{2n}= BE(N,Z)-BE(N-2,Z),
+\]
+and  the two-proton separation energy is given by
+\[
+S_{2p}= -Q_{2p}= BE(N,Z)-BE(N,Z-2).
+\]
+
+Using say the neutron separation energies (alternatively the proton separation energies)
+\[
+S_n= -Q_n= BE(N,Z)-BE(N-1,Z),
+\]
+we can define the so-called energy gap for neutrons (or protons) as 
+\[
+\Delta S_n= BE(N,Z)-BE(N-1,Z)-\left(BE(N+1,Z)-BE(N,Z)\right),
+\]
+or 
+\[
+\Delta S_n= 2BE(N,Z)-BE(N-1,Z)-BE(N+1,Z).
+\]
+This quantity can in turn be used to determine which nuclei could be interpreted as  magic or not. 
+For protons we would have 
+\[
+\Delta S_p= 2BE(N,Z)-BE(N,Z-1)-BE(N,Z+1).
+\]
+
+To calculate say the neutron separation we need to multiply our masses with the nucleon number $A$ (why?).
+Thereafter we pick the oxygen isotopes and simply compute the separation energies with  two lines of code (note that most of the code here is a repeat of what you have seen before). 
+\bpycod
+# Common imports
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import os
+from pylab import plt, mpl
+plt.style.use('seaborn')
+mpl.rcParams['font.family'] = 'serif'
+
+def MakePlot(x,y, styles, labels, axlabels):
+    plt.figure(figsize=(10,6))
+    for i in range(len(x)):
+        plt.plot(x[i], y[i], styles[i], label = labels[i])
+        plt.xlabel(axlabels[0])
+        plt.ylabel(axlabels[1])
+    plt.legend(loc=0)
+
+
+
+# Where to save the figures and data files
+PROJECT_ROOT_DIR = "Results"
+FIGURE_ID = "Results/FigureFiles"
+DATA_ID = "DataFiles/"
+
+if not os.path.exists(PROJECT_ROOT_DIR):
+    os.mkdir(PROJECT_ROOT_DIR)
+
+if not os.path.exists(FIGURE_ID):
+    os.makedirs(FIGURE_ID)
+
+if not os.path.exists(DATA_ID):
+    os.makedirs(DATA_ID)
+
+def image_path(fig_id):
+    return os.path.join(FIGURE_ID, fig_id)
+
+def data_path(dat_id):
+    return os.path.join(DATA_ID, dat_id)
+
+def save_fig(fig_id):
+    plt.savefig(image_path(fig_id) + ".png", format='png')
+
+infile = open(data_path("MassEval2016.dat"),'r')
+
+
+# Read the experimental data with Pandas
+Masses = pd.read_fwf(infile, usecols=(2,3,4,6,11),
+              names=('N', 'Z', 'A', 'Element', 'Ebinding'),
+              widths=(1,3,5,5,5,1,3,4,1,13,11,11,9,1,2,11,9,1,3,1,12,11,1),
+              header=39,
+              index_col=False)
+
+# Extrapolated values are indicated by '#' in place of the decimal place, so
+# the Ebinding column won't be numeric. Coerce to float and drop these entries.
+Masses['Ebinding'] = pd.to_numeric(Masses['Ebinding'], errors='coerce')
+Masses = Masses.dropna()
+# Convert from keV to MeV.
+Masses['Ebinding'] /= 1000
+A = Masses['A']
+Z = Masses['Z']
+N = Masses['N']
+Element = Masses['Element']
+Energies = Masses['Ebinding']*A
+
+df = pd.DataFrame({'A':A,'Z':Z, 'N':N,'Element':Element,'Energies':Energies})
+# Her we pick the oyxgen isotopes
+Nucleus = df.loc[lambda df: df.Z==8, :]
+# drop cases with no number
+Nucleus = Nucleus.dropna()
+# Here we do the magic and obtain the neutron separation energies, one line of code!!
+Nucleus['NeutronSeparationEnergies'] = Nucleus['Energies'].diff(+1)
+print(Nucleus)
+MakePlot([Nucleus.A], [Nucleus.NeutronSeparationEnergies], ['b'], ['Neutron Separation Energy'], ['$A$','$S_n$'])
+save_fig('Nucleus')
+plt.show()
+
+\epycod
+
+
+
+
+
+
+% ------------------- end of main content ---------------
+
+% #ifdef PREAMBLE
+\end{document}
+% #endif
+

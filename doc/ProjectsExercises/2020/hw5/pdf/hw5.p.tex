@@ -1,0 +1,368 @@
+%%
+%% Automatically generated file from DocOnce source
+%% (https://github.com/hplgit/doconce/)
+%%
+%%
+% #ifdef PTEX2TEX_EXPLANATION
+%%
+%% The file follows the ptex2tex extended LaTeX format, see
+%% ptex2tex: http://code.google.com/p/ptex2tex/
+%%
+%% Run
+%%      ptex2tex myfile
+%% or
+%%      doconce ptex2tex myfile
+%%
+%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
+%% (The ptex2tex program: http://code.google.com/p/ptex2tex)
+%% Many preprocess options can be added to ptex2tex or doconce ptex2tex
+%%
+%%      ptex2tex -DMINTED myfile
+%%      doconce ptex2tex myfile envir=minted
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples). If doconce ptex2tex has envir=minted, it enables the
+%% minted style without needing -DMINTED.
+% #endif
+
+% #define PREAMBLE
+
+% #ifdef PREAMBLE
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % draft: marks overfull hboxes, figures with paths
+10pt]{article}
+
+\listfiles               %  print all files needed to compile this document
+
+\usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{bm,ltablex,microtype}
+
+\usepackage[pdftex]{graphicx}
+
+\usepackage{ptex2tex}
+% #ifdef MINTED
+\usepackage{minted}
+\usemintedstyle{default}
+% #endif
+
+\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
+% Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
+\usepackage{hyperref}
+\hypersetup{
+    breaklinks=true,
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+    }
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % levels in table of contents
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% --- end of standard preamble for documents ---
+
+
+% insert custom LaTeX commands...
+
+\raggedbottom
+\makeindex
+\usepackage[totoc]{idxlayout}   % for index in the toc
+\usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+% matching end for #ifdef PREAMBLE
+% #endif
+
+\newcommand{\exercisesection}[1]{\subsection*{#1}}
+
+
+% ------------------- main content ----------------------
+
+
+
+% ----------------- title -------------------------
+
+\thispagestyle{empty}
+
+\begin{center}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Second week
+\end{spacing}
+}
+\end{center}
+
+% ----------------- author(s) -------------------------
+
+\begin{center}
+{\bf Data Analysis and Machine Learning${}^{}$} \\ [0mm]
+\end{center}
+
+\begin{center}
+% List of all institutions:
+\end{center}
+    
+% ----------------- end author(s) -------------------------
+
+% --- begin date ---
+\begin{center}
+Jul 3, 2020
+\end{center}
+% --- end date ---
+
+\vspace{1cm}
+
+
+\subsection{Regression examples, from linear regression, via decision trees and various forests to neural networks}
+
+The main aim of this project is to study some specific 
+regression problems, starting with the regression algorithms studied
+in homework set 3 (exercise 2 in particular).
+We will include decision trees, random forests and eventually boosting
+methods  and neural network with \textbf{tensorflow} (feel free however to write your own code). 
+
+The case we encounter here
+is  the so-called Ising model for  our training data and we will
+focus on supervised training. We will follow closely the recent
+article of \href{{https://arxiv.org/abs/1803.08823}}{Mehta et al, arXiv
+1803.08823}. This article stands
+out as an excellent review on machine learning (ML) algorithms.
+The added benefit is that each figure and
+model presented in \href{{https://physics.bu.edu/~pankajm/MLnotebooks.html}}{this article is accompanied by its jupyter
+notebook}. This
+means that we can start using these and compare with our own results.
+
+You can also look up the \href{{https://compphysics.github.io/MachineLearningECT/doc/pub/Day1/html/Day1.html}}{Regression slides for a discussion of the Ising model} (scroll down to the end).
+
+Alternatively, you can replace the Ising thorughout the exercises with the nuclear binding energies. The choice is yours. Or if you have other data sets suitable for regression, feel free to use those.
+
+
+What follows here is however a discussion of the Ising model. The nuclear binding energies were discussed during the lectures.
+
+With the abovementioned configurations we will determine, using first
+various regression methods, the value of the coupling constant for the
+energy of the one-dimensional Ising model.
+We will mainly use \textbf{scikit-learn} or \textbf{tensorflow} or other Python packages such as \textbf{keras} or other.
+
+Feel free to use the notebooks to benchmark your code.  
+
+
+\paragraph{Part a): Producing the data for the one-dimensional Ising model.}
+The model we will employ in our studies is the so-called \href{{https://en.wikipedia.org/wiki/Ising_model}}{Ising
+model}.  Together with
+models like the \href{{https://en.wikipedia.org/wiki/Potts_model}}{Potts
+model} and similar
+so-called lattice models, the Ising model has been widely studied in
+mathematics (in statistics in particular), physics, \href{{https://journals.aps.org/pre/abstract/10.1103/PhysRevE.93.062402}}{life
+science},
+chemistry and even in the \href{{https://www.springer.com/gp/book/9781461420316}}{social sciences in order to model social
+behavior}. It is a
+simple binary value system where the variables of the model (spins often in
+physics) can take two values only, for example $\pm 1$ or $0$ and $1$.
+The system exhibits a phase transition in two or higher dimensions and
+the first person to find the analytical expressions for various
+expectation values was the Norwegian chemist \href{{https://en.wikipedia.org/wiki/Lars_Onsager}}{Lars
+Onsager} (Nobel prize in
+chemistry) after a tour de force mathematics exercise.
+
+In our discussions here we will stay with a physicist's approach and
+call the variables for spin. You could replace this with any other
+type of binary variables, ranging from a two political parties to blue
+and red spheres.  In its simplest form we define the energy of the
+system as
+
+\begin{equation*}
+  E=-J\sum_{<kl>}^{N}s_ks_l,
+\end{equation*}
+with  $s_k=\pm 1$, $N$ is the total number of spins,
+$J$ is a coupling constant expressing the strength of the interaction
+between neighboring spins.
+
+The symbol $<kl>$ indicates that we sum over nearest
+neighbors only.
+Notice that for $J>0$ it is energetically favorable for neighboring spins
+to be aligned. This feature leads to, at low enough temperatures,
+a cooperative phenomenon called spontaneous magnetization. That is,
+through interactions between nearest neighbors, a given magnetic
+moment can influence the alignment of spins  that are separated
+from the given spin by a macroscopic distance. These long range correlations
+between spins are associated with a long-range order in which
+the lattice has a net magnetization in the absence of a magnetic field.
+
+
+
+We start by considering the one-dimensional Ising model with nearest neighbor interactions. This model does not exhibit any phase transition.
+
+Consider the 1D Ising model with nearest-neighbor interactions 
+
+\begin{equation*}
+  E[\hat{s}]=-J\sum_{j=1}^{N}s_{j}s_{j+1},
+\end{equation*}
+
+on a chain of length $N$ with so-called periodic boundary conditions and $S_j=\pm 1$ Ising spin variables.
+In one dimension, this model has no phase transition at finite temperature.
+
+In the Python code below we generate, with a coupling coefficient set to $J=1$, a large number of spin configurations say $10000$ as shown in the code below.
+It means that our data will be a set of $i=1\ldots n$ points of the form
+$\{(E[\boldsymbol{s}^i],\boldsymbol{s}^i)\}$.
+Our task is to find the value of $J$ from the data set using linear regression.
+
+Here is the Python code you need to generate the training data, see
+also the \href{{https://physics.bu.edu/~pankajm/ML-Notebooks/HTML/NB_CVI-linreg_ising.html}}{notebook of Mehta et
+al}.
+
+\bpycod
+import numpy as np
+import scipy.sparse as sp
+np.random.seed(12)
+
+import warnings
+#Comment this to turn on warnings
+warnings.filterwarnings('ignore')
+
+### define Ising model aprams
+# system size
+L=40
+
+# create 10000 random Ising states
+states=np.random.choice([-1, 1], size=(10000,L))
+
+def ising_energies(states,L):
+    """
+    This function calculates the energies of the states in the nn Ising Hamiltonian
+    """
+    J=np.zeros((L,L),)
+    for i in range(L):
+        J[i,(i+1)%L]-=1.0
+    # compute energies
+    E = np.einsum('...i,ij,...j->...',states,J,states)
+
+    return E
+# calculate Ising energies
+energies=ising_energies(states,L)
+\epycod
+
+We can now recast the problem as a linear regression model using our codes from homework set 3 (exercise 2 in particular).
+The way we are going to build our model mimicks the way we could think of finding say the gravitional constant for the graviational force between two planets.
+In the absence of any prior knowledge, one sensible choice is the all-to-all Ising model
+
+\[
+E_\mathrm{model}[\boldsymbol{s}^i] = - \sum_{j=1}^N \sum_{k=1}^N J_{j,k}s_{j}^is_{k}^i.
+\]
+
+Here $i$ represents a particular spin configuration (one of the possible $n$ configurations we generated with the code above).
+
+This model is uniquely defined by the non-local coupling strengths $J_{jk}$ which we want to learn.
+The model is linear in $\mathbf{J}$ which makes it possible to use linear regression.
+
+To apply linear regression, we recast this model in the form
+\[
+E_\mathrm{model}^i \equiv \mathbf{X}^i \cdot \mathbf{J},
+\]
+
+where the vectors $\mathbf{X}^i$ represent all two-body interactions
+$\{s_{j}^is_{k}^i \}_{j,k=1}^N$, and the index $i$ runs over the
+samples in the data set.  To make the analogy complete, we can also
+represent the dot product by a single index $p = \{j,k\}$,
+i.e.~$\mathbf{X}^i \cdot \mathbf{J}=X^i_pJ_p$.  Note that the
+regression model does not include the minus sign, so we expect to
+learn negative $J$'s.
+
+\paragraph{Part b): Estimating the coupling constant of the one-dimensional Ising model using linear regression.}
+We start with the one-dimensional Ising model and use the data we have
+generated with $J=1$ in the previous point.
+
+\textbf{Use linear regression,
+Lasso and Ridge regression as done in homework 3}.
+Make an analysis of the guessed coupling constant as function of the hyperparameters $\lambda$. 
+You can compare your
+results with those of \href{{https://physics.bu.edu/~pankajm/ML-Notebooks/HTML/NB_CVI-linreg_ising.html}}{Mehta
+et al.}.
+Make sure it is the 1D data which is used.
+
+Discuss the methods and how they perform in computing the coupling
+constant $J$ and include a bias-variance analysis using the bootstrap resampling method.
+Discuss also the mean squared error and
+the $R2$ score as measures to assess your model.
+
+Give a critical analysis of your results.
+
+
+You can replace the Ising model data with the nuclear binding energy data.
+
+
+
+\paragraph{Part c): Random forests and boosting.}
+Repeat the above analysis but using random forests and boosting (XGboost or normal gradient boosting). You can use the functions
+in \textbf{scikit-learn} for random forests and gradient boosting. For \textbf{XGBoost} you need to install it separately. You can still use other functionality in \textbf{scikit-Learn}. 
+
+\paragraph{Part d): Regression analysis of the one-dimensional Ising model using neural networks.}
+Your aim now is to use either \textbf{scikit-learn} or \textbf{tensorflow} in order to set up a neural network to find the optimal weights and biases. 
+
+Train your network and compare the results with those from your linear regression code and random forests/boosting methods. 
+
+You can test your results against a similar code using \textbf{scikit-learn} or \textbf{tensorflow/keras}. 
+
+
+A useful reference on the back progagation algorithm is \href{{http://neuralnetworksanddeeplearning.com/}}{Nielsen's book}. It is an excellent read.
+
+
+Finally, give a critical analysis of your results with pros and cons of the various methods. 
+
+
+
+
+\subsection{Background literature}
+
+\begin{enumerate}
+\item The text of Michael Nielsen is highly recommended, see \href{{http://neuralnetworksanddeeplearning.com/}}{Nielsen's book}. It is an excellent read.
+
+\item The textbook of \href{{https://www.springer.com/gp/book/9780387848570}}{Trevor Hastie, Robert Tibshirani, Jerome H. Friedman, The Elements of Statistical Learning, Springer}, chapters 3 and 7 are the most relevant ones for the analysis here. 
+
+\item \href{{https://arxiv.org/abs/1803.08823}}{Mehta et al, arXiv 1803.08823}, \emph{A high-bias, low-variance introduction to Machine Learning for physicists}, ArXiv:1803.08823.
+\end{enumerate}
+
+\noindent
+If you wish to read more about the Ising model and statistical physics here are three suggestions.
+
+\begin{enumerate}
+\item \href{{http://www.worldscientific.com/worldscibooks/10.1142/5660}}{M. Plischke and B. Bergersen}, \emph{Equilibrium Statistical Physics}, World Scientific, see chapters 5 and 6.
+
+\item \href{{http://www.cambridge.org/no/academic/subjects/physics/computational-science-and-modelling/guide-monte-carlo-simulations-statistical-physics-4th-edition?format=HB}}{D. P. Landau and K. Binder}, \emph{A Guide to Monte Carlo Simulations in Statistical Physics}, Cambridge, see chapters 2,3 and 4.
+
+\item \href{{https://global.oup.com/academic/product/monte-carlo-methods-in-statistical-physics-9780198517979?cc=no&lang=en&}}{M. E. J. Newman and T. Barkema}, \emph{Monte Carlo Methods in Statistical Physics}, Oxford, see chapters 3 and 4.
+\end{enumerate}
+
+\noindent
+
+% ------------------- end of main content ---------------
+
+% #ifdef PREAMBLE
+\end{document}
+% #endif
+
