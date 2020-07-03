@@ -57,17 +57,68 @@ ${text_types(ch)}
 ===== Projects and Exercises =====
 
 
-=== First exercise set (Day 1 and 2) ===
+=== First exercise set (Day 1 and Day 2) ===
  * HTML:
    * "Plain html":"http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw1/html/hw1.html"
    * "Bootstrap  slide style, easy for reading on mobile devices": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw1/html/hw1-bs.html"
    * "Jupyter notebook": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw1/ipynb/hw1.ipynb"
 
-=== Second exercise set (Day 2 and 3) ===
+=== Second exercise set (Day 2 and Day 3) ===
  * HTML:
    * "Plain html":"http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw2/html/hw2.html"
    * "Bootstrap  slide style, easy for reading on mobile devices": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw2/html/hw2-bs.html"
    * "Jupyter notebook": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw2/ipynb/hw2.ipynb"
+
+
+=== Third exercise set (Day 3) ===
+ * HTML:
+   * "Plain html":"http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw3/html/hw3.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw3/html/hw3-bs.html"
+   * "Jupyter notebook": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw3/ipynb/hw3.ipynb"
+
+=== Fourth exercise set (Day 4 and Day 5) ===
+ * HTML:
+   * "Plain html":"http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw4/html/hw4.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw4/html/hw4-bs.html"
+   * "Jupyter notebook": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw4/ipynb/hw4.ipynb"
+
+=== Fifth exercise set (Day 5 and second week) ===
+ * HTML:
+   * "Plain html":"http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw5/html/hw5.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw5/html/hw5-bs.html"
+   * "Jupyter notebook": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw5/ipynb/hw5.ipynb"
+
+
+=== Project on analysis of $\beta$-decay experiments ===
+ * HTML:
+   * "Plain html":"http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectBeta/html/ProjectBeta.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectBeta/html/ProjectBeta-bs.html"
+   * "Jupyter notebook": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectBeta/ipynb/ProjectBeta.ipynb"
+
+
+=== Project on analysis of AT  experiments ===
+ * HTML:
+   * "Plain html":"http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectAT/html/ProjectAT.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectAT/html/ProjectAT-bs.html"
+   * "Jupyter notebook": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectAT/ipynb/ProjectAT.ipynb"
+
+=== Theory project  ===
+ * HTML:
+   * "Plain html":"http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectTheory/html/ProjectTheory.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectTheory/html/ProjectTheory-bs.html"
+   * "Jupyter notebook": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectTheory/ipynb/ProjectTheory.ipynb"
+
+=== Project on analysis of own data ===
+ * HTML:
+   * "Plain html":"http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectOwnData/html/ProjectOwnData.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectOwnData/html/ProjectOwnData-bs.html"
+   * "Jupyter notebook": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectOwnData/ipynb/ProjectOwnData.ipynb"
+
+
+
+
+
+
 
 
 Note that the remaining days we will present and discuss how to read and handle data from experiments. The videos should give you all relevant details as well as the notebooks.
