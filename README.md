@@ -57,7 +57,7 @@ https://nucleartalent.github.io/MachineLearningECT/doc/pub/Introduction/html/Int
 
 ### Week 2
 
-- _Monday_	Neural Networks and Deep Learning (Raghu Ramanujan, RR)
+- _Monday_	Neural Networks and Deep Learning (Raghu Ramanujan, RR). Video of lecture at https://mediaspace.msu.edu/media/t/1_58a9xrbt. Video of exercise session at https://mediaspace.msu.edu/media/t/1_ulont3rg
 - _Tuesday_	From Neural Networks to Convolutional Neural Networks and how to analyze experiment (classification of events and real data)	(Michelle Kuchera, MK). Video of lecture https://mediaspace.msu.edu/media/t/1_2ysd5plh and video of exercise at https://mediaspace.msu.edu/media/t/1_watjxppf
 - _Wednesday_	 Discussion of nuclear experiments and how to analyze data, presentation of simulated data from Active-Target Time-Projection Chamber (AT-TPC)	(Daniel Bazin). Videos and teaching material https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day8/html/Day8.html. Video of actual lecture at https://mediaspace.msu.edu/media/t/1_azaquoc0. Video of analysis of data with CNNs (MK) at https://mediaspace.msu.edu/media/t/1_rozywc7h
 - _Thursday_	Generative models (MK). Video of exercise session at https://mediaspace.msu.edu/media/t/1_wpdmt7cw. Video of lecture at https://mediaspace.msu.edu/media/t/1_ayfst99b
