@@ -61,8 +61,7 @@ https://nucleartalent.github.io/MachineLearningECT/doc/pub/Introduction/html/Int
 - _Tuesday_	From Neural Networks to Convolutional Neural Networks and how to analyze experiment (classification of events and real data)	(Michelle Kuchera, MK)
 - _Wednesday_	 Discussion of nuclear experiments and how to analyze data, presentation of simulated data from Active-Target Time-Projection Chamber (AT-TPC)	(Daniel Bazin)
 - _Thursday_	Generative models (MK)
-- _Friday_	Reinforcement Learning (RR)
-- _Friday_ Future directions in machine learning and summary of course. 
+- _Friday_	Reinforcement Learning (RR). Future directions in machine learning and summary of course. Video of first lecture at https://mediaspace.msu.edu/media/t/1_wzyabacr. Video of second lecture at https://mediaspace.msu.edu/media/t/1_0eiikln6
 
 
 
