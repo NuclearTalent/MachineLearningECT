@@ -41,14 +41,17 @@ div { text-align: justify; text-justify: inter-word; }
 <!-- tocinfo
 {'highest level': 2,
  'sections': [('Day one and two  exercises', 2, None, '___sec0'),
-              ('Exercise 1', 3, None, '___sec1'),
-              ('Exercise 2: Python getting started', 3, None, '___sec2'),
-              ('Exercise 3', 3, None, '___sec3'),
-              ('Exercise 4, mean values and variances in linear regression',
-               3,
+              ('Exercise 1: Getting started', 2, None, '___sec1'),
+              ('Exercise 2: Our first Python encounter', 2, None, '___sec2'),
+              ('Exercise 3: making your own data and exploring scikit-learn',
+               2,
+               None,
+               '___sec3'),
+              ('Exercise 4: mean values and variances in linear regression',
+               2,
                None,
                '___sec4'),
-              ('Exercise 5', 3, None, '___sec5')]}
+              ('Exercise 5: Playing with nuclear masses', 2, None, '___sec5')]}
 end of tocinfo -->
 
 <body>
@@ -88,12 +91,15 @@ MathJax.Hub.Config({
 
 <br>
 <p>
-<center><h4>Jun 20, 2020</h4></center> <!-- date -->
+<center><h4>Jul 1, 2020</h4></center> <!-- date -->
 <br>
 
 <h2 id="___sec0">Day one and two  exercises </h2>
 
-<h3 id="___sec1">Exercise 1  </h3>
+<p>
+<!-- --- begin exercise --- -->
+
+<h2 id="___sec1">Exercise 1: Getting started </h2>
 
 <p>
 The first exercise here is of a mere technical art. We want you to have 
@@ -172,7 +178,13 @@ license.
 <p>
 We recommend using <b>Anaconda</b>.
 
-<h3 id="___sec2">Exercise 2: Python getting started </h3>
+<p>
+<!-- --- end exercise --- -->
+
+<p>
+<!-- --- begin exercise --- -->
+
+<h2 id="___sec2">Exercise 2: Our first Python encounter </h2>
 
 <p>
 This exercise has as its aim to write a small program which reads in data from a <b>csv</b> file on the equation of state for dense nuclear matter. The file is localized at <a href="https://github.com/mhjensen/MachineLearningMSU-FRIB2020/blob/master/doc/pub/Regression/ipynb/datafiles/EoS.csv" target="_blank"><tt>https://github.com/mhjensen/MachineLearningMSU-FRIB2020/blob/master/doc/pub/Regression/ipynb/datafiles/EoS.csv</tt></a>. Thereafter you will have to set up the design matrix \( \boldsymbol{X} \) for the  \( n \)
@@ -186,7 +198,87 @@ datapoints and a polynomial of degree \( 3 \). The steps are:
 
 We recommend looking at the examples in the <a href="https://compphysics.github.io/MachineLearning/doc/pub/Regression/html/Regression-bs.html" target="_blank">regression slides</a>.
 
-<h3 id="___sec3">Exercise 3  </h3>
+<p>
+<!-- --- begin solution of exercise --- -->
+<b>Solution.</b>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">os</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">pandas</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">pd</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">matplotlib.pyplot</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">plt</span>
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.model_selection</span> <span style="color: #008000; font-weight: bold">import</span> train_test_split
+<span style="color: #408080; font-style: italic"># Where to save the figures and data files</span>
+PROJECT_ROOT_DIR <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;Results&quot;</span>
+FIGURE_ID <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;Results/FigureFiles&quot;</span>
+DATA_ID <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;DataFiles/&quot;</span>
+
+<span style="color: #008000; font-weight: bold">if</span> <span style="color: #AA22FF; font-weight: bold">not</span> os<span style="color: #666666">.</span>path<span style="color: #666666">.</span>exists(PROJECT_ROOT_DIR):
+    os<span style="color: #666666">.</span>mkdir(PROJECT_ROOT_DIR)
+
+<span style="color: #008000; font-weight: bold">if</span> <span style="color: #AA22FF; font-weight: bold">not</span> os<span style="color: #666666">.</span>path<span style="color: #666666">.</span>exists(FIGURE_ID):
+    os<span style="color: #666666">.</span>makedirs(FIGURE_ID)
+
+<span style="color: #008000; font-weight: bold">if</span> <span style="color: #AA22FF; font-weight: bold">not</span> os<span style="color: #666666">.</span>path<span style="color: #666666">.</span>exists(DATA_ID):
+    os<span style="color: #666666">.</span>makedirs(DATA_ID)
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">image_path</span>(fig_id):
+    <span style="color: #008000; font-weight: bold">return</span> os<span style="color: #666666">.</span>path<span style="color: #666666">.</span>join(FIGURE_ID, fig_id)
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">data_path</span>(dat_id):
+    <span style="color: #008000; font-weight: bold">return</span> os<span style="color: #666666">.</span>path<span style="color: #666666">.</span>join(DATA_ID, dat_id)
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">save_fig</span>(fig_id):
+    plt<span style="color: #666666">.</span>savefig(image_path(fig_id) <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;.png&quot;</span>, format<span style="color: #666666">=</span><span style="color: #BA2121">&#39;png&#39;</span>)
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">R2</span>(y_data, y_model):
+    <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">1</span> <span style="color: #666666">-</span> np<span style="color: #666666">.</span>sum((y_data <span style="color: #666666">-</span> y_model) <span style="color: #666666">**</span> <span style="color: #666666">2</span>) <span style="color: #666666">/</span> np<span style="color: #666666">.</span>sum((y_data <span style="color: #666666">-</span> np<span style="color: #666666">.</span>mean(y_data)) <span style="color: #666666">**</span> <span style="color: #666666">2</span>)
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">MSE</span>(y_data,y_model):
+    n <span style="color: #666666">=</span> np<span style="color: #666666">.</span>size(y_model)
+    <span style="color: #008000; font-weight: bold">return</span> np<span style="color: #666666">.</span>sum((y_data<span style="color: #666666">-</span>y_model)<span style="color: #666666">**2</span>)<span style="color: #666666">/</span>n
+
+infile <span style="color: #666666">=</span> <span style="color: #008000">open</span>(data_path(<span style="color: #BA2121">&quot;EoS.csv&quot;</span>),<span style="color: #BA2121">&#39;r&#39;</span>)
+
+<span style="color: #408080; font-style: italic"># Read the EoS data as  csv file and organized into two arrays with density and energies</span>
+EoS <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>read_csv(infile, names<span style="color: #666666">=</span>(<span style="color: #BA2121">&#39;Density&#39;</span>, <span style="color: #BA2121">&#39;Energy&#39;</span>))
+EoS[<span style="color: #BA2121">&#39;Energy&#39;</span>] <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>to_numeric(EoS[<span style="color: #BA2121">&#39;Energy&#39;</span>], errors<span style="color: #666666">=</span><span style="color: #BA2121">&#39;coerce&#39;</span>)
+EoS <span style="color: #666666">=</span> EoS<span style="color: #666666">.</span>dropna()
+Energies <span style="color: #666666">=</span> EoS[<span style="color: #BA2121">&#39;Energy&#39;</span>]
+Density <span style="color: #666666">=</span> EoS[<span style="color: #BA2121">&#39;Density&#39;</span>]
+<span style="color: #408080; font-style: italic">#  The design matrix now as function of various polytrops</span>
+X <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros((<span style="color: #008000">len</span>(Density),<span style="color: #666666">5</span>))
+X[:,<span style="color: #666666">0</span>] <span style="color: #666666">=</span> <span style="color: #666666">1</span>
+X[:,<span style="color: #666666">1</span>] <span style="color: #666666">=</span> Density<span style="color: #666666">**</span>(<span style="color: #666666">2.0/3.0</span>)
+X[:,<span style="color: #666666">2</span>] <span style="color: #666666">=</span> Density
+X[:,<span style="color: #666666">3</span>] <span style="color: #666666">=</span> Density<span style="color: #666666">**</span>(<span style="color: #666666">4.0/3.0</span>)
+X[:,<span style="color: #666666">4</span>] <span style="color: #666666">=</span> Density<span style="color: #666666">**</span>(<span style="color: #666666">5.0/3.0</span>)
+<span style="color: #408080; font-style: italic"># We split the data in test and training data</span>
+X_train, X_test, y_train, y_test <span style="color: #666666">=</span> train_test_split(X, Energies, test_size<span style="color: #666666">=0.2</span>)
+<span style="color: #408080; font-style: italic"># matrix inversion to find beta</span>
+beta <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linalg<span style="color: #666666">.</span>inv(X_train<span style="color: #666666">.</span>T @ X_train) @ X_train<span style="color: #666666">.</span>T @ y_train
+<span style="color: #408080; font-style: italic"># and then make the prediction</span>
+ytilde <span style="color: #666666">=</span> X_train @ beta
+<span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;Training R2&quot;</span>)
+<span style="color: #008000; font-weight: bold">print</span>(R2(y_train,ytilde))
+<span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;Training MSE&quot;</span>)
+<span style="color: #008000; font-weight: bold">print</span>(MSE(y_train,ytilde))
+ypredict <span style="color: #666666">=</span> X_test @ beta
+<span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;Test R2&quot;</span>)
+<span style="color: #008000; font-weight: bold">print</span>(R2(y_test,ypredict))
+<span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;Test MSE&quot;</span>)
+<span style="color: #008000; font-weight: bold">print</span>(MSE(y_test,ypredict))
+</pre></div>
+<p>
+<!-- --- end solution of exercise --- -->
+
+<p>
+<!-- --- end exercise --- -->
+
+<p>
+<!-- --- begin exercise --- -->
+
+<h2 id="___sec3">Exercise 3: making your own data and exploring scikit-learn </h2>
 
 <p>
 We will generate our own dataset for a function \( y(x) \) where \( x \in [0,1] \) and defined by random numbers computed with the uniform distribution. The function \( y \) is a quadratic polynomial in \( x \) with added stochastic noise according to the normal distribution \( \cal {N}(0,1) \).
@@ -195,7 +287,7 @@ The following simple Python instructions define our \( x \) and \( y \) values (
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>x <span style="color: #666666">=</span> np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>rand(<span style="color: #666666">100</span>,<span style="color: #666666">1</span>)
-y <span style="color: #666666">=</span> <span style="color: #666666">5*</span>x<span style="color: #666666">*</span>x<span style="color: #666666">+0.1*</span>np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>randn(<span style="color: #666666">100</span>,<span style="color: #666666">1</span>)
+y <span style="color: #666666">=</span> <span style="color: #666666">2.0+5*</span>x<span style="color: #666666">*</span>x<span style="color: #666666">+0.1*</span>np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>randn(<span style="color: #666666">100</span>,<span style="color: #666666">1</span>)
 </pre></div>
 <ol>
 <li> Write your own code (following the examples under the <a href="https://compphysics.github.io/MachineLearningECT/doc/pub/Day1/html/Day1-bs.html" target="_blank">regression slides</a>) for computing the parametrization of the data set fitting a second-order polynomial.</li> 
@@ -221,7 +313,64 @@ $$
 You can use the functionality included in scikit-learn. If you feel for it, you can use your own program and define functions which compute the above two functions. 
 Discuss the meaning of these results. Try also to vary the coefficient in front of the added stochastic noise term and discuss the quality of the fits.
 
-<h3 id="___sec4">Exercise 4, mean values and variances in linear regression  </h3>
+<p>
+<!-- --- begin solution of exercise --- -->
+<b>Solution.</b>
+The code here is an example of where we define our own design matrix and fit parameters \( \beta \).
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">os</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">pandas</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">pd</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">matplotlib.pyplot</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">plt</span>
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.model_selection</span> <span style="color: #008000; font-weight: bold">import</span> train_test_split
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">save_fig</span>(fig_id):
+    plt<span style="color: #666666">.</span>savefig(image_path(fig_id) <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;.png&quot;</span>, format<span style="color: #666666">=</span><span style="color: #BA2121">&#39;png&#39;</span>)
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">R2</span>(y_data, y_model):
+    <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">1</span> <span style="color: #666666">-</span> np<span style="color: #666666">.</span>sum((y_data <span style="color: #666666">-</span> y_model) <span style="color: #666666">**</span> <span style="color: #666666">2</span>) <span style="color: #666666">/</span> np<span style="color: #666666">.</span>sum((y_data <span style="color: #666666">-</span> np<span style="color: #666666">.</span>mean(y_data)) <span style="color: #666666">**</span> <span style="color: #666666">2</span>)
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">MSE</span>(y_data,y_model):
+    n <span style="color: #666666">=</span> np<span style="color: #666666">.</span>size(y_model)
+    <span style="color: #008000; font-weight: bold">return</span> np<span style="color: #666666">.</span>sum((y_data<span style="color: #666666">-</span>y_model)<span style="color: #666666">**2</span>)<span style="color: #666666">/</span>n
+
+x <span style="color: #666666">=</span> np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>rand(<span style="color: #666666">100</span>)
+y <span style="color: #666666">=</span> <span style="color: #666666">2.0+5*</span>x<span style="color: #666666">*</span>x<span style="color: #666666">+0.1*</span>np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>randn(<span style="color: #666666">100</span>)
+
+
+<span style="color: #408080; font-style: italic">#  The design matrix now as function of a given polynomial</span>
+X <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros((<span style="color: #008000">len</span>(x),<span style="color: #666666">3</span>))
+X[:,<span style="color: #666666">0</span>] <span style="color: #666666">=</span> <span style="color: #666666">1.0</span>
+X[:,<span style="color: #666666">1</span>] <span style="color: #666666">=</span> x
+X[:,<span style="color: #666666">2</span>] <span style="color: #666666">=</span> x<span style="color: #666666">**2</span>
+<span style="color: #408080; font-style: italic"># We split the data in test and training data</span>
+X_train, X_test, y_train, y_test <span style="color: #666666">=</span> train_test_split(X, y, test_size<span style="color: #666666">=0.2</span>)
+<span style="color: #408080; font-style: italic"># matrix inversion to find beta</span>
+beta <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linalg<span style="color: #666666">.</span>inv(X_train<span style="color: #666666">.</span>T @ X_train) @ X_train<span style="color: #666666">.</span>T @ y_train
+<span style="color: #008000; font-weight: bold">print</span>(beta)
+<span style="color: #408080; font-style: italic"># and then make the prediction</span>
+ytilde <span style="color: #666666">=</span> X_train @ beta
+<span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;Training R2&quot;</span>)
+<span style="color: #008000; font-weight: bold">print</span>(R2(y_train,ytilde))
+<span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;Training MSE&quot;</span>)
+<span style="color: #008000; font-weight: bold">print</span>(MSE(y_train,ytilde))
+ypredict <span style="color: #666666">=</span> X_test @ beta
+<span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;Test R2&quot;</span>)
+<span style="color: #008000; font-weight: bold">print</span>(R2(y_test,ypredict))
+<span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;Test MSE&quot;</span>)
+<span style="color: #008000; font-weight: bold">print</span>(MSE(y_test,ypredict))
+</pre></div>
+<p>
+<!-- --- end solution of exercise --- -->
+
+<p>
+<!-- --- end exercise --- -->
+
+<p>
+<!-- --- begin exercise --- -->
+
+<h2 id="___sec4">Exercise 4: mean values and variances in linear regression </h2>
 
 <p>
 This exercise deals with various mean values ad variances in  linear regression method (here it may be useful to look up chapter 3, equation (3.8) of <a href="https://www.springer.com/gp/book/9780387848570" target="_blank">Trevor Hastie, Robert Tibshirani, Jerome H. Friedman, The Elements of Statistical Learning, Springer</a>).
@@ -244,6 +393,7 @@ $$
 The matrix \( \boldsymbol{X} \) is the so-called design matrix.
 
 <p>
+<b>a)</b>
 Show that  the expectation value of \( \boldsymbol{y} \) for a given element \( i \) 
 $$
 \begin{align*} 
@@ -262,14 +412,61 @@ Hence, \( y_i \sim \mathcal{N}( \mathbf{X}_{i, \ast} \, \boldsymbol{\beta}, \sig
 mean value \( \boldsymbol{X}\boldsymbol{\beta} \) and variance \( \sigma^2 \).
 
 <p>
+<!-- --- begin solution of exercise --- -->
+<b>Solution.</b>
+We can calculate the expectation value of \( \boldsymbol{y} \) for a given element \( i \) 
+$$
+\begin{align*} 
+\mathbb{E}(y_i) & =
+\mathbb{E}(\mathbf{X}_{i, \ast} \, \boldsymbol{\beta}) + \mathbb{E}(\varepsilon_i)
+\, \, \, = \, \, \, \mathbf{X}_{i, \ast} \, \beta, 
+\end{align*} 
+$$
+
+while
+its variance is 
+$$
+\begin{align*} \mbox{Var}(y_i) & = \mathbb{E} \{ [y_i
+- \mathbb{E}(y_i)]^2 \} \, \, \, = \, \, \, \mathbb{E} ( y_i^2 ) -
+[\mathbb{E}(y_i)]^2  \\  & = \mathbb{E} [ ( \mathbf{X}_{i, \ast} \,
+\beta + \varepsilon_i )^2] - ( \mathbf{X}_{i, \ast} \, \boldsymbol{\beta})^2 \\ &
+= \mathbb{E} [ ( \mathbf{X}_{i, \ast} \, \boldsymbol{\beta})^2 + 2 \varepsilon_i
+\mathbf{X}_{i, \ast} \, \boldsymbol{\beta} + \varepsilon_i^2 ] - ( \mathbf{X}_{i,
+\ast} \, \beta)^2 \\  & = ( \mathbf{X}_{i, \ast} \, \boldsymbol{\beta})^2 + 2
+\mathbb{E}(\varepsilon_i) \mathbf{X}_{i, \ast} \, \boldsymbol{\beta} +
+\mathbb{E}(\varepsilon_i^2 ) - ( \mathbf{X}_{i, \ast} \, \boldsymbol{\beta})^2 
+\\ & = \mathbb{E}(\varepsilon_i^2 ) \, \, \, = \, \, \,
+\mbox{Var}(\varepsilon_i) \, \, \, = \, \, \, \sigma^2.  
+\end{align*}
+$$
+
+Hence, \( y_i \sim \mathcal{N}( \mathbf{X}_{i, \ast} \, \boldsymbol{\beta}, \sigma^2) \), that is \( \boldsymbol{y} \) follows a normal distribution with 
+mean value \( \boldsymbol{X}\boldsymbol{\beta} \) and variance \( \sigma^2 \) (not be confused with the singular values of the SVD).
+
+<p>
+<!-- --- end solution of exercise --- -->
+
+<p>
+<b>b)</b>
 With the OLS expressions for the parameters \( \boldsymbol{\beta} \) show that
 $$
 \mathbb{E}(\boldsymbol{\beta}) = \boldsymbol{\beta}.
 $$
 
+<p>
+<!-- --- begin solution of exercise --- -->
+<b>Solution.</b>
+$$
+\mathbb{E}(\boldsymbol{\beta}) = \mathbb{E}[ (\mathbf{X}^{\top} \mathbf{X})^{-1}\mathbf{X}^{T} \mathbf{Y}]=(\mathbf{X}^{T} \mathbf{X})^{-1}\mathbf{X}^{T} \mathbb{E}[ \mathbf{Y}]=(\mathbf{X}^{T} \mathbf{X})^{-1} \mathbf{X}^{T}\mathbf{X}\boldsymbol{\beta}=\boldsymbol{\beta}.
+$$
+
 This means that the estimator of the regression parameters is unbiased.
 
 <p>
+<!-- --- end solution of exercise --- -->
+
+<p>
+<b>c)</b>
 Show finally that the variance of \( \boldsymbol{\beta} \) is
 $$
 \begin{eqnarray*}
@@ -277,7 +474,58 @@ $$
 \end{eqnarray*}
 $$
 
-<h3 id="___sec5">Exercise 5  </h3>
+<p>
+<!-- --- begin solution of exercise --- -->
+<b>Solution.</b>
+The variance of \( \boldsymbol{\beta} \) is
+$$
+\begin{eqnarray*}
+\mbox{Var}(\boldsymbol{\beta}) & = & \mathbb{E} \{ [\boldsymbol{\beta} - \mathbb{E}(\boldsymbol{\beta})] [\boldsymbol{\beta} - \mathbb{E}(\boldsymbol{\beta})]^{T} \}
+\\
+& = & \mathbb{E} \{ [(\mathbf{X}^{T} \mathbf{X})^{-1} \, \mathbf{X}^{T} \mathbf{Y} - \boldsymbol{\beta}] \, [(\mathbf{X}^{T} \mathbf{X})^{-1} \, \mathbf{X}^{T} \mathbf{Y} - \boldsymbol{\beta}]^{T} \}
+\\
+% & = & \mathbb{E} \{ [(\mathbf{X}^{T} \mathbf{X})^{-1} \, \mathbf{X}^{T} \mathbf{Y}] \, [(\mathbf{X}^{T} \mathbf{X})^{-1} \, \mathbf{X}^{T} \mathbf{Y}]^{T} \} - \boldsymbol{\beta} \, \boldsymbol{\beta}^{T}
+% \\
+% & = & \mathbb{E} \{ (\mathbf{X}^{T} \mathbf{X})^{-1} \, \mathbf{X}^{T} \mathbf{Y} \, \mathbf{Y}^{T} \, \mathbf{X} \, (\mathbf{X}^{T} \mathbf{X})^{-1}  \} - \boldsymbol{\beta} \, \boldsymbol{\beta}^{T}
+% \\
+& = & (\mathbf{X}^{T} \mathbf{X})^{-1} \, \mathbf{X}^{T} \, \mathbb{E} \{ \mathbf{Y} \, \mathbf{Y}^{T} \} \, \mathbf{X} \, (\mathbf{X}^{T} \mathbf{X})^{-1} - \boldsymbol{\beta} \, \boldsymbol{\beta}^{T}
+\\
+& = & (\mathbf{X}^{T} \mathbf{X})^{-1} \, \mathbf{X}^{T} \, \{ \mathbf{X} \, \boldsymbol{\beta} \, \boldsymbol{\beta}^{T} \,  \mathbf{X}^{T} + \sigma^2 \} \, \mathbf{X} \, (\mathbf{X}^{T} \mathbf{X})^{-1} - \boldsymbol{\beta} \, \boldsymbol{\beta}^{T}
+% \\
+% & = & (\mathbf{X}^T \mathbf{X})^{-1} \, \mathbf{X}^T \, \mathbf{X} \, \boldsymbol{\beta} \, \boldsymbol{\beta}^T \,  \mathbf{X}^T \, \mathbf{X} \, (\mathbf{X}^T % \mathbf{X})^{-1}
+% \\
+% & & + \, \, \sigma^2 \, (\mathbf{X}^T \mathbf{X})^{-1} \, \mathbf{X}^T  \, \mathbf{X} \, (\mathbf{X}^T \mathbf{X})^{-1} - \boldsymbol{\beta} \boldsymbol{\beta}^T
+\\
+& = & \boldsymbol{\beta} \, \boldsymbol{\beta}^{T}  + \sigma^2 \, (\mathbf{X}^{T} \mathbf{X})^{-1} - \boldsymbol{\beta} \, \boldsymbol{\beta}^{T}
+\, \, \, = \, \, \, \sigma^2 \, (\mathbf{X}^{T} \mathbf{X})^{-1},
+\end{eqnarray*}
+$$
+
+<p>
+where we have used  that \( \mathbb{E} (\mathbf{Y} \mathbf{Y}^{T}) =
+\mathbf{X} \, \boldsymbol{\beta} \, \boldsymbol{\beta}^{T} \, \mathbf{X}^{T} +
+\sigma^2 \, \mathbf{I}_{nn} \). From \( \mbox{Var}(\boldsymbol{\beta}) = \sigma^2
+\, (\mathbf{X}^{T} \mathbf{X})^{-1} \), one obtains an estimate of the
+variance of the estimate of the \( j \)-th regression coefficient:
+\( \boldsymbol{\sigma}^2 (\hat{\beta}_j ) = \boldsymbol{\sigma}^2 \sqrt{
+[(\mathbf{X}^{T} \mathbf{X})^{-1}]_{jj} } \). This may be used to
+construct a confidence interval for the estimates.
+
+<p>
+In a similar way, we can obtain analytical expressions for say the
+expectation values of the parameters \( \boldsymbol{\beta} \) and their variance
+when we employ Ridge regression, allowing us again to define a confidence interval.
+
+<p>
+<!-- --- end solution of exercise --- -->
+
+<p>
+<!-- --- end exercise --- -->
+
+<p>
+<!-- --- begin exercise --- -->
+
+<h2 id="___sec5">Exercise 5: Playing with nuclear masses </h2>
 
 <p>
 Finally, try now to write your own code (you can use the example the nuclear masses in the lecture slides on Regression and Getting started from Day1, that reads in the nuclear masses and
@@ -287,6 +535,158 @@ compute the proton separation energies, the two-neutron and two-proton separatio
 Finally, try to compute the \( Q \)-values for \( \beta- \) decay for selected nuclei.
 
 <p>
+<!-- --- begin solution of exercise --- -->
+<b>Solution.</b>
+Let us study the \( Q \) values associated with the removal of one or two nucleons from
+a nucleus. These are conventionally defined in terms of the one-nucleon and two-nucleon
+separation energies. With the functionality in <b>pandas</b>, two to three lines of code will allow us to plot the separation energies.
+The neutron separation energy is defined as 
+
+$$
+S_n= -Q_n= BE(N,Z)-BE(N-1,Z),
+$$
+
+and the proton separation energy reads
+$$
+S_p= -Q_p= BE(N,Z)-BE(N,Z-1).
+$$
+
+The two-neutron separation energy is defined as
+$$
+S_{2n}= -Q_{2n}= BE(N,Z)-BE(N-2,Z),
+$$
+
+and  the two-proton separation energy is given by
+$$
+S_{2p}= -Q_{2p}= BE(N,Z)-BE(N,Z-2).
+$$
+
+<p>
+Using say the neutron separation energies (alternatively the proton separation energies)
+$$
+S_n= -Q_n= BE(N,Z)-BE(N-1,Z),
+$$
+
+we can define the so-called energy gap for neutrons (or protons) as 
+$$
+\Delta S_n= BE(N,Z)-BE(N-1,Z)-\left(BE(N+1,Z)-BE(N,Z)\right),
+$$
+
+or 
+$$
+\Delta S_n= 2BE(N,Z)-BE(N-1,Z)-BE(N+1,Z).
+$$
+
+This quantity can in turn be used to determine which nuclei could be interpreted as  magic or not. 
+For protons we would have 
+$$
+\Delta S_p= 2BE(N,Z)-BE(N,Z-1)-BE(N,Z+1).
+$$
+
+<p>
+To calculate say the neutron separation we need to multiply our masses with the nucleon number \( A \).
+The example here is for the neutron separation energies for the oxygen isotopes.
+Note the simple function we use to compute the neutron separation energies
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic"># Her we pick the oyxgen isotopes</span>
+Nucleus <span style="color: #666666">=</span> df<span style="color: #666666">.</span>loc[<span style="color: #008000; font-weight: bold">lambda</span> df: df<span style="color: #666666">.</span>Z<span style="color: #666666">==8</span>, :]
+<span style="color: #408080; font-style: italic"># drop cases with no number</span>
+Nucleus <span style="color: #666666">=</span> Nucleus<span style="color: #666666">.</span>dropna()
+<span style="color: #408080; font-style: italic"># Here we do the magic and obtain the neutron separation energies, one line of code!!</span>
+Nucleus[<span style="color: #BA2121">&#39;NeutronSeparationEnergies&#39;</span>] <span style="color: #666666">=</span> Nucleus[<span style="color: #BA2121">&#39;Energies&#39;</span>]<span style="color: #666666">.</span>diff(<span style="color: #666666">+1</span>)
+</pre></div>
+<p>
+If we want another isotope we need simply to change the \( Z \) value. For isotones, we fix simply the neutron number. Furthermore, if we wish to compute say the two-neutron separation energies of the oyxgen isotopes we need simply to write 
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic"># Her we pick the oyxgen isotopes</span>
+Nucleus <span style="color: #666666">=</span> df<span style="color: #666666">.</span>loc[<span style="color: #008000; font-weight: bold">lambda</span> df: df<span style="color: #666666">.</span>Z<span style="color: #666666">==8</span>, :]
+<span style="color: #408080; font-style: italic"># drop cases with no number</span>
+Nucleus <span style="color: #666666">=</span> Nucleus<span style="color: #666666">.</span>dropna()
+<span style="color: #408080; font-style: italic"># Here we do the magic and obtain the neutron separation energies, one line of code!!</span>
+Nucleus[<span style="color: #BA2121">&#39;NeutronSeparationEnergies&#39;</span>] <span style="color: #666666">=</span> Nucleus[<span style="color: #BA2121">&#39;Energies&#39;</span>]<span style="color: #666666">.</span>diff(<span style="color: #666666">+2</span>)
+</pre></div>
+<p>
+Note the \( +2 \) in the function <b>diff(+2)</b>!  Easy, isn't it? It is easy to change to two-proton separation energies. The full example here is for the neutron separation energies.
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic"># Common imports</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">pandas</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">pd</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">matplotlib.pyplot</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">plt</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">os</span>
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">pylab</span> <span style="color: #008000; font-weight: bold">import</span> plt, mpl
+plt<span style="color: #666666">.</span>style<span style="color: #666666">.</span>use(<span style="color: #BA2121">&#39;seaborn&#39;</span>)
+mpl<span style="color: #666666">.</span>rcParams[<span style="color: #BA2121">&#39;font.family&#39;</span>] <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;serif&#39;</span>
+
+
+<span style="color: #408080; font-style: italic"># Where to save the figures and data files</span>
+PROJECT_ROOT_DIR <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;Results&quot;</span>
+FIGURE_ID <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;Results/FigureFiles&quot;</span>
+DATA_ID <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;DataFiles/&quot;</span>
+
+<span style="color: #008000; font-weight: bold">if</span> <span style="color: #AA22FF; font-weight: bold">not</span> os<span style="color: #666666">.</span>path<span style="color: #666666">.</span>exists(PROJECT_ROOT_DIR):
+    os<span style="color: #666666">.</span>mkdir(PROJECT_ROOT_DIR)
+
+<span style="color: #008000; font-weight: bold">if</span> <span style="color: #AA22FF; font-weight: bold">not</span> os<span style="color: #666666">.</span>path<span style="color: #666666">.</span>exists(FIGURE_ID):
+    os<span style="color: #666666">.</span>makedirs(FIGURE_ID)
+
+<span style="color: #008000; font-weight: bold">if</span> <span style="color: #AA22FF; font-weight: bold">not</span> os<span style="color: #666666">.</span>path<span style="color: #666666">.</span>exists(DATA_ID):
+    os<span style="color: #666666">.</span>makedirs(DATA_ID)
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">image_path</span>(fig_id):
+    <span style="color: #008000; font-weight: bold">return</span> os<span style="color: #666666">.</span>path<span style="color: #666666">.</span>join(FIGURE_ID, fig_id)
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">data_path</span>(dat_id):
+    <span style="color: #008000; font-weight: bold">return</span> os<span style="color: #666666">.</span>path<span style="color: #666666">.</span>join(DATA_ID, dat_id)
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">save_fig</span>(fig_id):
+    plt<span style="color: #666666">.</span>savefig(image_path(fig_id) <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;.png&quot;</span>, format<span style="color: #666666">=</span><span style="color: #BA2121">&#39;png&#39;</span>)
+
+infile <span style="color: #666666">=</span> <span style="color: #008000">open</span>(data_path(<span style="color: #BA2121">&quot;MassEval2016.dat&quot;</span>),<span style="color: #BA2121">&#39;r&#39;</span>)
+
+
+<span style="color: #408080; font-style: italic"># Read the experimental data with Pandas</span>
+Masses <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>read_fwf(infile, usecols<span style="color: #666666">=</span>(<span style="color: #666666">2</span>,<span style="color: #666666">3</span>,<span style="color: #666666">4</span>,<span style="color: #666666">6</span>,<span style="color: #666666">11</span>),
+              names<span style="color: #666666">=</span>(<span style="color: #BA2121">&#39;N&#39;</span>, <span style="color: #BA2121">&#39;Z&#39;</span>, <span style="color: #BA2121">&#39;A&#39;</span>, <span style="color: #BA2121">&#39;Element&#39;</span>, <span style="color: #BA2121">&#39;Ebinding&#39;</span>),
+              widths<span style="color: #666666">=</span>(<span style="color: #666666">1</span>,<span style="color: #666666">3</span>,<span style="color: #666666">5</span>,<span style="color: #666666">5</span>,<span style="color: #666666">5</span>,<span style="color: #666666">1</span>,<span style="color: #666666">3</span>,<span style="color: #666666">4</span>,<span style="color: #666666">1</span>,<span style="color: #666666">13</span>,<span style="color: #666666">11</span>,<span style="color: #666666">11</span>,<span style="color: #666666">9</span>,<span style="color: #666666">1</span>,<span style="color: #666666">2</span>,<span style="color: #666666">11</span>,<span style="color: #666666">9</span>,<span style="color: #666666">1</span>,<span style="color: #666666">3</span>,<span style="color: #666666">1</span>,<span style="color: #666666">12</span>,<span style="color: #666666">11</span>,<span style="color: #666666">1</span>),
+              header<span style="color: #666666">=39</span>,
+              index_col<span style="color: #666666">=</span><span style="color: #008000">False</span>)
+
+<span style="color: #408080; font-style: italic"># Extrapolated values are indicated by &#39;#&#39; in place of the decimal place, so</span>
+<span style="color: #408080; font-style: italic"># the Ebinding column won&#39;t be numeric. Coerce to float and drop these entries.</span>
+Masses[<span style="color: #BA2121">&#39;Ebinding&#39;</span>] <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>to_numeric(Masses[<span style="color: #BA2121">&#39;Ebinding&#39;</span>], errors<span style="color: #666666">=</span><span style="color: #BA2121">&#39;coerce&#39;</span>)
+Masses <span style="color: #666666">=</span> Masses<span style="color: #666666">.</span>dropna()
+<span style="color: #408080; font-style: italic"># Convert from keV to MeV.</span>
+Masses[<span style="color: #BA2121">&#39;Ebinding&#39;</span>] <span style="color: #666666">/=</span> <span style="color: #666666">1000</span>
+A <span style="color: #666666">=</span> Masses[<span style="color: #BA2121">&#39;A&#39;</span>]
+Z <span style="color: #666666">=</span> Masses[<span style="color: #BA2121">&#39;Z&#39;</span>]
+N <span style="color: #666666">=</span> Masses[<span style="color: #BA2121">&#39;N&#39;</span>]
+Element <span style="color: #666666">=</span> Masses[<span style="color: #BA2121">&#39;Element&#39;</span>]
+Energies <span style="color: #666666">=</span> Masses[<span style="color: #BA2121">&#39;Ebinding&#39;</span>]<span style="color: #666666">*</span>A
+
+df <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>DataFrame({<span style="color: #BA2121">&#39;A&#39;</span>:A,<span style="color: #BA2121">&#39;Z&#39;</span>:Z, <span style="color: #BA2121">&#39;N&#39;</span>:N,<span style="color: #BA2121">&#39;Element&#39;</span>:Element,<span style="color: #BA2121">&#39;Energies&#39;</span>:Energies})
+<span style="color: #408080; font-style: italic"># Her we pick the oyxgen isotopes</span>
+Nucleus <span style="color: #666666">=</span> df<span style="color: #666666">.</span>loc[<span style="color: #008000; font-weight: bold">lambda</span> df: df<span style="color: #666666">.</span>Z<span style="color: #666666">==8</span>, :]
+<span style="color: #408080; font-style: italic"># drop cases with no number</span>
+Nucleus <span style="color: #666666">=</span> Nucleus<span style="color: #666666">.</span>dropna()
+<span style="color: #408080; font-style: italic"># Here we do the magic and obtain the neutron separation energies, one line of code!!</span>
+Nucleus[<span style="color: #BA2121">&#39;NeutronSeparationEnergies&#39;</span>] <span style="color: #666666">=</span> Nucleus[<span style="color: #BA2121">&#39;Energies&#39;</span>]<span style="color: #666666">.</span>diff(<span style="color: #666666">+1</span>)
+<span style="color: #008000; font-weight: bold">print</span>(Nucleus)
+MakePlot([Nucleus<span style="color: #666666">.</span>A], [Nucleus<span style="color: #666666">.</span>NeutronSeparationEnergies], [<span style="color: #BA2121">&#39;b&#39;</span>], [<span style="color: #BA2121">&#39;Neutron Separation Energy&#39;</span>], [<span style="color: #BA2121">&#39;$A$&#39;</span>,<span style="color: #BA2121">&#39;$S_n$&#39;</span>])
+save_fig(<span style="color: #BA2121">&#39;Nucleus&#39;</span>)
+plt<span style="color: #666666">.</span>show()
+</pre></div>
+<p>
+<!-- --- end solution of exercise --- -->
+
+<p>
+<!-- --- end exercise --- -->
 
 <!-- ------------------- end of main content --------------- -->
 

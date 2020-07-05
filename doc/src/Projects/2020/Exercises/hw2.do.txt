@@ -5,7 +5,7 @@ DATE:Today
 ===== Day three exercises =====
 
 
-=== Exercise 1  ===
+===== Exercise: Adding Ridge and Lasso Regression  =====
 
 
 This exercise is a continuation of exercise 3 from exercise set 1. We will
@@ -21,19 +21,332 @@ added stochastic noise according to the normal distribution $\cal{N}(0,1)$.
 
 The following simple Python instructions define our $x$ and $y$ values (with 100 data points).
 !bc pycod
-x = np.random.rand(100,1)
-y = 5*x*x+0.1*np.random.randn(100,1)
+x = np.random.rand(100)
+y = 2.0+5*x*x+0.1*np.random.randn(100)
 !ec
 
-o (1a) Write your own code for the Ridge method (see chapter 3.4 of Hastie *et al.*, equations (3.43) and (3.44)) and compute the parametrization for different values of $\lambda$. Compare and analyze your results with those from exercise 2. Study the dependence on $\lambda$ while also varying the strength of the noise in your expression for $y(x)$. 
+!bsubex
+Write your own code for the Ridge method (see chapter 3.4 of Hastie *et al.*, equations (3.43) and (3.44)) and compute the parametrization for different values of $\lambda$. Compare and analyze your results with those from exercise 3. Study the dependence on $\lambda$ while also varying the strength of the noise in your expression for $y(x)$. 
 
-o (1b) Repeat the above but using the functionality of _Scikit-Learn_. Compare your code with the results from _Scikit-Learn_. Remember to run with the same random numbers for generating $x$ and $y$. 
+!bsol
+The code here allows you to perform your own Ridge calculation and perform calculations for various values of the regularization parameter $\lambda$. This program can easily be extended upon.
+!bc pycod
+import os
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 
-o (1c) Our next step is to study the variance of the parameters $\beta_1$ and $\beta_2$ (assuming that we are parameterizing our function with a second-order polynomial). We will use standard linear regression and the Ridge regression.  You can now opt for either writing your own function or using _Scikit-Learn_ to find the parameters $\beta$. From your results calculate the variance of these paramaters (recall that this is equal to the diagonal elements of the matrix $(\hat{X}^T\hat{X})+\lambda\hat{I})^{-1}$). Discuss the results of these variances as functions of $\lambda$. In particular, try to link your discussion with the discussion in Hastie *et al.* and their figures 3.10 and  3.11. _Scikit-Learn_ may not provide the variance of the parameters $\beta$. This needs to be checked. With your own code you can however do so.
+def R2(y_data, y_model):
+    return 1 - np.sum((y_data - y_model) ** 2) / np.sum((y_data - np.mean(y_data)) ** 2)
+def MSE(y_data,y_model):
+    n = np.size(y_model)
+    return np.sum((y_data-y_model)**2)/n
 
-o (1d) Repeat the previous step but add now the Lasso method, see equation (3.53) of Hastie *et al.*. Discuss your results and compare with standard regression and the Ridge regression results. You can write your own code or use the functionality of _scikit-learn_.  We recommend the latter since we have not yet discussed how to solve the Lasso equations numerically. Also, you do not need to compute the variance of the parameters $\beta$ but you can extract their values and study their behavior as functions of the regularization parameter $\lambda$.
 
-o (1e) Finally, using _Scikit-Learn_ or your own code, compute also the mean square error, a risk metric corresponding to the expected value of the squared (quadratic) error defined as
+# A seed just to ensure that the random numbers are the same for every run.
+# Useful for eventual debugging.
+np.random.seed(3155)
+
+x = np.random.rand(100)
+y = 2.0+5*x*x+0.1*np.random.randn(100)
+
+# number of features p (here degree of polynomial
+p = 3
+#  The design matrix now as function of a given polynomial
+X = np.zeros((len(x),p))
+X[:,0] = 1.0
+X[:,1] = x
+X[:,2] = x*x
+# We split the data in test and training data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+scaler = StandardScaler()
+scaler.fit(X_train)
+X_train_scaled = scaler.transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# matrix inversion to find beta
+OLSbeta = np.linalg.inv(X_train.T @ X_train) @ X_train.T @ y_train
+print(OLSbeta)
+# and then make the prediction
+ytildeOLS = X_train @ OLSbeta
+print("Training R2 for OLS")
+print(R2(y_train,ytildeOLS))
+print("Training MSE for OLS")
+print(MSE(y_train,ytildeOLS))
+ypredictOLS = X_test @ OLSbeta
+print("Test R2 for OLS")
+print(R2(y_test,ypredictOLS))
+print("Test MSE OLS")
+print(MSE(y_test,ypredictOLS))
+
+# Repeat now for Ridge regression and various values of the regularization parameter
+I = np.eye(p,p)
+# Decide which values of lambda to use
+nlambdas = 20
+MSEPredict = np.zeros(nlambdas)
+MSETrain = np.zeros(nlambdas)
+lambdas = np.logspace(-4, 1, nlambdas)
+for i in range(nlambdas):
+    lmb = lambdas[i]
+    Ridgebeta = np.linalg.inv(X_train.T @ X_train+lmb*I) @ X_train.T @ y_train
+    # and then make the prediction
+    ytildeRidge = X_train @ Ridgebeta
+    ypredictRidge = X_test @ Ridgebeta
+    MSEPredict[i] = MSE(y_test,ypredictRidge)
+    MSETrain[i] = MSE(y_train,ytildeRidge)
+# Now plot the resulys
+plt.figure()
+plt.plot(np.log10(lambdas), MSETrain, label = 'MSE Ridge train')
+plt.plot(np.log10(lambdas), MSEPredict, 'r--', label = 'MSE Ridge Test')
+plt.xlabel('log10(lambda)')
+plt.ylabel('MSE')
+plt.legend()
+plt.show()
+!ec
+!esol
+!esubex
+
+!bsubex
+Repeat the above but using the functionality of _Scikit-Learn_. Compare your code with the results from _Scikit-Learn_. Remember to run with the same random numbers for generating $x$ and $y$. 
+!bsol
+To use _scikit-learn_ with Ridge, we simply need to add the relevant function _Ridge()_, as done in the code here.
+!bc pycod
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+import sklearn.linear_model as skl
+
+def R2(y_data, y_model):
+    return 1 - np.sum((y_data - y_model) ** 2) / np.sum((y_data - np.mean(y_data)) ** 2)
+def MSE(y_data,y_model):
+    n = np.size(y_model)
+    return np.sum((y_data-y_model)**2)/n
+
+
+# A seed just to ensure that the random numbers are the same for every run.
+# Useful for eventual debugging.
+np.random.seed(3155)
+
+x = np.random.rand(100)
+y = 2.0+5*x*x+0.1*np.random.randn(100)
+
+# number of features p (here degree of polynomial
+p = 3
+#  The design matrix now as function of a given polynomial
+X = np.zeros((len(x),p))
+X[:,0] = 1.0
+X[:,1] = x
+X[:,2] = x*x
+# We split the data in test and training data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+scaler = StandardScaler()
+scaler.fit(X_train)
+X_train_scaled = scaler.transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# matrix inversion to find beta
+OLSbeta = np.linalg.inv(X_train.T @ X_train) @ X_train.T @ y_train
+print(OLSbeta)
+# and then make the prediction
+ytildeOLS = X_train @ OLSbeta
+print("Training R2 for OLS")
+print(R2(y_train,ytildeOLS))
+print("Training MSE for OLS")
+print(MSE(y_train,ytildeOLS))
+ypredictOLS = X_test @ OLSbeta
+print("Test R2 for OLS")
+print(R2(y_test,ypredictOLS))
+print("Test MSE OLS")
+print(MSE(y_test,ypredictOLS))
+
+# Repeat now for Ridge regression and various values of the regularization parameter
+I = np.eye(p,p)
+# Decide which values of lambda to use
+nlambdas = 100
+MSEPredict = np.zeros(nlambdas)
+MSEPredictSKL = np.zeros(nlambdas)
+MSETrain = np.zeros(nlambdas)
+lambdas = np.logspace(-4, 0, nlambdas)
+for i in range(nlambdas):
+    lmb = lambdas[i]
+    # add ridge
+    clf_ridge = skl.Ridge(alpha=lmb).fit(X_train, y_train)
+    yridge = clf_ridge.predict(X_test)
+    Ridgebeta = np.linalg.inv(X_train.T @ X_train+lmb*I) @ X_train.T @ y_train
+    # and then make the prediction
+    ytildeRidge = X_train @ Ridgebeta
+    ypredictRidge = X_test @ Ridgebeta
+    MSEPredict[i] = MSE(y_test,ypredictRidge)
+    MSEPredictSKL[i] = MSE(y_test,yridge)
+    MSETrain[i] = MSE(y_train,ytildeRidge)
+#then plot the results
+plt.figure()
+plt.plot(np.log10(lambdas), MSETrain, label = 'MSE Ridge train')
+plt.plot(np.log10(lambdas), MSEPredict, 'r--', label = 'MSE Ridge Test')
+plt.plot(np.log10(lambdas), MSEPredictSKL, 'g--', label = 'MSE Ridge sickit-learn Test')
+plt.xlabel('log10(lambda)')
+plt.ylabel('MSE')
+plt.legend()
+plt.show()
+!ec
+!esol
+!esubex
+
+!bsubex
+Our next step is to study the variance of the parameters $\beta_1$ and $\beta_2$ (assuming that we are parameterizing our function with a second-order polynomial). We will use standard linear regression and the Ridge regression.  You can now opt for either writing your own function or using _Scikit-Learn_ to find the parameters $\beta$. From your results calculate the variance of these parameters (recall that this is equal to the diagonal elements of the matrix $(\hat{X}^T\hat{X})+\lambda\hat{I})^{-1}$). Discuss the results of these variances as functions of $\lambda$. In particular, try to link your discussion with the discussion in Hastie *et al.* and their figures 3.10 and  3.11. _Scikit-Learn_ may not provide the variance of the parameters $\beta$. This needs to be checked. With your own code you can however do so.
+!bsol
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+import sklearn.linear_model as skl
+
+def R2(y_data, y_model):
+    return 1 - np.sum((y_data - y_model) ** 2) / np.sum((y_data - np.mean(y_data)) ** 2)
+def MSE(y_data,y_model):
+    n = np.size(y_model)
+    return np.sum((y_data-y_model)**2)/n
+
+
+# A seed just to ensure that the random numbers are the same for every run.
+# Useful for eventual debugging.
+np.random.seed(3155)
+
+x = np.random.rand(100)
+y = 2.0+5*x*x+0.1*np.random.randn(100)
+
+# number of features p (here degree of polynomial
+p = 3
+#  The design matrix now as function of a given polynomial
+X = np.zeros((len(x),p))
+X[:,0] = 1.0
+X[:,1] = x
+X[:,2] = x*x
+# We split the data in test and training data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+scaler = StandardScaler()
+scaler.fit(X_train)
+X_train_scaled = scaler.transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# matrix inversion to find beta
+OLSbeta = np.linalg.inv(X_train.T @ X_train) @ X_train.T @ y_train
+print(OLSbeta)
+# The variance is given by the inverse of the matrix X^TX
+print(np.linalg.inv(X_train.T @ X_train))
+
+# Repeat now for Ridge regression and various values of the regularization parameter
+I = np.eye(p,p)
+# Decide which values of lambda to use
+nlambdas = 10
+MSEPredict = np.zeros(nlambdas)
+MSEPredictSKL = np.zeros(nlambdas)
+MSETrain = np.zeros(nlambdas)
+lambdas = np.logspace(-4, 0, nlambdas)
+for i in range(nlambdas):
+    lmb = lambdas[i]
+    Ridgebeta = np.linalg.inv(X_train.T @ X_train+lmb*I) @ X_train.T @ y_train
+    print(np.linalg.inv(X_train.T @ X_train+lmb*I))
+
+
+
+
+!esol
+!esubex
+
+!bsubex
+Repeat the previous step but add now the Lasso method, see equation (3.53) of Hastie *et al.*. Discuss your results and compare with standard regression and the Ridge regression results. You can write your own code or use the functionality of _scikit-learn_.  We recommend the latter since we have not yet discussed how to solve the Lasso equations numerically. Also, you do not need to compute the variance of the parameters $\beta$ but you can extract their values and study their behavior as functions of the regularization parameter $\lambda$.
+!bsol
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+import sklearn.linear_model as skl
+#from sklearn.linear_model import LinearRegression, Ridge, Lasso
+def R2(y_data, y_model):
+    return 1 - np.sum((y_data - y_model) ** 2) / np.sum((y_data - np.mean(y_data)) ** 2)
+def MSE(y_data,y_model):
+    n = np.size(y_model)
+    return np.sum((y_data-y_model)**2)/n
+
+
+# A seed just to ensure that the random numbers are the same for every run.
+# Useful for eventual debugging.
+np.random.seed(3155)
+
+x = np.random.rand(100)
+y = 2.0+5*x*x+0.1*np.random.randn(100)
+
+# number of features p (here degree of polynomial
+p = 3
+#  The design matrix now as function of a given polynomial
+X = np.zeros((len(x),p))
+X[:,0] = 1.0
+X[:,1] = x
+X[:,2] = x*x
+# We split the data in test and training data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+scaler = StandardScaler()
+scaler.fit(X_train)
+X_train_scaled = scaler.transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# matrix inversion to find beta
+OLSbeta = np.linalg.inv(X_train.T @ X_train) @ X_train.T @ y_train
+print(OLSbeta)
+# and then make the prediction
+ytildeOLS = X_train @ OLSbeta
+print("Training R2 for OLS")
+print(R2(y_train,ytildeOLS))
+print("Training MSE for OLS")
+print(MSE(y_train,ytildeOLS))
+ypredictOLS = X_test @ OLSbeta
+print("Test R2 for OLS")
+print(R2(y_test,ypredictOLS))
+print("Test MSE OLS")
+print(MSE(y_test,ypredictOLS))
+
+# Repeat now for Ridge regression and various values of the regularization parameter
+I = np.eye(p,p)
+# Decide which values of lambda to use
+nlambdas = 100
+MSEPredictLasso = np.zeros(nlambdas)
+MSEPredictRidge = np.zeros(nlambdas)
+lambdas = np.logspace(-4, 0, nlambdas)
+for i in range(nlambdas):
+    lmb = lambdas[i]
+    # add ridge
+    clf_ridge = skl.Ridge(alpha=lmb).fit(X_train, y_train)
+    clf_lasso = skl.Lasso(alpha=lmb).fit(X_train, y_train)
+    yridge = clf_ridge.predict(X_test)
+    ylasso = clf_lasso.predict(X_test)
+    MSEPredictLasso[i] = MSE(y_test,ylasso)
+    MSEPredictRidge[i] = MSE(y_test,yridge)
+#then plot the results
+plt.figure()
+plt.plot(np.log10(lambdas), MSEPredictRidge, 'r--', label = 'MSE Ridge Test')
+plt.plot(np.log10(lambdas), MSEPredictLasso, 'g--', label = 'MSE Lasso Test')
+plt.xlabel('log10(lambda)')
+plt.ylabel('MSE')
+plt.legend()
+plt.show()
+
+
+
+
+
+
+!esol
+!esubex
+
+!bsubex
+Finally, using _Scikit-Learn_ or your own code, compute also the mean square error, a risk metric corresponding to the expected value of the squared (quadratic) error defined as
 !bt 
 \[ MSE(\hat{y},\hat{\tilde{y}}) = \frac{1}{n}
 \sum_{i=0}^{n-1}(y_i-\tilde{y}_i)^2, 
@@ -52,9 +365,15 @@ where we have defined the mean value  of $\hat{y}$ as
 \bar{y} =  \frac{1}{n} \sum_{i=0}^{n - 1} y_i.
 \]
 !et
-Discuss these quantities as functions of the variable $\lambda$ in the Ridge and Lasso regression methods. 
+Discuss these quantities as functions of the variable $\lambda$ in the Ridge and Lasso regression methods.
 
-===== Exercise 2  =====
+!bsol
+These results can all be studied with the codes we have above. These scores are included in the codes above.
+!esol
+!esubex
+
+
+===== Exercise: Normalizing our data  =====
 
 
 A much used approach before starting to train the data is  to preprocess our
@@ -97,7 +416,7 @@ for testing. This can be done as follows with our design matrix $\bm{X}$ and dat
 # split in training and test data
 X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.2)
 !ec
-Then we can use the stadndard scale to scale our data as
+Then we can use the standard scaler to scale our data as
 !bc pycod
 scaler = StandardScaler()
 scaler.fit(X_train)
@@ -125,125 +444,100 @@ x = np.linspace(-3, 3, n).reshape(-1, 1)
 y = np.exp(-x**2) + 1.5 * np.exp(-(x-2)**2)+ np.random.normal(0, 0.1, x.shape)
 !ec
 where $y$ is the function we want to fit with a given polynomial.
-
-o (2a) Write a first code which sets up a design matrix $X$ defined by a fifth-order polynomial.  Scale your data and split it in training and test data. 
-o (2b) Perform an ordinary least squares and compute the means squared error and the $R2$ factor for the training data and the test data, with and without scaling.
-o (2c) Add now a model which allows you to make polynomials up to degree $15$.  Perform a standard OLS fitting of the training data and compute the MSE and $R2$ for the training and test data and plot both test and training data MSE and $R2$ as functions of the polynomial degree. Compare what you see with Figure 2.11 of Hastie et al. Comment your results. For which polynomial degree do you find an optimal MSE (smallest value)?
-o (2d) Repeat part (2c) but now using Ridge regressions with various hyperparameters $\lambda$. Make the same plots for the optimal $\lambda$ value for each polynomial degree. Compare these results with those from the standard OLS approach.
-
-
-
-
-
-
-===== Example of how to solve the previous exercise =====
-
+!bsubex
+Write a first code which sets up a design matrix $X$ defined by a fifth-order polynomial.  Scale your data and split it in training and test data. 
+!bsol
 !bc pycod
 import matplotlib.pyplot as plt
 import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.pipeline import make_pipeline
-from sklearn.linear_model import Ridge
-from sklearn.preprocessing import PolynomialFeatures
-from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
-
-n = 100
-# Make data set.
-x = np.linspace(-3, 3, n).reshape(-1, 1)
-y = np.exp(-x**2) + 1.5 * np.exp(-(x-2)**2)+ np.random.normal(0, 0.1, x.shape)
-X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
-
-from sklearn.preprocessing import StandardScaler
-scaler = StandardScaler()
-scaler.fit(X_train)
-X_train_scaled = scaler.transform(X_train)
-X_test_scaled = scaler.transform(X_test)
-
-
-
-# Decide which values of lambda to use
-nlambdas = 500
-lambdas = np.logspace(-3, 5, nlambdas)
-
-
-estimated_mse_sklearn = np.zeros(nlambdas)
-i = 0
-for lmb in lambdas:
-    clf_ridge = Ridge(alpha=lmb).fit(X_train_scaled, y_train)
-    yridge = clf_ridge.predict(X_test_scaled)
-    estimated_mse_sklearn[i] = mean_squared_error(y_test, yridge)
-    i += 1
-plt.figure()
-plt.plot(np.log10(lambdas), estimated_mse_sklearn, label = 'Ridge MSE')
-plt.xlabel('log10(lambda)')
-plt.ylabel('MSE')
-plt.legend()
-plt.show()
-
-!ec
-
-===== And now with OLS only and Bootstrap =====
-
-!bc pycod
-
-import matplotlib.pyplot as plt
-import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.pipeline import make_pipeline
-from sklearn.utils import resample
 from sklearn.linear_model import LinearRegression, Ridge, Lasso
 from sklearn.preprocessing import PolynomialFeatures
-from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import make_pipeline
 
-n = 100
-n_boostraps = 100
-maxdegree = 14
 
+np.random.seed(2018)
+n = 50
+maxdegree = 5
 # Make data set.
 x = np.linspace(-3, 3, n).reshape(-1, 1)
 y = np.exp(-x**2) + 1.5 * np.exp(-(x-2)**2)+ np.random.normal(0, 0.1, x.shape)
-error = np.zeros(maxdegree)
-bias = np.zeros(maxdegree)
-variance = np.zeros(maxdegree)
+TestError = np.zeros(maxdegree)
+TrainError = np.zeros(maxdegree)
 polydegree = np.zeros(maxdegree)
-
-
-# Make data set.
-x = np.linspace(-3, 3, n).reshape(-1, 1)
-y = np.exp(-x**2) + 1.5 * np.exp(-(x-2)**2)+ np.random.normal(0, 0.1, x.shape)
-X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
-
-from sklearn.preprocessing import StandardScaler
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
 scaler = StandardScaler()
 scaler.fit(X_train)
-X_train_scaled = scaler.transform(X_train)
-X_test_scaled = scaler.transform(X_test)
+x_train_scaled = scaler.transform(x_train)
+x_test_scaled = scaler.transform(x_test)
 
 for degree in range(maxdegree):
     model = make_pipeline(PolynomialFeatures(degree=degree), LinearRegression(fit_intercept=False))
-    y_pred = np.empty((y_test.shape[0], n_boostraps))
-    for i in range(n_boostraps):
-        x_, y_ = resample(X_train_scaled, y_train)
-        y_pred[:, i] = model.fit(x_, y_).predict(X_test_scaled).ravel()
-
+    clf = model.fit(x_train_scale,y_train)
+    y_fit = clf.predict(x_train_scaled)
+    y_pred = clf.predict(x_test_scaled) 
     polydegree[degree] = degree
-    error[degree] = np.mean( np.mean((y_test - y_pred)**2, axis=1, keepdims=True) )
-    bias[degree] = np.mean( (y_test - np.mean(y_pred, axis=1, keepdims=True))**2 )
-    variance[degree] = np.mean( np.var(y_pred, axis=1, keepdims=True) )
-    print('Polynomial degree:', degree)
-    print('Error:', error[degree])
-    print('Bias^2:', bias[degree])
-    print('Var:', variance[degree])
-    print('{} >= {} + {} = {}'.format(error[degree], bias[degree], variance[degree], bias[degree]+variance[degree]))
+    TestError[degree] = np.mean( np.mean((y_test - y_pred)**2) )
+    TrainError[degree] = np.mean( np.mean((y_train - y_fit)**2) )
 
-plt.plot(polydegree, error, label='Error')
-plt.plot(polydegree, bias, label='bias')
-plt.plot(polydegree, variance, label='Variance')
+plt.plot(polydegree, TestError, label='Test Error')
+plt.plot(polydegree, TrainError, label='Train Error')
 plt.legend()
 plt.show()
+!ec
 
+!esol
+!esubex
 
+!bsubex
+Perform an ordinary least squares and compute the means squared error and the $R2$ factor for the training data and the test data, with and without scaling.
+!bsol
+This requires a simple extension to the above code where you simply add a statement calling the $R2$ function included in the same code.
+!esol
+!esubex
+
+!bsubex
+Add now a model which allows you to make polynomials up to degree $15$.  Perform a standard OLS fitting of the training data and compute the MSE and $R2$ for the training and test data and plot both test and training data MSE and $R2$ as functions of the polynomial degree. Compare what you see with Figure 2.11 of Hastie et al. Comment your results. For which polynomial degree do you find an optimal MSE (smallest value)?
+!bsol
+Here you simply need to change the degree of the polynomial in the above code to $n=15$.
+!esol
+!esubex
+
+!bsubex
+Repeat part (2c) but now using Ridge regressions with various hyperparameters $\lambda$. Make the same plots for the optimal $\lambda$ value for each polynomial degree. Compare these results with those from the standard OLS approach.
+!bsol
+Here you need to add for example the same loop over the parameters $\lambda$ as you did in the first exercise, that is add
+!bc pycod
+nlambdas = 100
+MSEPredictRidge = np.zeros(nlambdas)
+lambdas = np.logspace(-4, 0, nlambdas)
+for i in range(nlambdas):
+    lmb = lambdas[i]
+    # add ridge
+    clf_ridge = skl.Ridge(alpha=lmb).fit(X_train_scaled, y_train)
 
 !ec
+The plotting functionality of the first exercise can be reused here as well.
+!esol
+!esubex
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -21,6 +21,8 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \usepackage[pdftex]{graphicx}
 
 \usepackage{fancyvrb} % packages needed for verbatim environments
+\usepackage{minted}
+\usemintedstyle{default}
 
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
@@ -101,7 +103,7 @@ Second week
 
 % --- begin date ---
 \begin{center}
-May 27, 2020
+Jul 3, 2020
 \end{center}
 % --- end date ---
 
@@ -127,7 +129,7 @@ model presented in \href{{https://physics.bu.edu/~pankajm/MLnotebooks.html}}{thi
 notebook}. This
 means that we can start using these and compare with our own results.
 
-You can also look up the \href{{https://compphysics.github.io/MachineLearningMSU-FRIB2020/doc/pub/Regression/html/Regression.html}}{Regression slides for a discussion of the Ising model} (scroll down to the end).
+You can also look up the \href{{https://compphysics.github.io/MachineLearningECT/doc/pub/Day1/html/Day1.html}}{Regression slides for a discussion of the Ising model} (scroll down to the end).
 
 Alternatively, you can replace the Ising thorughout the exercises with the nuclear binding energies. The choice is yours. Or if you have other data sets suitable for regression, feel free to use those.
 
@@ -206,7 +208,7 @@ Here is the Python code you need to generate the training data, see
 also the \href{{https://physics.bu.edu/~pankajm/ML-Notebooks/HTML/NB_CVI-linreg_ising.html}}{notebook of Mehta et
 al}.
 
-\begin{print}
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 import numpy as np
 import scipy.sparse as sp
 np.random.seed(12)
@@ -235,7 +237,7 @@ def ising_energies(states,L):
     return E
 # calculate Ising energies
 energies=ising_energies(states,L)
-\end{print}
+\end{minted}
 
 We can now recast the problem as a linear regression model using our codes from homework set 3 (exercise 2 in particular).
 The way we are going to build our model mimicks the way we could think of finding say the gravitional constant for the graviational force between two planets.
