@@ -57,11 +57,13 @@ https://nucleartalent.github.io/MachineLearningECT/doc/pub/Introduction/html/Int
 
 ### Week 2
 
-- _Monday_	Neural Networks and Deep Learning (Raghu Ramanujan, RR). Video of lecture at https://mediaspace.msu.edu/media/t/1_58a9xrbt. Video of exercise session at https://mediaspace.msu.edu/media/t/1_ulont3rg
-- _Tuesday_	From Neural Networks to Convolutional Neural Networks and how to analyze experiment (classification of events and real data)	(Michelle Kuchera, MK). Video of lecture https://mediaspace.msu.edu/media/t/1_2ysd5plh and video of exercise at https://mediaspace.msu.edu/media/t/1_watjxppf
-- _Wednesday_	 Discussion of nuclear experiments and how to analyze data, presentation of simulated data from Active-Target Time-Projection Chamber (AT-TPC)	(Daniel Bazin). Videos and teaching material https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day8/html/Day8.html. Video of actual lecture at https://mediaspace.msu.edu/media/t/1_azaquoc0. Video of analysis of data with CNNs (MK) at https://mediaspace.msu.edu/media/t/1_rozywc7h
-- _Thursday_	Generative models (MK). Video of exercise session at https://mediaspace.msu.edu/media/t/1_wpdmt7cw. Video of lecture at https://mediaspace.msu.edu/media/t/1_ayfst99b
-- _Friday_	Reinforcement Learning (RR). Future directions in machine learning and summary of course. Video of first lecture at https://mediaspace.msu.edu/media/t/1_0eiikln6. Video of second lecture at https://mediaspace.msu.edu/media/t/1_wzyabacr. 
+- _Monday_	Neural Networks and Deep Learning (Raghu Ramanujan, RR). PDF file of the presented slides at https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day6/pdf/Day6.pdf. Jupter-Notebook at https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day6/ipynb/Day6.ipynb. Video of lecture at https://mediaspace.msu.edu/media/t/1_58a9xrbt. Video of exercise session at https://mediaspace.msu.edu/media/t/1_ulont3rg
+- _Tuesday_	From Neural Networks to Convolutional Neural Networks and how to analyze experiment (classification of events and real data)	(Michelle Kuchera, MK). Jupyter-notebook of lecture at https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day7/ipynb/Day7.ipynb. Video of lecture https://mediaspace.msu.edu/media/t/1_2ysd5plh and video of exercise at https://mediaspace.msu.edu/media/t/1_watjxppf
+- _Wednesday_	 Discussion of nuclear experiments and how to analyze data, presentation of simulated data from Active-Target Time-Projection Chamber (AT-TPC)	(Daniel Bazin). Slides of lectures (PDF) at https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day8/pdf/Day8.pdf. Videos and teaching material https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day8/html/Day8.html. Video of actual lecture at https://mediaspace.msu.edu/media/t/1_azaquoc0. Video of analysis of data with CNNs (MK) at https://mediaspace.msu.edu/media/t/1_rozywc7h. Jupyter-notebook of hands-on session at https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day8/ipynb/Day8.ipynb
+- _Thursday_	Generative models (MK). Slides of lectures (PDF) at https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day9/pdf/Day9.pdf.
+Jupyter-notebook at https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day9/ipynb/Day9.ipynb.
+Video of lecture at https://mediaspace.msu.edu/media/t/1_ayfst99b. Video of exercise session at https://mediaspace.msu.edu/media/t/1_wpdmt7cw. 
+- _Friday_	Reinforcement Learning (RR). Slides of lectures (PDF) at https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day10/pdf/Day10.pdf. Future directions in machine learning and summary of course. Video of first lecture at https://mediaspace.msu.edu/media/t/1_0eiikln6. Video of second lecture at https://mediaspace.msu.edu/media/t/1_wzyabacr. 
 
 
 
