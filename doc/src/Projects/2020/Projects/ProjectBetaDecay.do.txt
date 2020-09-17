@@ -1,0 +1,8 @@
+TITLE: Analysis of $\beta$-decay Experiments
+AUTHOR: Data Analysis and Machine Learning for Nuclear Physics
+DATE:Today
+
+
+===== Introduction  =====
+
+

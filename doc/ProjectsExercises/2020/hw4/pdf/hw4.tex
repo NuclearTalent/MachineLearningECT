@@ -21,6 +21,8 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \usepackage[pdftex]{graphicx}
 
 \usepackage{fancyvrb} % packages needed for verbatim environments
+\usepackage{minted}
+\usemintedstyle{default}
 \usepackage{fancyvrb}
 
 \usepackage[T1]{fontenc}
@@ -83,7 +85,7 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
-Second week
+Summarizing the first week, a more advanced example, exercise set 4
 \end{spacing}
 }
 \end{center}
@@ -102,7 +104,7 @@ Second week
 
 % --- begin date ---
 \begin{center}
-May 29, 2020
+Jul 3, 2020
 \end{center}
 % --- end date ---
 
@@ -207,7 +209,7 @@ Here is the Python code you need to generate the training data, see
 also the \href{{https://physics.bu.edu/~pankajm/ML-Notebooks/HTML/NB_CVI-linreg_ising.html}}{notebook of Mehta et
 al}.
 
-\begin{print}
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 import numpy as np
 import scipy.sparse as sp
 np.random.seed(12)
@@ -236,7 +238,7 @@ def ising_energies(states,L):
     return E
 # calculate Ising energies
 energies=ising_energies(states,L)
-\end{print}
+\end{minted}
 
 We can now recast the problem as a linear regression model using our codes from homework set 3 (exercise 2 in particular).
 The way we are going to build our model mimicks the way we could think of finding say the gravitional constant for the graviational force between two planets.

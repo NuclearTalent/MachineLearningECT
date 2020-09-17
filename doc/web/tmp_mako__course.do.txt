@@ -1,0 +1,363 @@
+TITLE: Nuclear Talent course  on Machine Learning in Nuclear Experiment and Theory
+AUTHOR: "Daniel Bazin":"https://www.nscl.msu.edu/directory/bazin.html" at Department of Physics and Astronomy and Facility for Rare Ion Beams and National Superconducting Cyclotron Laboratory, Michigan State University, East Lansing, Michigan, USA
+AUTHOR: "Morten Hjorth-Jensen":"http://mhjgit.github.io/info/doc/web/" at Department of Physics and Astronomy and Facility for Rare Ion Beams and National Superconducting Cyclotron Laboratory, Michigan State University, East Lansing, Michigan, USA
+AUTHOR: "Michelle Kuchera":"https://www.davidson.edu/academics/physics/faculty-and-staff/michelle-kuchera" at Physics Department, Davidson College, Davidson, North Carolina, USA
+AUTHOR: "Sean Liddick":"https://www.nscl.msu.edu/directory/liddick.html" at Department of Chemistry  and Facility for Rare Ion Beams  and National Superconducting Cyclotron Laboratory, Michigan State University, East Lansing, Michigan, USA
+AUTHOR: "Raghuram Ramanujan":"https://www.davidson.edu/academics/mathematics-and-computer-science/faculty-and-staff/raghuram-ramanujan" at Department of Mathematics and Computer Science, Davidson College, Davidson, North Carolina, USA
+
+
+
+
+
+
+
+
+
+
+
+
+
+===== Monday June 22: Introduction =====
+
+
+
+ * LaTeX PDF:
+   * For printing:
+     * "Standard one-page format": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Introduction/pdf/Introduction.pdf"
+ * HTML:
+   * "Plain html": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Introduction/html/Introduction.html"
+   * "reveal.js slide style": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Introduction/html/Introduction-reveal.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Introduction/html/Introduction-bs.html"
+ * Jupyter notebook:
+   * "ipynb file": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Introduction/ipynb/Introduction.ipynb"
+
+
+===== Monday June 22: Linear Regression =====
+
+
+
+ * LaTeX PDF:
+   * For printing:
+     * "Standard one-page format": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day1/pdf/Day1.pdf"
+ * HTML:
+   * "Plain html": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day1/html/Day1.html"
+   * "reveal.js slide style": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day1/html/Day1-reveal.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day1/html/Day1-bs.html"
+ * Jupyter notebook:
+   * "ipynb file": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day1/ipynb/Day1.ipynb"
+
+
+===== Tuesday June 23: Logistic Regression and Gradient Methods =====
+
+
+
+ * LaTeX PDF:
+   * For printing:
+     * "Standard one-page format": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day2/pdf/Day2.pdf"
+ * HTML:
+   * "Plain html": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day2/html/Day2.html"
+   * "reveal.js slide style": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day2/html/Day2-reveal.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day2/html/Day2-bs.html"
+ * Jupyter notebook:
+   * "ipynb file": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day2/ipynb/Day2.ipynb"
+
+
+===== Wednesday June 24: Decision Trees, Random Forests, Bagging and Boosting =====
+
+
+
+ * LaTeX PDF:
+   * For printing:
+     * "Standard one-page format": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day3/pdf/Day3.pdf"
+ * HTML:
+   * "Plain html": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day3/html/Day3.html"
+   * "reveal.js slide style": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day3/html/Day3-reveal.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day3/html/Day3-bs.html"
+ * Jupyter notebook:
+   * "ipynb file": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day3/ipynb/Day3.ipynb"
+
+
+===== Thursday June 25: Introduction to Neural Networks and Deep Learning =====
+
+
+
+ * LaTeX PDF:
+   * For printing:
+     * "Standard one-page format": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day4/pdf/Day4.pdf"
+ * HTML:
+   * "Plain html": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day4/html/Day4.html"
+   * "reveal.js slide style": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day4/html/Day4-reveal.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day4/html/Day4-bs.html"
+ * Jupyter notebook:
+   * "ipynb file": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day4/ipynb/Day4.ipynb"
+
+
+===== Friday June 26: Beta-decay experiments, how to analyze various events, with hands-on examples  =====
+
+
+
+ * LaTeX PDF:
+   * For printing:
+     * "Standard one-page format": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day5/pdf/Day5.pdf"
+ * HTML:
+   * "Plain html": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day5/html/Day5.html"
+   * "reveal.js slide style": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day5/html/Day5-reveal.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day5/html/Day5-bs.html"
+ * Jupyter notebook:
+   * "ipynb file": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day5/ipynb/Day5.ipynb"
+
+
+===== Monday June 29: Deep Learning and Neural networks =====
+
+
+
+ * LaTeX PDF:
+   * For printing:
+     * "Standard one-page format": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day6/pdf/Day6.pdf"
+ * HTML:
+   * "Plain html": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day6/html/Day6.html"
+   * "reveal.js slide style": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day6/html/Day6-reveal.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day6/html/Day6-bs.html"
+ * Jupyter notebook:
+   * "ipynb file": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day6/ipynb/Day6.ipynb"
+
+
+===== Tuesday June 30: From Neural Networks to Convolutional Neural Networks =====
+
+
+
+ * LaTeX PDF:
+   * For printing:
+     * "Standard one-page format": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day7/pdf/Day7.pdf"
+ * HTML:
+   * "Plain html": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day7/html/Day7.html"
+   * "reveal.js slide style": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day7/html/Day7-reveal.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day7/html/Day7-bs.html"
+ * Jupyter notebook:
+   * "ipynb file": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day7/ipynb/Day7.ipynb"
+
+
+===== Wednesday July 1: Discussion of nuclear experiments and how to analyze data, presentation of simulated data from Active-Target Time-Projection Chamber =====
+
+
+
+ * LaTeX PDF:
+   * For printing:
+     * "Standard one-page format": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day8/pdf/Day8.pdf"
+ * HTML:
+   * "Plain html": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day8/html/Day8.html"
+   * "reveal.js slide style": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day8/html/Day8-reveal.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day8/html/Day8-bs.html"
+ * Jupyter notebook:
+   * "ipynb file": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day8/ipynb/Day8.ipynb"
+
+
+===== Thursday July 2: Generative models =====
+
+
+
+ * LaTeX PDF:
+   * For printing:
+     * "Standard one-page format": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day9/pdf/Day9.pdf"
+ * HTML:
+   * "Plain html": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day9/html/Day9.html"
+   * "reveal.js slide style": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day9/html/Day9-reveal.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day9/html/Day9-bs.html"
+ * Jupyter notebook:
+   * "ipynb file": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day9/ipynb/Day9.ipynb"
+
+
+===== Friday July 3: Reinforcement Learning. Future directions in machine learning and summary of course. =====
+
+
+
+ * LaTeX PDF:
+   * For printing:
+     * "Standard one-page format": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day10/pdf/Day10.pdf"
+ * HTML:
+   * "Plain html": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day10/html/Day10.html"
+   * "reveal.js slide style": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day10/html/Day10-reveal.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day10/html/Day10-bs.html"
+ * Jupyter notebook:
+   * "ipynb file": "https://nucleartalent.github.io/MachineLearningECT/doc/pub/Day10/ipynb/Day10.ipynb"
+
+
+
+
+!split
+===== Projects and Exercises =====
+
+
+=== First exercise set (Day 1 and Day 2) ===
+ * HTML:
+   * "Plain html":"http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw1/html/hw1.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw1/html/hw1-bs.html"
+   * "Jupyter notebook": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw1/ipynb/hw1.ipynb"
+
+=== Second exercise set (Day 2 and Day 3) ===
+ * HTML:
+   * "Plain html":"http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw2/html/hw2.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw2/html/hw2-bs.html"
+   * "Jupyter notebook": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw2/ipynb/hw2.ipynb"
+
+
+=== Third exercise set (Day 3) ===
+ * HTML:
+   * "Plain html":"http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw3/html/hw3.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw3/html/hw3-bs.html"
+   * "Jupyter notebook": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw3/ipynb/hw3.ipynb"
+
+=== Fourth exercise set (Day 4 and Day 5) ===
+ * HTML:
+   * "Plain html":"http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw4/html/hw4.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw4/html/hw4-bs.html"
+   * "Jupyter notebook": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw4/ipynb/hw4.ipynb"
+
+=== Fifth exercise set (Day 5 and second week) ===
+ * HTML:
+   * "Plain html":"http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw5/html/hw5.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw5/html/hw5-bs.html"
+   * "Jupyter notebook": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/hw5/ipynb/hw5.ipynb"
+
+
+=== Project on analysis of $\beta$-decay experiments ===
+ * HTML:
+   * "Plain html":"http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectBetaDecay/html/ProjectBetaDecay.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectBetaDecay/html/ProjectBetaDecay-bs.html"
+   * "Jupyter notebook": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectBetaDecay/ipynb/ProjectBetaDecay.ipynb"
+
+
+=== Project on analysis of AT  experiments ===
+ * HTML:
+   * "Plain html":"http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectAT/html/ProjectAT.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectAT/html/ProjectAT-bs.html"
+   * "Jupyter notebook": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectAT/ipynb/ProjectAT.ipynb"
+
+=== Theory project  ===
+ * HTML:
+   * "Plain html":"http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectTheory/html/ProjectTheory.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectTheory/html/ProjectTheory-bs.html"
+   * "Jupyter notebook": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectTheory/ipynb/ProjectTheory.ipynb"
+
+=== Project on analysis of own data ===
+ * HTML:
+   * "Plain html":"http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectOwnData/html/ProjectOwnData.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectOwnData/html/ProjectOwnData-bs.html"
+   * "Jupyter notebook": "http://nucleartalent.github.io/MachineLearningECT/doc/ProjectsExercises/2020/ProjectOwnData/ipynb/ProjectOwnData.ipynb"
+
+
+
+
+
+
+
+
+Note that the remaining days we will present and discuss how to read and handle data from experiments. The videos should give you all relevant details as well as the notebooks.
+
+
+
+=== Recommended textbook ===
+!bblock
+* "Aurelien Geron, Hands‑On Machine Learning with Scikit‑Learn and TensorFlow, O'Reilly":"https://github.com/CompPhysics/MachineLearning/blob/master/doc/Textbooks/TensorflowML.pdf"
+!eblock
+
+!bblock General learning book on statistical analysis:
+* Trevor Hastie, Robert Tibshirani, Jerome H. Friedman, The Elements of Statistical Learning, Springer
+!eblock
+
+!bblock General Machine Learning Books:
+* Kevin Murphy, Machine Learning: A Probabilistic Perspective, MIT Press
+* Christopher M. Bishop, Pattern Recognition and Machine Learning, Springer
+* David J.C. MacKay, Information Theory, Inference, and Learning Algorithms, Cambridge University Press
+* David Barber, Bayesian Reasoning and Machine Learning, Cambridge University Press 
+!eblock
+
+
+!bblock Excellent Videos on TensorFlow and other Machine Learning topics
+* URL:"https://www.youtube.com/watch?v=HlBGYxO8RaU&list=PLQY2H8rRoyvzuJw20FG82Lgm2SZjTdIXU" 
+!eblock
+
+
+
+
+===== Why a course on Machine Learning for Nuclear Physics? =====
+
+
+Probability theory and
+statistical methods play a central role in science. Nowadays we are
+surrounded by huge amounts of data. For example, there are about one
+trillion web pages; more than one hour of video is uploaded to YouTube
+every second, amounting to 10 years of content every day; the genomes
+of 1000s of people, each of which has a length of more than a billion
+base pairs, have been sequenced by various labs and so on. This deluge
+of data calls for automated methods of data analysis, which is exactly
+what machine learning provides. The purpose of this Nuclear Talent
+course is to provide an introduction to the core concepts and tools of
+machine learning in a manner easily understood and intuitive to
+physicists and nuclear physicists in particular. We will start with
+some of the basic methods from supervised learning and statistical
+data analysis, such as various regression methods before we move into
+deep learning methods for both supervised and unsupervised learning,
+with an emphasis on the analysis of nuclear physics experiments and
+theoretical nuclear physics. The students will work on hands-on daily
+examples as well as projects than can result in final
+credits. Exercises and projects will be provided and the aim is to
+give the participants an overview on how machine learning can be used
+to analyze and study nuclear physics problems (experiment and theory).
+The major scope is to give the participants a deeper understanding on
+what Machine learning and Data Analysis are and how they can be used
+to analyze data from nuclear physics experiments and perform
+theoretical calculations of nuclear many-body systems.
+
+
+
+The goals of the Nuclear Talent course on Machine Learning and Data
+Analysis are to give the participants a deeper understanding and
+critical view of several widely popular Machine Learning algorithms,
+covering both supervised and unsupervised learning. The learning
+outcomes involve an understanding of the following central methods:
+
+* Basic concepts of machine learning and data analysis and statistical concepts like expectation values, variance, covariance, correlation functions and errors;
+* Estimation of errors using cross-validation, blocking, bootstrapping and jackknife methods;
+* Optimization of functions
+* Linear Regression and Logistic Regression;
+* Dimensionality reductions, from PCA to clustering
+* Boltzmann machines;
+* Neural networks;
+* Decisions trees and Random Forests
+* Support Vector Machines
+* Convolutional Neural Networks and deep learning
+* Recurrent Neural Networks and Autoenconders
+
+and their applications to nuclear physics problems. We are targeting
+an audience of graduate students (both Master of Science and PhD) as
+well as post-doctoral researchers in nuclear experiment and theory.
+
+The teaching teams consists of both theorists and experimentalists. We
+believe such a mix is important as it gives the students a better
+understanding on how data are obtained, and what are the limitations
+and possibilities in understanding and interpreting the experimental
+information.
+
+!split 
+===== Introduction to the Talent Courses =====
+
+A recently established initiative, "Training in Advanced Low Energy Nuclear Theory":"http://www.nucleartalent.org",  
+aims at providing an advanced and comprehensive training to graduate students
+and young researchers in low-energy nuclear theory. The initiative
+is a multinational network between several European and Northern
+American institutions and aims at developing a broad curriculum that
+will provide the platform for a cutting-edge theory for understanding
+nuclei and nuclear reactions. These objectives will be met by
+offering series of lectures, commissioned from experienced teachers
+in nuclear theory. The educational material generated under this
+program will be collected in the form of WEB-based courses,
+textbooks, and a variety of modern educational resources. No such
+all-encompassing material is available at present; its development
+will allow dispersed university groups to profit from the best
+expertise available.
+
+
+
+
+

@@ -42,13 +42,11 @@ Automatically generated HTML file from DocOnce source
 <!-- tocinfo
 {'highest level': 2,
  'sections': [('Day three exercises', 2, None, '___sec0'),
-              ('Exercise 1', 3, None, '___sec1'),
-              ('Exercise 2', 2, None, '___sec2'),
-              ('Example of how to solve the previous exercise',
+              ('Exercise 1: Adding Ridge and Lasso Regression',
                2,
                None,
-               '___sec3'),
-              ('And now with OLS only and Bootstrap', 2, None, '___sec4')]}
+               '___sec1'),
+              ('Exercise 2: Normalizing our data', 2, None, '___sec2')]}
 end of tocinfo -->
 
 <body>
@@ -86,11 +84,9 @@ MathJax.Hub.Config({
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
         <ul class="dropdown-menu">
-     <!-- navigation toc: --> <li><a href="#___sec0" style="font-size: 80%;"><b>Day three exercises</b></a></li>
-     <!-- navigation toc: --> <li><a href="#___sec1" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Exercise 1</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec2" style="font-size: 80%;"><b>Exercise 2</b></a></li>
-     <!-- navigation toc: --> <li><a href="#___sec3" style="font-size: 80%;"><b>Example of how to solve the previous exercise</b></a></li>
-     <!-- navigation toc: --> <li><a href="#___sec4" style="font-size: 80%;"><b>And now with OLS only and Bootstrap</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec0" style="font-size: 80%;">Day three exercises</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec1" style="font-size: 80%;">Exercise 1: Adding Ridge and Lasso Regression</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec2" style="font-size: 80%;">Exercise 2: Normalizing our data</a></li>
 
         </ul>
       </li>
@@ -123,14 +119,17 @@ MathJax.Hub.Config({
 
 <br>
 <p>
-<center><h4>Jun 25, 2020</h4></center> <!-- date -->
+<center><h4>Jul 2, 2020</h4></center> <!-- date -->
 <br>
 <p>
 </div> <!-- end jumbotron -->
 
 <h2 id="___sec0" class="anchor">Day three exercises </h2>
 
-<h3 id="___sec1" class="anchor">Exercise 1  </h3>
+<p>
+<!-- --- begin exercise --- -->
+
+<h2 id="___sec1" class="anchor">Exercise 1: Adding Ridge and Lasso Regression </h2>
 
 <p>
 This exercise is a continuation of exercise 3 from exercise set 1. We will
@@ -150,17 +149,412 @@ The following simple Python instructions define our \( x \) and \( y \) values (
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>x <span style="color: #666666">=</span> np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>rand(<span style="color: #666666">100</span>,<span style="color: #666666">1</span>)
-y <span style="color: #666666">=</span> <span style="color: #666666">5*</span>x<span style="color: #666666">*</span>x<span style="color: #666666">+0.1*</span>np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>randn(<span style="color: #666666">100</span>,<span style="color: #666666">1</span>)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>x <span style="color: #666666">=</span> np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>rand(<span style="color: #666666">100</span>)
+y <span style="color: #666666">=</span> <span style="color: #666666">2.0+5*</span>x<span style="color: #666666">*</span>x<span style="color: #666666">+0.1*</span>np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>randn(<span style="color: #666666">100</span>)
 </pre></div>
-<ol>
-<li> (1a) Write your own code for the Ridge method (see chapter 3.4 of Hastie <em>et al.</em>, equations (3.43) and (3.44)) and compute the parametrization for different values of \( \lambda \). Compare and analyze your results with those from exercise 2. Study the dependence on \( \lambda \) while also varying the strength of the noise in your expression for \( y(x) \).</li> 
-<li> (1b) Repeat the above but using the functionality of <b>Scikit-Learn</b>. Compare your code with the results from <b>Scikit-Learn</b>. Remember to run with the same random numbers for generating \( x \) and \( y \).</li> 
-<li> (1c) Our next step is to study the variance of the parameters \( \beta_1 \) and \( \beta_2 \) (assuming that we are parameterizing our function with a second-order polynomial). We will use standard linear regression and the Ridge regression.  You can now opt for either writing your own function or using <b>Scikit-Learn</b> to find the parameters \( \beta \). From your results calculate the variance of these paramaters (recall that this is equal to the diagonal elements of the matrix \( (\hat{X}^T\hat{X})+\lambda\hat{I})^{-1} \)). Discuss the results of these variances as functions of \( \lambda \). In particular, try to link your discussion with the discussion in Hastie <em>et al.</em> and their figures 3.10 and  3.11. <b>Scikit-Learn</b> may not provide the variance of the parameters \( \beta \). This needs to be checked. With your own code you can however do so.</li>
-<li> (1d) Repeat the previous step but add now the Lasso method, see equation (3.53) of Hastie <em>et al.</em>. Discuss your results and compare with standard regression and the Ridge regression results. You can write your own code or use the functionality of <b>scikit-learn</b>.  We recommend the latter since we have not yet discussed how to solve the Lasso equations numerically. Also, you do not need to compute the variance of the parameters \( \beta \) but you can extract their values and study their behavior as functions of the regularization parameter \( \lambda \).</li>
-<li> (1e) Finally, using <b>Scikit-Learn</b> or your own code, compute also the mean square error, a risk metric corresponding to the expected value of the squared (quadratic) error defined as</li>
-</ol>
+<p>
+<b>a)</b>
+Write your own code for the Ridge method (see chapter 3.4 of Hastie <em>et al.</em>, equations (3.43) and (3.44)) and compute the parametrization for different values of \( \lambda \). Compare and analyze your results with those from exercise 3. Study the dependence on \( \lambda \) while also varying the strength of the noise in your expression for \( y(x) \).
 
+<p>
+<!-- --- begin solution of exercise --- -->
+
+<p>
+<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_1_1" style="font-size: 80%;"></a>
+<a href="#exer_1_1" data-toggle="collapse">
+<b>Solution.</b>
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="exer_1_1">
+
+<p>
+The code here allows you to perform your own Ridge calculation and perform calculations for various values of the regularization parameter \( \lambda \). This program can easily be extended upon.
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">os</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">pandas</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">pd</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">matplotlib.pyplot</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">plt</span>
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.model_selection</span> <span style="color: #008000; font-weight: bold">import</span> train_test_split
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.preprocessing</span> <span style="color: #008000; font-weight: bold">import</span> StandardScaler
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">R2</span>(y_data, y_model):
+    <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">1</span> <span style="color: #666666">-</span> np<span style="color: #666666">.</span>sum((y_data <span style="color: #666666">-</span> y_model) <span style="color: #666666">**</span> <span style="color: #666666">2</span>) <span style="color: #666666">/</span> np<span style="color: #666666">.</span>sum((y_data <span style="color: #666666">-</span> np<span style="color: #666666">.</span>mean(y_data)) <span style="color: #666666">**</span> <span style="color: #666666">2</span>)
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">MSE</span>(y_data,y_model):
+    n <span style="color: #666666">=</span> np<span style="color: #666666">.</span>size(y_model)
+    <span style="color: #008000; font-weight: bold">return</span> np<span style="color: #666666">.</span>sum((y_data<span style="color: #666666">-</span>y_model)<span style="color: #666666">**2</span>)<span style="color: #666666">/</span>n
+
+
+<span style="color: #408080; font-style: italic"># A seed just to ensure that the random numbers are the same for every run.</span>
+<span style="color: #408080; font-style: italic"># Useful for eventual debugging.</span>
+np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>seed(<span style="color: #666666">3155</span>)
+
+x <span style="color: #666666">=</span> np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>rand(<span style="color: #666666">100</span>)
+y <span style="color: #666666">=</span> <span style="color: #666666">2.0+5*</span>x<span style="color: #666666">*</span>x<span style="color: #666666">+0.1*</span>np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>randn(<span style="color: #666666">100</span>)
+
+<span style="color: #408080; font-style: italic"># number of features p (here degree of polynomial</span>
+p <span style="color: #666666">=</span> <span style="color: #666666">3</span>
+<span style="color: #408080; font-style: italic">#  The design matrix now as function of a given polynomial</span>
+X <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros((<span style="color: #008000">len</span>(x),p))
+X[:,<span style="color: #666666">0</span>] <span style="color: #666666">=</span> <span style="color: #666666">1.0</span>
+X[:,<span style="color: #666666">1</span>] <span style="color: #666666">=</span> x
+X[:,<span style="color: #666666">2</span>] <span style="color: #666666">=</span> x<span style="color: #666666">*</span>x
+<span style="color: #408080; font-style: italic"># We split the data in test and training data</span>
+X_train, X_test, y_train, y_test <span style="color: #666666">=</span> train_test_split(X, y, test_size<span style="color: #666666">=0.2</span>)
+scaler <span style="color: #666666">=</span> StandardScaler()
+scaler<span style="color: #666666">.</span>fit(X_train)
+X_train_scaled <span style="color: #666666">=</span> scaler<span style="color: #666666">.</span>transform(X_train)
+X_test_scaled <span style="color: #666666">=</span> scaler<span style="color: #666666">.</span>transform(X_test)
+
+<span style="color: #408080; font-style: italic"># matrix inversion to find beta</span>
+OLSbeta <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linalg<span style="color: #666666">.</span>inv(X_train<span style="color: #666666">.</span>T @ X_train) @ X_train<span style="color: #666666">.</span>T @ y_train
+<span style="color: #008000; font-weight: bold">print</span>(OLSbeta)
+<span style="color: #408080; font-style: italic"># and then make the prediction</span>
+ytildeOLS <span style="color: #666666">=</span> X_train @ OLSbeta
+<span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;Training R2 for OLS&quot;</span>)
+<span style="color: #008000; font-weight: bold">print</span>(R2(y_train,ytildeOLS))
+<span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;Training MSE for OLS&quot;</span>)
+<span style="color: #008000; font-weight: bold">print</span>(MSE(y_train,ytildeOLS))
+ypredictOLS <span style="color: #666666">=</span> X_test @ OLSbeta
+<span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;Test R2 for OLS&quot;</span>)
+<span style="color: #008000; font-weight: bold">print</span>(R2(y_test,ypredictOLS))
+<span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;Test MSE OLS&quot;</span>)
+<span style="color: #008000; font-weight: bold">print</span>(MSE(y_test,ypredictOLS))
+
+<span style="color: #408080; font-style: italic"># Repeat now for Ridge regression and various values of the regularization parameter</span>
+I <span style="color: #666666">=</span> np<span style="color: #666666">.</span>eye(p,p)
+<span style="color: #408080; font-style: italic"># Decide which values of lambda to use</span>
+nlambdas <span style="color: #666666">=</span> <span style="color: #666666">20</span>
+MSEPredict <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros(nlambdas)
+MSETrain <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros(nlambdas)
+lambdas <span style="color: #666666">=</span> np<span style="color: #666666">.</span>logspace(<span style="color: #666666">-4</span>, <span style="color: #666666">1</span>, nlambdas)
+<span style="color: #008000; font-weight: bold">for</span> i <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(nlambdas):
+    lmb <span style="color: #666666">=</span> lambdas[i]
+    Ridgebeta <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linalg<span style="color: #666666">.</span>inv(X_train<span style="color: #666666">.</span>T @ X_train<span style="color: #666666">+</span>lmb<span style="color: #666666">*</span>I) @ X_train<span style="color: #666666">.</span>T @ y_train
+    <span style="color: #408080; font-style: italic"># and then make the prediction</span>
+    ytildeRidge <span style="color: #666666">=</span> X_train @ Ridgebeta
+    ypredictRidge <span style="color: #666666">=</span> X_test @ Ridgebeta
+    MSEPredict[i] <span style="color: #666666">=</span> MSE(y_test,ypredictRidge)
+    MSETrain[i] <span style="color: #666666">=</span> MSE(y_train,ytildeRidge)
+<span style="color: #408080; font-style: italic"># Now plot the resulys</span>
+plt<span style="color: #666666">.</span>figure()
+plt<span style="color: #666666">.</span>plot(np<span style="color: #666666">.</span>log10(lambdas), MSETrain, label <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;MSE Ridge train&#39;</span>)
+plt<span style="color: #666666">.</span>plot(np<span style="color: #666666">.</span>log10(lambdas), MSEPredict, <span style="color: #BA2121">&#39;r--&#39;</span>, label <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;MSE Ridge Test&#39;</span>)
+plt<span style="color: #666666">.</span>xlabel(<span style="color: #BA2121">&#39;log10(lambda)&#39;</span>)
+plt<span style="color: #666666">.</span>ylabel(<span style="color: #BA2121">&#39;MSE&#39;</span>)
+plt<span style="color: #666666">.</span>legend()
+plt<span style="color: #666666">.</span>show()
+</pre></div>
+<p>
+</div></p>
+</div>
+</p>
+
+<p>
+<!-- --- end solution of exercise --- -->
+
+<p>
+<b>b)</b>
+Repeat the above but using the functionality of <b>Scikit-Learn</b>. Compare your code with the results from <b>Scikit-Learn</b>. Remember to run with the same random numbers for generating \( x \) and \( y \).
+
+<p>
+<!-- --- begin solution of exercise --- -->
+
+<p>
+<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_1_2" style="font-size: 80%;"></a>
+<a href="#exer_1_2" data-toggle="collapse">
+<b>Solution.</b>
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="exer_1_2">
+
+<p>
+To use <b>scikit-learn</b> with Ridge, we simply need to add the relevant function <b>Ridge()</b>, as done in the code here.
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">pandas</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">pd</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">matplotlib.pyplot</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">plt</span>
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.model_selection</span> <span style="color: #008000; font-weight: bold">import</span> train_test_split
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.preprocessing</span> <span style="color: #008000; font-weight: bold">import</span> StandardScaler
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">sklearn.linear_model</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">skl</span>
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">R2</span>(y_data, y_model):
+    <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">1</span> <span style="color: #666666">-</span> np<span style="color: #666666">.</span>sum((y_data <span style="color: #666666">-</span> y_model) <span style="color: #666666">**</span> <span style="color: #666666">2</span>) <span style="color: #666666">/</span> np<span style="color: #666666">.</span>sum((y_data <span style="color: #666666">-</span> np<span style="color: #666666">.</span>mean(y_data)) <span style="color: #666666">**</span> <span style="color: #666666">2</span>)
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">MSE</span>(y_data,y_model):
+    n <span style="color: #666666">=</span> np<span style="color: #666666">.</span>size(y_model)
+    <span style="color: #008000; font-weight: bold">return</span> np<span style="color: #666666">.</span>sum((y_data<span style="color: #666666">-</span>y_model)<span style="color: #666666">**2</span>)<span style="color: #666666">/</span>n
+
+
+<span style="color: #408080; font-style: italic"># A seed just to ensure that the random numbers are the same for every run.</span>
+<span style="color: #408080; font-style: italic"># Useful for eventual debugging.</span>
+np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>seed(<span style="color: #666666">3155</span>)
+
+x <span style="color: #666666">=</span> np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>rand(<span style="color: #666666">100</span>)
+y <span style="color: #666666">=</span> <span style="color: #666666">2.0+5*</span>x<span style="color: #666666">*</span>x<span style="color: #666666">+0.1*</span>np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>randn(<span style="color: #666666">100</span>)
+
+<span style="color: #408080; font-style: italic"># number of features p (here degree of polynomial</span>
+p <span style="color: #666666">=</span> <span style="color: #666666">3</span>
+<span style="color: #408080; font-style: italic">#  The design matrix now as function of a given polynomial</span>
+X <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros((<span style="color: #008000">len</span>(x),p))
+X[:,<span style="color: #666666">0</span>] <span style="color: #666666">=</span> <span style="color: #666666">1.0</span>
+X[:,<span style="color: #666666">1</span>] <span style="color: #666666">=</span> x
+X[:,<span style="color: #666666">2</span>] <span style="color: #666666">=</span> x<span style="color: #666666">*</span>x
+<span style="color: #408080; font-style: italic"># We split the data in test and training data</span>
+X_train, X_test, y_train, y_test <span style="color: #666666">=</span> train_test_split(X, y, test_size<span style="color: #666666">=0.2</span>)
+scaler <span style="color: #666666">=</span> StandardScaler()
+scaler<span style="color: #666666">.</span>fit(X_train)
+X_train_scaled <span style="color: #666666">=</span> scaler<span style="color: #666666">.</span>transform(X_train)
+X_test_scaled <span style="color: #666666">=</span> scaler<span style="color: #666666">.</span>transform(X_test)
+
+<span style="color: #408080; font-style: italic"># matrix inversion to find beta</span>
+OLSbeta <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linalg<span style="color: #666666">.</span>inv(X_train<span style="color: #666666">.</span>T @ X_train) @ X_train<span style="color: #666666">.</span>T @ y_train
+<span style="color: #008000; font-weight: bold">print</span>(OLSbeta)
+<span style="color: #408080; font-style: italic"># and then make the prediction</span>
+ytildeOLS <span style="color: #666666">=</span> X_train @ OLSbeta
+<span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;Training R2 for OLS&quot;</span>)
+<span style="color: #008000; font-weight: bold">print</span>(R2(y_train,ytildeOLS))
+<span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;Training MSE for OLS&quot;</span>)
+<span style="color: #008000; font-weight: bold">print</span>(MSE(y_train,ytildeOLS))
+ypredictOLS <span style="color: #666666">=</span> X_test @ OLSbeta
+<span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;Test R2 for OLS&quot;</span>)
+<span style="color: #008000; font-weight: bold">print</span>(R2(y_test,ypredictOLS))
+<span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;Test MSE OLS&quot;</span>)
+<span style="color: #008000; font-weight: bold">print</span>(MSE(y_test,ypredictOLS))
+
+<span style="color: #408080; font-style: italic"># Repeat now for Ridge regression and various values of the regularization parameter</span>
+I <span style="color: #666666">=</span> np<span style="color: #666666">.</span>eye(p,p)
+<span style="color: #408080; font-style: italic"># Decide which values of lambda to use</span>
+nlambdas <span style="color: #666666">=</span> <span style="color: #666666">100</span>
+MSEPredict <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros(nlambdas)
+MSEPredictSKL <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros(nlambdas)
+MSETrain <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros(nlambdas)
+lambdas <span style="color: #666666">=</span> np<span style="color: #666666">.</span>logspace(<span style="color: #666666">-4</span>, <span style="color: #666666">0</span>, nlambdas)
+<span style="color: #008000; font-weight: bold">for</span> i <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(nlambdas):
+    lmb <span style="color: #666666">=</span> lambdas[i]
+    <span style="color: #408080; font-style: italic"># add ridge</span>
+    clf_ridge <span style="color: #666666">=</span> skl<span style="color: #666666">.</span>Ridge(alpha<span style="color: #666666">=</span>lmb)<span style="color: #666666">.</span>fit(X_train, y_train)
+    yridge <span style="color: #666666">=</span> clf_ridge<span style="color: #666666">.</span>predict(X_test)
+    Ridgebeta <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linalg<span style="color: #666666">.</span>inv(X_train<span style="color: #666666">.</span>T @ X_train<span style="color: #666666">+</span>lmb<span style="color: #666666">*</span>I) @ X_train<span style="color: #666666">.</span>T @ y_train
+    <span style="color: #408080; font-style: italic"># and then make the prediction</span>
+    ytildeRidge <span style="color: #666666">=</span> X_train @ Ridgebeta
+    ypredictRidge <span style="color: #666666">=</span> X_test @ Ridgebeta
+    MSEPredict[i] <span style="color: #666666">=</span> MSE(y_test,ypredictRidge)
+    MSEPredictSKL[i] <span style="color: #666666">=</span> MSE(y_test,yridge)
+    MSETrain[i] <span style="color: #666666">=</span> MSE(y_train,ytildeRidge)
+<span style="color: #408080; font-style: italic">#then plot the results</span>
+plt<span style="color: #666666">.</span>figure()
+plt<span style="color: #666666">.</span>plot(np<span style="color: #666666">.</span>log10(lambdas), MSETrain, label <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;MSE Ridge train&#39;</span>)
+plt<span style="color: #666666">.</span>plot(np<span style="color: #666666">.</span>log10(lambdas), MSEPredict, <span style="color: #BA2121">&#39;r--&#39;</span>, label <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;MSE Ridge Test&#39;</span>)
+plt<span style="color: #666666">.</span>plot(np<span style="color: #666666">.</span>log10(lambdas), MSEPredictSKL, <span style="color: #BA2121">&#39;g--&#39;</span>, label <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;MSE Ridge sickit-learn Test&#39;</span>)
+plt<span style="color: #666666">.</span>xlabel(<span style="color: #BA2121">&#39;log10(lambda)&#39;</span>)
+plt<span style="color: #666666">.</span>ylabel(<span style="color: #BA2121">&#39;MSE&#39;</span>)
+plt<span style="color: #666666">.</span>legend()
+plt<span style="color: #666666">.</span>show()
+</pre></div>
+<p>
+</div></p>
+</div>
+</p>
+
+<p>
+<!-- --- end solution of exercise --- -->
+
+<p>
+<b>c)</b>
+Our next step is to study the variance of the parameters \( \beta_1 \) and \( \beta_2 \) (assuming that we are parameterizing our function with a second-order polynomial). We will use standard linear regression and the Ridge regression.  You can now opt for either writing your own function or using <b>Scikit-Learn</b> to find the parameters \( \beta \). From your results calculate the variance of these parameters (recall that this is equal to the diagonal elements of the matrix \( (\hat{X}^T\hat{X})+\lambda\hat{I})^{-1} \)). Discuss the results of these variances as functions of \( \lambda \). In particular, try to link your discussion with the discussion in Hastie <em>et al.</em> and their figures 3.10 and  3.11. <b>Scikit-Learn</b> may not provide the variance of the parameters \( \beta \). This needs to be checked. With your own code you can however do so.
+
+<p>
+<!-- --- begin solution of exercise --- -->
+
+<p>
+<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_1_3" style="font-size: 80%;"></a>
+<a href="#exer_1_3" data-toggle="collapse">
+<b>Solution.</b>
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="exer_1_3">
+
+<p>
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+import sklearn.linear_model as skl
+
+<p>
+def R2(y_data, y_model):
+    return 1 - np.sum((y_data - y_model) ** 2) / np.sum((y_data - np.mean(y_data)) ** 2)
+def MSE(y_data,y_model):
+    n = np.size(y_model)
+    return np.sum((y_data-y_model)**2)/n
+
+<p>
+<!-- A seed just to ensure that the random numbers are the same for every run. -->
+<!-- Useful for eventual debugging. -->
+np.random.seed(3155)
+
+<p>
+x = np.random.rand(100)
+y = 2.0+5*x*x+0.1*np.random.randn(100)
+
+<p>
+<!-- number of features p (here degree of polynomial -->
+p = 3
+<!-- The design matrix now as function of a given polynomial -->
+X = np.zeros((len(x),p))
+X[:,0] = 1.0
+X[:,1] = x
+X[:,2] = x*x
+<!-- We split the data in test and training data -->
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+scaler = StandardScaler()
+scaler.fit(X_train)
+X_train_scaled = scaler.transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+<p>
+<!-- matrix inversion to find beta -->
+OLSbeta = np.linalg.inv(X_train.T @ X_train) @ X_train.T @ y_train
+print(OLSbeta)
+<!-- The variance is given by the inverse of the matrix X^TX -->
+print(np.linalg.inv(X_train.T @ X_train))
+
+<p>
+<!-- Repeat now for Ridge regression and various values of the regularization parameter -->
+I = np.eye(p,p)
+<!-- Decide which values of lambda to use -->
+nlambdas = 10
+MSEPredict = np.zeros(nlambdas)
+MSEPredictSKL = np.zeros(nlambdas)
+MSETrain = np.zeros(nlambdas)
+lambdas = np.logspace(-4, 0, nlambdas)
+for i in range(nlambdas):
+    lmb = lambdas[i]
+    Ridgebeta = np.linalg.inv(X_train.T @ X_train+lmb*I) @ X_train.T @ y_train
+    print(np.linalg.inv(X_train.T @ X_train+lmb*I))
+
+<p>
+</div></p>
+</div>
+</p>
+
+<p>
+<!-- --- end solution of exercise --- -->
+
+<p>
+<b>d)</b>
+Repeat the previous step but add now the Lasso method, see equation (3.53) of Hastie <em>et al.</em>. Discuss your results and compare with standard regression and the Ridge regression results. You can write your own code or use the functionality of <b>scikit-learn</b>.  We recommend the latter since we have not yet discussed how to solve the Lasso equations numerically. Also, you do not need to compute the variance of the parameters \( \beta \) but you can extract their values and study their behavior as functions of the regularization parameter \( \lambda \).
+
+<p>
+<!-- --- begin solution of exercise --- -->
+
+<p>
+<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_1_4" style="font-size: 80%;"></a>
+<a href="#exer_1_4" data-toggle="collapse">
+<b>Solution.</b>
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="exer_1_4">
+
+<p>
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+import sklearn.linear_model as skl
+<!-- from sklearn.linear_model import LinearRegression, Ridge, Lasso -->
+def R2(y_data, y_model):
+    return 1 - np.sum((y_data - y_model) ** 2) / np.sum((y_data - np.mean(y_data)) ** 2)
+def MSE(y_data,y_model):
+    n = np.size(y_model)
+    return np.sum((y_data-y_model)**2)/n
+
+<p>
+<!-- A seed just to ensure that the random numbers are the same for every run. -->
+<!-- Useful for eventual debugging. -->
+np.random.seed(3155)
+
+<p>
+x = np.random.rand(100)
+y = 2.0+5*x*x+0.1*np.random.randn(100)
+
+<p>
+<!-- number of features p (here degree of polynomial -->
+p = 3
+<!-- The design matrix now as function of a given polynomial -->
+X = np.zeros((len(x),p))
+X[:,0] = 1.0
+X[:,1] = x
+X[:,2] = x*x
+<!-- We split the data in test and training data -->
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+scaler = StandardScaler()
+scaler.fit(X_train)
+X_train_scaled = scaler.transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+<p>
+<!-- matrix inversion to find beta -->
+OLSbeta = np.linalg.inv(X_train.T @ X_train) @ X_train.T @ y_train
+print(OLSbeta)
+<!-- and then make the prediction -->
+ytildeOLS = X_train @ OLSbeta
+print("Training R2 for OLS")
+print(R2(y_train,ytildeOLS))
+print("Training MSE for OLS")
+print(MSE(y_train,ytildeOLS))
+ypredictOLS = X_test @ OLSbeta
+print("Test R2 for OLS")
+print(R2(y_test,ypredictOLS))
+print("Test MSE OLS")
+print(MSE(y_test,ypredictOLS))
+
+<p>
+<!-- Repeat now for Ridge regression and various values of the regularization parameter -->
+I = np.eye(p,p)
+<!-- Decide which values of lambda to use -->
+nlambdas = 100
+MSEPredictLasso = np.zeros(nlambdas)
+MSEPredictRidge = np.zeros(nlambdas)
+lambdas = np.logspace(-4, 0, nlambdas)
+for i in range(nlambdas):
+    lmb = lambdas[i]
+    # add ridge
+    clf_ridge = skl.Ridge(alpha=lmb).fit(X_train, y_train)
+    clf_lasso = skl.Lasso(alpha=lmb).fit(X_train, y_train)
+    yridge = clf_ridge.predict(X_test)
+    ylasso = clf_lasso.predict(X_test)
+    MSEPredictLasso[i] = MSE(y_test,ylasso)
+    MSEPredictRidge[i] = MSE(y_test,yridge)
+<!-- then plot the results -->
+plt.figure()
+plt.plot(np.log10(lambdas), MSEPredictRidge, 'r--', label = 'MSE Ridge Test')
+plt.plot(np.log10(lambdas), MSEPredictLasso, 'g--', label = 'MSE Lasso Test')
+plt.xlabel('log10(lambda)')
+plt.ylabel('MSE')
+plt.legend()
+plt.show()
+
+<p>
+</div></p>
+</div>
+</p>
+
+<p>
+<!-- --- end solution of exercise --- -->
+
+<p>
+<b>e)</b>
+Finally, using <b>Scikit-Learn</b> or your own code, compute also the mean square error, a risk metric corresponding to the expected value of the squared (quadratic) error defined as
 $$ MSE(\hat{y},\hat{\tilde{y}}) = \frac{1}{n}
 \sum_{i=0}^{n-1}(y_i-\tilde{y}_i)^2, 
 $$
@@ -178,7 +572,36 @@ $$
 
 Discuss these quantities as functions of the variable \( \lambda \) in the Ridge and Lasso regression methods.
 
-<h2 id="___sec2" class="anchor">Exercise 2  </h2>
+<p>
+<!-- --- begin solution of exercise --- -->
+
+<p>
+<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_1_5" style="font-size: 80%;"></a>
+<a href="#exer_1_5" data-toggle="collapse">
+<b>Solution.</b>
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="exer_1_5">
+
+<p>
+These results can all be studied with the codes we have above. These scores are included in the codes above.
+
+<p>
+</div></p>
+</div>
+</p>
+
+<p>
+<!-- --- end solution of exercise --- -->
+
+<p>
+<!-- --- end exercise --- -->
+
+<p>
+<!-- --- begin exercise --- -->
+
+<h2 id="___sec2" class="anchor">Exercise 2: Normalizing our data </h2>
 
 <p>
 A much used approach before starting to train the data is  to preprocess our
@@ -226,7 +649,7 @@ for testing. This can be done as follows with our design matrix \( \boldsymbol{X
 X_train, X_test, y_train, y_test <span style="color: #666666">=</span> train_test_split(X,y,test_size<span style="color: #666666">=0.2</span>)
 </pre></div>
 <p>
-Then we can use the stadndard scale to scale our data as
+Then we can use the standard scaler to scale our data as
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
@@ -260,122 +683,166 @@ y <span style="color: #666666">=</span> np<span style="color: #666666">.</span>e
 <p>
 where \( y \) is the function we want to fit with a given polynomial.
 
-<ol>
-<li> (2a) Write a first code which sets up a design matrix \( X \) defined by a fifth-order polynomial.  Scale your data and split it in training and test data.</li> 
-<li> (2b) Perform an ordinary least squares and compute the means squared error and the \( R2 \) factor for the training data and the test data, with and without scaling.</li>
-<li> (2c) Add now a model which allows you to make polynomials up to degree \( 15 \).  Perform a standard OLS fitting of the training data and compute the MSE and \( R2 \) for the training and test data and plot both test and training data MSE and \( R2 \) as functions of the polynomial degree. Compare what you see with Figure 2.11 of Hastie et al. Comment your results. For which polynomial degree do you find an optimal MSE (smallest value)?</li>
-<li> (2d) Repeat part (2c) but now using Ridge regressions with various hyperparameters \( \lambda \). Make the same plots for the optimal \( \lambda \) value for each polynomial degree. Compare these results with those from the standard OLS approach.</li>
-</ol>
+<p>
+<b>a)</b>
+Write a first code which sets up a design matrix \( X \) defined by a fifth-order polynomial.  Scale your data and split it in training and test data.
 
-<h2 id="___sec3" class="anchor">Example of how to solve the previous exercise </h2>
+<p>
+<!-- --- begin solution of exercise --- -->
+
+<p>
+<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_2_1" style="font-size: 80%;"></a>
+<a href="#exer_2_1" data-toggle="collapse">
+<b>Solution.</b>
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="exer_2_1">
 
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">matplotlib.pyplot</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">plt</span>
 <span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
-<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.model_selection</span> <span style="color: #008000; font-weight: bold">import</span> train_test_split
-<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.pipeline</span> <span style="color: #008000; font-weight: bold">import</span> make_pipeline
-<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.linear_model</span> <span style="color: #008000; font-weight: bold">import</span> Ridge
-<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.preprocessing</span> <span style="color: #008000; font-weight: bold">import</span> PolynomialFeatures
-<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.metrics</span> <span style="color: #008000; font-weight: bold">import</span> mean_squared_error, r2_score, mean_absolute_error
-
-n <span style="color: #666666">=</span> <span style="color: #666666">100</span>
-<span style="color: #408080; font-style: italic"># Make data set.</span>
-x <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linspace(<span style="color: #666666">-3</span>, <span style="color: #666666">3</span>, n)<span style="color: #666666">.</span>reshape(<span style="color: #666666">-1</span>, <span style="color: #666666">1</span>)
-y <span style="color: #666666">=</span> np<span style="color: #666666">.</span>exp(<span style="color: #666666">-</span>x<span style="color: #666666">**2</span>) <span style="color: #666666">+</span> <span style="color: #666666">1.5</span> <span style="color: #666666">*</span> np<span style="color: #666666">.</span>exp(<span style="color: #666666">-</span>(x<span style="color: #666666">-2</span>)<span style="color: #666666">**2</span>)<span style="color: #666666">+</span> np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>normal(<span style="color: #666666">0</span>, <span style="color: #666666">0.1</span>, x<span style="color: #666666">.</span>shape)
-X_train, X_test, y_train, y_test <span style="color: #666666">=</span> train_test_split(x, y, test_size<span style="color: #666666">=0.2</span>)
-
-<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.preprocessing</span> <span style="color: #008000; font-weight: bold">import</span> StandardScaler
-scaler <span style="color: #666666">=</span> StandardScaler()
-scaler<span style="color: #666666">.</span>fit(X_train)
-X_train_scaled <span style="color: #666666">=</span> scaler<span style="color: #666666">.</span>transform(X_train)
-X_test_scaled <span style="color: #666666">=</span> scaler<span style="color: #666666">.</span>transform(X_test)
-
-
-
-<span style="color: #408080; font-style: italic"># Decide which values of lambda to use</span>
-nlambdas <span style="color: #666666">=</span> <span style="color: #666666">500</span>
-lambdas <span style="color: #666666">=</span> np<span style="color: #666666">.</span>logspace(<span style="color: #666666">-3</span>, <span style="color: #666666">5</span>, nlambdas)
-
-
-estimated_mse_sklearn <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros(nlambdas)
-i <span style="color: #666666">=</span> <span style="color: #666666">0</span>
-<span style="color: #008000; font-weight: bold">for</span> lmb <span style="color: #AA22FF; font-weight: bold">in</span> lambdas:
-    clf_ridge <span style="color: #666666">=</span> Ridge(alpha<span style="color: #666666">=</span>lmb)<span style="color: #666666">.</span>fit(X_train_scaled, y_train)
-    yridge <span style="color: #666666">=</span> clf_ridge<span style="color: #666666">.</span>predict(X_test_scaled)
-    estimated_mse_sklearn[i] <span style="color: #666666">=</span> mean_squared_error(y_test, yridge)
-    i <span style="color: #666666">+=</span> <span style="color: #666666">1</span>
-plt<span style="color: #666666">.</span>figure()
-plt<span style="color: #666666">.</span>plot(np<span style="color: #666666">.</span>log10(lambdas), estimated_mse_sklearn, label <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;Ridge MSE&#39;</span>)
-plt<span style="color: #666666">.</span>xlabel(<span style="color: #BA2121">&#39;log10(lambda)&#39;</span>)
-plt<span style="color: #666666">.</span>ylabel(<span style="color: #BA2121">&#39;MSE&#39;</span>)
-plt<span style="color: #666666">.</span>legend()
-plt<span style="color: #666666">.</span>show()
-</pre></div>
-
-<h2 id="___sec4" class="anchor">And now with OLS only and Bootstrap </h2>
-
-<p>
-
-<!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">matplotlib.pyplot</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">plt</span>
-<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
-<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.model_selection</span> <span style="color: #008000; font-weight: bold">import</span> train_test_split
-<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.pipeline</span> <span style="color: #008000; font-weight: bold">import</span> make_pipeline
-<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.utils</span> <span style="color: #008000; font-weight: bold">import</span> resample
 <span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.linear_model</span> <span style="color: #008000; font-weight: bold">import</span> LinearRegression, Ridge, Lasso
 <span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.preprocessing</span> <span style="color: #008000; font-weight: bold">import</span> PolynomialFeatures
-<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.metrics</span> <span style="color: #008000; font-weight: bold">import</span> mean_squared_error, r2_score, mean_absolute_error
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.model_selection</span> <span style="color: #008000; font-weight: bold">import</span> train_test_split
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.pipeline</span> <span style="color: #008000; font-weight: bold">import</span> make_pipeline
 
-n <span style="color: #666666">=</span> <span style="color: #666666">100</span>
-n_boostraps <span style="color: #666666">=</span> <span style="color: #666666">100</span>
-maxdegree <span style="color: #666666">=</span> <span style="color: #666666">14</span>
 
+np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>seed(<span style="color: #666666">2018</span>)
+n <span style="color: #666666">=</span> <span style="color: #666666">50</span>
+maxdegree <span style="color: #666666">=</span> <span style="color: #666666">5</span>
 <span style="color: #408080; font-style: italic"># Make data set.</span>
 x <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linspace(<span style="color: #666666">-3</span>, <span style="color: #666666">3</span>, n)<span style="color: #666666">.</span>reshape(<span style="color: #666666">-1</span>, <span style="color: #666666">1</span>)
 y <span style="color: #666666">=</span> np<span style="color: #666666">.</span>exp(<span style="color: #666666">-</span>x<span style="color: #666666">**2</span>) <span style="color: #666666">+</span> <span style="color: #666666">1.5</span> <span style="color: #666666">*</span> np<span style="color: #666666">.</span>exp(<span style="color: #666666">-</span>(x<span style="color: #666666">-2</span>)<span style="color: #666666">**2</span>)<span style="color: #666666">+</span> np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>normal(<span style="color: #666666">0</span>, <span style="color: #666666">0.1</span>, x<span style="color: #666666">.</span>shape)
-error <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros(maxdegree)
-bias <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros(maxdegree)
-variance <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros(maxdegree)
+TestError <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros(maxdegree)
+TrainError <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros(maxdegree)
 polydegree <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros(maxdegree)
-
-
-<span style="color: #408080; font-style: italic"># Make data set.</span>
-x <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linspace(<span style="color: #666666">-3</span>, <span style="color: #666666">3</span>, n)<span style="color: #666666">.</span>reshape(<span style="color: #666666">-1</span>, <span style="color: #666666">1</span>)
-y <span style="color: #666666">=</span> np<span style="color: #666666">.</span>exp(<span style="color: #666666">-</span>x<span style="color: #666666">**2</span>) <span style="color: #666666">+</span> <span style="color: #666666">1.5</span> <span style="color: #666666">*</span> np<span style="color: #666666">.</span>exp(<span style="color: #666666">-</span>(x<span style="color: #666666">-2</span>)<span style="color: #666666">**2</span>)<span style="color: #666666">+</span> np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>normal(<span style="color: #666666">0</span>, <span style="color: #666666">0.1</span>, x<span style="color: #666666">.</span>shape)
-X_train, X_test, y_train, y_test <span style="color: #666666">=</span> train_test_split(x, y, test_size<span style="color: #666666">=0.2</span>)
-
-<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sklearn.preprocessing</span> <span style="color: #008000; font-weight: bold">import</span> StandardScaler
+x_train, x_test, y_train, y_test <span style="color: #666666">=</span> train_test_split(x, y, test_size<span style="color: #666666">=0.2</span>)
 scaler <span style="color: #666666">=</span> StandardScaler()
 scaler<span style="color: #666666">.</span>fit(X_train)
-X_train_scaled <span style="color: #666666">=</span> scaler<span style="color: #666666">.</span>transform(X_train)
-X_test_scaled <span style="color: #666666">=</span> scaler<span style="color: #666666">.</span>transform(X_test)
+x_train_scaled <span style="color: #666666">=</span> scaler<span style="color: #666666">.</span>transform(x_train)
+x_test_scaled <span style="color: #666666">=</span> scaler<span style="color: #666666">.</span>transform(x_test)
 
 <span style="color: #008000; font-weight: bold">for</span> degree <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(maxdegree):
     model <span style="color: #666666">=</span> make_pipeline(PolynomialFeatures(degree<span style="color: #666666">=</span>degree), LinearRegression(fit_intercept<span style="color: #666666">=</span><span style="color: #008000">False</span>))
-    y_pred <span style="color: #666666">=</span> np<span style="color: #666666">.</span>empty((y_test<span style="color: #666666">.</span>shape[<span style="color: #666666">0</span>], n_boostraps))
-    <span style="color: #008000; font-weight: bold">for</span> i <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(n_boostraps):
-        x_, y_ <span style="color: #666666">=</span> resample(X_train_scaled, y_train)
-        y_pred[:, i] <span style="color: #666666">=</span> model<span style="color: #666666">.</span>fit(x_, y_)<span style="color: #666666">.</span>predict(X_test_scaled)<span style="color: #666666">.</span>ravel()
-
+    clf <span style="color: #666666">=</span> model<span style="color: #666666">.</span>fit(x_train_scale,y_train)
+    y_fit <span style="color: #666666">=</span> clf<span style="color: #666666">.</span>predict(x_train_scaled)
+    y_pred <span style="color: #666666">=</span> clf<span style="color: #666666">.</span>predict(x_test_scaled) 
     polydegree[degree] <span style="color: #666666">=</span> degree
-    error[degree] <span style="color: #666666">=</span> np<span style="color: #666666">.</span>mean( np<span style="color: #666666">.</span>mean((y_test <span style="color: #666666">-</span> y_pred)<span style="color: #666666">**2</span>, axis<span style="color: #666666">=1</span>, keepdims<span style="color: #666666">=</span><span style="color: #008000">True</span>) )
-    bias[degree] <span style="color: #666666">=</span> np<span style="color: #666666">.</span>mean( (y_test <span style="color: #666666">-</span> np<span style="color: #666666">.</span>mean(y_pred, axis<span style="color: #666666">=1</span>, keepdims<span style="color: #666666">=</span><span style="color: #008000">True</span>))<span style="color: #666666">**2</span> )
-    variance[degree] <span style="color: #666666">=</span> np<span style="color: #666666">.</span>mean( np<span style="color: #666666">.</span>var(y_pred, axis<span style="color: #666666">=1</span>, keepdims<span style="color: #666666">=</span><span style="color: #008000">True</span>) )
-    <span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&#39;Polynomial degree:&#39;</span>, degree)
-    <span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&#39;Error:&#39;</span>, error[degree])
-    <span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&#39;Bias^2:&#39;</span>, bias[degree])
-    <span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&#39;Var:&#39;</span>, variance[degree])
-    <span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&#39;{} &gt;= {} + {} = {}&#39;</span><span style="color: #666666">.</span>format(error[degree], bias[degree], variance[degree], bias[degree]<span style="color: #666666">+</span>variance[degree]))
+    TestError[degree] <span style="color: #666666">=</span> np<span style="color: #666666">.</span>mean( np<span style="color: #666666">.</span>mean((y_test <span style="color: #666666">-</span> y_pred)<span style="color: #666666">**2</span>) )
+    TrainError[degree] <span style="color: #666666">=</span> np<span style="color: #666666">.</span>mean( np<span style="color: #666666">.</span>mean((y_train <span style="color: #666666">-</span> y_fit)<span style="color: #666666">**2</span>) )
 
-plt<span style="color: #666666">.</span>plot(polydegree, error, label<span style="color: #666666">=</span><span style="color: #BA2121">&#39;Error&#39;</span>)
-plt<span style="color: #666666">.</span>plot(polydegree, bias, label<span style="color: #666666">=</span><span style="color: #BA2121">&#39;bias&#39;</span>)
-plt<span style="color: #666666">.</span>plot(polydegree, variance, label<span style="color: #666666">=</span><span style="color: #BA2121">&#39;Variance&#39;</span>)
+plt<span style="color: #666666">.</span>plot(polydegree, TestError, label<span style="color: #666666">=</span><span style="color: #BA2121">&#39;Test Error&#39;</span>)
+plt<span style="color: #666666">.</span>plot(polydegree, TrainError, label<span style="color: #666666">=</span><span style="color: #BA2121">&#39;Train Error&#39;</span>)
 plt<span style="color: #666666">.</span>legend()
 plt<span style="color: #666666">.</span>show()
 </pre></div>
 <p>
+</div></p>
+</div>
+</p>
+
+<p>
+<!-- --- end solution of exercise --- -->
+
+<p>
+<b>b)</b>
+Perform an ordinary least squares and compute the means squared error and the \( R2 \) factor for the training data and the test data, with and without scaling.
+
+<p>
+<!-- --- begin solution of exercise --- -->
+
+<p>
+<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_2_2" style="font-size: 80%;"></a>
+<a href="#exer_2_2" data-toggle="collapse">
+<b>Solution.</b>
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="exer_2_2">
+
+<p>
+This requires a simple extension to the above code where you simply add a statement calling the \( R2 \) function included in the same code.
+
+<p>
+</div></p>
+</div>
+</p>
+
+<p>
+<!-- --- end solution of exercise --- -->
+
+<p>
+<b>c)</b>
+Add now a model which allows you to make polynomials up to degree \( 15 \).  Perform a standard OLS fitting of the training data and compute the MSE and \( R2 \) for the training and test data and plot both test and training data MSE and \( R2 \) as functions of the polynomial degree. Compare what you see with Figure 2.11 of Hastie et al. Comment your results. For which polynomial degree do you find an optimal MSE (smallest value)?
+
+<p>
+<!-- --- begin solution of exercise --- -->
+
+<p>
+<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_2_3" style="font-size: 80%;"></a>
+<a href="#exer_2_3" data-toggle="collapse">
+<b>Solution.</b>
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="exer_2_3">
+
+<p>
+Here you simply need to change the degree of the polynomial in the above code to \( n=15 \).
+
+<p>
+</div></p>
+</div>
+</p>
+
+<p>
+<!-- --- end solution of exercise --- -->
+
+<p>
+<b>d)</b>
+Repeat part (2c) but now using Ridge regressions with various hyperparameters \( \lambda \). Make the same plots for the optimal \( \lambda \) value for each polynomial degree. Compare these results with those from the standard OLS approach.
+
+<p>
+<!-- --- begin solution of exercise --- -->
+
+<p>
+<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_2_4" style="font-size: 80%;"></a>
+<a href="#exer_2_4" data-toggle="collapse">
+<b>Solution.</b>
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="exer_2_4">
+
+<p>
+Here you need to add for example the same loop over the parameters \( \lambda \) as you did in the first exercise, that is add
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>nlambdas <span style="color: #666666">=</span> <span style="color: #666666">100</span>
+MSEPredictRidge <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros(nlambdas)
+lambdas <span style="color: #666666">=</span> np<span style="color: #666666">.</span>logspace(<span style="color: #666666">-4</span>, <span style="color: #666666">0</span>, nlambdas)
+<span style="color: #008000; font-weight: bold">for</span> i <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(nlambdas):
+    lmb <span style="color: #666666">=</span> lambdas[i]
+    <span style="color: #408080; font-style: italic"># add ridge</span>
+    clf_ridge <span style="color: #666666">=</span> skl<span style="color: #666666">.</span>Ridge(alpha<span style="color: #666666">=</span>lmb)<span style="color: #666666">.</span>fit(X_train_scaled, y_train)
+</pre></div>
+<p>
+The plotting functionality of the first exercise can be reused here as well.
+
+<p>
+</div></p>
+</div>
+</p>
+
+<p>
+<!-- --- end solution of exercise --- -->
+
+<p>
+<!-- --- end exercise --- -->
 
 <p>
 <!-- navigation buttons at the bottom of the page -->

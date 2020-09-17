@@ -1,4 +1,4 @@
-TITLE: Second week
+TITLE: Summarizing the first week, a more advanced example, exercise set 4
 AUTHOR: Data Analysis and Machine Learning
 DATE:Today
 

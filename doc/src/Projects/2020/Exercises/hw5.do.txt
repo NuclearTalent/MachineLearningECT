@@ -22,7 +22,7 @@ model presented in "this article is accompanied by its jupyter
 notebook":"https://physics.bu.edu/~pankajm/MLnotebooks.html". This
 means that we can start using these and compare with our own results.
 
-You can also look up the "Regression slides for a discussion of the Ising model":"https://compphysics.github.io/MachineLearningMSU-FRIB2020/doc/pub/Regression/html/Regression.html" (scroll down to the end).
+You can also look up the "Regression slides for a discussion of the Ising model":"https://compphysics.github.io/MachineLearningECT/doc/pub/Day1/html/Day1.html" (scroll down to the end).
 
 Alternatively, you can replace the Ising thorughout the exercises with the nuclear binding energies. The choice is yours. Or if you have other data sets suitable for regression, feel free to use those.
 

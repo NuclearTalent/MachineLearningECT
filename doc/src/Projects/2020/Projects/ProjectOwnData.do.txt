@@ -1,0 +1,6 @@
+TITLE: Analysis of Own Data sets
+AUTHOR: Data Analysis and Machine Learning for Nuclear Physics
+DATE:Today
+
+===== Introduction =====
+

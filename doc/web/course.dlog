@@ -1,0 +1,141 @@
+running mako on course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+output in course.html
+running mako on course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+output in course.html
+running mako on course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+output in course.html
+running mako on course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+output in course.html
+running mako on course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+output in course.html
+running mako on course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+output in course.html
+running mako on course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+output in course.html
+running mako on course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+output in course.html
+running mako on course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+ERROR: 8 !bblock do not match 9 !eblock directives
+
+
+Two !eblock after each other!
+
+!eblock
+
+
+
+===== Why a course on Machine Learning for Nuclear Physics? =====
+
+
+Probability theory and
+statistical methods play a central role in science. Nowadays we are
+surrounded by huge amounts of data. For example, there are about one
+trillion web pages; more than one hour of video is uploaded to YouTube
+every second, amounting to 10 years of content every day; the genomes
+of 1000s of people, each of which has a length of more than a billion
+base pairs, have been sequenced by various labs and so on. This deluge
+of data calls for automated methods of data analysis, which is exactly
+what machine learning provides. The purpose of this Nuclear Talent
+course is to provide an introduction to the core concepts and tools of
+machine learning in a manner easily understood and intuitive to
+physicists and nuclear physicists in particular. We will start with
+some of the basic methods from supervised learning and statistical
+data analysis, such as various regression methods before we move into
+deep learning methods for both supervised and unsupervised learning,
+with an emphasis on the analysis of nuclear physics experiments and
+theoretical nuclear physics. The students will work on hands-on daily
+examples as well as projects than can result in final
+credits. Exercises and projects will be provided and the aim is to
+give the participants an overview on how machine learning can be used
+to analyze and study nuclear physics problems (experiment and theory).
+The major scope is to give the participants a deeper understanding on
+what Machine learning and Data Analysis are and how they can be used
+to analyze data from nuclear physics experiments and perform
+theoretical calculations of nuclear many-body systems.
+
+
+
+The goals of the Nuclear Talent course on Machine Learning and Data
+Analysis are to give the participants a deeper understanding and
+critical view of several widely popular Machine Learning algorithms,
+covering both supervised and unsupervised learning. The learning
+outcomes involve an understanding of the following central methods:
+
+* Basic concepts of machine learning and data analysis and statistical concepts like expectation values, variance, covariance, correlation functions and errors;
+* Estimation of errors using cross-validation, blocking, bootstrapping and jackknife methods;
+* Optimization of functions
+* Linear Regression and Logistic Regression;
+* Dimensionality reductions, from PCA to clustering
+* Boltzmann machines;
+* Neural networks;
+* Decisions trees and Random Forests
+* Support Vector Machines
+* Convolutional Neural Networks and deep learning
+* Recurrent Neural Networks and Autoenconders
+
+and their applications to nuclear physics problems. We are targeting
+an audience of graduate students (both Master of Science and PhD) as
+well as post-doctoral researchers in nuclear experiment and theory.
+
+The teaching teams consists of both theorists and experimentalists. We
+believe such a mix is important as it gives the students a better
+understanding on how data are obtained, and what are the limitations
+and possibilities in understanding and interpreting the experimental
+information.
+
+
+!eblock
+running mako on course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+output in course.html
+running mako on course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+output in course.html
+running mako on course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+output in course.html
+running mako on course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+output in course.html
+running mako on course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+output in course.html
+running mako on course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+output in course.html
+running mako on course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+output in course.html
+running mako on course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+output in course.html
+running mako on course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+output in course.html
+running mako on course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+output in course.html
+running mako on course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+output in course.html
+running mako on course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+output in course.html
+running mako on course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+output in course.html
+running mako on course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+output in course.html
+running mako on course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+output in course.html
