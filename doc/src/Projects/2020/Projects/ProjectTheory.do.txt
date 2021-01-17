@@ -1,525 +1,393 @@
-TITLE: First and second days: Exercise set 1
+TITLE: Theory Project
 AUTHOR: Data Analysis and Machine Learning for Nuclear Physics
 DATE:Today
 
-===== Day one and two  exercises =====
+===== Introduction =====
 
 
-===== Exercise: Getting started  =====
 
-The first exercise here is of a mere technical art. We want you to have 
-* git as a version control software and to establish a user account on a provider like GitHub. Other providers like GitLab etc are equally fine. 
-* Install various Python packages
 
-We will make extensive use of Python as programming language and its
-myriad of available libraries.  You will find
-IPython/Jupyter notebooks invaluable in your work.  You can run _R_
-codes in the Jupyter/IPython notebooks, with the immediate benefit of
-visualizing your data. You can also use compiled languages like C++,
-Rust, Fortran etc if you prefer. The focus in these lectures will be
-on Python.
+The main aim of this project is to study both classification and
+regression problems, starting with the regression algorithms studied
+in homework set 3 (exercise 2 in particular).
+We will include logistic regresion for classification
+problems and neural network with _tensorflow_ (feel free however to write your own code) for studying
+both regression and classification problems.
 
-If you have Python installed (we recommend Python3) and you feel
-pretty familiar with installing different packages, we recommend that
-you install the following Python packages via _pip_ as 
+We will use the so-called Ising model for  our training data and will
+focus on supervised training. We will follow closely the recent
+article of "Mehta et al, arXiv
+1803.08823":"https://arxiv.org/abs/1803.08823". This article stands
+out as an excellent review on machine learning (ML) algorithms.
+The added benefit is that each figure and
+model presented in "this article is accompanied by its jupyter
+notebook":"https://physics.bu.edu/~pankajm/MLnotebooks.html". This
+means that we can start using these and compare with our own results.
+They provide also the data set for the regression and classification
+analysis that we will explore.  In this sense, with their available
+notebooks, it makes life easier since we can compare our own codes
+with their codes.
 
-o pip install numpy scipy matplotlib ipython scikit-learn sympy pandas pillow 
+You can also look up the "Regression slides for a discussion of the Ising model":"https://compphysics.github.io/MLErasmus/doc/pub/Regression/html/Regression.html" (scroll down to the end).
 
-For _Tensorflow_, we recommend following the instructions in the text of 
-"Aurelien Geron, Hands‑On Machine Learning with Scikit‑Learn and TensorFlow, O'Reilly":"http://shop.oreilly.com/product/0636920052289.do"
 
-We will come back to _tensorflow_ later. 
 
+With the abovementioned configurations we will determine, using first
+various regression methods, the value of the coupling constant for the
+energy of the one-dimensional Ising model. Thereafter, we will use the
+two-dimensional data, but now computed at different temperatures, in
+order to classify the phase of the Ising model. Below the critical
+temperature, the system will be in a so-called ferromagnetic
+phase. Close to the critical temperature, the final magnetization
+becomes smaller and smaller in absolute value while above the critical
+temperature, the net magnetization is zero.  This classification case,
+that is the two-dimensional Ising model, will be studied using
+logistic regression and deep neural networks.
+We will mainly use _scikit-learn_ or _tensorflow_ or other Python packages such as _keras_ or other.
+If you feel for it, 
+you can also develop your  own logistic regression code for the classification of the phases
+(this is a binary model) and your multilayer perceptron code for the
+classification and regression case. This is however not required.
+
+
+
+Feel free to use the notebooks to benchmark your code.  
+
+
+=== Part a): Producing the data for the one-dimensional Ising model ===
+
+
+
+The model we will employ in our studies is the so-called "Ising
+model":"https://en.wikipedia.org/wiki/Ising_model".  Together with
+models like the "Potts
+model":"https://en.wikipedia.org/wiki/Potts_model" and similar
+so-called lattice models, the Ising model has been widely studied in
+mathematics (in statistics in particular), physics, "life
+science":"https://journals.aps.org/pre/abstract/10.1103/PhysRevE.93.062402",
+chemistry and even in the "social sciences in order to model social
+behavior":"https://www.springer.com/gp/book/9781461420316". It is a
+simple binary value system where the variables of the model (spins often in
+physics) can take two values only, for example $\pm 1$ or $0$ and $1$.
+The system exhibits a phase transition in two or higher dimensions and
+the first person to find the analytical expressions for various
+expectation values was the Norwegian chemist "Lars
+Onsager":"https://en.wikipedia.org/wiki/Lars_Onsager" (Nobel prize in
+chemistry) after a tour de force mathematics exercise.
+
+In our discussions here we will stay with a physicist's approach and
+call the variables for spin. You could replace this with any other
+type of binary variables, ranging from a two political parties to blue
+and red spheres.  In its simplest form we define the energy of the
+system as
+
+!bt
+\begin{equation*}
+  E=-J\sum_{<kl>}^{N}s_ks_l,
+\end{equation*}
+!et
+with  $s_k=\pm 1$, $N$ is the total number of spins,
+$J$ is a coupling constant expressing the strength of the interaction
+between neighboring spins.
+
+The symbol $<kl>$ indicates that we sum over nearest
+neighbors only.
+Notice that for $J>0$ it is energetically favorable for neighboring spins
+to be aligned. This feature leads to, at low enough temperatures,
+a cooperative phenomenon called spontaneous magnetization. That is,
+through interactions between nearest neighbors, a given magnetic
+moment can influence the alignment of spins  that are separated
+from the given spin by a macroscopic distance. These long range correlations
+between spins are associated with a long-range order in which
+the lattice has a net magnetization in the absence of a magnetic field.
+
+
+
+We start by considering the one-dimensional Ising model with nearest neighbor interactions. This model does not exhibit any phase transition.
+
+Consider the 1D Ising model with nearest-neighbor interactions 
+
+!bt
+\begin{equation*}
+  E[\hat{s}]=-J\sum_{j=1}^{N}s_{j}s_{j+1},
+\end{equation*}
+!et
+
+on a chain of length $N$ with so-called periodic boundary conditions and $S_j=\pm 1$ Ising spin variables.
+In one dimension, this model has no phase transition at finite temperature.
+
+In the Python code below we generate, with a coupling coefficient set to $J=1$, a large number of spin configurations say $10000$ as shown in the code below.
+It means that our data will be a set of $i=1\ldots n$ points of the form
+$\{(E[\boldsymbol{s}^i],\boldsymbol{s}^i)\}$.
+Our task is to find the value of $J$ from the data set using linear regression.
+
+Here is the Python code you need to generate the training data, see
+also the "notebook of Mehta et
+al":"https://physics.bu.edu/~pankajm/ML-Notebooks/HTML/NB_CVI-linreg_ising.html".
+
+!bc pycod
+import numpy as np
+import scipy.sparse as sp
+np.random.seed(12)
+
+import warnings
+#Comment this to turn on warnings
+warnings.filterwarnings('ignore')
+
+### define Ising model aprams
+# system size
+L=40
+
+# create 10000 random Ising states
+states=np.random.choice([-1, 1], size=(10000,L))
+
+def ising_energies(states,L):
+    """
+    This function calculates the energies of the states in the nn Ising Hamiltonian
+    """
+    J=np.zeros((L,L),)
+    for i in range(L):
+        J[i,(i+1)%L]-=1.0
+    # compute energies
+    E = np.einsum('...i,ij,...j->...',states,J,states)
+
+    return E
+# calculate Ising energies
+energies=ising_energies(states,L)
+!ec
+
+We can now recast the problem as a linear regression model using our codes from homework set 3 (exercise 2 in particular).
+The way we are going to build our model mimicks the way we could think of finding say the gravitional constant for the graviational force between two planets.
+In the absence of any prior knowledge, one sensible choice is the all-to-all Ising model
+
+!bt
+\[
+E_\mathrm{model}[\boldsymbol{s}^i] = - \sum_{j=1}^N \sum_{k=1}^N J_{j,k}s_{j}^is_{k}^i.
+\]
+!et
+
+Here $i$ represents a particular spin configuration (one of the possible $n$ configurations we generated with the code above).
+
+This model is uniquely defined by the non-local coupling strengths $J_{jk}$ which we want to learn.
+The model is linear in $\mathbf{J}$ which makes it possible to use linear regression.
+
+To apply linear regression, we recast this model in the form
+!bt
+\[
+E_\mathrm{model}^i \equiv \mathbf{X}^i \cdot \mathbf{J},
+\]
+!et
+
+where the vectors $\mathbf{X}^i$ represent all two-body interactions
+$\{s_{j}^is_{k}^i \}_{j,k=1}^N$, and the index $i$ runs over the
+samples in the data set.  To make the analogy complete, we can also
+represent the dot product by a single index $p = \{j,k\}$,
+i.e. $\mathbf{X}^i \cdot \mathbf{J}=X^i_pJ_p$.  Note that the
+regression model does not include the minus sign, so we expect to
+learn negative $J$'s.
+
+
+
+=== Part b): Estimating the coupling constant of the one-dimensional Ising model using linear regression ===
+
+We start with the one-dimensional Ising model and use the data we have
+generated with $J=1$ in the previous point.
+
+_Use linear regression,
+Lasso and Ridge regression as done in homework 3_.
+Make an analysis of the guessed coupling constant as function of the hyperparameters $\lambda$. 
+You can compare your
+results with those of "Mehta
+et al.":"https://physics.bu.edu/~pankajm/ML-Notebooks/HTML/NB_CVI-linreg_ising.html".
+Make sure it is the 1D data which is used.
+
+Discuss the methods and how they perform in computing the coupling
+constant $J$ and include a bias-variance analysis using the bootstrap resampling method.
+Discuss also the mean squared error and
+the $R2$ score as measures to assess your model.
+
+Give a critical analysis of your results.
+
+
+=== Part c): Determine the phase of the two-dimensional Ising model  ===
+
+We switch now to binary classification methods and use logistic
+regression to define the phases of the Ising model. This means that we switch to the two-dimensional Ising model
+and use the data sets generated by "Mehta et al":"https://physics.bu.edu/~pankajm/ML-Review-Datasets/isingMC/"
+These energies and their corresponding spin orientation configurations 
+represent then your data.  We will use a fixed lattice of $L\times L =
+40 \times 40$ spins in two dimensions. The link above contains data for several temperatures.
+The theoretical critical temperature for a phase transition is $T_C\approx 2.269$ in units of energy.
+However, for a finite lattice the results representing the critical temperature are slightly higher ($T_C \approx 2.3$). 
+
+Our goal here, using logistic regression, is to train our model to
+predict the phase of a sample given the spin configuration, whether it
+represents a state above the critical temperature or below.  The
+configurations representing states below the critical temperature are
+called ordered states (the spins tend to point in one direction,
+resulting in a net magnetic moment) while those above the critical
+temperature are called disordered. Since a finite lattice like this
+does not exhibit a clear sign of a phase transition we will mainly
+stay with either orderer or disordered phases. You could include the
+critical phase if you want.
+
+
+Your aim here is thus to read in these data (use the examples from
+"Mehta et
+al":"https://physics.bu.edu/~pankajm/ML-Notebooks/HTML/NB_CVII-logreg_ising.html")
+and use for example the functionality in _Scikit-Learn_ to implement  logistic regression, see the lecture
+notes on "logistic
+regression":"https://compphysics.github.io/MachineLearning/doc/pub/LogReg/html/LogReg-bs.html".
+
+
+In this case, to evaluate the model, we will use the so-called accuracy score.   Examples of how to define the accuracy score can be found under the neural network slides. You should also use logistic regression with and without cross-validation.
+
+To measure the performance of our network we evaluate how well it does
+on data it has never seen before, i.e. the test data.  We measure the
+performance of the network using the *accuracy* score.  The accuracy
+is as you would expect just the number of images correctly labeled
+divided by the total number of images. A perfect classifier will have
+an accuracy score of $1$.
+
+!bt  
+\[ 
+\text{Accuracy} = \frac{\sum_{i=1}^n I(t_i = y_i)}{n} ,
+\]
+!et  
+
+where $I$ is the indicator function, $1$ if $t_i = y_i$ and $0$
+otherwise, where $t_i$ represents the target and $y_i$ the outputs.
+
+
+The notebook of "Mehta et al":"https://physics.bu.edu/~pankajm/ML-Notebooks/HTML/NB_CVII-logreg_ising.html" is highly recommended in order to benchmark your code and results.
+
+=== Part d): Regression analysis of the one-dimensional Ising model using neural networks  ===
+
+Your aim now is to use either _scikit-learn_ or _tensorflow_ in order to set up a neural network to find the optimal weights and biases. 
+
+Train your network and compare the results with those from your linear regression code. 
+You can test your results against a similar code using _scikit-learn_ or _tensorflow/keras_. 
+
+
+A useful reference on the back progagation algorithm is "Nielsen's book":"http://neuralnetworksanddeeplearning.com/". It is an excellent read.
+
+=== Part e): Classifying the Ising model phase using neural networks  ===
+
+Finally, change now your cost function to the $log$ cross-entropy classification cost function for the case discussed in part c). Train your network again and
+compare the results with those from your logistic  regression code in c). 
+Here again you can compare your results with those of "Mehta et al":"https://physics.bu.edu/~pankajm/ML-Notebooks/HTML/NB_CIX-DNN_ising_TFlow.html". There they used _tensorflow_ to classify the phases. 
+
+
+
+=== Part f) Critical evaluation of the various algorithms ===
+
+After all these glorious calculations, you should now summarize the various algorithms and come with a critical evaluation of their pros and cons. Which algorithm works best for the regression case and which is best for the classification case. These codes will also be part of your final project 2, but now applied to other data sets.
+
+
+
+
+===== Background literature =====
+
+o  The text of Michael Nielsen is highly recommended, see "Nielsen's book":"http://neuralnetworksanddeeplearning.com/". It is an excellent read.
+
+o  The textbook of "Trevor Hastie, Robert Tibshirani, Jerome H. Friedman, The Elements of Statistical Learning, Springer":"https://www.springer.com/gp/book/9780387848570", chapters 3 and 7 are the most relevant ones for the analysis here. 
+
+o  "Mehta et al, arXiv 1803.08823":"https://arxiv.org/abs/1803.08823", *A high-bias, low-variance introduction to Machine Learning for physicists*, ArXiv:1803.08823.
+
+If you wish to read more about the Ising model and statistical physics here are three suggestions.
+
+o  "M. Plischke and B. Bergersen":"http://www.worldscientific.com/worldscibooks/10.1142/5660", *Equilibrium Statistical Physics*, World Scientific, see chapters 5 and 6.
+
+o  "D. P. Landau and K. Binder":"http://www.cambridge.org/no/academic/subjects/physics/computational-science-and-modelling/guide-monte-carlo-simulations-statistical-physics-4th-edition?format=HB", *A Guide to Monte Carlo Simulations in Statistical Physics*, Cambridge, see chapters 2,3 and 4.
+
+o  "M. E. J. Newman and T. Barkema":"https://global.oup.com/academic/product/monte-carlo-methods-in-statistical-physics-9780198517979?cc=no&lang=en&", *Monte Carlo Methods in Statistical Physics*, Oxford, see chapters 3 and 4.
+
+
+
+
+
+===== Introduction to numerical projects =====
+
+Here follows a brief recipe and recommendation on how to write a report for each
+project.
+
+  * Give a short description of the nature of the problem and the eventual  numerical methods you have used.
+
+  * Describe the algorithm you have used and/or developed. Here you may find it convenient to use pseudocoding. In many cases you can describe the algorithm in the program itself.
+
+  * Include the source code of your program. Comment your program properly.
+
+  * If possible, try to find analytic solutions, or known limits in order to test your program when developing the code.
+
+  * Include your results either in figure form or in a table. Remember to        label your results. All tables and figures should have relevant captions        and labels on the axes.
+
+  * Try to evaluate the reliabilty and numerical stability/precision of your results. If possible, include a qualitative and/or quantitative discussion of the numerical stability, eventual loss of precision etc.
+
+  * Try to give an interpretation of you results in your answers to  the problems.
+
+  * Critique: if possible include your comments and reflections about the  exercise, whether you felt you learnt something, ideas for improvements and  other thoughts you've made when solving the exercise. We wish to keep this course at the interactive level and your comments can help us improve it.
+
+  * Try to establish a practice where you log your work at the  computerlab. You may find such a logbook very handy at later stages in your work, especially when you don't properly remember  what a previous test version  of your program did. Here you could also record  the time spent on solving the exercise, various algorithms you may have tested or other topics which you feel worthy of mentioning.
+
+
+
+
+
+===== Format for electronic delivery of report and programs =====
+
+The preferred format for the report is a PDF file. You can also use DOC or postscript formats or as an ipython notebook file.  As programming language we prefer that you choose between C/C++, Fortran2008 or Python. The following prescription should be followed when preparing the report:
+
+  * Send us _only_ the report file!  For the source code file(s) you have developed please provide us with your link to you\rr github domain.  The report file should include all of your discussions and a list of the codes you have developed.  
+
+  * item In your git repository, please include a folder which contains selected results and a folder with your codes.
+
+
+Finally, 
+we encourage you to collaborate. Optimal working groups consist of 
+2-3 students. You can then hand in a common report. 
+
+
+
+===== Software and needed installations =====
+
+If you have Python installed (we recommend Python3) and you feel pretty familiar with installing different packages, 
+we recommend that you install the following Python packages via _pip_ as
+o pip install numpy scipy matplotlib ipython scikit-learn tensorflow sympy pandas pillow
 For Python3, replace _pip_ with _pip3_.
 
-For OSX users we recommend, after having installed Xcode, to
-install _brew_. Brew allows for a seamless installation of additional
-software via for example 
+See below for a discussion of _tensorflow_ and _scikit-learn_. 
 
+For OSX users we recommend also, after having installed Xcode, to install _brew_. Brew allows 
+for a seamless installation of additional software via for example
 o brew install python3
 
-For Linux users, with its variety of distributions like for example the widely popular Ubuntu distribution,
+For Linux users, with its variety of distributions like for example the widely popular Ubuntu distribution
 you can use _pip_ as well and simply install Python as 
+o sudo apt-get install python3  (or python for python2.7)
+etc etc. 
 
-o sudo apt-get install python3  (or python for Python2.7)
+If you don't want to install various Python packages with their dependencies separately, we recommend two widely used distrubutions which set up  all relevant dependencies for Python, namely
+o "Anaconda":"https://docs.anaconda.com/" Anaconda is an open source distribution of the Python and R programming languages for large-scale data processing, predictive analytics, and scientific computing, that aims to simplify package management and deployment. Package versions are managed by the package management system _conda_
+o "Enthought canopy":"https://www.enthought.com/product/canopy/"  is a Python distribution for scientific and analytic computing distribution and analysis environment, available for free and under a commercial license.
 
-If you don't want to perform these operations separately and venture
-into the hassle of exploring how to set up dependencies and paths, we
-recommend two widely used distrubutions which set up all relevant
-dependencies for Python, namely 
+Popular software packages written in Python for ML are
 
-* "Anaconda":"https://docs.anaconda.com/", 
+* "Scikit-learn":"http://scikit-learn.org/stable/", 
+* "Tensorflow":"https://www.tensorflow.org/",
+* "PyTorch":"http://pytorch.org/" and 
+* "Keras":"https://keras.io/".
+These are all freely available at their respective GitHub sites. They 
+encompass communities of developers in the thousands or more. And the number
+of code developers and contributors keeps increasing.
 
-which is an open source
-distribution of the Python and R programming languages for large-scale
-data processing, predictive analytics, and scientific computing, that
-aims to simplify package management and deployment. Package versions
-are managed by the package management system _conda_. 
 
-* "Enthought canopy":"https://www.enthought.com/product/canopy/" 
 
-is a Python
-distribution for scientific and analytic computing distribution and
-analysis environment, available for free and under a commercial
-license.
 
-We recommend using _Anaconda_.
 
-===== Exercise: Our first Python encounter =====
 
 
-This exercise has as its aim to write a small program which reads in data from a _csv_ file on the equation of state for dense nuclear matter. The file is localized at URL:"https://github.com/mhjensen/MachineLearningMSU-FRIB2020/blob/master/doc/pub/Regression/ipynb/datafiles/EoS.csv". Thereafter you will have to set up the design matrix $\bm{X}$ for the  $n$
-datapoints and a polynomial of degree $3$. The steps are:
-* Write a Python code which reads the in the above mentioned file.
-* Use for example _pandas_ to order your data and find out how many data points there are.
-* Set thereafter up the design matrix with dimensionality $n\times p$ where $p=4$ and where you have defined a polynomial of degree $p-1=3$. Print the matrix and check that the numbers are correct. 
 
-We recommend looking at the examples in the "regression slides":"https://compphysics.github.io/MachineLearning/doc/pub/Regression/html/Regression-bs.html". 
-!bsol
-!bc pycod 
-import os
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
-# Where to save the figures and data files
-PROJECT_ROOT_DIR = "Results"
-FIGURE_ID = "Results/FigureFiles"
-DATA_ID = "DataFiles/"
 
-if not os.path.exists(PROJECT_ROOT_DIR):
-    os.mkdir(PROJECT_ROOT_DIR)
-
-if not os.path.exists(FIGURE_ID):
-    os.makedirs(FIGURE_ID)
-
-if not os.path.exists(DATA_ID):
-    os.makedirs(DATA_ID)
-
-def image_path(fig_id):
-    return os.path.join(FIGURE_ID, fig_id)
-
-def data_path(dat_id):
-    return os.path.join(DATA_ID, dat_id)
-
-def save_fig(fig_id):
-    plt.savefig(image_path(fig_id) + ".png", format='png')
-
-def R2(y_data, y_model):
-    return 1 - np.sum((y_data - y_model) ** 2) / np.sum((y_data - np.mean(y_data)) ** 2)
-def MSE(y_data,y_model):
-    n = np.size(y_model)
-    return np.sum((y_data-y_model)**2)/n
-
-infile = open(data_path("EoS.csv"),'r')
-
-# Read the EoS data as  csv file and organized into two arrays with density and energies
-EoS = pd.read_csv(infile, names=('Density', 'Energy'))
-EoS['Energy'] = pd.to_numeric(EoS['Energy'], errors='coerce')
-EoS = EoS.dropna()
-Energies = EoS['Energy']
-Density = EoS['Density']
-#  The design matrix now as function of various polytrops
-X = np.zeros((len(Density),5))
-X[:,0] = 1
-X[:,1] = Density**(2.0/3.0)
-X[:,2] = Density
-X[:,3] = Density**(4.0/3.0)
-X[:,4] = Density**(5.0/3.0)
-# We split the data in test and training data
-X_train, X_test, y_train, y_test = train_test_split(X, Energies, test_size=0.2)
-# matrix inversion to find beta
-beta = np.linalg.inv(X_train.T @ X_train) @ X_train.T @ y_train
-# and then make the prediction
-ytilde = X_train @ beta
-print("Training R2")
-print(R2(y_train,ytilde))
-print("Training MSE")
-print(MSE(y_train,ytilde))
-ypredict = X_test @ beta
-print("Test R2")
-print(R2(y_test,ypredict))
-print("Test MSE")
-print(MSE(y_test,ypredict))
-!ec
-
-!esol
-
-===== Exercise: making your own data and exploring scikit-learn =====
-
-
-We will generate our own dataset for a function $y(x)$ where $x \in [0,1]$ and defined by random numbers computed with the uniform distribution. The function $y$ is a quadratic polynomial in $x$ with added stochastic noise according to the normal distribution $\cal {N}(0,1)$.
-The following simple Python instructions define our $x$ and $y$ values (with 100 data points).
-!bc pycod
-x = np.random.rand(100,1)
-y = 2.0+5*x*x+0.1*np.random.randn(100,1)
-!ec
-
-o Write your own code (following the examples under the "regression slides":"https://compphysics.github.io/MachineLearningECT/doc/pub/Day1/html/Day1-bs.html") for computing the parametrization of the data set fitting a second-order polynomial. 
-o Use thereafter _scikit-learn_ (see again the examples in the regression slides) and compare with your own code.   
-o Using scikit-learn, compute also the mean square error, a risk metric corresponding to the expected value of the squared (quadratic) error defined as
-!bt 
-\[ MSE(\hat{y},\hat{\tilde{y}}) = \frac{1}{n}
-\sum_{i=0}^{n-1}(y_i-\tilde{y}_i)^2, 
-\] 
-!et 
-and the $R^2$ score function.
-If $\tilde{\hat{y}}_i$ is the predicted value of the $i-th$ sample and $y_i$ is the corresponding true value, then the score $R^2$ is defined as
-!bt
-\[
-R^2(\hat{y}, \tilde{\hat{y}}) = 1 - \frac{\sum_{i=0}^{n - 1} (y_i - \tilde{y}_i)^2}{\sum_{i=0}^{n - 1} (y_i - \bar{y})^2},
-\]
-!et
-where we have defined the mean value  of $\hat{y}$ as
-!bt
-\[
-\bar{y} =  \frac{1}{n} \sum_{i=0}^{n - 1} y_i.
-\]
-!et
-You can use the functionality included in scikit-learn. If you feel for it, you can use your own program and define functions which compute the above two functions. 
-Discuss the meaning of these results. Try also to vary the coefficient in front of the added stochastic noise term and discuss the quality of the fits.
-
-!bsol
-The code here is an example of where we define our own design matrix and fit parameters $\beta$.
-!bc pycod
-import os
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
-
-def save_fig(fig_id):
-    plt.savefig(image_path(fig_id) + ".png", format='png')
-
-def R2(y_data, y_model):
-    return 1 - np.sum((y_data - y_model) ** 2) / np.sum((y_data - np.mean(y_data)) ** 2)
-def MSE(y_data,y_model):
-    n = np.size(y_model)
-    return np.sum((y_data-y_model)**2)/n
-
-x = np.random.rand(100)
-y = 2.0+5*x*x+0.1*np.random.randn(100)
-
-
-#  The design matrix now as function of a given polynomial
-X = np.zeros((len(x),3))
-X[:,0] = 1.0
-X[:,1] = x
-X[:,2] = x**2
-# We split the data in test and training data
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
-# matrix inversion to find beta
-beta = np.linalg.inv(X_train.T @ X_train) @ X_train.T @ y_train
-print(beta)
-# and then make the prediction
-ytilde = X_train @ beta
-print("Training R2")
-print(R2(y_train,ytilde))
-print("Training MSE")
-print(MSE(y_train,ytilde))
-ypredict = X_test @ beta
-print("Test R2")
-print(R2(y_test,ypredict))
-print("Test MSE")
-print(MSE(y_test,ypredict))
-!ec
-!esol
-
-
-===== Exercise: mean values and variances in linear regression  =====
-
-
-
-This exercise deals with various mean values ad variances in  linear regression method (here it may be useful to look up chapter 3, equation (3.8) of "Trevor Hastie, Robert Tibshirani, Jerome H. Friedman, The Elements of Statistical Learning, Springer":"https://www.springer.com/gp/book/9780387848570").
-
-The assumption we have made is 
-that there exists a function $f(\bm{x})$ and  a normal distributed error $\bm{\varepsilon}\sim \mathcal{N}(0, \sigma^2)$
-which describes our data
-!bt
-\[
-\bm{y} = f(\bm{x})+\bm{\varepsilon}
-\]
-!et
-
-We then approximate this function with our model from the solution of the linear regression equations (ordinary least squares OLS), that is our
-function $f$ is approximated by $\bm{\tilde{y}}$ where we minimized  $(\bm{y}-\bm{\tilde{y}})^2$, with
-!bt
-\[
-\bm{\tilde{y}} = \bm{X}\bm{\beta}.
-\]
-!et
-The matrix $\bm{X}$ is the so-called design matrix. 
-
-!bsubex
-Show that  the expectation value of $\bm{y}$ for a given element $i$ 
-!bt
-\begin{align*} 
-\mathbb{E}(y_i) & =\mathbf{X}_{i, \ast} \, \beta, 
-\end{align*} 
-!et
-and that
-its variance is 
-!bt
-\begin{align*} \mbox{Var}(y_i) & = \sigma^2.  
-\end{align*}
-!et
-Hence, $y_i \sim \mathcal{N}( \mathbf{X}_{i, \ast} \, \bm{\beta}, \sigma^2)$, that is $\bm{y}$ follows a normal distribution with 
-mean value $\bm{X}\bm{\beta}$ and variance $\sigma^2$.
-!bsol
-We can calculate the expectation value of $\bm{y}$ for a given element $i$ 
-!bt
-\begin{align*} 
-\mathbb{E}(y_i) & =
-\mathbb{E}(\mathbf{X}_{i, \ast} \, \bm{\beta}) + \mathbb{E}(\varepsilon_i)
-\, \, \, = \, \, \, \mathbf{X}_{i, \ast} \, \beta, 
-\end{align*} 
-!et
-while
-its variance is 
-!bt
-\begin{align*} \mbox{Var}(y_i) & = \mathbb{E} \{ [y_i
-- \mathbb{E}(y_i)]^2 \} \, \, \, = \, \, \, \mathbb{E} ( y_i^2 ) -
-[\mathbb{E}(y_i)]^2  \\  & = \mathbb{E} [ ( \mathbf{X}_{i, \ast} \,
-\beta + \varepsilon_i )^2] - ( \mathbf{X}_{i, \ast} \, \bm{\beta})^2 \\ &
-= \mathbb{E} [ ( \mathbf{X}_{i, \ast} \, \bm{\beta})^2 + 2 \varepsilon_i
-\mathbf{X}_{i, \ast} \, \bm{\beta} + \varepsilon_i^2 ] - ( \mathbf{X}_{i,
-\ast} \, \beta)^2 \\  & = ( \mathbf{X}_{i, \ast} \, \bm{\beta})^2 + 2
-\mathbb{E}(\varepsilon_i) \mathbf{X}_{i, \ast} \, \bm{\beta} +
-\mathbb{E}(\varepsilon_i^2 ) - ( \mathbf{X}_{i, \ast} \, \bm{\beta})^2 
-\\ & = \mathbb{E}(\varepsilon_i^2 ) \, \, \, = \, \, \,
-\mbox{Var}(\varepsilon_i) \, \, \, = \, \, \, \sigma^2.  
-\end{align*}
-!et
-Hence, $y_i \sim \mathcal{N}( \mathbf{X}_{i, \ast} \, \bm{\beta}, \sigma^2)$, that is $\bm{y}$ follows a normal distribution with 
-mean value $\bm{X}\bm{\beta}$ and variance $\sigma^2$ (not be confused with the singular values of the SVD). 
-
-!esol
-!esubex
-
-!bsubex
-With the OLS expressions for the parameters $\bm{\beta}$ show that
-!bt
-\[
-\mathbb{E}(\bm{\beta}) = \bm{\beta}.
-\]
-!et
-!bsol
-!bt
-\[
-\mathbb{E}(\bm{\beta}) = \mathbb{E}[ (\mathbf{X}^{\top} \mathbf{X})^{-1}\mathbf{X}^{T} \mathbf{Y}]=(\mathbf{X}^{T} \mathbf{X})^{-1}\mathbf{X}^{T} \mathbb{E}[ \mathbf{Y}]=(\mathbf{X}^{T} \mathbf{X})^{-1} \mathbf{X}^{T}\mathbf{X}\bm{\beta}=\bm{\beta}.
-\]
-!et
-This means that the estimator of the regression parameters is unbiased.
-!esol
-!esubex
-
-!bsubex
-Show finally that the variance of $\bm{\beta}$ is
-!bt
-\begin{eqnarray*}
-\mbox{Var}(\bm{\beta}) & = & \sigma^2 \, (\mathbf{X}^{T} \mathbf{X})^{-1}.
-\end{eqnarray*}
-!et
-!bsol
-The variance of $\bm{\beta}$ is
-!bt
-\begin{eqnarray*}
-\mbox{Var}(\bm{\beta}) & = & \mathbb{E} \{ [\bm{\beta} - \mathbb{E}(\bm{\beta})] [\bm{\beta} - \mathbb{E}(\bm{\beta})]^{T} \}
-\\
-& = & \mathbb{E} \{ [(\mathbf{X}^{T} \mathbf{X})^{-1} \, \mathbf{X}^{T} \mathbf{Y} - \bm{\beta}] \, [(\mathbf{X}^{T} \mathbf{X})^{-1} \, \mathbf{X}^{T} \mathbf{Y} - \bm{\beta}]^{T} \}
-\\
-% & = & \mathbb{E} \{ [(\mathbf{X}^{T} \mathbf{X})^{-1} \, \mathbf{X}^{T} \mathbf{Y}] \, [(\mathbf{X}^{T} \mathbf{X})^{-1} \, \mathbf{X}^{T} \mathbf{Y}]^{T} \} - \bm{\beta} \, \bm{\beta}^{T}
-% \\
-% & = & \mathbb{E} \{ (\mathbf{X}^{T} \mathbf{X})^{-1} \, \mathbf{X}^{T} \mathbf{Y} \, \mathbf{Y}^{T} \, \mathbf{X} \, (\mathbf{X}^{T} \mathbf{X})^{-1}  \} - \bm{\beta} \, \bm{\beta}^{T}
-% \\
-& = & (\mathbf{X}^{T} \mathbf{X})^{-1} \, \mathbf{X}^{T} \, \mathbb{E} \{ \mathbf{Y} \, \mathbf{Y}^{T} \} \, \mathbf{X} \, (\mathbf{X}^{T} \mathbf{X})^{-1} - \bm{\beta} \, \bm{\beta}^{T}
-\\
-& = & (\mathbf{X}^{T} \mathbf{X})^{-1} \, \mathbf{X}^{T} \, \{ \mathbf{X} \, \bm{\beta} \, \bm{\beta}^{T} \,  \mathbf{X}^{T} + \sigma^2 \} \, \mathbf{X} \, (\mathbf{X}^{T} \mathbf{X})^{-1} - \bm{\beta} \, \bm{\beta}^{T}
-% \\
-% & = & (\mathbf{X}^T \mathbf{X})^{-1} \, \mathbf{X}^T \, \mathbf{X} \, \bm{\beta} \, \bm{\beta}^T \,  \mathbf{X}^T \, \mathbf{X} \, (\mathbf{X}^T % \mathbf{X})^{-1}
-% \\
-% & & + \, \, \sigma^2 \, (\mathbf{X}^T \mathbf{X})^{-1} \, \mathbf{X}^T  \, \mathbf{X} \, (\mathbf{X}^T \mathbf{X})^{-1} - \bm{\beta} \bm{\beta}^T
-\\
-& = & \bm{\beta} \, \bm{\beta}^{T}  + \sigma^2 \, (\mathbf{X}^{T} \mathbf{X})^{-1} - \bm{\beta} \, \bm{\beta}^{T}
-\, \, \, = \, \, \, \sigma^2 \, (\mathbf{X}^{T} \mathbf{X})^{-1},
-\end{eqnarray*}
-!et
-
-where we have used  that $\mathbb{E} (\mathbf{Y} \mathbf{Y}^{T}) =
-\mathbf{X} \, \bm{\beta} \, \bm{\beta}^{T} \, \mathbf{X}^{T} +
-\sigma^2 \, \mathbf{I}_{nn}$. From $\mbox{Var}(\bm{\beta}) = \sigma^2
-\, (\mathbf{X}^{T} \mathbf{X})^{-1}$, one obtains an estimate of the
-variance of the estimate of the $j$-th regression coefficient:
-$\bm{\sigma}^2 (\hat{\beta}_j ) = \bm{\sigma}^2 \sqrt{
-[(\mathbf{X}^{T} \mathbf{X})^{-1}]_{jj} }$. This may be used to
-construct a confidence interval for the estimates.
-
-
-In a similar way, we can obtain analytical expressions for say the
-expectation values of the parameters $\bm{\beta}$ and their variance
-when we employ Ridge regression, allowing us again to define a confidence interval. 
-!esol
-
-!esubex
-
-===== Exercise: Playing with nuclear masses  =====
-
-Finally, try now to write your own code (you can use the example the nuclear masses in the lecture slides on Regression and Getting started from Day1, that reads in the nuclear masses and
-compute the proton separation energies, the two-neutron and two-proton separation energies and finally the shell gaps for selected nuclei.
-
-Finally, try to compute the $Q$-values for $\beta-$ decay for selected nuclei.
-
-!bsol
-Let us study the $Q$ values associated with the removal of one or two nucleons from
-a nucleus. These are conventionally defined in terms of the one-nucleon and two-nucleon
-separation energies. With the functionality in _pandas_, two to three lines of code will allow us to plot the separation energies.
-The neutron separation energy is defined as 
-
-!bt
-\[
-S_n= -Q_n= BE(N,Z)-BE(N-1,Z),
-\]
-!et
-and the proton separation energy reads
-!bt
-\[
-S_p= -Q_p= BE(N,Z)-BE(N,Z-1).
-\]
-!et
-The two-neutron separation energy is defined as
-!bt
-\[
-S_{2n}= -Q_{2n}= BE(N,Z)-BE(N-2,Z),
-\]
-!et
-and  the two-proton separation energy is given by
-!bt
-\[
-S_{2p}= -Q_{2p}= BE(N,Z)-BE(N,Z-2).
-\]
-!et
-
-Using say the neutron separation energies (alternatively the proton separation energies)
-!bt
-\[
-S_n= -Q_n= BE(N,Z)-BE(N-1,Z),
-\]
-!et
-we can define the so-called energy gap for neutrons (or protons) as 
-!bt
-\[
-\Delta S_n= BE(N,Z)-BE(N-1,Z)-\left(BE(N+1,Z)-BE(N,Z)\right),
-\]
-!et
-or 
-!bt
-\[
-\Delta S_n= 2BE(N,Z)-BE(N-1,Z)-BE(N+1,Z).
-\]
-!et
-This quantity can in turn be used to determine which nuclei could be interpreted as  magic or not. 
-For protons we would have 
-!bt
-\[
-\Delta S_p= 2BE(N,Z)-BE(N,Z-1)-BE(N,Z+1).
-\]
-!et
-
-To calculate say the neutron separation we need to multiply our masses with the nucleon number $A$.
-The example here is for the neutron separation energies for the oxygen isotopes.
-Note the simple function we use to compute the neutron separation energies
-!bc pycod
-# Her we pick the oyxgen isotopes
-Nucleus = df.loc[lambda df: df.Z==8, :]
-# drop cases with no number
-Nucleus = Nucleus.dropna()
-# Here we do the magic and obtain the neutron separation energies, one line of code!!
-Nucleus['NeutronSeparationEnergies'] = Nucleus['Energies'].diff(+1)
-!ec
-
-If we want another isotope we need simply to change the $Z$ value. For isotones, we fix simply the neutron number. Furthermore, if we wish to compute say the two-neutron separation energies of the oyxgen isotopes we need simply to write 
-!bc pycod
-# Her we pick the oyxgen isotopes
-Nucleus = df.loc[lambda df: df.Z==8, :]
-# drop cases with no number
-Nucleus = Nucleus.dropna()
-# Here we do the magic and obtain the neutron separation energies, one line of code!!
-Nucleus['NeutronSeparationEnergies'] = Nucleus['Energies'].diff(+2)
-!ec
-Note the $+2$ in the function _diff(+2)_!  Easy, isn't it? It is easy to change to two-proton separation energies. The full example here is for the neutron separation energies.
-
-!bc pycod
-# Common imports
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import os
-from pylab import plt, mpl
-plt.style.use('seaborn')
-mpl.rcParams['font.family'] = 'serif'
-
-
-# Where to save the figures and data files
-PROJECT_ROOT_DIR = "Results"
-FIGURE_ID = "Results/FigureFiles"
-DATA_ID = "DataFiles/"
-
-if not os.path.exists(PROJECT_ROOT_DIR):
-    os.mkdir(PROJECT_ROOT_DIR)
-
-if not os.path.exists(FIGURE_ID):
-    os.makedirs(FIGURE_ID)
-
-if not os.path.exists(DATA_ID):
-    os.makedirs(DATA_ID)
-
-def image_path(fig_id):
-    return os.path.join(FIGURE_ID, fig_id)
-
-def data_path(dat_id):
-    return os.path.join(DATA_ID, dat_id)
-
-def save_fig(fig_id):
-    plt.savefig(image_path(fig_id) + ".png", format='png')
-
-infile = open(data_path("MassEval2016.dat"),'r')
-
-
-# Read the experimental data with Pandas
-Masses = pd.read_fwf(infile, usecols=(2,3,4,6,11),
-              names=('N', 'Z', 'A', 'Element', 'Ebinding'),
-              widths=(1,3,5,5,5,1,3,4,1,13,11,11,9,1,2,11,9,1,3,1,12,11,1),
-              header=39,
-              index_col=False)
-
-# Extrapolated values are indicated by '#' in place of the decimal place, so
-# the Ebinding column won't be numeric. Coerce to float and drop these entries.
-Masses['Ebinding'] = pd.to_numeric(Masses['Ebinding'], errors='coerce')
-Masses = Masses.dropna()
-# Convert from keV to MeV.
-Masses['Ebinding'] /= 1000
-A = Masses['A']
-Z = Masses['Z']
-N = Masses['N']
-Element = Masses['Element']
-Energies = Masses['Ebinding']*A
-
-df = pd.DataFrame({'A':A,'Z':Z, 'N':N,'Element':Element,'Energies':Energies})
-# Her we pick the oyxgen isotopes
-Nucleus = df.loc[lambda df: df.Z==8, :]
-# drop cases with no number
-Nucleus = Nucleus.dropna()
-# Here we do the magic and obtain the neutron separation energies, one line of code!!
-Nucleus['NeutronSeparationEnergies'] = Nucleus['Energies'].diff(+1)
-print(Nucleus)
-MakePlot([Nucleus.A], [Nucleus.NeutronSeparationEnergies], ['b'], ['Neutron Separation Energy'], ['$A$','$S_n$'])
-save_fig('Nucleus')
-plt.show()
-
-!ec
-
-
-!esol
-
+  
 
 
